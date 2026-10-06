@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "scorestarling",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Convert musical content across audio, video, sheet music, MIDI and notation with editable scores, playback and exports.",
   "author": {
     "name": "HaiyiMei"

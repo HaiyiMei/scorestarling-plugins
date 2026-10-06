@@ -317,9 +317,11 @@ without that history); make a new score only when the user asks for one.
   changed pitch plays at the new pitch, a removed note stops sounding, and a note without an
   existing `id` is added to the playing where it is written. Parts stay the same.
   `preview=true` makes a suggestion the user applies or discards in the panel.
-- Fetching a file into your own workspace may ask the user's permission each time. Download
-  the MusicXML once for a round of edits, make all of them in that copy and save once; read
-  notes, staves and voices with `get_score` rather than downloading files to inspect them.
+- Fetching a file into your own workspace may ask the user's permission, and the turn waits
+  until they answer. Before the first fetch in a conversation, say so in one line: allowing
+  ScoreStarling for the conversation stops further asks. Download the MusicXML once for a round
+  of edits, make all of them in that copy and save once; read notes, staves and voices with
+  `get_score` rather than downloading files to inspect them.
 - After saving, re-read IDs with `get_score`, `review_score` the result and say in plain words
   what changed. If `revise_score` refuses, it says what differs; fix the file and save again.
 
