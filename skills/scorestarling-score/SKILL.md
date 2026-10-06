@@ -48,7 +48,9 @@ If the user has not given a recording yet, answer in three short lines with the 
 attach it in the chat (ChatGPT web or desktop) or paste a link to the file; open the ScoreStarling
 panel with `open_studio` to choose a file or record (best on phones and in Claude); or use the
 workspace at scorestarling.com/app. Add that one instrument or voice works best, piano included, and that a
-known tempo (BPM) helps; otherwise it is detected. Call the engines Standard, Piano and Pro.
+known tempo (BPM) helps; otherwise it is detected. Name the choices as the workspace does: one
+instrument or voice and solo piano (free), or a band (uses credits, price shown first); never say
+Standard, Pro, engine or supplier names unless the user does.
 
 ## Get the audio in
 
@@ -193,7 +195,7 @@ with the user. Preserve the original and reversible revisions.
    tempo, meter or downbeat choice remains unclear. A 6/8 or 12/8 score marks and
    reports its tempo in dotted quarters.
 5. If the status gives `advice`, or the user hears missing notes, offer another engine: Piano
-   for solo piano (free), Pro for bands and songs (paid, quoted first).
+   for solo piano (free), a band for songs with several instruments (uses credits, price shown first).
 6. Apply evidence-based, reversible edits the user has already requested, including a
    broad correction or arrangement goal; do not ask again for each ordinary edit.
    Preview newly proposed musical changes outside that scope and apply after acceptance
@@ -356,7 +358,7 @@ Use the connected host's authorized tools and respect its file, network and appr
 
 When the user says reuse the existing result or do not start new processing, first list_scores and open_score; do not upload, check_recording or transcribe_again merely to reopen a score. Only for an explicitly requested new score from a saved Pro result, use the original upload or transcribe_again with provider=mirelo, review_instruments=true and replay_only=true from creation (enabled replay accounts only). Read get_pro_instrument_review(start=false) first. replay_candidates verify this owner, original bytes and decoded length; compare every historical instrument and flat pro_options with the requested choices. No matching candidate means stop and offer the existing score; never start detection, fresh processing or a replacement. Confirm matching complete choices with replay_only=true, then read back pro_review.replay_only=true. Keep the same excerpt length; a shorter quote needs its own matching saved result, otherwise stop. If a quote is required, ask once for its exact product credits; reuse permission is not payment consent. Follow the same job and verify completed.replayed_from. Explain saved-result reuse in plain words; the user does not need to name internal fields.
 
-Audio attachments: check_recording with the named instrument; use recommendation.engine. If it is null, ask what the instrument is. local is Standard for one instrument or voice; piano is Piano for solo piano with both hands, chords and pedal; mirelo is paid Pro for bands and drums, chosen with the user; its credit quote is the one cost question. Never ask for a credit cap or show supplier credits. Pro uploads need instrument review; follow next_step.
+Audio attachments: check_recording with the named instrument; use recommendation.engine. If it is null, ask what the instrument is. local is Standard for one instrument or voice; piano is Piano for solo piano with both hands, chords and pedal; mirelo is paid Pro for bands and drums, chosen with the user; its credit quote is the one cost question. Never ask for a credit cap or show supplier credits. Pro uploads need instrument review; follow next_step. To the user, name the choices as the workspace does: one instrument or voice, solo piano, or a band (uses credits); say price, not quote; never say Standard, Piano engine, Pro, model or supplier names unless the user does. When you ask the user to agree to a band's price, add the short credit "Powered by Mirelo" (its API terms ask for it where a generation starts); nowhere else.
 
 Read get_pro_instrument_review(start=false) first. For a new Pro upload, start=true gets free instrument suggestions. Review every suggestion against accessible recording evidence, supplied facts and any written source; preselected is not a complete inventory. Describe clearly and possibly heard instruments in plain words, never agreement figures. Use a grounded complete list with confirm_pro_instruments; a missing instrument cannot appear and a wrong one misallocates notes. Otherwise use instruments=null for automatic parts and include that plan in the one quote/start question, not a separate approval. Set user-stated or source-established rhythm choices in pro_options before quoting; explicitly pass known 6/8, 9/8 or 12/8. Omitted meter uses N/4, not automatic compound-meter detection. Never guess unknown meter/tempo or force fixed BPM; omit unknown choices and report uncertainty, asking only about consequential ambiguity the source cannot resolve. Until the quote is accepted the user may still change choices; quote again if changed. Do not poll or retranscribe a pending review; cancel_pro_review releases its reservation. For replay_only, even start=true stays cache-only: match all saved instruments/options exactly, stop on no match, and never change the cached request or start a replacement. Afterwards report provider_output.rhythm with its meter/tempo sources and warnings.
 

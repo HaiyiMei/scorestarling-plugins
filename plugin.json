@@ -13,7 +13,7 @@
       "interface": {
         "displayName": "ScoreStarling",
         "shortDescription": "Convert music across formats",
-        "longDescription": "ScoreStarling is a music conversion and notation workspace for musicians, arrangers and music learners. Move musical content between sound, pictures, documents and score files. Start from an audio or video recording, an image or PDF of sheet music, MIDI, MusicXML, ABC, numbered notation, a lead sheet, or music written in the chat. Turn it into an editable, playable score, then convert it to PDF, SVG/PNG images, MusicXML, MIDI, MP3/WAV audio, ABC, MEI, individual parts or numbered notation. Read and hear the result, compare a source recording with score playback, review uncertain passages, preview edits, apply accepted changes and undo them. For recordings, Standard suits one instrument or voice, Piano suits solo piano, and Pro suits multiple instruments. Sign in with a ScoreStarling account. Uploads are limited to 50 MiB, or 120 MiB for WAV, AIFF or FLAC. Audio and video transcription cover the account’s supported excerpt, up to five minutes; the length limit and any required processing consent are shown before starting. Automatic transcription and sheet-music reading can contain pitch, rhythm or notation errors, so listening and human review are needed.",
+        "longDescription": "ScoreStarling is a music conversion and notation workspace for musicians, arrangers and music learners. Move musical content between sound, pictures, documents and score files. Start from an audio or video recording, an image or PDF of sheet music, MIDI, MusicXML, ABC, numbered notation, a lead sheet, or music written in the chat. Turn it into an editable, playable score, then convert it to PDF, SVG/PNG images, MusicXML, MIDI, MP3/WAV audio, ABC, MEI, individual parts or numbered notation. Read and hear the result, compare a source recording with score playback, review uncertain passages, preview edits, apply accepted changes and undo them. Recordings of one instrument or voice, or of solo piano, are free; a band uses credits, and its price is shown before it starts. Sign in with a ScoreStarling account. Uploads are limited to 50 MiB, or 120 MiB for WAV, AIFF or FLAC. Audio and video transcription cover the account’s supported excerpt, up to five minutes; the length limit, and for a band the price, are shown before starting. Automatic transcription and sheet-music reading can contain pitch, rhythm or notation errors, so listening and human review are needed.",
         "developerName": "HAIYI MEI",
         "category": "Creativity",
         "capabilities": [
@@ -38,10 +38,10 @@
         "test_cases": {
           "positive": [
             {
-              "description": "Use the supplied public, licensed solo-guitar recording with Standard transcription. No attachment transport or paid provider is required for this direct-link case.",
-              "prompt": "Turn this short solo-guitar recording into sheet music using Standard, open it, and help me review the result: https://scorestarling.com/samples/guitarset-02_BN1-147-Gb_solo.wav",
+              "description": "Use the supplied public, licensed solo-guitar recording with the free one-instrument transcription. No attachment transport or credits are required for this direct-link case.",
+              "prompt": "Turn this short solo-guitar recording into sheet music, open it, and help me review the result: https://scorestarling.com/samples/guitarset-02_BN1-147-Gb_solo.wav",
               "tools_triggered": "transcribe_link, get_upload_status, review_score, open_score",
-              "expected_behavior": "Use the supplied public URL with Standard (provider local), start one transcribe_link job, inspect that same job until completed, and open and review the actual result. Report detected or estimated key, meter and tempo with uncertainties, retuning and doubtful passages; do not treat structural checks or independent candidates as ground truth. Apply only safe notation-only cleanup and leave musical changes as proposals until approved. No paid Pro/Mirelo call, fabricated attachment or duplicate transcription.",
+              "expected_behavior": "Use the supplied public URL with the free one-instrument transcription (provider local), start one transcribe_link job, inspect that same job until completed, and open and review the actual result. Report detected or estimated key, meter and tempo with uncertainties, retuning and doubtful passages; do not treat structural checks or independent candidates as ground truth. Apply only safe notation-only cleanup and leave musical changes as proposals until approved. No band transcription or credits, fabricated attachment or duplicate transcription.",
               "file_attachment_urls": [
                 "https://scorestarling.com/samples/guitarset-02_BN1-147-Gb_solo.wav"
               ]
@@ -50,7 +50,7 @@
               "description": "An original four-bar ABC melody tests the notation skill without an audio upload or a transcription provider.",
               "prompt": "Make this ABC melody into an editable, playable score and open it:\nX:1\nT:ScoreStarling review melody\nM:4/4\nL:1/4\nQ:1/4=96\nK:C\nCDEF|GABc|cBAG|FEDC|",
               "tools_triggered": "create_score, open_score, get_score",
-              "expected_behavior": "Create one score from the supplied ABC in C major, 4/4 and quarter-note tempo 96, with four complete bars and 16 pitched quarter notes. Open its authoritative score and offer playback. Preserve the supplied pitches and rhythm. Do not call an audio transcription or paid provider."
+              "expected_behavior": "Create one score from the supplied ABC in C major, 4/4 and quarter-note tempo 96, with four complete bars and 16 pitched quarter notes. Open its authoritative score and offer playback. Preserve the supplied pitches and rhythm. Do not start an audio transcription or use credits."
             },
             {
               "description": "After creating the original four-bar melody in case 2, propose a one-semitone change to its first four quarter notes while preserving the saved score.",
@@ -62,7 +62,7 @@
               "description": "Accept the specific preview from the previous case, then undo that change.",
               "prompt": "Apply that preview. After applying it, undo the change so I can compare the original.",
               "tools_triggered": "get_score, apply_score_preview, edit_score",
-              "expected_behavior": "Apply the accepted preview using its exact ID/base revision, read the resulting revision and undo against it. The restored score matches the prior version; no paid provider calls."
+              "expected_behavior": "Apply the accepted preview using its exact ID/base revision, read the resulting revision and undo against it. The restored score matches the prior version; no credits are used."
             },
             {
               "description": "Export the accepted sample score revision.",
@@ -87,10 +87,10 @@
           ]
         },
         "commerce": true,
-        "commerce_description": "Optional Pro transcription uses the connected ScoreStarling account’s existing credits after the user approves the requested processing. The plugin has no purchasing or checkout tools. Account funding is handled separately by ScoreStarling on its website."
+        "commerce_description": "Transcribing a band uses the connected ScoreStarling account’s existing credits, only after the user agrees to the price shown in the chat. The plugin has no purchasing or checkout tools. Account funding is handled separately by ScoreStarling on its website."
       },
       "publication": {
-        "release_notes": "Initial public submission of ScoreStarling 1.0.0: multimodal music conversion from recordings, video, sheet music images/PDFs, MIDI, MusicXML, ABC and music written in chat; editable notation, playback, reversible edit previews, and score, audio and image exports. Includes both current workflow skills and account sign-in for public registration."
+        "release_notes": "Initial ScoreStarling 1.0.0 release: music conversion across recordings, video, sheet-music images/PDFs, MIDI, MusicXML and written notation; editable scores, playback, reversible previews and notation, image and audio exports. One instrument or voice, or solo piano, is free; a band uses credits and shows its price before starting."
       }
     }
   }

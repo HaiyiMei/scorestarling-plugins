@@ -19,10 +19,10 @@ client’s OAuth flow. Each account can run two transcriptions at a time.
 
 Ask: "Turn this attached recording into a score, open it, and help me check it." or
 "Make this photo of sheet music playable and give me the MIDI."
-Standard suits one instrument or voice; Piano suits solo piano, with both hands and pedal.
+One instrument or voice, and solo piano with both hands and pedal, are free; a band uses credits.
 Uploads are limited to 50 MiB, or 120 MiB as WAV, AIFF or FLAC. Each transcription covers the account’s supported excerpt, up to five minutes.
-Read `get_account_usage.max_seconds` for its current limit before starting. Any
-required processing consent is requested before Pro starts. The skill checks tool results and score structure,
+Read `get_account_usage.max_seconds` for its current limit before starting. A band's
+price is shown, and agreed in the chat, before it starts. The skill checks tool results and score structure,
 but listening and human review remain necessary for transcription accuracy.
 Model-proposed musical edits are previews until the user accepts them.
 
@@ -30,9 +30,10 @@ Model-proposed musical edits are previews until the user accepts them.
 
 The plugin connects only to `https://mcp.scorestarling.com/mcp`; audio uploads go to
 `https://scorestarling.com`. The client's authorized MCP connection reads or changes
-the signed-in user's scores and starts requested transcriptions. When Mirelo is
-available and explicitly selected, the service sends the recording to that provider
-within a supplier limit the server sets from the recording's length; the user sees only the credit quote.
+the signed-in user's scores and starts requested transcriptions. When the user
+chooses a band transcription and agrees to its price, the service sends the recording to
+Mirelo, the band transcription provider, within a limit the server sets from the recording's
+length; the user sees only the price in credits.
 The service's privacy policy covers Supabase/Railway storage and Sentry/PostHog
 diagnostics.
 
@@ -80,3 +81,20 @@ The plugin files are licensed under MIT; see [LICENSE](LICENSE). This package's
 license does not cover customer audio, customer scores or the hosted backend.
 Support, terms and privacy pages are hosted by the website; changing this
 package does not deploy them.
+
+## Development and releases
+
+This public repository is the canonical source of the plugin. The private product
+repository pins it as a Git submodule; backend changes do not release this package.
+
+Run `python3 tests/check_plugin_build.py` and validate both Claude manifests before
+release. `python3 scripts/build_plugin.py` builds a deterministic ZIP from the Git
+index; `--source working-tree` builds tracked local changes. CI files, tests and
+top-level developer scripts are excluded from the ZIP.
+
+Update both manifest versions, commit, and push a matching `v<version>` tag to
+release. CI checks the tag and manifests, creates the GitHub ZIP release, and
+advances the `release` branch only after checks pass. Claude directory submissions
+track that branch, so ordinary commits to `main` do not publish a plugin update.
+OpenAI directory uploads and review remain separate steps. Review videos and
+reviewer credentials are supplied privately rather than included here.

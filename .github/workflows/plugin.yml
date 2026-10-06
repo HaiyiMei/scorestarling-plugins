@@ -1,0 +1,64 @@
+name: Plugin
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 22
+      - name: Check packaging and manifests
+        run: |
+          python3 tests/check_plugin_build.py
+          for manifest in plugin marketplace; do
+            npx --yes @anthropic-ai/claude-code@2.1.287 plugin validate \
+              ".claude-plugin/$manifest.json" --strict
+          done
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: check
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Verify tag and build
+        id: package
+        shell: bash
+        run: |
+          version="$(python3 scripts/build_plugin.py --version)"
+          test "v$version" = "$GITHUB_REF_NAME"
+          python3 scripts/build_plugin.py --out "$RUNNER_TEMP/plugin" > "$RUNNER_TEMP/package.txt"
+          { echo "zip=$(sed -n 1p "$RUNNER_TEMP/package.txt")"
+            echo "sha256=$(sed -n 2p "$RUNNER_TEMP/package.txt")"; } >> "$GITHUB_OUTPUT"
+      - name: Publish release and advance distribution branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ZIP: ${{ steps.package.outputs.zip }}
+          SHA256: ${{ steps.package.outputs.sha256 }}
+        shell: bash
+        run: |
+          printf 'Plugin source: %s\nZIP SHA-256: %s\n\nReview recordings and reviewer access are supplied privately.\n' \
+            "$GITHUB_SHA" "$SHA256" > "$RUNNER_TEMP/release-notes.md"
+          if ! gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release create "$GITHUB_REF_NAME" --verify-tag --title "ScoreStarling $GITHUB_REF_NAME" \
+              --notes-file "$RUNNER_TEMP/release-notes.md"
+          fi
+          gh release upload "$GITHUB_REF_NAME" "$ZIP" --clobber
+          gh release edit "$GITHUB_REF_NAME" --notes-file "$RUNNER_TEMP/release-notes.md"
+          git push origin "$GITHUB_SHA:refs/heads/release"
