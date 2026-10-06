@@ -87,7 +87,8 @@
           ]
         },
         "commerce": true,
-        "commerce_description": "Optional Pro transcription uses the connected ScoreStarling account’s existing credits after the user approves the requested processing. The plugin has no purchasing or checkout tools. Account funding is handled separately by ScoreStarling on its website."
+        "commerce_description": "Optional Pro transcription uses the connected ScoreStarling account’s existing credits after the user approves the requested processing. The plugin has no purchasing or checkout tools. Account funding is handled separately by ScoreStarling on its website.",
+        "demo_recording_url": "https://github.com/HaiyiMei/scorestarling-plugins/releases/download/v0.1.31/scorestarling-chatgpt-review.mp4"
       },
       "publication": {
         "countries": [],
