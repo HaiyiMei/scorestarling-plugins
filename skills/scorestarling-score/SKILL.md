@@ -81,7 +81,7 @@ Standard, Pro, engine or supplier names unless the user does.
   similar sites; short share links work) or to the file itself (an MP3 or a video file; Dropbox
   and Google Drive share links work): call `transcribe_link` with the link and the engine for the
   instrument, asking what it is when you don't know. Only the audio of the first 5.5 minutes of a
-  video is fetched; files are public https addresses up to 50 MiB (120 MiB as WAV, AIFF or FLAC).
+  video is fetched; files are public https addresses up to 100 MiB.
   Spotify and Apple Music encrypt their music, and some sites (Douyin, Xiaohongshu) may refuse the
   server: then ask for another link or the file. Follow the job with `get_upload_status` as above.
 - Local stdio server: use `list_audio` / `transcribe_audio` only for files already in its
@@ -90,7 +90,7 @@ Standard, Pro, engine or supplier names unless the user does.
 Engines (`provider`): `local` is Standard, for one instrument or voice; `piano` reads solo piano
 with both hands, chords and the sustain pedal (about a minute); `mirelo` is Pro, for bands and
 drums, an external paid provider chosen with the user; its credit quote, where credits apply, is the
-one cost question (never ask for a credit cap). Uploads are limited to 50 MiB, or 120 MiB as WAV, AIFF or FLAC (`get_account_usage.upload_limits`).
+one cost question (never ask for a credit cap). Uploads are limited to 100 MiB (`get_account_usage.upload_limits`).
 A score covers the first five minutes of a recording with Standard or Piano. Pro covers
 five minutes for invited accounts and accounts holding purchased credits, otherwise two;
 `check_recording`, `get_account_usage` (`max_seconds`) and upload results (`max_seconds`, `excerpt`) give

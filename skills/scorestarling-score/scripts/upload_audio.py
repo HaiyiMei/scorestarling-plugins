@@ -11,10 +11,8 @@ from urllib.parse import urlsplit
 
 import httpx
 
-# The server's limits (apps/server/upload_access.py): WAV, AIFF and FLAC, recognised by their first bytes,
-# may be larger than other files.
-MAX_BYTES = 50 * 1024 * 1024
-MAX_LOSSLESS_BYTES = 120 * 1024 * 1024
+# The server's limit for every file (apps/server/upload_access.py).
+MAX_BYTES = 100 * 1024 * 1024
 
 
 def origin(url):
@@ -26,18 +24,13 @@ def origin(url):
     return value.scheme, value.hostname, value.port or (443 if value.scheme == 'https' else 80)
 
 
-def lossless(head):
-    return (head[:4] in (b'RIFF', b'RF64', b'BW64') and head[8:12] == b'WAVE'
-            or head[:4] == b'FORM' and head[8:12] in (b'AIFF', b'AIFC') or head[:4] == b'fLaC')
-
-
 def read_audio(path):
     path = Path(path)
     with path.open('rb') as source:
-        audio = source.read(max(MAX_BYTES, MAX_LOSSLESS_BYTES) + 1)
-    if not 0 < len(audio) <= (MAX_LOSSLESS_BYTES if lossless(audio[:12]) else MAX_BYTES):
-        raise ValueError(f'Audio must be non-empty and no larger than {MAX_BYTES >> 20} MiB, or {MAX_LOSSLESS_BYTES >> 20} MiB '
-                         'as WAV, AIFF or FLAC. Save it as FLAC or MP3 to make it smaller.')
+        audio = source.read(MAX_BYTES + 1)
+    if not 0 < len(audio) <= MAX_BYTES:
+        raise ValueError(f'Audio must be non-empty and no larger than {MAX_BYTES >> 20} MiB. '
+                         'Save it as FLAC or MP3 to make it smaller.')
     return audio
 
 
