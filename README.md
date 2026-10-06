@@ -1,10 +1,14 @@
 # ScoreStarling
 
-Turn an audio recording or sheet music into an editable score, compare it with the
-original, preview musical changes, and export MusicXML, PDF, MIDI, audio, jianpu, ABC
-or MEI. This plugin combines the hosted ScoreStarling MCP tools with two workflow
-skills: `scorestarling-score` for recordings and `scorestarling-notation` for sheet
-music, score files and music written in the chat.
+Convert musical content across sound, pictures, documents and score files. Start
+from an audio or video recording, a sheet-music image or PDF, MIDI, MusicXML, ABC,
+numbered notation, a lead sheet or music written in chat. Create an editable,
+playable score, review or preview changes, and export PDF, SVG/PNG images, MusicXML,
+MIDI, MP3/WAV audio, ABC, MEI, parts or numbered notation.
+
+This plugin combines the hosted ScoreStarling MCP tools with two workflow skills:
+`scorestarling-score` for audio/video recordings and `scorestarling-notation` for
+sheet music, score files and music written in the chat.
 It is maintained by individual developer HaiyiMei.
 The OpenAI listing uses the verified developer name HAIYI MEI.
 

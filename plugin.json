@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "scorestarling",
   "version": "0.1.31",
-  "description": "Turn recordings and sheet music into editable scores with ScoreStarling tools and guided review workflows.",
+  "description": "Convert musical content across audio, video, sheet music, MIDI and notation with editable scores, playback and exports.",
   "author": {
     "name": "HaiyiMei"
   },
@@ -12,15 +12,15 @@
     "com.openai": {
       "interface": {
         "displayName": "ScoreStarling",
-        "shortDescription": "Audio or sheet music to scores",
-        "longDescription": "ScoreStarling is a music transcription and notation editor for musicians, arrangers and music learners. Turn a recording into an editable score with Standard for one instrument or voice, Piano for solo piano, or Pro for multiple instruments. Read printed sheet music from a PDF or scan, import MusicXML, MIDI or ABC, or turn a photo, numbered notation, a lead sheet or music written in the chat into a playable score. Compare the original recording with score playback, review doubtful passages, preview musical edits, apply an accepted preview, undo changes, and export PDF, MusicXML, MIDI, audio, parts, numbered notation, ABC or MEI. Sign in with a ScoreStarling account. Uploads are limited to 50 MiB, or 120 MiB for WAV, AIFF or FLAC. Each transcription covers the account’s supported excerpt, up to five minutes. Its length limit and any required processing consent are shown before it starts. Automatic transcription can contain pitch, rhythm or notation errors; listening and human review are needed.",
+        "shortDescription": "Convert music across formats",
+        "longDescription": "ScoreStarling is a music conversion and notation workspace for musicians, arrangers and music learners. Move musical content between sound, pictures, documents and score files. Start from an audio or video recording, an image or PDF of sheet music, MIDI, MusicXML, ABC, numbered notation, a lead sheet, or music written in the chat. Turn it into an editable, playable score, then convert it to PDF, SVG/PNG images, MusicXML, MIDI, MP3/WAV audio, ABC, MEI, individual parts or numbered notation. Read and hear the result, compare a source recording with score playback, review uncertain passages, preview edits, apply accepted changes and undo them. For recordings, Standard suits one instrument or voice, Piano suits solo piano, and Pro suits multiple instruments. Sign in with a ScoreStarling account. Uploads are limited to 50 MiB, or 120 MiB for WAV, AIFF or FLAC. Audio and video transcription cover the account’s supported excerpt, up to five minutes; the length limit and any required processing consent are shown before starting. Automatic transcription and sheet-music reading can contain pitch, rhythm or notation errors, so listening and human review are needed.",
         "developerName": "HAIYI MEI",
         "category": "Creativity",
         "capabilities": [
-          "Audio transcription",
-          "Sheet music reading",
-          "Score editing",
-          "Notation and MIDI export"
+          "Multimodal music conversion",
+          "Audio and video transcription",
+          "Sheet music and score editing",
+          "Notation, audio and image export"
         ],
         "websiteURL": "https://scorestarling.com",
         "supportURL": "https://scorestarling.com/support",
@@ -29,9 +29,9 @@
         "composerIcon": "./assets/icon.png",
         "logo": "./assets/icon.png",
         "defaultPrompt": [
-          "Turn a recording into sheet music.",
-          "Make this photo of sheet music playable.",
-          "Help me fix wrong notes in my score."
+          "Turn this recording or video into an editable score.",
+          "Convert this sheet music image or PDF to MIDI and audio.",
+          "Convert this MIDI or MusicXML into sheet music."
         ]
       },
       "review": {
@@ -91,7 +91,7 @@
       },
       "publication": {
         "countries": [],
-        "release_notes": "Initial public submission of ScoreStarling 0.1.31: recording transcription, sheet music and score imports, interactive score review, reversible edit previews and notation exports. Includes both current workflow skills and account sign-in for public registration, current excerpt limits and the latest score-panel and file-download behavior."
+        "release_notes": "Initial public submission of ScoreStarling 0.1.31: multimodal music conversion from recordings, video, sheet music images/PDFs, MIDI, MusicXML, ABC and music written in chat; editable notation, playback, reversible edit previews, and score, audio and image exports. Includes both current workflow skills and account sign-in for public registration."
       }
     }
   }
