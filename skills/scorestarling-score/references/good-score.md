@@ -17,6 +17,17 @@ Compare full phrases and repeated sections. Preserve uncertain alternatives.
 Piano, Mirelo or notation imports, and zero flagged notes, cannot establish accuracy.
 Structural validation, a MIDI hash, fewer notes or a cleaner page cannot establish it either.
 
+## After every transcription
+
+Use this reference before replying, not only when asked. First say what the piece is, from the
+recording and the page: its instruments, texture (a melody with accompaniment, chords, independent
+lines, a single line, an arpeggiated or rhythmic figure, or several of these in turn), who plays
+what, meter, phrase lengths and repeats. Then go through the entries below that fit it. Each names
+the evidence it needs and what contradicts it, and none is a default for every piece: a pop
+ballad, a chorale, a fugue and a stride left hand are written differently. Fix the clear problems
+in the same score, keep uncertain ones as proposals, and keep the faithful transcription apart
+from any arrangement (entry 12).
+
 ## Choose an explanation for the passage
 
 Each entry follows: applicable evidence; counterexample; supported action; verification.
