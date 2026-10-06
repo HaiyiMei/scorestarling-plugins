@@ -12,7 +12,8 @@ format. Recordings (audio or video) follow the `scorestarling-score` skill inste
 ## Reuse an existing score or saved result
 
 When the user says “reuse the existing result” or “do not start new processing”, first
-use `list_scores` and `open_score`. Opening a finished score needs no upload, audio check
+use `list_scores` and open it once with `open_score` unless this request already returned its
+prepared panel. Opening a finished score needs no upload, audio check
 or new transcription. Do not ask for information already recorded in that score.
 
 Only if the user explicitly wants a **new score from a saved Pro result**, use the original
@@ -77,6 +78,9 @@ the engine choice and tempo detection do not apply; nothing is paid. A tempo the
    completes it.
 4. Call `create_score` with the ABC and the title. Its `warnings` list notation it could not
    read and bars whose lengths do not match the time signature.
+   Its `panel_prepared: true` means the result includes prepared panel data. Reuse it; do not
+   call `open_score` again in the same request unless the user/host reports a display failure
+   or a new user request explicitly asks to reopen it. Preparation does not prove visibility.
 5. Call `review_score` and compare its picture with the source bar by bar: pitches,
    accidentals, octaves (bass notes especially), rhythms, ties, tuplets, chord symbols, key
    and time signatures. The picture lays bars out differently from the page, so compare by
@@ -148,8 +152,9 @@ Changing the notation view does not simplify the music or prove multi-voice expo
 
 Transpose with `edit_score` `transpose_score` (an interval such as `M2` or `-m3`) so the score,
 playback and exports stay consistent; change the playback instrument with `set_timbre`. To
-arrange or simplify music, export `abc`, rewrite it, and `create_score` the new version. Share
-the returned download links; they expire. For arrangements read [the arranging reference](../scorestarling-score/references/arranging.md).
+arrange or simplify music, export `abc`, rewrite it, and `create_score` the new version. Use
+the host's attachment if it appears; otherwise point to the prepared panel's Download menu.
+Do not paste or reconstruct signed download URLs in chat. For arrangements read [the arranging reference](../scorestarling-score/references/arranging.md).
 
 ## Limits
 
@@ -164,7 +169,9 @@ out of the notation.
 
 Use the connected host's authorized tools and respect its file, network and approval boundaries. Guidance grants no account access, upload consent, supplier spending or acceptance of a proposal. Never invent file references, expose upload capabilities or discover credentials.
 
-When the user says reuse the existing result or do not start new processing, first list_scores and open_score; do not upload, check_recording or transcribe_again merely to reopen a score. Only for an explicitly requested new score from a saved Pro result, use the original upload or transcribe_again with provider=mirelo, review_instruments=true and replay_only=true from creation (enabled replay accounts only). Read get_pro_instrument_review(start=false) first. replay_candidates verify this owner, original bytes and decoded length; compare every historical instrument and flat pro_options with the requested choices. No matching candidate means stop and offer the existing score; never start detection, fresh processing or a replacement. Confirm matching complete choices with replay_only=true, then read back pro_review.replay_only=true. Keep the same excerpt length; a shorter quote needs its own matching saved result, otherwise stop. If a quote is required, ask once for its exact product credits; reuse permission is not payment consent. Follow the same job and verify completed.replayed_from. Explain saved-result reuse in plain words; the user does not need to name internal fields.
+When the user says reuse the existing result or do not start new processing, first list_scores; open_score once if no panel result was already prepared for this score/request. do not upload, check_recording or transcribe_again merely to reopen a score. Only for an explicitly requested new score from a saved Pro result, use the original upload or transcribe_again with provider=mirelo, review_instruments=true and replay_only=true from creation (enabled replay accounts only). Read get_pro_instrument_review(start=false) first. replay_candidates verify this owner, original bytes and decoded length; compare every historical instrument and flat pro_options with the requested choices. No matching candidate means stop and offer the existing score; never start detection, fresh processing or a replacement. Confirm matching complete choices with replay_only=true, then read back pro_review.replay_only=true. Keep the same excerpt length; a shorter quote needs its own matching saved result, otherwise stop. If a quote is required, ask once for its exact product credits; reuse permission is not payment consent. Follow the same job and verify completed.replayed_from. Explain saved-result reuse in plain words; the user does not need to name internal fields.
+
+panel_prepared=true confirms prepared data, not visibility. Use the returned panel; do not call open_score again for this score/request except for a reported display failure or a new request to reopen. If no score/upload panel result was returned for this request, open_score once when needed.
 
 Sheet music and score files (PDF/images, MusicXML/MXL, MIDI, ABC) use the same upload paths but are read, not audio-transcribed: skip check_recording; no engine choice, tempo detection or provider fee applies. Use local for their upload route. Clean PDFs/flat scans suit the reader. For phone photos, handwriting, jianpu or lead sheets, read the source and write ABC with create_score; also use create_score for music typed/described/composed in chat. Prefer a PDF when both are given.
 
@@ -176,9 +183,9 @@ A provider result is an editable starting score, not a publication-ready verdict
 
 Current tools lack precise local voice/staff/hand reassignment, arbitrary onset/offset edits, local tempo-map edits and dedicated tuplet/swing/grace/arpeggio/tie/slur/pedal entry. set_duration changes playback note-offs; rebeam only changes grouping; global voice/grid options cannot replace local editing. Read live schemas and operation restrictions. Report unsupported corrections without inventing actions or destructive workarounds. ABC reconstruction needs source comparison and representation checks. Inspect all exported pages and audition changed passages when possible; structural validation, MIDI preservation and cleaner pages do not prove musical accuracy.
 
-Read get_score for current revision/IDs. Apply requested reversible changes with edit_score within the stated goal without repeated permission. Panel numbered requests have separate note_ids: apply them in order on the current revision. Preview new musical proposals with preview_score_edit, review_score that preview, and apply_score_preview only after acceptance of that specific preview. Re-read stale revisions. Structural validation does not prove transcription accuracy; doubtful_notes are leads to listen to, not a verdict. MIDI/audio exports require complete performance bindings; MusicXML/PDF may still export. Recheck the accepted revision and return export_score's expiring download link. A plain PDF request uses format=pdf and follows the saved view, like Download; do not silently substitute Mirelo's original PDF. Use original_pdf only when requested and label it as the original. Audio exports are synthesis, not original stems.
+Read get_score for current revision/IDs. Apply requested reversible changes with edit_score within the stated goal without repeated permission. Panel numbered requests have separate note_ids: apply them in order on the current revision. Preview new musical proposals with preview_score_edit, review_score that preview, and apply_score_preview only after acceptance of that specific preview. Re-read stale revisions. Structural validation does not prove transcription accuracy; doubtful_notes are leads to listen to, not a verdict. MIDI/audio exports require complete performance bindings; MusicXML/PDF may still export. Recheck the accepted revision and prepare its export. Use a host-presented attachment; otherwise the prepared panel Download menu for the requested format. Never paste/reconstruct download_url in chat. A ResourceLink does not prove receipt. A plain PDF request uses format=pdf and follows the saved view, like Download; do not silently substitute Mirelo's original PDF. Use original_pdf only when requested and label it as the original. Audio exports are synthesis, not original stems.
 
-Show a score as staff or jianpu (简谱: jianpu 1=key, jianpu_fixed 1=C 固定调, jianpu_melody) with set_notation_view: the score keeps it, the open panel and Download PDF follow; with no panel, open_score with notation; before it exists, pass view to the tool making it. export_score takes the same names; jianpu_voices only if asked for a hand's voices apart.
+Show a score as staff or jianpu (简谱: jianpu 1=key, jianpu_fixed 1=C 固定调, jianpu_melody) with set_notation_view: the score keeps it, the prepared panel and Download PDF follow; without a prepared panel result, open_score once with notation; before it exists, pass view to the tool making it. export_score takes the same names; jianpu_voices only if asked for a hand's voices apart.
 
 Call send_feedback once only after the user explicitly expresses an opinion of a result, with their own words as a non-empty comment and the revision they judged. Never supply your own rating or solicit one. Feedback grants no consent to share the recording; the user's panel buttons handle sharing.
 <!-- END MCP ESSENTIALS -->
