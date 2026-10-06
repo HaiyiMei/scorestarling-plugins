@@ -19,14 +19,25 @@ Structural validation, a MIDI hash, fewer notes or a cleaner page cannot establi
 
 ## After every transcription
 
-Use this reference before replying, not only when asked. First say what the piece is, from the
-recording and the page: its instruments, texture (a melody with accompaniment, chords, independent
-lines, a single line, an arpeggiated or rhythmic figure, or several of these in turn), who plays
-what, meter, phrase lengths and repeats. Then go through the entries below that fit it. Each names
-the evidence it needs and what contradicts it, and none is a default for every piece: a pop
-ballad, a chorale, a fugue and a stride left hand are written differently. Fix the clear problems
-in the same score, keep uncertain ones as proposals, and keep the faithful transcription apart
-from any arrangement (entry 12).
+Use this reference before replying, not only when asked. A transcription is a first draft: expect
+problems, and do not call a score fine from a few sampled bars.
+
+1. See the whole score: the first page, then every further passage of up to 16 bars
+   (`review_score` with `measures`).
+2. Say what the piece is, from the page and the recording's evidence: its instruments, texture (a
+   melody with accompaniment, chords, independent lines, a single line, an arpeggiated or
+   rhythmic figure, or several of these in turn), who plays what, meter, phrase lengths and which
+   phrases return.
+3. Compare it with the entries below that fit. Each names the evidence it needs and what
+   contradicts it, and none is a default for every piece: a pop ballad, a chorale, a fugue and a
+   stride left hand are written differently. Most pieces need at least: returning phrases lined
+   up with each other, noting the beat each occurrence starts on (entry 10), and the first
+   downbeat (entry 9); each line or figure followed bar by bar through the passage it runs in,
+   noting where it breaks off or a note fits no line (entries 2-4 and 7); and the page itself
+   (entry 13).
+4. Fix the clear problems in the same score. Name the bars of the likely ones, what the page
+   shows and what to listen for (a preview where you can), and ask only the question that
+   decides the most. Keep the faithful transcription apart from any arrangement (entry 12).
 
 ## Choose an explanation for the passage
 
