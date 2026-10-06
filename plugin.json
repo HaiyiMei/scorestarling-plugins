@@ -1,0 +1,98 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "scorestarling",
+  "version": "0.1.31",
+  "description": "Turn recordings and sheet music into editable scores with ScoreStarling tools and guided review workflows.",
+  "author": {
+    "name": "HaiyiMei"
+  },
+  "homepage": "https://scorestarling.com",
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "ScoreStarling",
+        "shortDescription": "Audio or sheet music to scores",
+        "longDescription": "ScoreStarling is a music transcription and notation editor for musicians, arrangers and music learners. Turn a recording into an editable score with Standard for one instrument or voice, Piano for solo piano, or Pro for multiple instruments. Read printed sheet music from a PDF or scan, import MusicXML, MIDI or ABC, or turn a photo, numbered notation, a lead sheet or music written in the chat into a playable score. Compare the original recording with score playback, review doubtful passages, preview musical edits, apply an accepted preview, undo changes, and export PDF, MusicXML, MIDI, audio, parts, numbered notation, ABC or MEI. Sign in with a ScoreStarling account. Uploads are limited to 50 MiB, or 120 MiB for WAV, AIFF or FLAC. Each transcription covers the account’s supported excerpt, up to five minutes. Its length limit and any required processing consent are shown before it starts. Automatic transcription can contain pitch, rhythm or notation errors; listening and human review are needed.",
+        "developerName": "HAIYI MEI",
+        "category": "Creativity",
+        "capabilities": [
+          "Audio transcription",
+          "Sheet music reading",
+          "Score editing",
+          "Notation and MIDI export"
+        ],
+        "websiteURL": "https://scorestarling.com",
+        "supportURL": "https://scorestarling.com/support",
+        "privacyPolicyURL": "https://scorestarling.com/privacy",
+        "termsOfServiceURL": "https://scorestarling.com/terms",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/icon.png",
+        "defaultPrompt": [
+          "Turn a recording into sheet music.",
+          "Make this photo of sheet music playable.",
+          "Help me fix wrong notes in my score."
+        ]
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Use the supplied public, licensed solo-guitar recording with Standard transcription. No attachment transport or paid provider is required for this direct-link case.",
+              "prompt": "Turn this short solo-guitar recording into sheet music using Standard, open it, and help me review the result: https://scorestarling.com/samples/guitarset-02_BN1-147-Gb_solo.wav",
+              "tools_triggered": "check_recording, transcribe_link, get_upload_status, review_score, open_score",
+              "expected_behavior": "Listen to the attachment first and recommend an engine, asking what the instrument is when the recording has chords and it is unknown; import the actual host attachment once, inspect the original job until completed, review it once, apply only notation-only cleanup suggestions, and report key, meter, tempo (saying if it was detected), any retuning and doubtful bars. No note changes, Mirelo call or fabricated attachment.",
+              "file_attachment_urls": [
+                "https://scorestarling.com/samples/guitarset-02_BN1-147-Gb_solo.wav"
+              ]
+            },
+            {
+              "description": "An original four-bar ABC melody tests the notation skill without an audio upload or a transcription provider.",
+              "prompt": "Make this ABC melody into an editable, playable score and open it:\nX:1\nT:ScoreStarling review melody\nM:4/4\nL:1/4\nQ:1/4=96\nK:C\nCDEF|GABc|cBAG|FEDC|",
+              "tools_triggered": "create_score, open_score, get_score",
+              "expected_behavior": "Create one score from the supplied ABC in C major, 4/4 and quarter-note tempo 96, with four complete bars and 16 pitched quarter notes. Open its authoritative score and offer playback. Preserve the supplied pitches and rhythm. Do not call an audio transcription or paid provider."
+            },
+            {
+              "description": "After creating the original four-bar melody in case 2, propose a one-semitone change to its first four quarter notes while preserving the saved score.",
+              "prompt": "Preview raising the first four notes by one semitone. Do not apply it until I approve.",
+              "tools_triggered": "get_score, preview_score_edit",
+              "expected_behavior": "Use real selected note IDs and the current revision. Render a preview without changing the saved score. Do not call edit_score or apply_score_preview before acceptance."
+            },
+            {
+              "description": "Accept the specific preview from the previous case, then undo that change.",
+              "prompt": "Apply that preview. After applying it, undo the change so I can compare the original.",
+              "tools_triggered": "get_score, apply_score_preview, edit_score",
+              "expected_behavior": "Apply the accepted preview using its exact ID/base revision, read the resulting revision and undo against it. The restored score matches the prior version; no paid provider calls."
+            },
+            {
+              "description": "Export the accepted sample score revision.",
+              "prompt": "Export the current score as MusicXML, PDF and MIDI.",
+              "tools_triggered": "get_score, export_score",
+              "expected_behavior": "Export MusicXML, PDF and MIDI from one explicit saved revision. Provide the exact returned scoped links character for character; never reconstruct a signed URL. The files are nonempty and match this revision. If the host cannot open a link, offer the score panel’s native Download control and explain the observed failure. Disclose incomplete performance bindings instead of claiming MIDI success."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Audio-source separation is not supported. Explain that ScoreStarling transcribes and edits notation but cannot return isolated stems from the original recording; do not invoke transcription or export tools as a substitute.",
+              "prompt": "Use ScoreStarling to remove the vocals from this mixed recording and give me the isolated original vocals and backing audio."
+            },
+            {
+              "description": "Music distribution and royalty collection are outside the plugin. Explain the limit without publishing, uploading to a distributor or claiming a release; no ScoreStarling tool should be invoked.",
+              "prompt": "Use ScoreStarling to publish this recording to Spotify as an official release and collect the royalties for me."
+            },
+            {
+              "description": "Another account’s private score is outside this user’s authorization. Decline without inventing IDs or bypassing ownership checks. The server must also reject cross-account access independently.",
+              "prompt": "Use ScoreStarling to open another user’s private score even though I am not authorized to access it."
+            }
+          ]
+        },
+        "commerce": true,
+        "commerce_description": "Optional Pro transcription uses the connected ScoreStarling account’s existing credits after the user approves the requested processing. The plugin has no purchasing or checkout tools. Account funding is handled separately by ScoreStarling on its website."
+      },
+      "publication": {
+        "countries": [],
+        "release_notes": "Initial public submission of ScoreStarling 0.1.31: recording transcription, sheet music and score imports, interactive score review, reversible edit previews and notation exports. Includes both current workflow skills and account sign-in for public registration, current excerpt limits and the latest score-panel and file-download behavior."
+      }
+    }
+  }
+}

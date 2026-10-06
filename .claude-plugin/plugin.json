@@ -1,0 +1,16 @@
+{
+  "name": "scorestarling",
+  "displayName": "ScoreStarling",
+  "version": "0.1.31",
+  "description": "Turn recordings and sheet music into reviewed, editable scores, and convert them to MIDI, audio, PDF, MusicXML, ABC and jianpu, with ScoreStarling tools and workflow skills.",
+  "author": {"name": "HaiyiMei"},
+  "homepage": "https://scorestarling.com",
+  "license": "MIT",
+  "keywords": ["music", "transcription", "sheet music", "musicxml", "midi", "abc notation", "jianpu", "omr"],
+  "mcpServers": "./.mcp.json",
+  "icon": "./assets/icon.png",
+  "documentationUrl": "https://scorestarling.com/mcp",
+  "supportUrl": "https://scorestarling.com/support",
+  "privacyPolicyUrl": "https://scorestarling.com/privacy",
+  "termsOfServiceUrl": "https://scorestarling.com/terms"
+}

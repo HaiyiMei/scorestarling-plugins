@@ -1,0 +1,15 @@
+{
+  "name": "scorestarling",
+  "description": "ScoreStarling: turn recordings into editable sheet music from your assistant.",
+  "owner": {
+    "name": "HaiyiMei",
+    "url": "https://scorestarling.com"
+  },
+  "plugins": [
+    {
+      "name": "scorestarling",
+      "source": "./",
+      "description": "Turn audio into reviewed, editable scores with ScoreStarling tools and a workflow skill."
+    }
+  ]
+}
