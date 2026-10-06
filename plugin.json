@@ -40,7 +40,7 @@
             {
               "description": "Use the supplied public, licensed solo-guitar recording with the free one-instrument transcription. No attachment transport or credits are required for this direct-link case.",
               "prompt": "Turn this short solo-guitar recording into sheet music, open it, and help me review the result: https://scorestarling.com/samples/guitarset-02_BN1-147-Gb_solo.wav",
-              "tools_triggered": "transcribe_link, get_upload_status, review_score, open_score",
+              "tools_triggered": "transcribe_link, get_upload_status, review_score, listen_score, open_score",
               "expected_behavior": "Use the supplied public URL with the free one-instrument transcription (provider local), start one transcribe_link job, inspect that same job until completed, and open and review the actual result. Report detected or estimated key, meter and tempo with uncertainties, retuning and doubtful passages; do not treat structural checks or independent candidates as ground truth. Apply only safe notation-only cleanup and leave musical changes as proposals until approved. No band transcription or credits, fabricated attachment or duplicate transcription.",
               "file_attachment_urls": [
                 "https://scorestarling.com/samples/guitarset-02_BN1-147-Gb_solo.wav"
