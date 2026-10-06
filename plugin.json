@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "scorestarling",
-  "version": "0.1.31",
+  "version": "1.0.0",
   "description": "Convert musical content across audio, video, sheet music, MIDI and notation with editable scores, playback and exports.",
   "author": {
     "name": "HaiyiMei"
@@ -92,7 +92,7 @@
       },
       "publication": {
         "countries": [],
-        "release_notes": "Initial public submission of ScoreStarling 0.1.31: multimodal music conversion from recordings, video, sheet music images/PDFs, MIDI, MusicXML, ABC and music written in chat; editable notation, playback, reversible edit previews, and score, audio and image exports. Includes both current workflow skills and account sign-in for public registration."
+        "release_notes": "Initial public submission of ScoreStarling 1.0.0: multimodal music conversion from recordings, video, sheet music images/PDFs, MIDI, MusicXML, ABC and music written in chat; editable notation, playback, reversible edit previews, and score, audio and image exports. Includes both current workflow skills and account sign-in for public registration."
       }
     }
   }
