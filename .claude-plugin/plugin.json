@@ -23,5 +23,6 @@
   "documentationUrl": "https://scorestarling.com/mcp",
   "supportUrl": "https://scorestarling.com/support",
   "privacyPolicyUrl": "https://scorestarling.com/privacy",
-  "termsOfServiceUrl": "https://scorestarling.com/terms"
+  "termsOfServiceUrl": "https://scorestarling.com/terms",
+  "repository": "https://github.com/HaiyiMei/scorestarling-plugins"
 }

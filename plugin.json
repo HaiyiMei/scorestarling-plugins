@@ -40,7 +40,7 @@
             {
               "description": "Use the supplied public, licensed solo-guitar recording with Standard transcription. No attachment transport or paid provider is required for this direct-link case.",
               "prompt": "Turn this short solo-guitar recording into sheet music using Standard, open it, and help me review the result: https://scorestarling.com/samples/guitarset-02_BN1-147-Gb_solo.wav",
-              "tools_triggered": "check_recording, transcribe_link, get_upload_status, review_score, open_score",
+              "tools_triggered": "transcribe_link, get_upload_status, review_score, open_score",
               "expected_behavior": "Use the supplied public URL with Standard (provider local), start one transcribe_link job, inspect that same job until completed, and open and review the actual result. Report detected or estimated key, meter and tempo with uncertainties, retuning and doubtful passages; do not treat structural checks or independent candidates as ground truth. Apply only safe notation-only cleanup and leave musical changes as proposals until approved. No paid Pro/Mirelo call, fabricated attachment or duplicate transcription.",
               "file_attachment_urls": [
                 "https://scorestarling.com/samples/guitarset-02_BN1-147-Gb_solo.wav"
@@ -87,11 +87,9 @@
           ]
         },
         "commerce": true,
-        "commerce_description": "Optional Pro transcription uses the connected ScoreStarling account’s existing credits after the user approves the requested processing. The plugin has no purchasing or checkout tools. Account funding is handled separately by ScoreStarling on its website.",
-        "demo_recording_url": "https://github.com/HaiyiMei/scorestarling-plugins/releases/download/v0.1.31/scorestarling-chatgpt-review.mp4"
+        "commerce_description": "Optional Pro transcription uses the connected ScoreStarling account’s existing credits after the user approves the requested processing. The plugin has no purchasing or checkout tools. Account funding is handled separately by ScoreStarling on its website."
       },
       "publication": {
-        "countries": [],
         "release_notes": "Initial public submission of ScoreStarling 1.0.0: multimodal music conversion from recordings, video, sheet music images/PDFs, MIDI, MusicXML, ABC and music written in chat; editable notation, playback, reversible edit previews, and score, audio and image exports. Includes both current workflow skills and account sign-in for public registration."
       }
     }
