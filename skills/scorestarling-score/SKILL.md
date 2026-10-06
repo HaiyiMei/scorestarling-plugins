@@ -167,7 +167,9 @@ with the user. Preserve the original and reversible revisions.
    returned neither its score panel nor upload panel. Reopen only for a reported display failure
    or a new user request. Later edits update the panel; do not open another merely to fulfil
    the original request to see or hear the score. Never claim visibility from preparation alone.
-2. Call `review_score` once (no `measures`). Read its summary, suggestions and page picture.
+2. Call `review_score` (no `measures`) and read its summary, suggestions and first page; then
+   look at every further passage of up to 16 bars (`measures`, in the score's bar numbers), so
+   the whole piece is seen before you judge it, not samples.
 3. Inspect each ready operation, rather than treating its suggestion code as approval.
    Apply only source-supported, performance-preserving key, clef, voice or empty-staff
    cleanup within the user's request. A key estimate or voice-count heuristic alone is
@@ -180,15 +182,17 @@ with the user. Preserve the original and reversible revisions.
    Merge supported `reengrave` options into one call, then apply clefs; inspect saved
    layout choices as well, since omitted options reuse them. Re-read changed note IDs,
    validate and compare the revision before continuing; `undo` restores the prior version.
-   Then judge the score as a good, playable score of its kind should read, with
-   [references/good-score.md](references/good-score.md): first decide from the music what
-   this piece is (its texture and lines, who plays what, meter, phrasing and repeats), since
-   no layout is a default; then go through the entries that apply, each with its
-   counterexamples, and compare. Fix the clear, source-supported problems in this same score
-   without asking, keeping every pitch and the playing: `edit_score` where it has the
-   operation, otherwise the current revision's MusicXML saved with `revise_score` (see
-   "Change the score in place"). Leave uncertain choices as proposals. Say what you changed
-   and why; `undo` restores the transcription as it came.
+   Then judge the score as a good, playable score of its kind should read: follow "After
+   every transcription" in [references/good-score.md](references/good-score.md). Decide from
+   the music what this piece is (no layout is a default), then compare it with the entries
+   that fit, at least its returning phrases (the beat each occurrence starts on), first
+   downbeat, each line or figure where it runs or breaks off, and the page. A transcription
+   is a first draft: do not call it fine from samples. Fix the clear, source-supported
+   problems in this same score without asking, keeping every pitch and the playing:
+   `edit_score` where it has the operation, otherwise the current revision's MusicXML saved
+   with `revise_score` (see "Change the score in place"). Name the bars of the likely ones,
+   what the page shows and what to listen for. Say what you changed and why; `undo` restores
+   the transcription as it came.
 4. Report in a few plain lines: the engine, instrument, key, time signature, the tempo and
    whether it was detected (an estimate) or supplied, any retuning or excerpt named in the
    status summary, the cleanup, confidence availability, flagged bars and rhythm leads. If
@@ -416,7 +420,7 @@ Poll get_upload_status(job_id, wait_seconds=20) in this turn until terminal; nev
 
 recover_pro_result queues only a saved Pro result or accepted official job ID, without a new transcription or quota reservation. Poll the same job afterward. Unknown submissions stay held for manual review; never create a replacement to recover them. Provider progress and provisional note counts can change; even 96% is processing. Use only the completed score for review/export. provider_output.musicxml_optimized is true only when the provider actually reports optimization; absent/false is not optimized. Original supplier exports are initialization artifacts.
 
-After transcription, call review_score; inspect its summary, operations and page. Then judge the score as a good, playable score of its kind should read, with the scorestarling-score skill's good-score reference when installed: first decide from the music what this piece is (its texture and lines, who plays what, meter, phrasing), since no layout is a default; then go through the reference entries that apply, each with its counterexamples, and fix clear, source-supported problems in this same score yourself, without asking (edit_score, or revise_score where it cannot). Keep every pitch and the playing; leave uncertain choices as proposals; say what you changed and why (undo restores it). single_line suggests voices:1, not line:single. line:single deletes notes and shortens holds in playback: require explicit reduction intent. Inspect saved reengrave choices; merge supported options, then clefs; re-read IDs and validate. doubtful_notes gives Basic Pitch confidence only. source_note_evidence adds limited independent listening leads for single lines, with current IDs and source spans; inspect the original passage before any note correction. Neither is an accuracy verdict; unavailable/empty proves nothing. Report engine, instrument, key, meter, tempo/source, retuning/excerpt, changes, uncertain bars and rhythm leads; confirm estimated tempo/downbeat from source evidence; ask only when a consequential choice remains unclear. Apply requested corrections; preview new proposals. transcribe_again needs authorization; undo restores the prior revision. Answer briefly in the user's language. Explain effects in plain words; never relay tool/field names, revision numbers or editing bindings.
+After transcription, call review_score; inspect its summary, operations and first page, then every further passage of up to 16 bars (measures), so the whole score is seen, not samples. Then judge it as a good, playable score of its kind should read, with the scorestarling-score skill's good-score reference when installed: first decide from the music what this piece is (its texture and lines, who plays what, meter, phrases and which return), since no layout is a default; then compare it with the reference entries that fit, at least its returning phrases (the beat each occurrence starts on), first downbeat, each line or figure where it runs or breaks off, and the page. A transcription is a first draft: do not call it fine from samples. Fix clear, source-supported problems in this same score yourself, without asking (edit_score, or revise_score where it cannot), keeping every pitch and the playing; name the bars of likely ones, what the page shows and what to listen for; say what you changed and why (undo restores it). single_line suggests voices:1, not line:single. line:single deletes notes and shortens holds in playback: require explicit reduction intent. Inspect saved reengrave choices; merge supported options, then clefs; re-read IDs and validate. doubtful_notes gives Basic Pitch confidence only. source_note_evidence adds limited independent listening leads for single lines, with current IDs and source spans; inspect the original passage before any note correction. Neither is an accuracy verdict; unavailable/empty proves nothing. Report engine, instrument, key, meter, tempo/source, retuning/excerpt, changes, uncertain bars and rhythm leads; confirm estimated tempo/downbeat from source evidence; ask only when a consequential choice remains unclear. Apply requested corrections; preview new proposals. transcribe_again needs authorization; undo restores the prior revision. Answer briefly in the user's language. Explain effects in plain words; never relay tool/field names, revision numbers or editing bindings.
 
 A provider result is an editable starting score, not a publication-ready verdict. Reuse the provider's available detection, notation and original exports before inventing replacement processing. Keep the original and reversible revisions. Work toward accurate, clear, playable notation: check coverage, instrument assignment, pitches, rhythm, meter, voices, clefs, ties and spacing against the recording or written source. Inspect every exported page, including page turns and dense passages. Use get_score, review_score, previews, edit_score and validate_score for evidence-based corrections within the user's request; no guessed deletions or merges. Structural checks and MIDI hashes do not prove musical accuracy. Choose style/texture hypotheses from full phrases and source evidence: opening rests, offbeat harmony, three voices, crossing hands, ornaments, swing and rubato can be genuine; no fixed rhythm ratios or left-hand eighth-note template. Separate performance, structure, notation and authorized arrangements. Keep a faithful master for learner reductions. Say what was actually listened to and what remains uncertain; report accuracy, readability and playability separately. Pro is powered by Mirelo: its original PDFs (original_pdf is the full score unless one part or tab is selected, with tuning source; original_scores the ZIP) engrave the unedited result only, exclude later edits (then call them the original) and are not a claim of final quality.
 
