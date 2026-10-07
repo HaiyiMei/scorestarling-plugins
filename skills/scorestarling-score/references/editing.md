@@ -159,6 +159,11 @@ staves to the other hand's staff (1 upper, right hand; 2 lower, left hand), as o
 every note keeps its ID, pitch, start and length, so the playing and the IDs you hold stay valid.
 "Give the accompaniment to the left hand" is one call with the accompaniment's IDs (read them from
 `get_score`; a chord can move in part, a tied note moves with its whole tie, a tuplet moves whole).
+For a passage over many bars, name where the notes are instead of listing IDs:
+`select {measures: "1-28", voice?, below?, above?, part_id?}` takes the other staff's sounding
+notes in those bars, only in that voice and strictly below or above those MIDI pitches when given
+(C5 = 72). Read one bar with `get_score` first to see which voice the accompaniment is in, or which
+pitch separates it from the melody; the preview or the result's count shows what moved.
 Rests under the moved notes are covered, rests are written where a hand is left empty, and voices,
 stems and beams are set again in the bars touched. Leave `clef` out unless the user names a clef:
 `auto`, the default, gives the receiving hand the treble or bass clef its notes read in wherever it
