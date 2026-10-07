@@ -43,7 +43,8 @@ It returns:
   real notes get flagged too.
 - `source_rhythm_analysis`: candidate meters and downbeats from the recording. Their scores and
   gaps are not calibrated, and the right meter may be missing.
-- `reengrave` and `rewrite_rhythm`: whether each is available, and why not.
+- `reengrave`, `rewrite_rhythm` and `rebeat`: whether each is available, and why not (`rebeat` is
+  available exactly where a tracked piano beat turns `rewrite_rhythm` away).
 - `expression`: each bar's timing and loudness, for tempo and dynamics marks ("Expression marks
   from the recording" in good-score.md). It measures timing and level, not notes.
 - The picture, when `image` is on: the first page, or the bars in `measures`. Judge it as an
