@@ -17,13 +17,12 @@ arrangement ([arranging.md](arranging.md)) or another transcription.
 `edit_score(score_id, revision, operation)` applies one operation at the exact current revision;
 stale revisions and unknown note or mark IDs are refused. It takes effect at once and `undo`
 reverts it. Read note IDs, staves, voices and marks with `get_score` (filter by `measure`,
-`part_id` or `note_ids`), and re-read after each change: re-engraving, scaling note values and
-rewriting the rhythm replace note IDs.
+`part_id` or `note_ids`), and re-read after each change: re-engraving, moving staves, scaling
+note values, rewriting the rhythm and re-beating replace note IDs.
 
 ## An edited copy: revise_score
 
-For anything else, or many changes at once (moving notes between hands, staves or voices,
-deleting a misheard voice, correcting many pitches, adding missed notes, ties, beams, rhythm
+For anything else, or many changes at once (moving notes between voices, deleting a misheard voice, correcting many pitches, adding missed notes, ties, beams, rhythm
 spelling, a shifted passage):
 
 1. Before the first file fetch in the conversation, tell the user in one line that the chat may
@@ -133,6 +132,17 @@ changing tempo, pickups, imported sheet music, and marks or tuplets it cannot ke
 Do not apply an uncalibrated candidate merely because it ranks first; preview new
 interpretations and re-read IDs afterwards.
 
+**A wrong tracked beat.** A solo-piano score follows the beat the Piano engine tracked, and
+`rewrite_rhythm` refuses it. When that beat is wrong (a swung piece read as 3/4 at 150 where it
+swings in 4/4 at about 130, a tempo off by 4:3, bars starting off the beat), `rebeat` writes it
+again: `bpm` (quarter notes), `beats`, `beat_type`, `downbeat` (the second a bar starts: the
+start of the note there, from `get_score`) and, for swing, `swing` (the share of each beat its
+first eighth takes; 2/3 for a triplet feel), so long-short pairs print as even eighths. The beats
+follow the playing from that downbeat, so a player's drift is kept and the printed tempo is what
+they played; notes before it make a pickup. Every note keeps its time and hand. Choose the
+downbeat where the returning phrase starts, apply it, then read the score again: the phrases
+should now start at the same place in their bars.
+
 **Quantized rhythm.** Compare onsets, durations and the supplied tempo. `set_duration` corrects
 a supported note length but changes playback note-offs, so it is not notation-only cleanup;
 `rebeam` changes grouping only; `reengrave` with `grid: "8th"` rewrites the whole performance on
@@ -144,9 +154,20 @@ at its proper place in the edited MusicXML copy and save it with `revise_score` 
 since it changes how the music reads), checking the bar lengths around it. `rebar_pickup` would
 move every bar line.
 
-**Hands, staves and voices.** Move notes between staves, hands or voices in the edited MusicXML
-copy; `edit_score` has no operation for it. Never repitch or delete notes to imitate a staff
-move.
+**Hands and staves.** `set_staff {note_ids, staff}` moves played notes of a piano part on two
+staves to the other hand's staff (1 upper, right hand; 2 lower, left hand): the score is engraved
+again with every other note where it is, and the playing is unchanged. Move all of a passage's
+notes in one call. Never repitch or delete notes to imitate a staff move. For a video,
+`watch_score` the bars first: each frame lists the notes struck there with their ID and staff, so
+a note in the other hand can be moved by its ID.
+
+Re-engraving operations (`reengrave`, `set_staff`, `rebeat`, `scale_note_values`) write the
+notation again from the playing and refuse a score with printed words, rehearsal marks, hairpins
+or fermatas, which they would drop. Add those marks last. When one blocks a later change,
+`delete_mark` it, make the change, read the new IDs and add it again.
+
+**Voices.** Move notes between voices in the edited MusicXML copy; `edit_score` has no operation
+for it.
 
 **Tuplets, swing, grace notes, arpeggios, ties, slurs and pedal.** Write them in the edited
 MusicXML copy. Never flatten genuine tuplets.
