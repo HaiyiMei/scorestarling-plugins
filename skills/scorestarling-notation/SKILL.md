@@ -6,8 +6,9 @@ description: Turn sheet music into an editable, playable ScoreStarling score and
 # Sheet music and notation to a score
 
 Use the connected ScoreStarling tools. A score made here is a normal ScoreStarling project: it
-plays back, opens in the score panel, takes the same edits (`edit_score`) and exports to every
-format. Recordings (audio or video) follow the `scorestarling-score` skill instead.
+plays back, opens in the score panel, takes the same edits (`edit_score`) and exports to PDF,
+images, audio and, once the score is unlocked, the editable formats (MusicXML, MIDI, ABC, MEI;
+see Converting). Recordings (audio or video) follow the `scorestarling-score` skill instead.
 
 ## Reuse an existing score or saved result
 
@@ -61,7 +62,7 @@ everyone, so read those bar by bar and check carefully. When the user offers bot
 a PDF of the same music, upload the PDF.
 
 Uploaded sheet music and score files are read, not transcribed: skip `check_recording`, and
-the engine choice and tempo detection do not apply; nothing is paid. A tempo the user gives
+the engine choice and tempo detection do not apply; reading costs no credits. A tempo the user gives
 (`bpm`) sets playback for a score that marks none. Follow the job with `get_upload_status`
 (`wait_seconds: 20`) until it finishes, then do what its `next_step` says.
 
@@ -117,8 +118,9 @@ Apply clear source corrections and reversible edits within the user's stated goa
 When the user asks for faithful or playable music, finish clear source-supported fixes before
 ending the turn; listing known missed notes or ties and waiting for another prompt leaves
 that request unfinished. Keep corrections in the same score: `edit_score` for single operations;
-otherwise edit the current revision's MusicXML (keeping note ids) and save it with `revise_score`,
-which also adds missed notes and removes misread ones. Reconstruct ABC as a new score only when the
+otherwise edit the current revision's editing copy (`export_score` `format=editing_copy`, the
+MusicXML for your own edits; it needs no unlock and is not a download for the user), keeping note
+ids, and save it with `revise_score`, which also adds missed notes and removes misread ones. Reconstruct ABC as a new score only when the
 first reading is unusable; preserve the draft, check the replacement and say it is a new score.
 Ask one specific question only when the source leaves a consequential musical choice unclear.
 Preview a new arrangement or interpretation outside that goal and apply only after its
@@ -136,13 +138,26 @@ Once a score exists, `export_score` gives every other form of it:
 
 | Wanted | format |
 | --- | --- |
-| MIDI for a DAW or practice app | `midi` |
+| MIDI for a DAW or practice app | `midi` (needs an unlocked score) |
 | Listening audio | `mp3` or `wav` (General MIDI instruments) |
-| Printable sheet music | `pdf`; `pages` for SVG and PNG images; `parts` for one PDF per part |
-| Notation software (MuseScore, Sibelius, Finale, Dorico) | `musicxml` or `mxl` |
+| Printable sheet music | `pdf`; `pages` for SVG and PNG images; `parts` for one PDF per part (a free score's carry a small footer line) |
+| Notation software (MuseScore, Sibelius, Finale, Dorico) | `musicxml` or `mxl` (needs an unlocked score) |
 | Jianpu (简谱) | `jianpu` (every staff) or `jianpu_melody` (top line only; it may not be the melody), in the key; `jianpu_fixed` for 1=C fixed do (固定调) |
-| ABC text | `abc`; the text also comes back in the result, so you can read, explain or rewrite it |
-| MEI for music research and editions | `mei` |
+| ABC text | `abc` (needs an unlocked score); the text also comes back in the result, so you can read, explain or rewrite it |
+| MEI for music research and editions | `mei` (needs an unlocked score) |
+
+**Unlocking.** A score made from notation is a free score unless the account's allowance already
+opens it (the panel and every export result say: `access.open`). A free score's PDFs, page
+images and numbered-notation PDFs carry one small footer line ("Made with ScoreStarling"), and its
+MusicXML, MXL, MIDI, ABC and MEI need it unlocked; audio is always free. When `export_score` for
+one of those formats comes back `locked`, do not retry or work around it: ask the user once, in
+one line, whether to unlock this score for exactly the credits it names (`unlock_credits`), used
+once per score, after which every format downloads as often as wanted and edits stay open. It
+uses credits the account already has and is not a purchase. Only after a clear yes call
+`unlock_score` with that exact number and `consent: true`, then call `export_score` again. If they
+decline, offer the PDF or audio instead. If the balance does not cover it, say so and offer the
+free formats; never offer purchases, plans or checkout links, even when asked. Do not unlock
+before an editing round: `format=editing_copy` needs none.
 
 Jianpu's `1=` follows the score's key signature (movable do; a minor key as its relative major).
 `jianpu_fixed` keeps the same pitches in 1=C, each black key marked (b5 for G-flat). Music
@@ -154,7 +169,9 @@ Changing the notation view does not simplify the music or prove multi-voice expo
 
 Transpose with `edit_score` `transpose_score` (an interval such as `M2` or `-m3`) so the score,
 playback and exports stay consistent; change the playback instrument with `set_timbre`. To
-arrange or simplify music, export `abc`, rewrite it, and `create_score` the new version. Use
+arrange or simplify music, read the score with `get_score` (or its editing copy), write the new
+ABC yourself and `create_score` the new version; an `abc` export works only on an unlocked score,
+so do not unlock one just to read it. Use
 the host's attachment if it appears; otherwise point to the prepared panel's Download menu.
 Do not paste or reconstruct signed download URLs in chat. For arrangements read [the arranging reference](../scorestarling-score/references/arranging.md).
 
@@ -187,9 +204,9 @@ A provider result is an editable starting score, not a publication-ready verdict
 
 edit_score has no local voice/staff/hand reassignment or tuplet/swing/grace/arpeggio/tie/slur/pedal entry: write those in a MusicXML copy and save it with revise_score (kept notes keep their played timing; new pitches, removed and added notes reach playback). Nothing edits performance onsets/offsets freely or the local tempo map. set_duration changes playback note-offs; rebeam only changes grouping; global voice/grid options cannot replace local editing. Read live schemas and operation restrictions. Report unsupported corrections without inventing actions or destructive workarounds. ABC reconstruction needs source comparison and representation checks. Inspect all exported pages and audition changed passages when possible; structural validation, MIDI preservation and cleaner pages do not prove musical accuracy.
 
-Read get_score for current revision/IDs. Change a score in place, never as a new score (create_score/transcribe_* make separate ones): edit_score for single operations; otherwise edit a MusicXML export of the current revision, keeping note ids (staves, hands, voices, a misheard voice, many pitches, added notes, ties), and save it with revise_score: same recording comparison, panel and undo. Download a file only to edit it, once per round (downloads may need the user's approval); read notes with get_score. Apply requested reversible changes within the stated goal without repeated permission. Panel numbered requests have separate note_ids: apply them in order on the current revision. Preview new musical proposals (preview_score_edit, or revise_score preview=true), review_score that preview, and apply_score_preview only after acceptance of that specific preview. Re-read stale revisions.
+Read get_score for current revision/IDs. Change a score in place, never as a new score (create_score/transcribe_* make separate ones): edit_score for single operations; otherwise edit the editing_copy of the current revision, keeping note ids (staves, hands, voices, a misheard voice, many pitches, added notes, ties), and save it with revise_score: same recording comparison, panel and undo. Download a file only to edit it, once per round (downloads may need the user's approval); read notes with get_score. Apply requested reversible changes within the stated goal without repeated permission. Panel numbered requests have separate note_ids: apply them in order on the current revision. Preview new musical proposals (preview_score_edit, or revise_score preview=true), review_score that preview, and apply_score_preview only after acceptance of that specific preview. Re-read stale revisions.
 
-Structural validation does not prove transcription accuracy; doubtful_notes are leads to listen to, not a verdict. MIDI/audio exports require complete performance bindings; MusicXML/PDF may still export. Use a host-presented attachment; otherwise the prepared panel Download menu for the requested format. Never paste/reconstruct download_url in chat. A ResourceLink does not prove receipt. A plain PDF request uses format=pdf and follows the saved view, like Download; do not silently substitute Mirelo's original PDF. Use original_pdf only when requested and label it as the original. Audio exports are synthesis, not original stems.
+Structural validation does not prove transcription accuracy; doubtful_notes are leads to listen to, not a verdict. MIDI/audio exports require complete performance bindings; MusicXML/PDF may still export. A free score (access.open false) needs unlock_score, with explicit consent to its exact credits, before MusicXML, MIDI, ABC or MEI download; its PDFs carry a small footer line; a band transcription paid with credits is open. Use a host-presented attachment; otherwise the prepared panel Download menu for the requested format. Never paste/reconstruct download_url in chat. A ResourceLink does not prove receipt. A plain PDF request uses format=pdf and follows the saved view, like Download; do not silently substitute Mirelo's original PDF. Use original_pdf only when requested and label it as the original. Audio exports are synthesis, not original stems.
 
 Show a score as staff or jianpu (简谱: jianpu 1=key, jianpu_fixed 1=C 固定调, jianpu_melody) with set_notation_view: the score keeps it, the prepared panel and Download PDF follow; without a prepared panel result, open_score once with notation; before it exists, pass view to the tool making it. export_score takes the same names; jianpu_voices only if asked for a hand's voices apart.
 

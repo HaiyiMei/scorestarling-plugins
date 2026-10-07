@@ -63,7 +63,9 @@ with notation tools, not by making the playing regular; offer a tidier arrangeme
 3. Map the sections (intro, verse, pre-chorus, chorus, bridge, outro); read each one's cues
    (below) and pick a card and a level for it. Note where the texture changes.
 4. Ask the open questions (Questions), a few at a time.
-5. Write the arrangement: `export_score` the master as `abc`, rewrite it and `create_score` a
+5. Write the arrangement: read the master with `get_score` (or its editing copy, `export_score`
+   `format=editing_copy`, to rewrite the whole piece; `abc` exports only from an open score, a
+   free score first needs unlocking), write the new ABC and `create_score` a
    new score titled in plain words with song, version and key (e.g. "… — Easy piano, 1=C").
    Start a new key with `K:` at its bar so jianpu prints the new `1=`. Transpose only the copy.
 6. Verify: A/B each section against the master (melody notes, rhythm and contour, bass at
