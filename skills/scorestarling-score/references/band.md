@@ -122,6 +122,9 @@ https://scorestarling.com/credits documents them neutrally; it is not a way to g
   with its tuning source; `original_scores`, a ZIP) shows the unedited result only. Give it only
   when the user asks for the original, call it the original, and do not present it as final
   quality.
+- A guitar TAB in the originals can read an octave high (seen once): the guitar part is written an
+  octave above its sound and fretted by its written pitch. Say so when you hand it over. For TAB of
+  the current score, show it with `set_tablature` instead: ScoreStarling frets the pitch that sounds.
 
 ## Failures and recovery
 

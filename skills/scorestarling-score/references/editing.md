@@ -175,6 +175,22 @@ phrase). Preview it when the user asked to look first. Never repitch or delete n
 staff move. For a video, `watch_score` the bars first: each frame lists the notes struck there with
 their ID and staff, so a note in the other hand can be moved by its ID.
 
+**Guitar TAB.** TAB is a setting of the score, not a second score: `set_tablature {part_id?, view,
+tuning?, capo?, strings?}` shows a guitar, bass or ukulele part with TAB under the staff (`both`),
+as TAB alone (`tab`) or not (`off`), and the panel, PDF, parts and MusicXML follow; the notes and
+playback never change. Pass the tuning the user names (a preset such as `drop_d` or `dadgad`, or
+the open strings from the lowest, `["D2","A2","D3","G3","B3","E4"]`) and the capo fret; a Pro part
+already starts from the tuning its supplier's TAB named. `strings: "lowest"` (the default) writes
+each note at its lowest fret, as notation apps do; `"hand"` keeps the hand in one position when
+the user asks for fewer shifts or an easier fingering. For one note, `set_string {note_ids, string}`
+plays it on another string at the same pitch (string 1 is the top line, high e; `null` returns it
+to the rule) and `set_fret {note_ids, string, fret}` writes a fret, which changes the pitch to the
+one that fret plays. `get_score` lists each note's `string` and `fret`; `tab_issue` marks a note no
+string can play as written (below the lowest string, above the top fret, or more notes at once than
+strings), and validation lists those bars: tell the user rather than moving notes on your own. When
+the user wants TAB in the conversation, `export_score` `tab_text` (with `part_id` for one part)
+returns plain-text TAB to paste.
+
 Re-engraving operations (`reengrave`, `rebeat`, `scale_note_values`) write the
 notation again from the playing. Printed words, rehearsal and metronome marks, dynamics, hairpins
 and fermatas go with the played notes they stand on and keep their IDs (one between notes goes to

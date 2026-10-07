@@ -215,7 +215,8 @@ per chord → L2 半分解 → L3 broken or rhythmic grooves. Ask who sings and 
 
 **P17 Solo fingerstyle guitar.** Cues: thumb alternating bass strings on the beat, melody above,
 open strings ringing (Travis picking). Faithful: treble clef an octave lower, melody stems up,
-bass down, tab optional. Piano: thumb → LH, melody → RH; strummed parts → a chord chart (P1).
+bass down, TAB under the staff (`set_tablature` view `both`) when the player reads it. Piano: thumb → LH,
+melody → RH; strummed parts → a chord chart (P1).
 
 ## Jianpu as the deliverable
 
