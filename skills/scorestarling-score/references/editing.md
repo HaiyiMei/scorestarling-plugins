@@ -160,9 +160,11 @@ every note keeps its ID, pitch, start and length, so the playing and the IDs you
 "Give the accompaniment to the left hand" is one call with the accompaniment's IDs (read them from
 `get_score`; a chord can move in part, a tied note moves with its whole tie, a tuplet moves whole).
 Rests under the moved notes are covered, rests are written where a hand is left empty, and voices,
-stems and beams are set again in the bars touched. `clef` is `auto` by default: where the receiving
-hand had been resting it gets the treble or bass clef the moved notes read in (low notes keep the
-bass clef) and the old clef returns after them; `keep` leaves clefs alone, `treble` or `bass` sets
+stems and beams are set again in the bars touched. Leave `clef` out unless the user names a clef:
+`auto`, the default, gives the receiving hand the treble or bass clef its notes read in wherever it
+then holds one line (it was resting, or the moved notes continue its own), and the old clef returns
+after them. An accompaniment from middle C up, such as K. 545's, reads in the treble clef, as
+Mozart wrote it; a low one keeps the bass clef. `keep` leaves clefs alone, `treble` or `bass` sets
 one. It is refused for a part on one staff and for a slur or tuplet it would split (select the whole
 phrase). Preview it when the user asked to look first. Never repitch or delete notes to imitate a
 staff move. For a video, `watch_score` the bars first: each frame lists the notes struck there with
