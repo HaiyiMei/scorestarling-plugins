@@ -162,9 +162,10 @@ notes in one call. Never repitch or delete notes to imitate a staff move. For a 
 a note in the other hand can be moved by its ID.
 
 Re-engraving operations (`reengrave`, `set_staff`, `rebeat`, `scale_note_values`) write the
-notation again from the playing and refuse a score with printed words, rehearsal marks, hairpins
-or fermatas, which they would drop. Add those marks last. When one blocks a later change,
-`delete_mark` it, make the change, read the new IDs and add it again.
+notation again from the playing. Printed words, rehearsal and metronome marks, dynamics, hairpins
+and fermatas go with the played notes they stand on and keep their IDs (one between notes goes to
+the nearest played note); chord symbols and tuplets still block them. `rewrite_rhythm` refuses
+printed marks.
 
 **Voices.** Move notes between voices in the edited MusicXML copy; `edit_score` has no operation
 for it.
