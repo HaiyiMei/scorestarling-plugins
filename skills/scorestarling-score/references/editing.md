@@ -154,14 +154,21 @@ at its proper place in the edited MusicXML copy and save it with `revise_score` 
 since it changes how the music reads), checking the bar lengths around it. `rebar_pickup` would
 move every bar line.
 
-**Hands and staves.** `set_staff {note_ids, staff}` moves played notes of a piano part on two
-staves to the other hand's staff (1 upper, right hand; 2 lower, left hand): the score is engraved
-again with every other note where it is, and the playing is unchanged. Move all of a passage's
-notes in one call. Never repitch or delete notes to imitate a staff move. For a video,
-`watch_score` the bars first: each frame lists the notes struck there with their ID and staff, so
-a note in the other hand can be moved by its ID.
+**Hands and staves.** `set_staff {note_ids, staff, clef?}` moves played notes of a part on two
+staves to the other hand's staff (1 upper, right hand; 2 lower, left hand), as one notation edit:
+every note keeps its ID, pitch, start and length, so the playing and the IDs you hold stay valid.
+"Give the accompaniment to the left hand" is one call with the accompaniment's IDs (read them from
+`get_score`; a chord can move in part, a tied note moves with its whole tie, a tuplet moves whole).
+Rests under the moved notes are covered, rests are written where a hand is left empty, and voices,
+stems and beams are set again in the bars touched. `clef` is `auto` by default: where the receiving
+hand had been resting it gets the treble or bass clef the moved notes read in (low notes keep the
+bass clef) and the old clef returns after them; `keep` leaves clefs alone, `treble` or `bass` sets
+one. It is refused for a part on one staff and for a slur or tuplet it would split (select the whole
+phrase). Preview it when the user asked to look first. Never repitch or delete notes to imitate a
+staff move. For a video, `watch_score` the bars first: each frame lists the notes struck there with
+their ID and staff, so a note in the other hand can be moved by its ID.
 
-Re-engraving operations (`reengrave`, `set_staff`, `rebeat`, `scale_note_values`) write the
+Re-engraving operations (`reengrave`, `rebeat`, `scale_note_values`) write the
 notation again from the playing. Printed words, rehearsal and metronome marks, dynamics, hairpins
 and fermatas go with the played notes they stand on and keep their IDs (one between notes goes to
 the nearest played note); chord symbols and tuplets still block them. `rewrite_rhythm` refuses
