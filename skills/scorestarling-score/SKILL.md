@@ -479,5 +479,7 @@ Structural validation does not prove transcription accuracy; doubtful_notes are 
 
 Show a score as staff or jianpu (简谱: jianpu 1=key, jianpu_fixed 1=C 固定调, jianpu_melody) with set_notation_view: the score keeps it, the prepared panel and Download PDF follow; without a prepared panel result, open_score once with notation; before it exists, pass view to the tool making it. export_score takes the same names; jianpu_voices only if asked for a hand's voices apart.
 
+Guitar TAB (六线谱, also bass and ukulele) is a score setting, not a view: edit_score set_tablature (view both puts TAB under the staff, tab shows TAB only; tuning and capo as the user says; strings hand when they want fewer hand shifts), then the panel, PDF and MusicXML show it. set_string moves a note to another string at the same pitch; set_fret writes a fret on a string. export_score tab_text returns text TAB to paste in your answer. TAB adds no credits.
+
 Call send_feedback once only after the user explicitly expresses an opinion of a result, with their own words as a non-empty comment and the revision they judged. Never supply your own rating or solicit one. Feedback grants no consent to share the recording; the user's panel buttons handle sharing.
 <!-- END MCP ESSENTIALS -->
