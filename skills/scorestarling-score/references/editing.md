@@ -28,8 +28,12 @@ spelling, a shifted passage):
 
 1. Before the first file fetch in the conversation, tell the user in one line that the chat may
    ask to allow it, and that allowing ScoreStarling for the conversation stops further asks.
-2. `export_score` with `format=musicxml` for the current revision, once for the whole round (the
-   changes you are about to save or preview together).
+2. `export_score` with `format=editing_copy` for the current revision, once for the whole round
+   (the changes you are about to save or preview together). It is the score's MusicXML for your
+   own edits: it works on every score without unlocking and is saved back into the same score, so
+   it is not a download for the user. Never present it as one or link it as a file; when the user
+   asks for a MusicXML file, that is a download (SKILL.md step 7), which a free score only gives
+   once it is unlocked.
 3. Make every change in that copy, keeping each note's `id` attribute.
 4. Save it once with `revise_score` (the file as an attachment, or the text as `musicxml`),
    giving the revision it was exported from. `preview=true` saves it as a suggestion the user

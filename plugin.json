@@ -13,7 +13,7 @@
       "interface": {
         "displayName": "ScoreStarling",
         "shortDescription": "Convert music across formats",
-        "longDescription": "ScoreStarling is a music conversion and notation workspace for musicians, arrangers and music learners. Move musical content between sound, pictures, documents and score files. Start from an audio or video recording, an image or PDF of sheet music, MIDI, MusicXML, ABC, numbered notation, a lead sheet, or music written in the chat. Turn it into an editable, playable score, then convert it to PDF, SVG/PNG images, MusicXML, MIDI, MP3/WAV audio, ABC, MEI, individual parts or numbered notation. Read and hear the result, compare a source recording with score playback, review uncertain passages, preview edits, apply accepted changes and undo them. Recordings of one instrument or voice, or of solo piano, are free; a band uses credits, and its price is shown before it starts. Sign in with a ScoreStarling account. Uploads are limited to 100 MiB. Audio and video transcription cover the account’s supported excerpt, up to five minutes; the length limit, and for a band the price, are shown before starting. Automatic transcription and sheet-music reading can contain pitch, rhythm or notation errors, so listening and human review are needed.",
+        "longDescription": "ScoreStarling is a music conversion and notation workspace for musicians, arrangers and music learners. Move musical content between sound, pictures, documents and score files. Start from an audio or video recording, an image or PDF of sheet music, MIDI, MusicXML, ABC, numbered notation, a lead sheet, or music written in the chat. Turn it into an editable, playable score, then convert it to PDF, SVG/PNG images, MusicXML, MIDI, MP3/WAV audio, ABC, MEI, individual parts or numbered notation. Read and hear the result, compare a source recording with score playback, review uncertain passages, preview edits, apply accepted changes and undo them. Recordings of one instrument or voice, or of solo piano, are free; a band uses credits, and its price is shown before it starts. Sign in with a ScoreStarling account. Uploads are limited to 100 MiB. Audio and video transcription cover the first five minutes of a recording; the length limit, and for a band the price, are shown before starting. Editing, PDFs, page images and audio are free; a free score’s PDFs carry a small footer line, and its MusicXML, MIDI, ABC and MEI downloads need the score unlocked with existing credits, once, after the user agrees in the chat. Automatic transcription and sheet-music reading can contain pitch, rhythm or notation errors, so listening and human review are needed.",
         "developerName": "HAIYI MEI",
         "category": "Creativity",
         "capabilities": [
@@ -65,10 +65,10 @@
               "expected_behavior": "Apply the accepted preview using its exact ID/base revision, read the resulting revision and undo against it. The restored score matches the prior version; no credits are used."
             },
             {
-              "description": "Export the accepted sample score revision.",
-              "prompt": "Export the current score as MusicXML, PDF and MIDI.",
-              "tools_triggered": "get_score, export_score",
-              "expected_behavior": "Export MusicXML, PDF and MIDI from one explicit saved revision. Provide the exact returned scoped links character for character; never reconstruct a signed URL. The files are nonempty and match this revision. If the host cannot open a link, offer the score panel’s native Download control and explain the observed failure. Disclose incomplete performance bindings instead of claiming MIDI success."
+              "description": "Export the accepted sample score revision. A free score’s PDF is delivered at once with a small footer line; its MusicXML and MIDI need the score unlocked with existing credits, which the assistant asks about once and spends only after the user agrees.",
+              "prompt": "Export the current score as MusicXML, PDF and MIDI. If any of it uses credits, ask me first.",
+              "tools_triggered": "get_score, export_score, unlock_score",
+              "expected_behavior": "Export from one explicit saved revision. Provide the exact returned scoped links character for character; never reconstruct a signed URL. The PDF carries a small footer line on a free score; say so. If MusicXML or MIDI comes back locked, ask once, in one line, whether to unlock the score for exactly the credits the result names, as use of existing credits and not a purchase, with no purchase prompt or link. Only after an explicit yes call unlock_score with that exact number and consent, then export both from the same revision. If the user declines or the balance is short, deliver the PDF and audio instead. If the account already has the score open, no unlock is asked. The files are nonempty and match this revision. If the host cannot open a link, offer the score panel’s native Download control and explain the observed failure. Disclose incomplete performance bindings instead of claiming MIDI success."
             }
           ],
           "negative": [
@@ -87,10 +87,10 @@
           ]
         },
         "commerce": true,
-        "commerce_description": "Transcribing a band uses the connected ScoreStarling account’s existing credits, only after the user agrees to the price shown in the chat. The plugin has no purchasing or checkout tools. Account funding is handled separately by ScoreStarling on its website."
+        "commerce_description": "Transcribing a band, or unlocking a free score’s MusicXML, MIDI, ABC and MEI downloads, uses the connected ScoreStarling account’s existing credits, only after the user agrees to the exact number of credits shown in the chat. A friend’s invitation link or a beta code that the user gives the assistant can be redeemed in the chat; it adds free credits and is not a purchase. The plugin has no purchasing or checkout tools. Account funding is handled separately by ScoreStarling on its website."
       },
       "publication": {
-        "release_notes": "Initial ScoreStarling 1.0.0 release: music conversion across recordings, video, sheet-music images/PDFs, MIDI, MusicXML and written notation; editable scores, playback, reversible previews and notation, image and audio exports. One instrument or voice, or solo piano, is free; a band uses credits and shows its price before starting."
+        "release_notes": "Every recording covers its first five minutes, a band included. Free scores: PDFs and page images carry a small footer line, and MusicXML, MIDI, ABC and MEI downloads need the score unlocked with existing credits, once, after the user agrees to the exact number in the chat; a band score transcribed with credits is already unlocked. Assistants change a score through an editing copy that needs no unlock. Invitation links and beta codes can be redeemed in the chat, and a new user can start from a sample recording. Still: music conversion across recordings, video, sheet-music images/PDFs, MIDI, MusicXML and written notation; editable scores, playback, reversible previews and notation, image and audio exports. One instrument or voice, or solo piano, is free; a band uses credits and shows its price before starting."
       }
     }
   }

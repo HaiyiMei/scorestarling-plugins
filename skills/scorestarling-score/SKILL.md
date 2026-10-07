@@ -1,6 +1,6 @@
 ---
 name: scorestarling-score
-description: Turn a recording into an editable, playable score with ScoreStarling, then review it, fix it in place and deliver it. Use whenever someone wants sheet music, a score, jianpu, MIDI or MusicXML from audio or video (an attached file, a voice memo, a song they play or sing, a YouTube, Bilibili or other link), asks how a transcription came out or wants it checked, corrected, simplified or arranged, wants to open, edit, show as jianpu or download an existing ScoreStarling score, or asks about a band transcription's price, credits or limits. Needs a connected ScoreStarling MCP server. Sheet music, score files and music typed in the chat go to scorestarling-notation.
+description: Turn a recording into an editable, playable score with ScoreStarling, then review it, fix it in place and deliver it. Use whenever someone wants sheet music, a score, jianpu, MIDI or MusicXML from audio or video (an attached file, a voice memo, a song they play or sing, a YouTube, Bilibili or other link), asks how a transcription came out or wants it checked, corrected, simplified or arranged, wants to open, edit, show as jianpu or download an existing ScoreStarling score, gives a ScoreStarling invitation link or code, or asks about a band transcription's price, unlocking a score's downloads, credits or limits. Needs a connected ScoreStarling MCP server. Sheet music, score files and music typed in the chat go to scorestarling-notation.
 ---
 
 # From a recording to a reviewed, editable score
@@ -33,8 +33,10 @@ into more detail, follow the step.
   how credits work, never as a way to get more and never in reply to a request to buy.
 - **Consent once, where it is needed.** A new transcription starts only on the user's request. A
   band needs one confirmation: its exact price or, for an account without prices, one question
-  about starting; never ask for a credit cap. Changes the user asked for, within their stated
-  goal, need no further permission. A musical change you propose yourself waits until the user
+  about starting; never ask for a credit cap. Unlocking a free score's MusicXML, MIDI, ABC and
+  MEI downloads (step 7) is a second use of credits with the same kind of confirmation: its exact
+  credits, one clear yes. Changes the user asked for, within their stated goal, need no further
+  permission. A musical change you propose yourself waits until the user
   accepts it.
 - **One score, one panel.** Change a score in place, as its next revision; never make a new
   score to change one, unless the user asks for a new one (an arrangement, another
@@ -52,7 +54,8 @@ into more detail, follow the step.
 
 | The user has | Do this |
 | --- | --- |
-| Nothing yet | Answer in three short lines with the ways in (below) |
+| Nothing yet | Answer in three short lines with the ways in (below); for a new user, offer the free sample too |
+| A ScoreStarling invitation link or code | `redeem_code` once ("Invitations and codes", below), then what they came to do |
 | A recording attached in ChatGPT | Steps 2 to 5 |
 | A link to a video, a song page or an audio file | Steps 2 to 5: look with `check_link`, send it with `transcribe_link` |
 | A file you can read with code (Claude, Codex) | Steps 2 to 5; send it as [references/uploads.md](references/uploads.md) describes |
@@ -64,6 +67,24 @@ paste a link to it; open the ScoreStarling panel with `open_studio` to choose a 
 (best on phones and in Claude); or use the workspace at scorestarling.com/app. Add that one
 instrument or voice works best, piano included, and that a known tempo helps; otherwise it is
 detected.
+
+For a new user with no recording at hand, offer a first score from the sample recording at
+https://scorestarling.com/samples/ode-to-joy-guitar.mp3 (one guitar, free), and start it when
+they say yes: `transcribe_link` with that link and `provider: local` (it is a known one-instrument
+recording, so `check_link` adds nothing), then steps 4 and 5. It shows how the whole journey
+works.
+
+**Invitations and codes.** When the user gives a ScoreStarling invitation link
+(scorestarling.com/r/ followed by a code) or a code (a friend's invitation, or a beta code), call
+`redeem_code` once with it. It is free and needs no other consent. Say in plain words what it did:
+a beta code adds its credits now; a friend's invitation gives the user and their friend credits
+each after the user's first finished transcription, free ones included, so it is a good reason to
+make a first score (their own recording, or the sample above). An account takes one invitation and
+one beta code. When the code is refused, tell the user the reason plainly, do not try other codes
+or look for one, and carry on with what they asked: everything free still works. Offer the user's
+own invitation link (`get_invitation_link`) only when they ask to invite or share; give it as plain
+text, mention that their share page has ready-made posts, and never raise it unasked. These are
+existing allowances, not purchases: never turn a code into an offer to buy anything.
 
 "Reuse the existing result" or "don't start new processing" means opening the existing score as
 above. Only when the user explicitly wants a new score from a saved band result, follow "Saved
@@ -105,12 +126,12 @@ time. Look at them:
 | solo piano (free) | `piano` | piano with both hands, chords and the sustain pedal; it also places the time signature, a pickup and the bar lines from the playing; about a minute |
 | a band (uses credits, price shown first) | `mirelo` | several instruments or drums; an external service, chosen with the user |
 
-- **Length and size.** Files up to 100 MiB (`get_account_usage.upload_limits`). A score covers
-  the first five minutes with the free choices. A band covers five minutes for invited accounts
-  and accounts holding purchased credits, otherwise two. `check_recording`, `get_account_usage`
-  (`max_seconds`) and upload results (`max_seconds`, `excerpt`) give the current limit: tell the
-  user about the excerpt of a longer recording before it starts. An account runs two
-  transcriptions at a time.
+- **Length and size.** Files up to 100 MiB (`get_account_usage.upload_limits`). A transcription
+  covers the first five minutes of a recording, one instrument or voice, solo piano or a band
+  alike, the same for every account; what a band covers can be shorter when the balance does not
+  reach it (below). `check_recording`, `get_account_usage` (`max_seconds`) and upload results
+  (`max_seconds`, `excerpt`) give the current limit: tell the user about the excerpt of a longer
+  recording before it starts. An account runs two transcriptions at a time.
 - **Tempo and meter.** Pass `bpm` only when the user gave the tempo; otherwise it is estimated,
   and the report says so. `bpm` counts quarter notes: for a 6/8 or 12/8 song counted in dotted
   quarters, pass 1.5 times that tempo. Never guess a tempo or meter you do not know.
@@ -290,8 +311,11 @@ score from the same recording; the first score stays and nothing is uploaded aga
   the changed notes and look at the bars you touched (`review_score` with `measures`).
 - Anything else, or many changes at once (moving notes between hands, staves or voices, deleting
   a misheard voice, many pitches, missed notes, ties, beams, rhythm spelling): export the
-  current revision with `export_score` `format=musicxml`, edit that file keeping every note's
-  `id`, and save it once with `revise_score`. How the edited copy plays back:
+  current revision with `export_score` `format=editing_copy`, edit that file keeping every note's
+  `id`, and save it once with `revise_score`. The editing copy is the score's MusicXML for your
+  own round of edits: it works on every score without unlocking and is saved back into the same
+  score, so it is not a download. Never offer it to the user as a file or call it an export;
+  their request for a MusicXML file is a download (step 7). How the edited copy plays back:
   [references/editing.md](references/editing.md).
 - Fetching a file into your workspace to edit it can make the chat ask the user, and the turn
   waits for their answer (a file you export for the user is not such a fetch). Before the first
@@ -331,12 +355,12 @@ score from the same recording; the first score stays and nothing is uploaded aga
 | --- | --- |
 | Printable sheet music | `pdf`, which follows the saved view (staff or numbered) like the panel's PDF button; `layout_pdf` for staff notation whatever the view; add `part_id` for one part, or use `format=parts` for a ZIP of every part |
 | Page images | `pages` (SVG and PNG) |
-| Notation software (MuseScore, Sibelius, Finale, Dorico) | `musicxml` or `mxl` |
-| MIDI | `midi` |
+| Notation software (MuseScore, Sibelius, Finale, Dorico) | `musicxml` or `mxl` (needs an open score) |
+| MIDI | `midi` (needs an open score) |
 | Listening audio | `mp3` or `wav`: the score's playback, synthesized, not the original recording |
 | Numbered notation (PDF) | `jianpu` (every staff), `jianpu_melody` (the top line, usually but not always the tune) or `jianpu_fixed` (fixed do); or set the view and use `pdf` |
-| ABC text to read or rewrite | `abc` (the text also comes back in the result) |
-| Music research | `mei` |
+| ABC text to read or rewrite | `abc` (needs an open score; the text also comes back in the result). To read the notes yourself, `get_score` or an editing copy |
+| Music research | `mei` (needs an open score) |
 
 - Jianpu is movable do in the score's key (`1=` the key; a minor key reads from its relative
   major's do). `jianpu_fixed` writes the same pitches with 1 always C and every black key marked
@@ -344,6 +368,21 @@ score from the same recording; the first score stays and nothing is uploaded aga
   `jianpu_voices` or `jianpu_fixed_voices` only when asked to show a hand's voices apart.
 - MIDI and audio need every note bound to the playing; MusicXML and PDF still export when some
   are not. Say so when it happens.
+- **Free scores and unlocking.** A score is open or free. A band score transcribed with credits is
+  open, and so are scores made before this rule and accounts whose allowance opens every score;
+  the rest are free: their PDFs and page images carry one small footer line ("Made with
+  ScoreStarling", mention it when you deliver one) and MusicXML, MXL, MIDI, ABC and MEI need the
+  score unlocked. Audio is always free. The panel and the export results say which it is
+  (`access.open`). When `export_score` for one of those formats comes back `locked` (or you know
+  the score is free), do not retry or work around it: ask the user once, in one line, whether to
+  unlock this score for exactly the credits it names (`unlock_credits`; the credits are used once
+  per score, then every format downloads as often as wanted and edits and later revisions stay
+  open), as use of credits the account already has, not a purchase. Only after a clear yes call
+  `unlock_score` with that exact number and `consent: true`, then call `export_score` again. If
+  they decline, offer the PDF or audio instead. Never unlock to try something out, to remove the
+  footer line unless the user asks, or before an editing copy, which needs none. If the balance
+  does not cover it, say so and offer the free formats; never offer purchases, plans or links,
+  even when asked. This question is the user's own; do not add "Powered by Mirelo" to it.
 - A band score's original engraving (`original_pdf`, `original_scores`) is given only when the
   user asks for the original: call it the original, since it leaves out later edits, and never
   substitute it for a plain PDF request.
@@ -356,15 +395,17 @@ score from the same recording; the first score stays and nothing is uploaded aga
 
 ## 8. Credits and limits
 
-- Free: one instrument or voice, solo piano, sheet music and score files, and every edit, view
-  and download (edits never call the band service). A band uses credits the account already
-  holds, 40 a minute, with its exact price agreed before it starts.
-- Answer balance and limit questions from `get_account_usage`; mention cost only for a band or
-  when it shows a limit. If a band is unavailable, read `engine_status.mirelo.reason` when it is
+- Free: one instrument or voice, solo piano, sheet music and score files, every edit, view and
+  listening, and PDFs, page images and audio (edits never call the band service). A band uses
+  credits the account already holds, 40 a minute, with its exact price agreed before it starts.
+  A free score's MusicXML, MIDI, ABC and MEI downloads use credits once per score when the user
+  agrees to unlock it (step 7).
+- Answer balance and limit questions from `get_account_usage`; mention cost only for a band, an
+  unlock or when it shows a limit. If a band is unavailable, read `engine_status.mirelo.reason` when it is
   given; do not assume the account lacks permission or that the service stops at two minutes.
 - A short balance: offer the longest excerpt from the start that it covers, quoted exactly, as
   the one price question. Nothing covered: say a band is not available now and that everything
-  free still is. Details in [references/band.md](references/band.md).
+  free still is, with its PDFs and audio. Details in [references/band.md](references/band.md).
 - Asked to buy credits, top up or upgrade: say purchases are not available here, with no link
   (not even the credits page) and no search for one.
 - The band service's own credits and limits are separate from the account's credits: never show
@@ -393,7 +434,7 @@ Audio attachments: check_recording with the named instrument; use recommendation
 
 Read get_pro_instrument_review(start=false) first. For a new Pro upload, start=true gets free instrument suggestions. Review every suggestion against accessible recording evidence, supplied facts and any written source; preselected is not a complete inventory. Describe clearly and possibly heard instruments in plain words, never agreement figures. Use a grounded complete list with confirm_pro_instruments; a missing instrument cannot appear and a wrong one misallocates notes. Otherwise use instruments=null for automatic parts and include that plan in the one quote/start question, not a separate approval. Set user-stated or source-established rhythm choices in pro_options before quoting; explicitly pass known 6/8, 9/8 or 12/8. Omitted meter uses N/4, not automatic compound-meter detection. Never guess unknown meter/tempo or force fixed BPM; omit unknown choices and report uncertainty, asking only about consequential ambiguity the source cannot resolve. Until the quote is accepted the user may still change choices; quote again if changed. Do not poll or retranscribe a pending review; cancel_pro_review releases its reservation. For replay_only, even start=true stays cache-only: match all saved instruments/options exactly, stop on no match, and never change the cached request or start a replacement. Afterwards report provider_output.rhythm with its meter/tempo sources and warnings.
 
-When get_upload_status reports product_quote.phase=pending, call get_transcription_quote for its actual decoded duration, product credits and complete parameters; for Pro these include the instruments and rhythm pro_options fixed by confirm_pro_instruments, so pass pro_options there. Explain that this uses existing credits, not a new purchase. Show that exact quote and obtain explicit user consent before confirm_transcription_quote with unchanged quote_id/credits and consent=true. Expired or changed input/parameters require a fresh quote. When the balance does not cover it, affordable is the longest excerpt from the start it does: offer that (two minutes on welcome credits, say) rather than stopping: call get_transcription_quote again with seconds and show that exact quote as the one price question. Upload estimates are not product-quote consent. Nothing is transcribed or reserved before acceptance; cancel_transcription_quote cancels only an unconfirmed task. Only Pro is quoted (40 product credits a minute); Standard, Piano, notation and explicitly exempt accounts have no quote. Use existing ScoreStarling entitlements only. Never offer credit purchases, new subscriptions, upgrades or checkout links in chat, even if asked. Explain limits and covered excerpts. Never show monetary prices, plan catalogs or packs. credits_info is neutral documentation about existing usage, never a route to acquire more credits. If no excerpt is covered, explain that band processing is unavailable; existing-score access, notation imports, editing and exports remain available.
+When get_upload_status reports product_quote.phase=pending, call get_transcription_quote for its actual decoded duration, product credits and complete parameters; for Pro these include the instruments and rhythm pro_options fixed by confirm_pro_instruments, so pass pro_options there. Explain that this uses existing credits, not a new purchase. Show that exact quote and obtain explicit user consent before confirm_transcription_quote with unchanged quote_id/credits and consent=true. Expired or changed input/parameters require a fresh quote. When the balance does not cover it, affordable is the longest excerpt from the start it does: offer that (two and a half minutes on a month's free credits, say) rather than stopping: call get_transcription_quote again with seconds and show that exact quote as the one price question. Upload estimates are not product-quote consent. Nothing is transcribed or reserved before acceptance; cancel_transcription_quote cancels only an unconfirmed task. Only Pro is quoted (40 product credits a minute); Standard, Piano, notation and explicitly exempt accounts have no quote. Use existing ScoreStarling entitlements only. Never offer credit purchases, new subscriptions, upgrades or checkout links in chat, even if asked. Explain limits and covered excerpts. Never show monetary prices, plan catalogs or packs. credits_info is neutral documentation about existing usage, never a route to acquire more credits. If no excerpt is covered, explain that band processing is unavailable; existing-score access, notation imports, editing, PDFs and audio remain available.
 
 Pass bpm only when the user supplied it; omission detects an estimate to confirm by listening. bpm counts quarter notes: multiply a dotted-quarter tempo for 6/8 or 12/8 by 1.5. Read source_rhythm_analysis candidates when available; scores and gaps are uncalibrated, and the correct meter may be absent. Compare full phrases, the recording and any written source before choosing tempo, meter, pickup or bar lines. When a transcription reads at half/double the felt speed, offer scale_note_values with factor 0.5/2 (free, preserves playing). For another explicit quarter-note tempo and meter, rewrite_rhythm re-writes a steady recording without new inference or charges; inspect its availability first. Apply clear source-supported corrections within the request; preview new interpretations. Ask one precise musical question only if source evidence leaves a consequential choice unresolved.
 
@@ -407,9 +448,9 @@ A provider result is an editable starting score, not a publication-ready verdict
 
 edit_score has no local voice/staff/hand reassignment or tuplet/swing/grace/arpeggio/tie/slur/pedal entry: write those in a MusicXML copy and save it with revise_score (kept notes keep their played timing; new pitches, removed and added notes reach playback). Nothing edits performance onsets/offsets freely or the local tempo map. set_duration changes playback note-offs; rebeam only changes grouping; global voice/grid options cannot replace local editing. Read live schemas and operation restrictions. Report unsupported corrections without inventing actions or destructive workarounds. ABC reconstruction needs source comparison and representation checks. Inspect all exported pages and audition changed passages when possible; structural validation, MIDI preservation and cleaner pages do not prove musical accuracy.
 
-Read get_score for current revision/IDs. Change a score in place, never as a new score (create_score/transcribe_* make separate ones): edit_score for single operations; otherwise edit a MusicXML export of the current revision, keeping note ids (staves, hands, voices, a misheard voice, many pitches, added notes, ties), and save it with revise_score: same recording comparison, panel and undo. Download a file only to edit it, once per round (downloads may need the user's approval); read notes with get_score. Apply requested reversible changes within the stated goal without repeated permission. Panel numbered requests have separate note_ids: apply them in order on the current revision. Preview new musical proposals (preview_score_edit, or revise_score preview=true), review_score that preview, and apply_score_preview only after acceptance of that specific preview. Re-read stale revisions.
+Read get_score for current revision/IDs. Change a score in place, never as a new score (create_score/transcribe_* make separate ones): edit_score for single operations; otherwise edit the editing_copy of the current revision, keeping note ids (staves, hands, voices, a misheard voice, many pitches, added notes, ties), and save it with revise_score: same recording comparison, panel and undo. Download a file only to edit it, once per round (downloads may need the user's approval); read notes with get_score. Apply requested reversible changes within the stated goal without repeated permission. Panel numbered requests have separate note_ids: apply them in order on the current revision. Preview new musical proposals (preview_score_edit, or revise_score preview=true), review_score that preview, and apply_score_preview only after acceptance of that specific preview. Re-read stale revisions.
 
-Structural validation does not prove transcription accuracy; doubtful_notes are leads to listen to, not a verdict. MIDI/audio exports require complete performance bindings; MusicXML/PDF may still export. Use a host-presented attachment; otherwise the prepared panel Download menu for the requested format. Never paste/reconstruct download_url in chat. A ResourceLink does not prove receipt. A plain PDF request uses format=pdf and follows the saved view, like Download; do not silently substitute Mirelo's original PDF. Use original_pdf only when requested and label it as the original. Audio exports are synthesis, not original stems.
+Structural validation does not prove transcription accuracy; doubtful_notes are leads to listen to, not a verdict. MIDI/audio exports require complete performance bindings; MusicXML/PDF may still export. A free score (access.open false) needs unlock_score, with explicit consent to its exact credits, before MusicXML, MIDI, ABC or MEI download; its PDFs carry a small footer line; a band transcription paid with credits is open. Use a host-presented attachment; otherwise the prepared panel Download menu for the requested format. Never paste/reconstruct download_url in chat. A ResourceLink does not prove receipt. A plain PDF request uses format=pdf and follows the saved view, like Download; do not silently substitute Mirelo's original PDF. Use original_pdf only when requested and label it as the original. Audio exports are synthesis, not original stems.
 
 Show a score as staff or jianpu (简谱: jianpu 1=key, jianpu_fixed 1=C 固定调, jianpu_melody) with set_notation_view: the score keeps it, the prepared panel and Download PDF follow; without a prepared panel result, open_score once with notation; before it exists, pass view to the tool making it. export_score takes the same names; jianpu_voices only if asked for a hand's voices apart.
 
