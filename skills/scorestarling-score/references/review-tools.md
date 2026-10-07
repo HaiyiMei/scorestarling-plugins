@@ -1,8 +1,8 @@
 # Review tools: what they show and how to act on it
 
 Read this with step 5 of SKILL.md: how to read each tool's evidence, how to weigh what
-`listen_score` reports, how to use the ready suggestions, and how to check tempo, meter and the
-first downbeat. What a good score of this piece looks like is in [good-score.md](good-score.md).
+`listen_score` reports and what `watch_score` shows, how to use the ready suggestions, and how to
+check tempo, meter and the first downbeat. What a good score of this piece looks like is in [good-score.md](good-score.md).
 
 None of these tools checks the notes against the recording for you. Everything they report is a
 lead to check, and an empty or unavailable result proves nothing about accuracy.
@@ -43,7 +43,8 @@ It returns:
   real notes get flagged too.
 - `source_rhythm_analysis`: candidate meters and downbeats from the recording. Their scores and
   gaps are not calibrated, and the right meter may be missing.
-- `reengrave` and `rewrite_rhythm`: whether each is available, and why not.
+- `reengrave`, `rewrite_rhythm` and `rebeat`: whether each is available, and why not (`rebeat` is
+  available exactly where a tracked piano beat turns `rewrite_rhythm` away).
 - `expression`: each bar's timing and loudness, for tempo and dynamics marks ("Expression marks
   from the recording" in good-score.md). It measures timing and level, not notes.
 - The picture, when `image` is on: the first page, or the bars in `measures`. Judge it as an
@@ -80,6 +81,31 @@ How to use it:
   settle: count the accompaniment's pulse ("Returning phrases" in good-score.md).
 - Leads are never verdicts: quiet, short or ornamental real notes can go unheard. A change to
   notes still goes through a preview unless the user asked for corrections.
+
+## watch_score
+
+`watch_score(score_id, measures?, seconds?, frames?, columns?, crop?, revision?)` only reads and uses
+no credits. For a score made from a video (an uploaded video, or a YouTube, Bilibili or other video
+page) it returns one picture of frames from that video, left to right then down, and per frame its
+bar, beat, time and the written notes struck just before it (`struck`: staff, name, ID).
+
+- `measures`: up to 16 bars ("5-8"). The frames land just after attacks, when the key or string is
+  down and the hand still on it, spread over the bars; `frames` sets how many (1 to 16, default 8).
+  `seconds` asks for exact times in the recording instead.
+- `columns` (1 to 4): fewer columns show each frame larger. `crop` is `[left, top, right, bottom]`
+  as fractions of the frame: `[0, 0.5, 1, 1]` keeps its lower half, where a keyboard often is.
+- A video page's pictures are fetched again from the site the first time (a few seconds) and kept
+  for an hour. A recording without pictures (audio, or a link from before links were kept)
+  returns `available: false` with a reason. Never fetch the video yourself.
+
+How to use it:
+
+- Spend it on what pictures settle: which hand plays a note (the staff it belongs on), crossing
+  hands, an octave figure split between the hands, a guitarist's position, who of a band plays a
+  line. Compare each frame's `struck` notes with where the hands are: a note listed on the lower
+  staff while only the right hand moves is probably on the wrong staff.
+- Pitches come from listening, not from pictures: a frame does not show which key sounded.
+- Say what the frames showed and what they could not ("the left hand is out of view in bars 9-12").
 
 ## Suggestions
 
@@ -127,10 +153,14 @@ How to use it:
   playing). Another explicit quarter-note tempo and meter: `rewrite_rhythm`, when the review
   says it is available. Never start another transcription merely to change notation. The
   operations are in "Meter, pickup and beat level" in [editing.md](editing.md).
-- Move the bar lines of the whole score (a pickup) only within a correction the user authorized
-  and with a supported pickup length; a single shifted passage is a preview ("A shifted passage"
-  in [editing.md](editing.md)). When the evidence settles a reading, preview it (or apply it
-  within a requested correction); when it does not, ask the one question.
+- A meter, tempo or bar lines that keep every played note are part of the score the user asked
+  for: apply them once the returning phrases settle them, and say what changed (undo restores it).
+  A single shifted passage is a preview ("A shifted passage" in [editing.md](editing.md)). When
+  the evidence does not settle a reading, ask the one question.
+- When a solo-piano score's tracked beat is itself wrong (swing or a triplet feel read as straight
+  beats, a tempo off by 4:3, bars starting off the beat), `set_meter` only regroups the wrong
+  beats: `rebeat` writes it again on the beat the phrases show ("A wrong tracked beat" in
+  [editing.md](editing.md)), then review the result.
 - A 6/8 or 12/8 score marks and reports its tempo in dotted quarters.
 
 ## Listening with the user
