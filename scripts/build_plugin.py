@@ -13,7 +13,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 EXCLUDED = ('.github/', 'scripts/', 'tests/', '.gitignore')
-MANIFESTS = ('plugin.json', '.claude-plugin/plugin.json')
+MANIFESTS = ('plugin.json', '.claude-plugin/plugin.json', 'gemini-extension.json')
 
 
 def version(files):

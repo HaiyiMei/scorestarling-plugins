@@ -18,7 +18,7 @@ with tempfile.TemporaryDirectory(prefix='scorestarling-plugin-build-') as tmp:
     script = repo / 'scripts/build_plugin.py'
     shutil.copy2(ROOT / 'scripts/build_plugin.py', script)
     subprocess.run(['git', '-C', str(repo), 'init', '-q'], check=True, capture_output=True)
-    manifests = (package / 'plugin.json', package / '.claude-plugin/plugin.json')
+    manifests = (package / 'plugin.json', package / '.claude-plugin/plugin.json', package / 'gemini-extension.json')
     for manifest in manifests:
         manifest.write_text(json.dumps({'name': 'scorestarling', 'version': '0.1.0'}))
     readme = package / 'README.md'
