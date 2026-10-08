@@ -281,9 +281,9 @@ pass are applied directly.
 | A consequential choice the evidence cannot settle | Your one question |
 
 - A request to check the score ("how did it come out?", "have a look") covers the direct fixes;
-  changes to notes stay previews. When the user asked you to correct the transcription ("fix the
-  wrong notes"), apply evidence-backed changes to notes within that request directly. When in
-  doubt, preview.
+  changes to notes stay previews. When the user asked you to change the notes ("fix the wrong
+  notes", "tidy the hands", "make it playable"), apply the changes within that request directly as
+  a new version, removals included, and say what you removed; undo restores the previous one.
 - Evidence is the recording, the score's own returning phrases and figures, and the user's word;
   a pattern from outside the recording is not. Propose removing a note only when it fits no line
   and was not heard; low confidence alone is never enough. Keep plausible voices and uncertain
@@ -350,12 +350,17 @@ that shows the score's hands are wrong at the end) is fixed, or offered as that 
 - Changes the user asks for, broad or exact, within their stated goal: apply them without asking
   again for each one. A change the user names exactly (this note should be an E) is its own
   evidence: apply it, name the exact pitch you wrote, and if you know the recording disagrees,
-  say so and mention undo. A panel message can list several numbered requests, each with its own
-  note IDs: apply them in order, each on the current revision.
+  say so and mention undo. This holds when the request removes notes too (tidying the hands drops
+  doubled and stray notes): save it as a new version and say what went. A panel message can list
+  several numbered requests, each with its own note IDs: apply them in order, each on the current
+  revision.
 - Changes you propose yourself: preview them (`preview_score_edit`, or `revise_score` with
   `preview=true`), `review_score` the preview, and explain what improves and what gets worse.
-  The panel shows it with Apply and Discard. Call `apply_score_preview` with its ID and base
-  revision only after the user accepts that preview.
+  The panel shows it with Apply and Discard, and the score below it is the suggestion, not the
+  saved score: say so in one line ("press Apply in the panel, or tell me to") without citing tool
+  rules. Keep one suggestion waiting at a time (`get_score` shows it): discard it before making
+  another. Call `apply_score_preview` with its ID and base revision only after the user accepts
+  that preview.
 - An arrangement, a simplification, a level, another texture or style, a piano version of a band
   piece, 弹唱 or two-hand jianpu: when the user asks for one, read
   [references/arranging.md](references/arranging.md) first. The faithful transcription stays as
@@ -473,7 +478,7 @@ A provider result is an editable starting score, not a publication-ready verdict
 
 set_staff moves played notes of a two-staff part to the other hand's staff as a notation edit: ids, pitches, timing, ties and playback stay, the receiving hand's clef follows its notes (leave clef out unless the user names one), and it refuses a part on one staff or part of a tuplet or slur. For a passage over many bars give select {measures "1-28", voice?, below?/above? MIDI} instead of note_ids: it takes the other staff's notes there (read one bar with get_score first to see which voice the accompaniment is). Re-engraving operations (reengrave, rebeat, scale_note_values) keep printed marks on the notes they stand on, with their IDs; chord symbols and tuplets still block them. edit_score has no local voice reassignment or tuplet/swing/grace/arpeggio/tie/slur/pedal entry: write those in a MusicXML copy and save it with revise_score (kept notes keep their played timing; new pitches, removed and added notes reach playback). Nothing edits performance onsets/offsets freely or one passage's tempo map (rebeat replaces a solo-piano score's whole beat, swing included). set_duration changes playback note-offs; rebeam only changes grouping; global voice/grid options cannot replace local editing. Read live schemas and operation restrictions. Report unsupported corrections without inventing actions or destructive workarounds. ABC reconstruction needs source comparison and representation checks. Inspect all exported pages and audition changed passages when possible; structural validation, MIDI preservation and cleaner pages do not prove musical accuracy.
 
-Read get_score for current revision/IDs. Change a score in place, never as a new score (create_score/transcribe_* make separate ones): edit_score for single operations (set_staff moves hands); otherwise edit the current revision's editing_copy, keeping note ids (voices, a misheard voice, many pitches, added notes, ties), and save it with revise_score: same recording comparison, panel and undo. Download a file only to edit it, once per round (downloads may need the user's approval). Apply requested reversible changes within the stated goal without repeated permission; offer one next step for a problem you name but leave. Panel numbered requests have separate note_ids: apply them in order on the current revision. Preview new musical proposals (preview_score_edit, or revise_score preview=true), review that preview, and apply_score_preview only after its acceptance. Re-read stale revisions.
+Read get_score for current revision/IDs. Change a score in place, never as a new score (create_score/transcribe_* make separate ones): edit_score for single operations (set_staff moves hands); otherwise edit the current revision's editing_copy, keeping note ids (voices, many pitches, added notes, ties), and save it with revise_score: same recording comparison, panel and undo. Download a file only to edit it, once per round (it may need the user's approval). Apply requested changes (tidy, make playable, fix notes), removals included, as a new version without asking again; say what was removed (undo restores it). Offer one next step for a problem you name but leave. Apply panel numbered requests in order. Preview only unrequested proposals (preview_score_edit or revise_score preview=true), one at a time: the panel asks Apply/Discard, never cite tool rules; apply_score_preview once accepted.
 
 Structural validation does not prove transcription accuracy; doubtful_notes are leads to listen to, not a verdict. MIDI/audio exports require complete performance bindings; MusicXML/PDF may still export. A free score (access.open false) needs unlock_score, with explicit consent to its exact credits, before MusicXML, MIDI, ABC or MEI download; its PDFs carry a small footer line; a band transcription paid with credits is open. Use a host-presented attachment; otherwise the prepared panel Download menu for the requested format. Never paste/reconstruct download_url in chat. A ResourceLink does not prove receipt. A plain PDF request uses format=pdf and follows the saved view, like Download; do not silently substitute Mirelo's original PDF. Use original_pdf only when requested and label it as the original. Audio exports are synthesis, not original stems.
 
