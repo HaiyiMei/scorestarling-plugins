@@ -1,6 +1,6 @@
 {
   "name": "scorestarling",
-  "description": "ScoreStarling: transcribe, read, convert and edit sheet music, right in chat",
+  "description": "ScoreStarling: transcribe, read, convert and edit sheet music",
   "owner": {
     "name": "HaiyiMei",
     "url": "https://scorestarling.com"
@@ -9,7 +9,7 @@
     {
       "name": "scorestarling",
       "source": "./",
-      "description": "Transcribe, read, convert and edit sheet music, right in chat"
+      "description": "Transcribe, read, convert and edit sheet music"
     }
   ]
 }

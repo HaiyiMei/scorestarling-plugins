@@ -1,6 +1,6 @@
 # ScoreStarling
 
-Transcribe, read, convert and edit sheet music, right in chat. Move music between
+Transcribe, read, convert and edit sheet music. Move music between
 sound, pictures, documents and score files. Start from an audio or video recording, a sheet-music image or PDF, MIDI, MusicXML, ABC,
 numbered notation, a lead sheet or music written in chat. Create an editable,
 playable score, review or preview changes, and export PDF, SVG/PNG images, MusicXML,
