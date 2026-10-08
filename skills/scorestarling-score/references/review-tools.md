@@ -60,7 +60,10 @@ score's own recording again. Per bar and beat it returns:
 - `written_not_heard`: in the score, but not heard; sometimes an extra or wrong note, sometimes
   just a soft or quick one.
 - `heard_as_overtone`: heard as a partial of a written note; usually ignore it.
-- `heard_written_share` and a reading note on how to take the result.
+- `heard_written_share` and a reading note on how to take the result. The share is for weighing the
+  leads, not an accuracy: tell the user which bars and notes to listen to, in plain words, and never
+  quote it. In a band's mix the second engine hears attacks a little late, so a written note
+  counts as heard up to 0.15 s after its attack.
 
 It is not available for written music (sheet music, MusicXML or MIDI imports): it then returns
 `available: false` with a reason. Rely on reading and looking instead, and name the bars for the
