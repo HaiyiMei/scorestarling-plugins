@@ -1,6 +1,6 @@
 {
   "name": "scorestarling",
-  "description": "ScoreStarling: music tools for your AI assistant",
+  "description": "ScoreStarling: transcribe, read, convert and edit sheet music, right in chat",
   "owner": {
     "name": "HaiyiMei",
     "url": "https://scorestarling.com"
@@ -9,7 +9,7 @@
     {
       "name": "scorestarling",
       "source": "./",
-      "description": "Music tools for your AI assistant: turn recordings, videos, sheet music and MIDI into scores you can play and edit"
+      "description": "Transcribe, read, convert and edit sheet music, right in chat"
     }
   ]
 }

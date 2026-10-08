@@ -2,7 +2,7 @@
   "name": "scorestarling",
   "displayName": "ScoreStarling",
   "version": "1.1.0",
-  "description": "Music tools for your AI assistant: turn recordings, videos, sheet music and MIDI into scores you can play and edit",
+  "description": "Transcribe, read, convert and edit sheet music, right in chat",
   "author": {
     "name": "HaiyiMei"
   },

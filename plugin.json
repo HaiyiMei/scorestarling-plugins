@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "scorestarling",
   "version": "1.1.0",
-  "description": "Music tools for your AI assistant: turn recordings, videos, sheet music and MIDI into scores you can play and edit",
+  "description": "Transcribe, read, convert and edit sheet music, right in chat",
   "author": {
     "name": "HaiyiMei"
   },
@@ -12,8 +12,8 @@
     "com.openai": {
       "interface": {
         "displayName": "ScoreStarling",
-        "shortDescription": "Music tools for AI assistants",
-        "longDescription": "ScoreStarling gives your AI assistant music tools, for musicians, arrangers and music learners. Move music between sound, pictures, documents and score files. Start from an audio or video recording, an image or PDF of sheet music, MIDI, MusicXML, ABC, numbered notation, a lead sheet, or music written in the chat. Turn it into an editable, playable score, then convert it to PDF, SVG/PNG images, MusicXML, MIDI, MP3/WAV audio, ABC, MEI, individual parts or numbered notation. Read and hear the result, compare a source recording with score playback, review uncertain passages, preview edits, apply accepted changes and undo them. Recordings of one instrument or voice, or of solo piano, are free; a band uses credits, and its price is shown before it starts. Sign in with a ScoreStarling account. Uploads are limited to 100 MiB. Audio and video transcription cover the first five minutes of a recording; the length limit, and for a band the price, are shown before starting. Editing, PDFs, page images and audio are free; a free score’s PDFs carry a small footer line, and its MusicXML, MIDI, ABC and MEI downloads need the score unlocked with existing credits, once, after the user agrees in the chat. Automatic transcription and sheet-music reading can contain pitch, rhythm or notation errors, so listening and human review are needed.",
+        "shortDescription": "Transcribe & edit sheet music",
+        "longDescription": "ScoreStarling lets musicians, arrangers and music learners transcribe, read, convert and edit sheet music in chat. Move music between sound, pictures, documents and score files. Start from an audio or video recording, an image or PDF of sheet music, MIDI, MusicXML, ABC, numbered notation, a lead sheet, or music written in the chat. Turn it into an editable, playable score, then convert it to PDF, SVG/PNG images, MusicXML, MIDI, MP3/WAV audio, ABC, MEI, individual parts or numbered notation. Read and hear the result, compare a source recording with score playback, review uncertain passages, preview edits, apply accepted changes and undo them. Recordings of one instrument or voice, or of solo piano, are free; a band uses credits, and its price is shown before it starts. Sign in with a ScoreStarling account. Uploads are limited to 100 MiB. Audio and video transcription cover the first five minutes of a recording; the length limit, and for a band the price, are shown before starting. Editing, PDFs, page images and audio are free; a free score’s PDFs carry a small footer line, and its MusicXML, MIDI, ABC and MEI downloads need the score unlocked with existing credits, once, after the user agrees in the chat. Automatic transcription and sheet-music reading can contain pitch, rhythm or notation errors, so listening and human review are needed.",
         "developerName": "HAIYI MEI",
         "category": "Creativity",
         "capabilities": [
