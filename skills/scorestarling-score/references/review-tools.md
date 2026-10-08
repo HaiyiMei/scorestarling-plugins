@@ -52,7 +52,7 @@ It returns:
 
 ## listen_score
 
-`listen_score(score_id, measures, revision?)` only reads: at most 16 bars or 45 seconds, about a
+`listen_score(score_id, measures, part?, revision?)` only reads: at most 16 bars or 45 seconds, about a
 second of server work, and no credits. A second transcription engine hears that stretch of the
 score's own recording again. Per bar and beat it returns:
 
@@ -62,9 +62,19 @@ score's own recording again. Per bar and beat it returns:
 - `heard_as_overtone`: heard as a partial of a written note; usually ignore it.
 - `heard_written_share` and a reading note on how to take the result.
 
-It is not available for written music (sheet music, MusicXML or MIDI imports) or for scores with
-several parts: it then returns `available: false` with a reason. Rely on reading and looking
-instead, and name the bars for the user's ear.
+It is not available for written music (sheet music, MusicXML or MIDI imports): it then returns
+`available: false` with a reason. Rely on reading and looking instead, and name the bars for the
+user's ear.
+
+With several parts (a band) the recording is their mix, so a heard note belongs to no part:
+heard pitches are named as they sound, any part's written note accounts for one, and overtones
+are not listed. Pass `part` (its id or name from `get_score`) to report one part's written notes
+not heard, such as the bass. Each such note may carry `heard_near`: pitches heard at its attack
+within a fifth, with the other parts that write them (`written_in`) or sound them as an overtone
+(`overtone_of`). A bass note not heard with the piano's left-hand pitch heard in its place
+(`written_in: ["Piano"]`) is a likely wrong bass note, to propose as a preview with the
+recording passage named, not to settle alone: the mix cannot say which instrument played the
+pitch, and two low parts may rightly differ. Drums are never compared.
 
 How to use it:
 

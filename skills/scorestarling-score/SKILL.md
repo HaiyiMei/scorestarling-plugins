@@ -243,9 +243,9 @@ predicts, supports a missed note; a stray that fits no line and was not heard su
 note; a return on another beat is a question of the beat grid, which the accompaniment's own
 pulse settles ("Returning phrases" in good-score.md). These are leads, never verdicts, and note
 changes still go through a preview; [references/review-tools.md](references/review-tools.md)
-says how to weigh them. For written music (sheet music, MusicXML or MIDI imports) and scores
-with several parts it returns `available: false` with a reason: then rely on reading and
-looking, and name the bars for the user's ear.
+says how to weigh them. For written music (sheet music, MusicXML or MIDI imports) it returns
+`available: false` with a reason: then rely on reading and looking, and name the bars for the
+user's ear. With several parts it hears their mix; pass `part` to check one part.
 
 **Watch (a video).** When the recording is a video (an uploaded video, or a YouTube, Bilibili or
 other video page), some questions are plain to see and hard to hear: which hand plays the top note

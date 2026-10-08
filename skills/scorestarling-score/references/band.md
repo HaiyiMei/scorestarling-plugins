@@ -114,8 +114,9 @@ https://scorestarling.com/credits documents them neutrally; it is not a way to g
 - The band's notation, detection and original exports are the starting point: reuse them before
   inventing other processing, keep the original and revisions reversible, and keep what the
   service wrote apart from what you changed. Its provenance alone does not make it accurate:
-  review it like any transcription (SKILL.md step 5). `listen_score` does not work for scores
-  with several parts.
+  review it like any transcription (SKILL.md step 5). `listen_score` hears the band's mix: pass
+  `part` to check one part, such as the bass against the piano's left hand (see
+  [review-tools.md](review-tools.md)).
 - `provider_output.musicxml_optimized` is true only when the service reports an optimized file;
   absent or false means not optimized.
 - The original engraving (`original_pdf`, the full score unless one part or tab is selected,
