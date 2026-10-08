@@ -237,7 +237,7 @@ and uses no credits. A second transcription engine hears that stretch of the sco
 recording again and returns, per bar and beat, `heard_not_written` (often a missed note),
 `written_not_heard` (sometimes an extra or wrong note, sometimes just a soft or quick one) and
 `heard_as_overtone` (a partial of a written note: usually ignore it), with `heard_written_share`
-and a reading note. Use it to confirm or rule out what the read pass found, weighing each lead
+(yours for weighing the leads, never a figure for the user) and a reading note. Use it to confirm or rule out what the read pass found, weighing each lead
 against the score's own patterns: a note heard in a figure's gap, at the pitch the figure
 predicts, supports a missed note; a stray that fits no line and was not heard supports an extra
 note; a return on another beat is a question of the beat grid, which the accompaniment's own
