@@ -1,7 +1,7 @@
 {
   "name": "scorestarling",
   "version": "1.1.0",
-  "description": "Convert musical content across audio, video, sheet music, MIDI and notation with editable scores, playback and exports.",
+  "description": "Transcribe, read, convert and edit sheet music",
   "mcpServers": {
     "scorestarling": {
       "httpUrl": "https://mcp.scorestarling.com/mcp",
