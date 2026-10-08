@@ -1,7 +1,7 @@
 {
   "name": "scorestarling",
   "displayName": "ScoreStarling",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Convert music across audio, video, sheet music images and PDFs, MIDI, MusicXML and text notation; review, edit, play and export the result with ScoreStarling.",
   "author": {
     "name": "HaiyiMei"

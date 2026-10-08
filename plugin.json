@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "scorestarling",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Convert musical content across audio, video, sheet music, MIDI and notation with editable scores, playback and exports.",
   "author": {
     "name": "HaiyiMei"
@@ -90,7 +90,7 @@
         "commerce_description": "Transcribing a band, or unlocking a free score’s MusicXML, MIDI, ABC and MEI downloads, uses the connected ScoreStarling account’s existing credits, only after the user agrees to the exact number of credits shown in the chat. A friend’s invitation link or a beta code that the user gives the assistant can be redeemed in the chat; it adds free credits and is not a purchase. The plugin has no purchasing or checkout tools. Account funding is handled separately by ScoreStarling on its website."
       },
       "publication": {
-        "release_notes": "Every recording covers its first five minutes, a band included. Free scores: PDFs and page images carry a small footer line, and MusicXML, MIDI, ABC and MEI downloads need the score unlocked with existing credits, once, after the user agrees to the exact number in the chat; a band score transcribed with credits is already unlocked. Assistants change a score through an editing copy that needs no unlock. Invitation links and beta codes can be redeemed in the chat, and a new user can start from a sample recording. Still: music conversion across recordings, video, sheet-music images/PDFs, MIDI, MusicXML and written notation; editable scores, playback, reversible previews and notation, image and audio exports. One instrument or voice, or solo piano, is free; a band uses credits and shows its price before starting."
+        "release_notes": "Guitar, bass and ukulele TAB: show TAB under the staff or on its own, with the tuning and capo the user names, move a note to another string or fret, and paste text TAB in the chat. Notes or a passage named by its bars can move between the hands. A video's playing can be watched to check a transcription, a wrong beat can be fixed, and a band's mix can be heard to check one part. A link is looked at before it is transcribed. Still: music conversion across recordings, video, sheet-music images/PDFs, MIDI, MusicXML and written notation; editable scores, playback, reversible previews and notation, image and audio exports. One instrument or voice, or solo piano, is free; a band uses credits and shows its price before starting."
       }
     }
   }
