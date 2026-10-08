@@ -62,6 +62,8 @@ no redirects. If code or network is unavailable, use the built-in upload panel.
 The portable `plugin.json` / `mcp.json` package is for ChatGPT and Codex. Claude's
 `.claude-plugin/plugin.json` and `.mcp.json` reference the same skill and service.
 This package does not include the backend, a local MCP server, hooks or subagents.
+Gemini CLI reads `gemini-extension.json` at the repository root (the same remote server with OAuth,
+plus the skills): `gemini extensions install https://github.com/HaiyiMei/scorestarling-plugins`.
 Actual installation and automatic skill selection must be checked in each client
 before publishing. Public publication on Claude requires a public GitHub source
 and a separate submission of our remote MCP connector.
@@ -103,7 +105,8 @@ release. `python3 scripts/build_plugin.py` builds a deterministic ZIP from the G
 index; `--source working-tree` builds tracked local changes. CI files, tests and
 top-level developer scripts are excluded from the ZIP.
 
-Update both manifest versions, commit, and push a matching `v<version>` tag to
+Update the three manifest versions (`plugin.json`, `.claude-plugin/plugin.json`,
+`gemini-extension.json`), commit, and push a matching `v<version>` tag to
 release. CI checks the tag and manifests, creates the GitHub ZIP release, and
 advances the `release` branch only after checks pass. Claude directory submissions
 track that branch, so ordinary commits to `main` do not publish a plugin update.
