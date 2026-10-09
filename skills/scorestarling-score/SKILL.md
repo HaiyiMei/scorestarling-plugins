@@ -126,7 +126,7 @@ time. Look at them:
 | solo piano (free) | `piano` | piano with both hands, chords and the sustain pedal; it also places the time signature, a pickup and the bar lines from the playing; about a minute |
 | a band (uses credits, price shown first) | `mirelo` | several instruments or drums; an external service, chosen with the user |
 
-- **Length and size.** Files up to 100 MiB (`get_account_usage.upload_limits`). A transcription
+- **Length and size.** Files up to 95 MiB (`get_account_usage.upload_limits`). A transcription
   covers the first five minutes of a recording, one instrument or voice, solo piano or a band
   alike, the same for every account; what a band covers can be shorter when the balance does not
   reach it (below). `check_recording`, `get_account_usage` (`max_seconds`) and upload results
@@ -155,7 +155,7 @@ time. Look at them:
 - **A link:** `transcribe_link` with the same link and `provider` (after `check_link`). Video and song pages (YouTube,
   Bilibili, TikTok, SoundCloud, Instagram, X and similar; short share links work) give the audio
   of their first 5.5 minutes. A link to the file itself (an MP3 or a video; Dropbox and Google
-  Drive share links work) must be a public https address, up to 100 MiB. Spotify and Apple Music
+  Drive share links work) must be a public https address, up to 95 MiB. Spotify and Apple Music
   encrypt their music and are refused, as are playlists and live streams; some sites (Douyin,
   Xiaohongshu) may refuse the server. Then ask for another link or the file.
 - **Anything else** (a file you can read with code, a user who wants an upload link to send the

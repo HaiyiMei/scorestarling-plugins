@@ -14,7 +14,7 @@ SKILL.md; everything here ends with following the returned `job_id` there.
 
 Every route takes the same choices as the other tools: `provider`, `bpm` only when the user gave
 the tempo, and `view=jianpu` when the user wants numbered notation from the start. Files are
-limited to 100 MiB.
+limited to 95 MiB.
 
 ## Send the bytes yourself
 
