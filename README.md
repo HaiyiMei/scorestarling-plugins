@@ -20,7 +20,7 @@ client’s OAuth flow. Each account can run two transcriptions at a time.
 Ask: "Turn this attached recording into a score, open it, and help me check it." or
 "Make this photo of sheet music playable and give me the MIDI."
 One instrument or voice, and solo piano with both hands and pedal, are free; a band uses credits.
-Uploads are limited to 100 MiB. Each transcription covers the first five minutes of a recording, the
+Uploads are limited to 95 MiB. Each transcription covers the first five minutes of a recording, the
 same for every account.
 Read `get_account_usage.max_seconds` for its current limit before starting. A band's
 price is shown, and agreed in the chat, before it starts. The skill checks tool results and score structure,
