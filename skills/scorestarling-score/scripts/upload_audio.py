@@ -12,7 +12,7 @@ from urllib.parse import urlsplit
 import httpx
 
 # The server's limit for every file (apps/server/upload_access.py).
-MAX_BYTES = 100 * 1024 * 1024
+MAX_BYTES = 95 * 1024 * 1024
 
 
 def origin(url):
