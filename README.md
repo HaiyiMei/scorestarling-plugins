@@ -15,7 +15,7 @@ The OpenAI listing uses the verified developer name HAIYI MEI.
 ## Access and use
 
 Sign in with a ScoreStarling account and approve the MCP connection through the
-client’s OAuth flow. Each account can run two transcriptions at a time.
+client’s OAuth flow. A free account runs one transcription at a time, and Plus up to five.
 
 Ask: "Turn this attached recording into a score, open it, and help me check it." or
 "Make this photo of sheet music playable and give me the MIDI."
