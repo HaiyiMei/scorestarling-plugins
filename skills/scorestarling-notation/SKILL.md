@@ -181,8 +181,8 @@ Do not paste or reconstruct signed download URLs in chat. For arrangements read 
 Repeats play once, as written. Playback uses the score's first tempo and any later tempo marks;
 without one it plays at 100 quarter notes per minute. Scores from notation are not re-engraved
 (re-engraving rebuilds notation from playback); edit their notes instead. Up to ten minutes of
-music per score, 95 MiB per file and twelve pages per PDF. Drum tracks in a MIDI file are left
-out of the notation.
+music per score, 95 MiB per file and twelve pages per PDF. Drum tracks in a MIDI file get a drum
+staff after the pitched parts.
 
 <!-- BEGIN MCP ESSENTIALS: scripts/sync_workflow_guidance.py -->
 ## Shared MCP essentials
