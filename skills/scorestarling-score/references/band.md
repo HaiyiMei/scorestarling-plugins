@@ -108,8 +108,8 @@ https://scorestarling.com/credits documents them neutrally; it is not a way to g
 
 - Report the time signature and tempo from `provider_output.rhythm`, with their sources and
   warnings, in plain words.
-- A band score transcribed with credits is already open: its MusicXML, MIDI, ABC and MEI
-  download without unlocking, and its PDFs carry no footer line. Its price is the only credits
+- A band score transcribed with credits is already open: its MusicXML, MIDI, Guitar Pro, ABC
+  and MEI download without unlocking, and its PDFs carry no footer line. Its price is the only credits
   it needs.
 - The band's notation, detection and original exports are the starting point: reuse them before
   inventing other processing, keep the original and revisions reversible, and keep what the

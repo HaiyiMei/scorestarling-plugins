@@ -192,7 +192,8 @@ one that fret plays. `get_score` lists each note's `string` and `fret`; `tab_iss
 string can play as written (below the lowest string, above the top fret, or more notes at once than
 strings), and validation lists those bars: tell the user rather than moving notes on your own. When
 the user wants TAB in the conversation, `export_score` `tab_text` (with `part_id` for one part)
-returns plain-text TAB to paste.
+returns plain-text TAB to paste; for Guitar Pro, TuxGuitar or Songsterr, `guitar_pro` is a .gp5 file
+of every part with the TAB parts on the strings shown, their tuning and capo (it needs an open score).
 
 Re-engraving operations (`reengrave`, `rebeat`, `scale_note_values`) write the
 notation again from the playing. Printed words, rehearsal and metronome marks, dynamics, hairpins

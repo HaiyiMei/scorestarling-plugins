@@ -1,14 +1,14 @@
 ---
 name: scorestarling-notation
-description: Turn sheet music into an editable, playable ScoreStarling score and convert music between forms. Sources include a photo, scan or PDF of printed music, jianpu (numbered notation), a lead sheet or chord chart, a MusicXML, MIDI or ABC file, or music typed, described or written in the chat. Outputs include MIDI, audio, PDF, MusicXML, ABC, MEI and jianpu. Use with a connected ScoreStarling MCP server whenever music arrives as notation rather than as a recording.
+description: Turn sheet music into an editable, playable ScoreStarling score and convert music between forms. Sources include a photo, scan or PDF of printed music, jianpu (numbered notation), a lead sheet or chord chart, a MusicXML, MIDI, ABC or Guitar Pro file, or music typed, described or written in the chat. Outputs include MIDI, audio, PDF, MusicXML, Guitar Pro, ABC, MEI and jianpu. Use with a connected ScoreStarling MCP server whenever music arrives as notation rather than as a recording.
 ---
 
 # Sheet music and notation to a score
 
 Use the connected ScoreStarling tools. A score made here is a normal ScoreStarling project: it
 plays back, opens in the score panel, takes the same edits (`edit_score`) and exports to PDF,
-images, audio and, once the score is unlocked, the editable formats (MusicXML, MIDI, ABC, MEI;
-see Converting). Recordings (audio or video) follow the `scorestarling-score` skill instead.
+images, audio and, once the score is unlocked, the editable formats (MusicXML, MIDI, Guitar Pro, ABC,
+MEI; see Converting). Recordings (audio or video) follow the `scorestarling-score` skill instead.
 
 ## Reuse an existing score or saved result
 
@@ -49,7 +49,7 @@ Until those changes have been checked, report the remaining uncertainty rather t
 | --- | --- |
 | A clean PDF or flat scan of printed music, especially piano or several pages | Upload it like a recording (`transcribe_attachment`, `prepare_audio_upload`, `transcribe_link` for a link to the file, or the panel). The server's sheet-music reader takes about 30–50 seconds a page |
 | A phone photo, a lead sheet with chord symbols, jianpu, handwriting or a single short page | Read it yourself, write ABC ([references/abc.md](references/abc.md)) and call `create_score` |
-| A MusicXML, MXL, MIDI or ABC file | Upload it as it is; a short ABC text can also go straight to `create_score` |
+| A MusicXML, MXL, MIDI, ABC or Guitar Pro (.gp, .gpx, .gp3–.gp5) file | Upload it as it is (Guitar Pro keeps its TAB); a short ABC text can also go straight to `create_score` |
 | Music typed or described in the chat, or music you compose or arrange on request | Write ABC and call `create_score` |
 
 These defaults come from measured readings (docs/sheet-music.md in the ScoreStarling
@@ -149,7 +149,7 @@ Once a score exists, `export_score` gives every other form of it:
 **Unlocking.** A score made from notation is a free score unless the account's allowance already
 opens it (the panel and every export result say: `access.open`). A free score's PDFs, page
 images and numbered-notation PDFs carry one small footer line ("Made with ScoreStarling"), and its
-MusicXML, MXL, MIDI, ABC and MEI need it unlocked; audio is always free. When `export_score` for
+MusicXML, MXL, MIDI, Guitar Pro, ABC and MEI need it unlocked; audio is always free. When `export_score` for
 one of those formats comes back `locked`, do not retry or work around it: ask the user once, in
 one line, whether to unlock this score for exactly the credits it names (`unlock_credits`), used
 once per score, after which every format downloads as often as wanted and edits stay open. It
@@ -195,7 +195,7 @@ When the user says reuse the existing result or do not start new processing, fir
 
 panel_prepared=true confirms prepared data, not visibility. Reuse the returned panel (an upload or transcription panel becomes the score); call open_score again only for a reported display failure or a request to reopen, or once if this conversation returned no score/upload panel.
 
-Sheet music and score files (PDF/images, MusicXML/MXL, MIDI, ABC) use the same upload paths but are read, not audio-transcribed: skip check_recording; no engine choice, tempo detection or provider fee applies. Use local for their upload route. Clean PDFs/flat scans suit the reader. For phone photos, handwriting, jianpu or lead sheets, read the source and write ABC with create_score; also use create_score for music typed/described/composed in chat. Prefer a PDF when both are given.
+Sheet music and score files (PDF/images, MusicXML/MXL, MIDI, ABC, Guitar Pro with its TAB) use the same upload paths but are read, not audio-transcribed: skip check_recording; no engine choice, tempo detection or provider fee applies. Use local for their upload route. Clean PDFs/flat scans suit the reader. For phone photos, handwriting, jianpu or lead sheets, read the source and write ABC with create_score; also use create_score for music typed/described/composed in chat. Prefer a PDF when both are given.
 
 Poll get_upload_status(job_id, wait_seconds=20) in this turn until terminal; never reupload or finish with an ID or request to keep waiting. Give brief plain progress. HTTP 202 is acceptance, not completion. Inspect the original job after ambiguous responses; never blindly retry a mutation or paid job. On failed/needs_review follow can_recover/next_step: pending instruments and quotes need explicit approvals; recover_pro_result resumes the same accepted Pro task; otherwise stop for review. Quota estimates are not billing receipts.
 
@@ -209,11 +209,11 @@ Read get_score for current revision/IDs. Change a score in place (create_score/t
 
 Say only what tool results show: an edit is made when its result lists it; an error or "Nothing changed" means not, so say so. Say how bars are written (clefs, key, notes) from get_score or review_score text, not a picture or the opening settings; if the user disputes it, reread those bars.
 
-Structural validation does not prove transcription accuracy; doubtful_notes are leads to listen to, not a verdict. MIDI/audio exports require complete performance bindings; MusicXML/PDF may still export. A free score (access.open false) needs unlock_score, with explicit consent to its exact credits, before MusicXML, MIDI, ABC or MEI download; its PDFs carry a small footer line; a band transcription paid with credits is open. Use a host-presented attachment; otherwise the prepared panel Download menu for the requested format. Never paste/reconstruct download_url in chat. A ResourceLink does not prove receipt. A plain PDF request uses format=pdf and follows the saved view, like Download; do not silently substitute Mirelo's original PDF. Use original_pdf only when requested and label it as the original. Audio exports are synthesis, not original stems.
+Structural validation does not prove transcription accuracy; doubtful_notes are leads to listen to, not a verdict. MIDI/audio exports require complete performance bindings; MusicXML/PDF may still export. A free score (access.open false) needs unlock_score, with explicit consent to its exact credits, before MusicXML, MIDI, Guitar Pro, ABC or MEI download; its PDFs carry a small footer line; a band transcription paid with credits is open. Use a host-presented attachment; otherwise the prepared panel Download menu for the requested format. Never paste/reconstruct download_url in chat. A ResourceLink does not prove receipt. A plain PDF request uses format=pdf and follows the saved view, like Download; do not silently substitute Mirelo's original PDF. Use original_pdf only when requested and label it as the original. Audio exports are synthesis, not original stems.
 
 Show a score as staff or jianpu (简谱: jianpu 1=key, jianpu_fixed 1=C 固定调, jianpu_melody) with set_notation_view: the score keeps it, the prepared panel and Download PDF follow; without a prepared panel result, open_score once with notation; before it exists, pass view to the tool making it. export_score takes the same names; jianpu_voices only if asked for a hand's voices apart.
 
-Guitar TAB (六线谱, also bass and ukulele) is a score setting, not a view: edit_score set_tablature (view both puts TAB under the staff, tab shows TAB only; tuning and capo as the user says; strings hand when they want fewer hand shifts), then the panel, PDF and MusicXML show it. set_string moves a note to another string at the same pitch; set_fret writes a fret on a string. export_score tab_text returns text TAB to paste in your answer. TAB adds no credits.
+Guitar TAB (六线谱, also bass and ukulele) is a score setting, not a view: edit_score set_tablature (view both puts TAB under the staff, tab shows TAB only; tuning and capo as the user says; strings hand when they want fewer hand shifts), then the panel, PDF and MusicXML show it. set_string moves a note to another string at the same pitch; set_fret writes a fret on a string. export_score tab_text returns text TAB to paste in your answer; guitar_pro is a Guitar Pro file (.gp5) with the TAB, tuning and capo, for Guitar Pro, TuxGuitar or Songsterr. TAB adds no credits.
 
 Call send_feedback once only after the user explicitly expresses an opinion of a result, with their own words as a non-empty comment and the revision they judged. Never supply your own rating or solicit one. Feedback grants no consent to share the recording.
 <!-- END MCP ESSENTIALS -->

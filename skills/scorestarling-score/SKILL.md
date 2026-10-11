@@ -7,8 +7,8 @@ description: Turn a recording into an editable, playable score with ScoreStarlin
 
 Use the connected ScoreStarling tools in the order below. This skill supplies the workflow only:
 it grants no account access and no consent to upload, spend credits or apply a musical proposal.
-Sheet music (a photo, scan or PDF of printed music, jianpu), score files (MusicXML, MIDI, ABC)
-and music written in the chat follow the `scorestarling-notation` skill.
+Sheet music (a photo, scan or PDF of printed music, jianpu), score files (MusicXML, MIDI, ABC,
+Guitar Pro) and music written in the chat follow the `scorestarling-notation` skill.
 
 The numbered steps follow the usual journey. Open a reference file only when a step sends you
 there. The "Shared MCP essentials" at the end are the server's own rules in compact form, the
@@ -33,8 +33,8 @@ into more detail, follow the step.
   how credits work, never as a way to get more and never in reply to a request to buy.
 - **Consent once, where it is needed.** A new transcription starts only on the user's request. A
   band needs one confirmation: its exact price or, for an account without prices, one question
-  about starting; never ask for a credit cap. Unlocking a free score's MusicXML, MIDI, ABC and
-  MEI downloads (step 7) is a second use of credits with the same kind of confirmation: its exact
+  about starting; never ask for a credit cap. Unlocking a free score's MusicXML, MIDI, Guitar Pro,
+  ABC and MEI downloads (step 7) is a second use of credits with the same kind of confirmation: its exact
   credits, one clear yes. Changes the user asked for, within their stated goal, need no further
   permission. A musical change you propose yourself waits until the user
   accepts it.
@@ -401,8 +401,8 @@ that shows the score's hands are wrong at the end) is fixed, or offered as that 
 - **Free scores and unlocking.** A score is open or free. A band score transcribed with credits is
   open, and so are scores made before this rule and accounts whose allowance opens every score;
   the rest are free: their PDFs and page images carry one small footer line ("Made with
-  ScoreStarling", mention it when you deliver one) and MusicXML, MXL, MIDI, ABC and MEI need the
-  score unlocked. Audio is always free. The panel and the export results say which it is
+  ScoreStarling", mention it when you deliver one) and MusicXML, MXL, MIDI, Guitar Pro, ABC and MEI
+  need the score unlocked. Audio is always free. The panel and the export results say which it is
   (`access.open`). When `export_score` for one of those formats comes back `locked` (or you know
   the score is free), do not retry or work around it: ask the user once, in one line, whether to
   unlock this score for exactly the credits it names (`unlock_credits`; the credits are used once
@@ -428,7 +428,7 @@ that shows the score's hands are wrong at the end) is fixed, or offered as that 
 - Free: one instrument or voice, solo piano, sheet music and score files, every edit, view and
   listening, and PDFs, page images and audio (edits never call the band service). A band uses
   credits the account already holds, 40 a minute, with its exact price agreed before it starts.
-  A free score's MusicXML, MIDI, ABC and MEI downloads use credits once per score when the user
+  A free score's MusicXML, MIDI, Guitar Pro, ABC and MEI downloads use credits once per score when the user
   agrees to unlock it (step 7).
 - Answer balance and limit questions from `get_account_usage`; mention cost only for a band, an
   unlock or when it shows a limit. If a band is unavailable, read `engine_status.mirelo.reason` when it is
@@ -482,11 +482,11 @@ Read get_score for current revision/IDs. Change a score in place (create_score/t
 
 Say only what tool results show: an edit is made when its result lists it; an error or "Nothing changed" means not, so say so. Say how bars are written (clefs, key, notes) from get_score or review_score text, not a picture or the opening settings; if the user disputes it, reread those bars.
 
-Structural validation does not prove transcription accuracy; doubtful_notes are leads to listen to, not a verdict. MIDI/audio exports require complete performance bindings; MusicXML/PDF may still export. A free score (access.open false) needs unlock_score, with explicit consent to its exact credits, before MusicXML, MIDI, ABC or MEI download; its PDFs carry a small footer line; a band transcription paid with credits is open. Use a host-presented attachment; otherwise the prepared panel Download menu for the requested format. Never paste/reconstruct download_url in chat. A ResourceLink does not prove receipt. A plain PDF request uses format=pdf and follows the saved view, like Download; do not silently substitute Mirelo's original PDF. Use original_pdf only when requested and label it as the original. Audio exports are synthesis, not original stems.
+Structural validation does not prove transcription accuracy; doubtful_notes are leads to listen to, not a verdict. MIDI/audio exports require complete performance bindings; MusicXML/PDF may still export. A free score (access.open false) needs unlock_score, with explicit consent to its exact credits, before MusicXML, MIDI, Guitar Pro, ABC or MEI download; its PDFs carry a small footer line; a band transcription paid with credits is open. Use a host-presented attachment; otherwise the prepared panel Download menu for the requested format. Never paste/reconstruct download_url in chat. A ResourceLink does not prove receipt. A plain PDF request uses format=pdf and follows the saved view, like Download; do not silently substitute Mirelo's original PDF. Use original_pdf only when requested and label it as the original. Audio exports are synthesis, not original stems.
 
 Show a score as staff or jianpu (简谱: jianpu 1=key, jianpu_fixed 1=C 固定调, jianpu_melody) with set_notation_view: the score keeps it, the prepared panel and Download PDF follow; without a prepared panel result, open_score once with notation; before it exists, pass view to the tool making it. export_score takes the same names; jianpu_voices only if asked for a hand's voices apart.
 
-Guitar TAB (六线谱, also bass and ukulele) is a score setting, not a view: edit_score set_tablature (view both puts TAB under the staff, tab shows TAB only; tuning and capo as the user says; strings hand when they want fewer hand shifts), then the panel, PDF and MusicXML show it. set_string moves a note to another string at the same pitch; set_fret writes a fret on a string. export_score tab_text returns text TAB to paste in your answer. TAB adds no credits.
+Guitar TAB (六线谱, also bass and ukulele) is a score setting, not a view: edit_score set_tablature (view both puts TAB under the staff, tab shows TAB only; tuning and capo as the user says; strings hand when they want fewer hand shifts), then the panel, PDF and MusicXML show it. set_string moves a note to another string at the same pitch; set_fret writes a fret on a string. export_score tab_text returns text TAB to paste in your answer; guitar_pro is a Guitar Pro file (.gp5) with the TAB, tuning and capo, for Guitar Pro, TuxGuitar or Songsterr. TAB adds no credits.
 
 Call send_feedback once only after the user explicitly expresses an opinion of a result, with their own words as a non-empty comment and the revision they judged. Never supply your own rating or solicit one. Feedback grants no consent to share the recording.
 <!-- END MCP ESSENTIALS -->

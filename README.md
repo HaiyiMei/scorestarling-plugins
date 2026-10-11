@@ -1,10 +1,10 @@
 # ScoreStarling
 
 Transcribe, read, convert and edit sheet music. Move music between
-sound, pictures, documents and score files. Start from an audio or video recording, a sheet-music image or PDF, MIDI, MusicXML, ABC,
+sound, pictures, documents and score files. Start from an audio or video recording, a sheet-music image or PDF, MIDI, MusicXML, ABC, Guitar Pro,
 numbered notation, a lead sheet or music written in chat. Create an editable,
 playable score, review or preview changes, and export PDF, SVG/PNG images, MusicXML,
-MIDI, MP3/WAV audio, ABC, MEI, parts or numbered notation.
+MIDI, Guitar Pro (.gp5), MP3/WAV audio, ABC, MEI, parts or numbered notation.
 
 This plugin combines the hosted ScoreStarling MCP tools with two workflow skills:
 `scorestarling-score` for audio/video recordings and `scorestarling-notation` for
@@ -28,7 +28,7 @@ but listening and human review remain necessary for transcription accuracy.
 Model-proposed musical edits are previews until the user accepts them.
 
 Editing, listening, PDFs, page images and audio are free. A free score's PDFs carry one small footer
-line, and its MusicXML, MIDI, ABC and MEI downloads need the score unlocked, which uses a fixed number
+line, and its MusicXML, MIDI, Guitar Pro, ABC and MEI downloads need the score unlocked, which uses a fixed number
 of the account's existing credits once per score (then every format downloads as often as wanted,
 edits included). The assistant asks the user for one clear yes to that exact number first, as for a
 band's price. A band score transcribed with credits is already unlocked, and an assistant's own round
