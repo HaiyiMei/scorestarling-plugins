@@ -18,7 +18,7 @@ ScoreStarling is a hosted remote MCP server. There is nothing to clone, build or
    Keep any servers already in `mcpServers`. Do not add an `Authorization` header.
 
 2. The first request returns 401 with OAuth metadata. The client registers itself (dynamic client
-   registration), opens the browser with PKCE, and the user signs in to ScoreStarling (email or Google)
+   registration), opens the browser with PKCE, and the user signs in to ScoreStarling (email, Google or Apple)
    and selects Allow. Never ask the user for a password or token in the chat.
 
 3. Check the connection: call `get_workflow_guide` with `topic` `recording`, then `list_timbres`.
