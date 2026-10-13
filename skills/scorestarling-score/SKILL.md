@@ -323,6 +323,10 @@ that shows the score's hands are wrong at the end) is fixed, or offered as that 
 
 ## 6. Change the score in place
 
+- For substantial refinement, choose a bounded editing round with
+  [references/refinement.md](references/refinement.md): batch supported changes, distinguish
+  written rhythm from playback, and verify the actual delivered files. Use its audit guidance
+  when the user freezes a revision; do not treat an audit as permission for more edits.
 - Every change is the next revision of the same score: its recording comparison, open panel,
   comments and undo history stay. `create_score`, `transcribe_attachment`, `transcribe_link` and
   `transcribe_again` make separate scores without that history: use them only when the user asks
