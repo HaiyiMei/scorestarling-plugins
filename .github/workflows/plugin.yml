@@ -21,6 +21,8 @@ jobs:
       - name: Check packaging and manifests
         run: |
           python3 tests/check_plugin_build.py
+          python3 -m pip install PyMuPDF==1.26.6
+          python3 tests/check_artifact_comparison.py
           for manifest in plugin marketplace; do
             npx --yes @anthropic-ai/claude-code@2.1.287 plugin validate \
               ".claude-plugin/$manifest.json" --strict
