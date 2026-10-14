@@ -61,19 +61,34 @@ Double bass sounds an octave below written; this is a reference fact. See [violi
 
 Official: ABRSM, *Woodwind Practical Grades Syllabus from 2022* (PDF
 <https://www.abrsm.org/sites/default/files/2023-10/Woodwind%202022%20Practical%20syllabus%20(0%20ALL)%2020230911.pdf>)
-and the *Woodwind Qualification Specification from 2026*, which states that scales, sight-reading and aural
-requirements stay the same. Taken: sight-reading parameters (pp. 23–24), the keys and ranges table (p. 24),
-the scale and arpeggio tables per instrument. Official, other board: Trinity College London, *Woodwind syllabus
-(from 2022)* (Initial level, which ABRSM's woodwind syllabus does not have, and a cross-check). Reference:
-Wikipedia and woodwind fingering guides for register breaks (clarinet break, saxophone palm keys, flute third
-octave). The breathing limits are Derived: no board publishes phrase lengths.
+and the *Woodwind Practical Grades Qualification Specification from 2026* (PDF
+<https://www.abrsm.org/sites/default/files/2025-06/ABRSM%20Woodwind%20Practical%20Grades%20Qualification%20Specification%20from%202026.pdf>),
+which states that scales, sight-reading and aural requirements stay the same. Taken: sight-reading parameters
+(pp. 23–24), the keys and ranges table (p. 24), the scale and arpeggio tables per instrument. Official, other
+board: Trinity College London, *Woodwind syllabus (from 2022)* (<https://trinitycollege.com/resource/?id=7385>):
+Initial level, which ABRSM's woodwind syllabus does not have, and a cross-check. Reference: Wikipedia and woodwind
+fingering guides for register breaks (clarinet break, saxophone palm keys, flute third octave). The breathing
+limits are Derived: no board publishes phrase lengths.
+
+- **Recorder.** ABRSM does examine it: a Descant (soprano) syllabus for Grades 1–5 only and a Treble (alto)
+  syllabus for Grades 1–8, with the same sight-reading parameters and different keys and ranges. Descant is
+  written an octave below sounding (Reference: Wikipedia, *Recorder*); ABRSM does not state whether its descant
+  ranges are written or sounding, so that octave is **inferred**. Details: [recorder.md](instruments/recorder.md).
+- **Oboe and bassoon.** Keys and ranges are from the same official table; the per-grade scale and technique
+  lists were not reviewed. Details: [oboe.md](instruments/oboe.md), [bassoon.md](instruments/bassoon.md).
+- Other instruments: [flute.md](instruments/flute.md), [clarinet.md](instruments/clarinet.md),
+  [saxophone.md](instruments/saxophone.md).
 
 ## Brass: trumpet, trombone, horn
 
 Official: ABRSM, *Brass Practical Grades Syllabus from 2023* (PDF
 <https://www.abrsm.org/sites/default/files/2023-09/brass-2023-prac-syllabus-10feb23.pdf>), sight-reading
-tables pp. 26–27. Official, other board: Trinity *Brass* syllabus (Initial level and a cross-check).
-Reference: Wikipedia for written range and transposition. Brass fatigue and breathing limits are Derived.
+tables pp. 26–28. Official, other board: Trinity *Brass* syllabus (Initial level and a cross-check).
+Reference: Wikipedia for written range and transposition (trumpet in B♭ sounds a major second lower; horn in F a
+perfect fifth lower; tenor trombone in bass clef is non-transposing). ABRSM offers no Initial for brass. Brass
+fatigue and breathing limits are Derived; ABRSM's slur limits for horn and the trombone slide positions are in the
+instrument files but not measured by the checker. Details: [trumpet.md](instruments/trumpet.md),
+[trombone.md](instruments/trombone.md), [horn.md](instruments/horn.md).
 
 ## Guitar and ukulele
 
@@ -83,7 +98,13 @@ Reference: Wikipedia for written range and transposition. Brass fatigue and brea
 - Pop and rock guitar. Official, other board: Trinity College London *Rock & Pop Guitar syllabus 2018* (own-choice
   song parameters, Initial to 8) and RSL (Rockschool) *Guitar Syllabus 2018* (technical work, tempi). ABRSM has no
   rock guitar syllabus. There is no published key or range list, so the checks are lighter.
-- Ukulele: see [ukulele.md](instruments/ukulele.md).
+- Ukulele. ABRSM has no ukulele grades. Official, other board: RSL (Rockschool) *Contemporary Ukulele Syllabus
+  Guide 2020* (a mirror of the PDF, <https://www.newschool.ie/wp-content/uploads/2020/05/RSL_Ukulele_Syllabus_Guide_2020_05May2020.pdf>;
+  Debut and Grades 1–8; sight-reading parameters for Debut to Grade 5 and technical work), cross-checked with the
+  London College of Music Examinations *Ukulele Syllabus 2023* (<https://lcme.uwl.ac.uk/media/qzyhfoue/ukulele-syllabus-2023.pdf>;
+  chord vocabulary and time signatures). The boards are not aligned (LCM Step 1 is easier than RSL Debut), so
+  "grade N" depends on the board; the profile follows RSL. RSL states a melodic compass only up to Grade 2, and
+  the written octave is not stated (we assume sounding pitch in treble clef). Details: [ukulele.md](instruments/ukulele.md).
 
 ## Voice
 
@@ -101,10 +122,19 @@ drum-kit grades. The checks cover note values, kit size and hits at once only.
 
 ## Chinese instruments
 
-See [erhu.md](instruments/erhu.md), [guzheng.md](instruments/guzheng.md) and [dizi.md](instruments/dizi.md) for
-their own source lists. The ladders and requirements for these instruments come from teachers' and publishers'
-articles and from the exam bodies' announcements as relayed by third parties; none is a primary specification, so
-the profiles carry low confidence.
+[erhu.md](instruments/erhu.md), [guzheng.md](instruments/guzheng.md) and [dizi.md](instruments/dizi.md) each carry
+their own source list. In short:
+
+- Official (not mainland): the Hong Kong LCSD Music Office compulsory-material syllabi for each instrument
+  (eight levels each; the only official numbers we found: keys or tunings per level and techniques). They say
+  their pieces come partly from the CCOM (中央音乐学院) 1–6 and 7–9 books, which ties the ladders loosely together.
+- Official, relayed: a 2026 CCOM overseas exam notice (via a Singapore exam centre) that confirms the subjects,
+  levels 1–9 plus 演奏级 and the exam form.
+- Publisher catalogues: tables of contents of the 中国音乐学院 (CCoM, levels 1–10), CCOM and 中国音协 exam books
+  (etude topics per grade). Teacher: articles and vendor pages that list techniques per grade.
+- No board publishes ranges, time signatures or tempi for these instruments. Ranges, meters and tempo in the
+  profiles are **Derived** from instrument facts and the technique ladder; the confidence of each profile is low,
+  and grade numbers are the Chinese boards' own (not mapped to ABRSM).
 
 ## Level systems and the mappings between them
 
@@ -132,5 +162,9 @@ our convention and is said to be one.
 - The Chinese short names for Trinity (三一), RCM and AMEB were not verified against the bodies' own sites.
 - No public ABRSM statement on third-party use of 「英皇」 was found; the safe use is plain description of a
   level ("about Grade N"), no logos and no word like "official". Not legal advice.
+- Chinese-instrument ladders: CCOM and CCoM per-grade rules could not be fetched (publisher pages blocked or absent); the
+  per-grade text is teacher-level, and cross-board overlap is unclear (treat CCOM n and CCoM n as within about two grades).
+- Recorder: ABRSM does not say whether its descant ranges are written or sounding; Trinity's recorder scale book was not retrieved.
+- Ukulele: RSL gives no compass beyond Grade 2 and no written-octave convention; LCM set pieces are not documented.
 - Estimator reliability: the checker's grade estimate is reliable to about Grade 5 for piano; above that most
   limits are left open by the sources.

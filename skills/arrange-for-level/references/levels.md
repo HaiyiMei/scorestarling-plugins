@@ -87,8 +87,10 @@ one Shanghai 音协 notice ties its levels to method books (level 1 ends Beyer; 
 op.299; 8 op.740; 9 Moszkowski; 10 Chopin etudes), which is the best published sense of the climb.
 
 For instruments other than piano, boards number their grades separately and nothing is published across
-them; use the instrument's own ABRSM profile and the same N−1 default for RCM and the Chinese boards, and
-say the confidence is low. Chinese instruments (二胡, 古筝, 竹笛) have their own ladders, in their files.
+them; use the instrument's own profile (ABRSM for most; Trinity and RSL for pop guitar, drums and voice; RSL
+for ukulele) and the same N−1 default for RCM and the Chinese boards, and say the confidence is low.
+Chinese instruments (二胡, 古筝, 竹笛) are different: "grade N" there already means a Chinese board's level 1–10 (央音 / 国院 / 音协),
+so do not convert it to ABRSM; use the instrument's own file, and say the confidence is low.
 
 ## How to say it
 

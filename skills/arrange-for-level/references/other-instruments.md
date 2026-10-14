@@ -1,7 +1,7 @@
 # Instruments without a graded profile
 
 Read this when the instrument is not in the table in SKILL.md: harmonica, melodica, ocarina, accordion,
-organ, harp, mandolin, banjo, xylophone, pipa, tuba, an electronic keyboard, or anything else. No exam
+organ, harp, mandolin, banjo, xylophone, pipa, euphonium, tuba, an electronic keyboard, or anything else. No exam
 board we found publishes level tables for these in a form that gives numbers, so this skill does not pretend
 to know them. It still helps: it borrows the limits that carry over, takes the physical facts from the
 instrument itself, and says so.
@@ -37,12 +37,15 @@ number of notes at once.
 
 | Instrument | Borrow | Because |
 | --- | --- | --- |
-| Harmonica (diatonic), melodica, ocarina, tin whistle, 口琴, 口风琴, 陶笛 | `flute` (or `recorder` when present) | One breath-driven line; phrase length and rhythm limits transfer |
+| Harmonica (diatonic), melodica, ocarina, tin whistle, 口琴, 口风琴, 陶笛 | `flute`, or `descant-recorder` for a beginner | One breath-driven line; phrase length and rhythm limits transfer |
 | Accordion, organ, keyboard or synthesiser, harp, 电子琴, 手风琴 | `piano` | Two-hand texture, hand span and left-hand pace transfer; look up the left hand separately for accordion bass buttons |
 | Xylophone, glockenspiel, marimba, vibraphone, hand bells, 木琴 | `piano` right hand | Single mallet line at a beginner level; no pedal, no sustained notes, so keep the notes short |
-| Mandolin, banjo, bouzouki, 曼陀林 | `violin` for the line, `pop-guitar` for chords | Violin tuning for mandolin; a chord part works as for guitar |
-| Pipa, ruan, liuqin, yangqin and other plucked 民乐 | `classical-guitar` | A plucked line with fingered positions; use the instrument's own range |
-| Horn, euphonium, tuba, trombone (when no file) | `trumpet` | Brass phrase length and rhythm; read the range from the instrument |
+| Mandolin, banjo, bouzouki, 曼陀林 | `violin` for the line, `pop-guitar` or `ukulele` for chords | Violin tuning for mandolin; a chord part works as for guitar |
+| Pipa, ruan, liuqin, yangqin, gu qin and other plucked or struck 民乐 | `classical-guitar`, or `guzheng` for the Chinese grade ladder | A plucked line with fingered positions; use the instrument's own range |
+| Suona, sheng, xiao, hulusi, 唢呐, 笙, 箫, 葫芦丝 | `dizi` for Chinese grade numbers, or `flute` | One breath-driven line; take the key and range from the instrument |
+| Huqin family other than erhu (gaohu, banhu, zhonghu), 高胡, 板胡 | `erhu` | Same bowing and fingering idiom; the range differs, so read it from the instrument |
+| Euphonium, baritone horn, tuba, 上低音号, 大号 | `trombone` (bass clef, non-transposing), or `trumpet` for cornet and flugelhorn | Brass phrase length and rhythm; read the range from the instrument |
+| Sopranino or bass recorder (written an octave below sounding), tenor recorder | `descant-recorder` (sopranino, bass) or `treble-recorder` (tenor) | Same family and fingering; the written-octave convention differs, see recorder.md |
 | Anything with several voices at once (choir, hand-bell ensemble) | `voice` per part | One profile per part |
 
 Say which profile you borrowed in the reply.

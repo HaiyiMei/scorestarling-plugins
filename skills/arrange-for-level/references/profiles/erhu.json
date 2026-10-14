@@ -1,0 +1,23 @@
+{
+  "instrument": "erhu",
+  "aliases": ["二胡", "chinese violin", "胡琴"],
+  "system": "Chinese amateur grades (央音 / 国院 / 音协)",
+  "kind": "melodic",
+  "confidence": "low",
+  "reliable_up_to": 5,
+  "grade_names": {"1": "国内 1 级", "2": "国内 2 级", "3": "国内 3 级", "4": "国内 4 级", "5": "国内 5 级", "6": "国内 6 级", "7": "国内 7 级", "8": "国内 8 级", "9": "国内 9 级", "10": "国内 10 级"},
+  "note": "Grade numbers are the mainland 1-10 ladder (央音 1-9 plus 演奏级, 国院 1-10, 音协 1-10; they differ by up to about two grades between bodies). ABRSM and Trinity do not examine this instrument. No board publishes ranges, meters or tempi per grade, so every number here is our inference from technique lists in exam books and teacher articles and from the Hong Kong LCSD syllabus; treat the whole profile as low confidence and a guide, not a limit. The strings are always D4 and A4 (the 定弦 names 1-5, 5-2, 2-6 only change the key). The key ladder (D, G, then F, C, Bb, then A, Eb) and the order in which shifting, vibrato and slides arrive come from the LCSD syllabus and exam-book etude topics; the ranges are inferred from them. No Initial grade. Pitch is written at sounding pitch. See references/instruments/erhu.md.",
+  "sources": ["Hong Kong LCSD Music Office, 二胡必修教材 (rev. 2023): https://www.lcsd.gov.hk/en/mo/common/others/faq/imts/faq_01_syb_0101.pdf", "中央音乐学院海外音乐水平考级 2026 简章 (CCOM rules): https://www.nafa.edu.sg/docs/default-source/corp-docs/ccom/nafa-ccom-rules-regulations-chinese.pdf", "中国音乐学院社会艺术水平考级全国通用教材 二胡 (publisher tables of contents), see references/instruments/erhu.md"],
+  "grades": {
+    "1": {"key_sigs": [1, 2], "meters": ["4/4", "2/4"], "sixteenth_share_ok": 0.15, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.05, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [62, 77], "range_slack": 2},
+    "2": {"key_sigs": [1, 2], "meters": ["4/4", "2/4"], "sixteenth_share_ok": 0.3, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.1, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [62, 77], "range_slack": 2},
+    "3": {"key_sigs": [-1, 0, 1, 2], "meters": ["4/4", "2/4", "3/4", "2/2"], "sixteenth_share_ok": 0.4, "triplets": "over", "grace": "warn", "thirty_seconds": "over", "accidentals_per_bar": 0.15, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [62, 79], "range_slack": 2},
+    "4": {"key_sigs": [-2, -1, 0, 1, 2], "meters": ["4/4", "2/4", "3/4", "2/2"], "sixteenth_share_ok": 0.5, "triplets": "warn", "grace": "ok", "thirty_seconds": "over", "accidentals_per_bar": 0.15, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [62, 79], "range_slack": 2},
+    "5": {"key_sigs": [-2, -1, 0, 1, 2], "meters": ["4/4", "2/4", "3/4", "2/2", "6/8"], "sixteenth_share_ok": 0.6, "triplets": "warn", "grace": "ok", "thirty_seconds": "over", "accidentals_per_bar": 0.15, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [62, 86], "range_slack": 2},
+    "6": {"key_sigs": [-3, -2, -1, 0, 1, 2, 3], "meters": ["4/4", "2/4", "3/4", "2/2", "6/8"], "sixteenth_share_ok": 0.8, "triplets": "ok", "grace": "ok", "thirty_seconds": "warn", "accidentals_per_bar": 0.3, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [62, 86], "range_slack": 2},
+    "7": {"key_sigs": [-3, -2, -1, 0, 1, 2, 3], "meters": ["4/4", "2/4", "3/4", "2/2", "6/8", "3/8", "9/8", "12/8"], "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [62, 91], "range_slack": 2},
+    "8": {"key_sigs": [-3, -2, -1, 0, 1, 2, 3], "meters": ["4/4", "2/4", "3/4", "2/2", "6/8", "3/8", "9/8", "12/8"], "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [62, 91], "range_slack": 2},
+    "9": {"key_sigs": [-4, -3, -2, -1, 0, 1, 2, 3, 4], "meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "ok", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [62, 98], "range_slack": 2},
+    "10": {"key_sigs": [-4, -3, -2, -1, 0, 1, 2, 3, 4], "meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "ok", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [62, 98], "range_slack": 2}
+  }
+}

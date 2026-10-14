@@ -487,6 +487,20 @@ def check_line(notes, info, g, rep, profile):
         rep.add('range', status,
                 f'{name_of(lo)}–{name_of(hi)}; this level {name_of(lo_lim)}–{name_of(hi_lim)} (written pitch)' +
                 (f'; {len(out)} notes outside, bars {bars_of(out)}' if out else ''), out if out else ())
+    if g.get('pitch_classes'):
+        free = set(g['pitch_classes'])
+        pressed = set(g.get('pitch_classes_pressed', [])) - free
+        missing = [n for n in pitched if n.midi % 12 not in free | pressed]
+        pressed_notes = [n for n in pitched if n.midi % 12 in pressed]
+        if missing:
+            rep.add('notes available', 'over', f'{len(missing)} notes the instrument can not play at this level (pitch classes outside its open notes), bars {bars_of(missing)}', missing)
+        elif pressed_notes:
+            share = len(pressed_notes) / len(pitched)
+            limit = g.get('pressed_share_ok', 0)
+            rep.add('pressed notes', 'ok' if share <= limit else 'warn',
+                    f'{share:.0%} of notes need pressing or bending (this level up to {limit:.0%})', pressed_notes if share > limit else ())
+        else:
+            rep.add('notes available', 'ok', 'every note is one the instrument plays without pressing or bending')
     if g.get('span'):
         sw, so = g['span']
         lo, hi = min(n.midi for n in pitched), max(n.midi for n in pitched)
@@ -629,7 +643,7 @@ def main():
     offset = args.written_offset if args.written_offset is not None else profile.get('written_offset', 0)
     if offset and not info['has_transpose'] and not args.as_written:
         to_written(notes, info, offset)
-        shift_note = (f'No transposition in the file, so the pitches are read as concert pitch and moved up {offset} semitones '
+        shift_note = (f'No transposition in the file, so the pitches are read as concert pitch and moved {"up" if offset > 0 else "down"} {abs(offset)} semitones '
                       f'to the written pitch this profile uses (--as-written turns this off)')
     if args.estimate:
         rows, lowest, likely = estimate(notes, info, profile, ignore)

@@ -1,6 +1,6 @@
 ---
 name: arrange-for-level
-description: Arrange or simplify a piece for a chosen instrument at a chosen level, then check it lands there. Covers piano, strings, winds, brass, guitar, voice, drums and more, from complete beginner to Grade 8, with levels given as ABRSM, Trinity, RCM, AMEB or Chinese 考级 numbers or in plain words (beginner, easy, 初学, 入门). Use whenever someone wants an easier, graded or "playable for my student, child or friend" version of a piece for a particular instrument ("Grade 3 piano", "英皇五级小提琴", "flute version for a year-two player", "简单版"), wants a part fitted to a learner's level, or asks whether a score is really at some grade, even if they never say "arrange". If the instrument or the level is missing, ask one short question with options instead of guessing. Not for faithful transcriptions, and not for tidying a score without making it easier.
+description: Arrange or simplify a piece for a chosen instrument at a chosen level, then check it lands there. Routes across piano, violin, viola, cello, double bass, flute, oboe, clarinet, bassoon, saxophone, recorder, trumpet, trombone, horn, classical and pop guitar, ukulele, voice, drums and the Chinese erhu, guzheng and dizi, from beginner to Grade 8 (Chinese instruments to 10), with the level as an ABRSM, Trinity, RCM, AMEB or Chinese 考级 number or in plain words (beginner, easy, 初学, 入门). Use whenever someone wants an easier, graded or "playable for my student or child" version of a piece for a particular instrument ("Grade 3 piano", "英皇五级小提琴", "尤克里里弹唱简单版", "古筝三级", "flute version for a year-two player"), wants a part fitted to a learner's level, or asks whether a score is really at some grade, even if they never say "arrange". If the instrument or the level is missing, ask one short question with options instead of guessing. Not for faithful transcriptions or for tidying a score without making it easier.
 ---
 
 # Arrange a piece for an instrument at a level
@@ -40,6 +40,9 @@ How the common requests resolve:
 | "A beginner version" with no instrument and a band recording | **Ask the instrument**; level default Initial or 1, say so |
 | "A simple version" with no instrument, no source clue and no level | **Ask both**, in one message |
 | Several instruments ("for flute and cello") | One arrangement per instrument, each against its own profile |
+| "Recorder version for my class" | Descant by default (the school recorder), say it; ask only if the range suggests a treble |
+| 「古筝三级」「二胡五级」 | Chinese 考级 level 3 / 5 on that instrument: go, say the confidence is low; if the board matters ask 央音 / 国院 / 音协 |
+| 「尤克里里弹唱，简单点」 | Ukulele, melody plus chords in C, G or F; level default Debut–Grade 1, say so |
 | An instrument with no profile (harmonica, accordion, pipa …) | Say it plainly, follow [other-instruments.md](references/other-instruments.md), offer the nearest supported instrument |
 | "Is this really Grade N?" | No arrangement: run the checker with `--estimate` or `--grade N` and report |
 
@@ -67,16 +70,24 @@ already answers; never ask more than two things at once; ask in the user's langu
 
 | Instrument (say it as the user did) | File | Checker profile | Levels | How solid |
 | --- | --- | --- | --- | --- |
-| piano | [piano.md](references/instruments/piano.md) | `piano` | Initial, 1–8 | Keys, meters, features official (ABRSM); texture and span our estimate, calibrated on 1,271 recordings |
-| violin, viola, cello | [violin.md](references/instruments/violin.md), [viola.md](references/instruments/viola.md), [cello.md](references/instruments/cello.md) | `violin`, `viola`, `cello` | Initial, 1–8 | Official (ABRSM sight-reading tables) |
-| double bass | [double-bass.md](references/instruments/double-bass.md) | `double-bass` | Initial, 1–8 | Keys and ranges official, technique not reviewed |
-| flute, clarinet, saxophone | [flute.md](references/instruments/flute.md), [clarinet.md](references/instruments/clarinet.md), [saxophone.md](references/instruments/saxophone.md) | `flute`, `clarinet`, `saxophone` | 1–8 | Official (ABRSM); breathing limits our estimate |
-| oboe, bassoon | [oboe.md](references/instruments/oboe.md), [bassoon.md](references/instruments/bassoon.md) | `oboe`, `bassoon` | 1–8 | Keys and ranges official, technique not reviewed |
-| trumpet | [trumpet.md](references/instruments/trumpet.md) | `trumpet` | 1–8 | Official (ABRSM Brass) |
-| classical guitar | [classical-guitar.md](references/instruments/classical-guitar.md) | `classical-guitar` | 1–8 | Keys, meters, rhythm official; range only to Grade 5 |
-| pop / rock guitar (acoustic or electric) | [pop-guitar.md](references/instruments/pop-guitar.md) | `pop-guitar` | Initial, 1–8 | Official (Trinity, RSL); no key or range list, so lighter checks |
-| voice | [voice.md](references/instruments/voice.md) | `voice` | Initial, 1–8 | Mixed boards; span and breathing partly our estimate |
-| drums | [drums.md](references/instruments/drums.md) | `drums` | Initial, 1–8 | Official (Trinity, RSL); note values and kit size only |
+| piano 钢琴 | [piano.md](references/instruments/piano.md) | `piano` | Initial, 1–8 | Keys, meters, features official (ABRSM); texture and span our estimate, calibrated on 1,271 recordings |
+| violin 小提琴, viola 中提琴, cello 大提琴 | [violin.md](references/instruments/violin.md), [viola.md](references/instruments/viola.md), [cello.md](references/instruments/cello.md) | `violin`, `viola`, `cello` | Initial, 1–8 | Official (ABRSM sight-reading tables) |
+| double bass 低音提琴 | [double-bass.md](references/instruments/double-bass.md) | `double-bass` | Initial, 1–8 | Keys and ranges official, technique not reviewed |
+| flute 长笛, clarinet 单簧管, saxophone 萨克斯 | [flute.md](references/instruments/flute.md), [clarinet.md](references/instruments/clarinet.md), [saxophone.md](references/instruments/saxophone.md) | `flute`, `clarinet`, `saxophone` | 1–8 | Official (ABRSM); breathing limits our estimate |
+| oboe 双簧管, bassoon 巴松 | [oboe.md](references/instruments/oboe.md), [bassoon.md](references/instruments/bassoon.md) | `oboe`, `bassoon` | 1–8 | Keys and ranges official, technique not reviewed |
+| recorder 竖笛 (descant or treble: **ask if unclear**, default descant) | [recorder.md](references/instruments/recorder.md) | `descant-recorder` (written an octave below sounding), `treble-recorder` | descant 1–5, treble 1–8 | Official (ABRSM Woodwind); descant written octave inferred |
+| trumpet 小号, trombone 长号, horn 圆号 | [trumpet.md](references/instruments/trumpet.md), [trombone.md](references/instruments/trombone.md), [horn.md](references/instruments/horn.md) | `trumpet`, `trombone`, `horn` | 1–8 | Official (ABRSM Brass); slur and slide limits not measured |
+| classical guitar 古典吉他 | [classical-guitar.md](references/instruments/classical-guitar.md) | `classical-guitar` | 1–8 | Keys, meters, rhythm official; range only to Grade 5 |
+| pop / rock guitar 民谣、流行吉他 (acoustic or electric) | [pop-guitar.md](references/instruments/pop-guitar.md) | `pop-guitar` | Initial, 1–8 | Official (Trinity, RSL); no key or range list, so lighter checks |
+| ukulele 尤克里里 | [ukulele.md](references/instruments/ukulele.md) | `ukulele` | Debut (0), 1–8 (measured to 5) | Official (RSL Rockschool, LCM cross-check); no ABRSM grades exist |
+| voice 声乐、唱歌 | [voice.md](references/instruments/voice.md) | `voice` | Initial, 1–8 | Mixed boards; span and breathing partly our estimate |
+| drums 架子鼓 | [drums.md](references/instruments/drums.md) | `drums` | Initial, 1–8 | Official (Trinity, RSL); note values and kit size only |
+| erhu 二胡, guzheng 古筝, dizi 竹笛 | [erhu.md](references/instruments/erhu.md), [guzheng.md](references/instruments/guzheng.md), [dizi.md](references/instruments/dizi.md) | `erhu`, `guzheng`, `dizi` | 1–10 (Chinese 考级 numbers, not ABRSM) | **Low**: teacher and publisher sources; no board publishes ranges, meters or tempo |
+
+Notes on the table: Chinese-instrument levels are the Chinese boards' own numbers (央音 1–9, 国院 1–10), never
+converted to ABRSM; say the confidence is low. Dizi needs the flute key (G, D, C …) chosen first, and
+erhu, guzheng and dizi players often read jianpu, so offer it. Ukulele and pop guitar arrangements are
+melody plus chord symbols, strumming pattern in words.
 
 `python3 scripts/check_level.py --list` shows every profile the script knows. An instrument that is not in
 the table: read [other-instruments.md](references/other-instruments.md).
@@ -115,8 +126,8 @@ the table: read [other-instruments.md](references/other-instruments.md).
    arrangement by one interval to the nearest listed key that keeps the melody inside the range with the
    fewest awkward notes, and say so (it changes the sound; offer the original key as a harder second
    version). A key change inside the piece moves by the same interval; if it lands outside the list,
-   drop it and say so. **Transposing instruments** (clarinet and trumpet in B♭, saxophones, horn, guitar,
-   double bass …): the profile ranges and keys are written pitch. Write the part as the player reads it if
+   drop it and say so. **Transposing instruments** (clarinet and trumpet in B♭, saxophones, horn in F, guitar,
+   double bass, descant recorder …): the profile ranges and keys are written pitch. Write the part as the player reads it if
    the base skill supports that; otherwise write concert pitch, say "concert pitch" and the written
    interval in the title notes, and run the checker, which shifts a concert-pitch file for you (set
    `--written-offset` for another saxophone: soprano 2, alto 9, tenor 14, baritone 21).

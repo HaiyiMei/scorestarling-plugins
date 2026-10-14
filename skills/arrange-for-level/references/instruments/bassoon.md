@@ -17,7 +17,7 @@ All sources are listed in [../sources.md](../sources.md).
 | 3 | 1b, none, 1# | E2-C4 | 3/8; dotted crotchets, simple semiquaver patterns, quaver rests; accents; p, diminuendo hairpin; accidentals only within minor keys |
 | 4 | 1b, none, 1#, 2# | D2-F4 | about 8 bars; 6/8; chromatic notes, anacrusis, tenuto, pause |
 | 5 | 3b, 2b, 1b, none, 1#, 2#, 3# | C2-G4 | 8-16 bars; simple syncopation; ff, pp; slowing at the end |
-| 6 | 4b, 3b, 2b, 1b, none, 1#, 2#, 3#, 4# | Bb1-Bb4 | 12-16 bars; 9/8, 5/8, 5/4, changes of time signature; triplets; swung style; rit. then a tempo |
+| 6 | 4b, 3b, 2b, 1b, none, 1#, 2#, 3#, 4# | Bb1-A4 | 12-16 bars; 9/8, 5/8, 5/4, changes of time signature; triplets; swung style; rit. then a tempo |
 | 7 | 4b, 3b, 2b, 1b, none, 1#, 2#, 3#, 4# | Bb1-Bb4 | 16-20 bars; 7/8, 7/4 |
 | 8 | 5b, 4b, 3b, 2b, 1b, none, 1#, 2#, 3#, 4#, 5# | Bb1-C5 | 16-24 bars; 12/8; triplet crotchets; acceleration; simple ornaments |
 

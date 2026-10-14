@@ -1,0 +1,22 @@
+{
+  "instrument": "ukulele",
+  "aliases": ["ukelele", "uke", "soprano ukulele", "concert ukulele", "tenor ukulele", "尤克里里", "乌克丽丽", "夏威夷小吉他"],
+  "system": "RSL (Rockschool) Ukulele 2020, LCM cross-check",
+  "kind": "melodic",
+  "confidence": "medium",
+  "reliable_up_to": 5,
+  "grade_names": {"0": "Debut"},
+  "note": "Keys, note values and the single-note compass follow the RSL (Rockschool) Ukulele syllabus 2020 sight-reading parameters (official; Debut to Grade 5) with the London College of Music Ukulele 2023 syllabus as a cross-check for time signatures. Grade 0 = RSL Debut. RSL states a compass only for Debut, Grade 1 and Grade 2; from Grade 3 the profile uses the physical range of a soprano or concert ukulele (C4 to about A5, the lowest string is C4). Chord shapes and strumming are a human matter and are not measured: chord symbols are not read, so write the chords as symbols and the melody as notes. Tempo ceilings are our reading of the sight-reading and technical tempi. Standard GCEA re-entrant tuning, written at sounding pitch in treble clef. See references/instruments/ukulele.md.",
+  "sources": ["RSL (Rockschool), Contemporary Ukulele Syllabus Guide 2020: https://www.newschool.ie/wp-content/uploads/2020/05/RSL_Ukulele_Syllabus_Guide_2020_05May2020.pdf", "London College of Music Examinations, Ukulele Syllabus 2023: https://lcme.uwl.ac.uk/media/qzyhfoue/ukulele-syllabus-2023.pdf"],
+  "grades": {
+    "0": {"key_sigs": [0, 1], "meters": ["4/4", "3/4"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.0, "chord_over_at": null, "chord_warn_at": null, "chord_warn_share": 0, "range": [60, 64], "range_slack": 3, "tempo_max": 100},
+    "1": {"key_sigs": [-1, 0, 1], "meters": ["4/4", "3/4"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.02, "chord_over_at": null, "chord_warn_at": null, "chord_warn_share": 0, "range": [60, 72], "range_slack": 3, "tempo_max": 110},
+    "2": {"key_sigs": [-2, -1, 0, 1, 2], "meters": ["4/4", "3/4"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.05, "chord_over_at": null, "chord_warn_at": null, "chord_warn_share": 0, "range": [60, 73], "range_slack": 3, "tempo_max": 120},
+    "3": {"key_sigs": [-3, -2, -1, 0, 1, 2], "meters": ["4/4", "3/4", "6/8", "2/4", "2/2"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.1, "chord_over_at": null, "chord_warn_at": null, "chord_warn_share": 0, "range": [60, 81], "range_slack": 2, "tempo_max": 130},
+    "4": {"key_sigs": [-4, -3, -2, -1, 0, 1, 2, 4], "meters": ["4/4", "3/4", "6/8", "2/4", "2/2"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.2, "chord_over_at": null, "chord_warn_at": null, "chord_warn_share": 0, "range": [60, 81], "range_slack": 2},
+    "5": {"key_sigs": [-4, -3, -2, -1, 0, 1, 2, 4, 5], "meters": ["4/4", "3/4", "6/8", "2/4", "2/2"], "sixteenth_share_ok": 0.25, "triplets": "warn", "grace": "warn", "thirty_seconds": "over", "accidentals_per_bar": null, "chord_over_at": null, "chord_warn_at": null, "chord_warn_share": 0, "range": [60, 84], "range_slack": 2},
+    "6": {"key_sigs": null, "meters": null, "sixteenth_share_ok": 0.5, "triplets": "ok", "grace": "warn", "thirty_seconds": "over", "accidentals_per_bar": null, "chord_over_at": null, "chord_warn_at": null, "chord_warn_share": 0, "range": [60, 86], "range_slack": 2},
+    "7": {"key_sigs": null, "meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "warn", "thirty_seconds": "over", "accidentals_per_bar": null, "chord_over_at": null, "chord_warn_at": null, "chord_warn_share": 0, "range": [60, 86], "range_slack": 2},
+    "8": {"key_sigs": null, "meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "warn", "thirty_seconds": "over", "accidentals_per_bar": null, "chord_over_at": null, "chord_warn_at": null, "chord_warn_share": 0, "range": [60, 86], "range_slack": 2}
+  }
+}
