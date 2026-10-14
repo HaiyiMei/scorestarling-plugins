@@ -7,8 +7,8 @@ description: Turn sheet music into an editable, playable ScoreStarling score and
 
 Use the connected ScoreStarling tools. A score made here is a normal ScoreStarling project: it
 plays back, opens in the score panel, takes the same edits (`edit_score`) and exports to PDF,
-images, audio and, once the score is unlocked, the editable formats (MusicXML, MIDI, Guitar Pro, ABC,
-MEI; see Converting). Recordings (audio or video) follow the `scorestarling-score` skill instead.
+images, audio and, on accounts with Plus or bought credits, the editable formats (MusicXML, MIDI,
+Guitar Pro, ABC, MEI; see Converting). Recordings (audio or video) follow the `scorestarling-score` skill instead.
 
 ## Reuse an existing score or saved result
 
@@ -62,7 +62,9 @@ everyone, so read those bar by bar and check carefully. When the user offers bot
 a PDF of the same music, upload the PDF.
 
 Uploaded sheet music and score files are read, not transcribed: skip `check_recording`, and
-the engine choice and tempo detection do not apply; reading costs no credits. A tempo the user gives
+the engine choice and tempo detection do not apply. A score file (MusicXML, MIDI, Guitar Pro, ABC) or
+notation text is free; a PDF or photo read is a piece like any other (a free 30-second preview, then
+10 credits for the whole). A tempo the user gives
 (`bpm`) sets playback for a score that marks none. Follow the job with `get_upload_status`
 (`wait_seconds: 20`) until it finishes, then do what its `next_step` says.
 
@@ -119,7 +121,7 @@ When the user asks for faithful or playable music, finish clear source-supported
 ending the turn; listing known missed notes or ties and waiting for another prompt leaves
 that request unfinished. Keep corrections in the same score: `edit_score` for single operations;
 otherwise edit the current revision's editing copy (`export_score` `format=editing_copy`, the
-MusicXML for your own edits; it needs no unlock and is not a download for the user), keeping note
+MusicXML for your own edits; it works on every opened score and is not a download for the user), keeping note
 ids, and save it with `revise_score`, which also adds missed notes and removes misread ones. Reconstruct ABC as a new score only when the
 first reading is unusable; preserve the draft, check the replacement and say it is a new score.
 Ask one specific question only when the source leaves a consequential musical choice unclear.
@@ -138,26 +140,28 @@ Once a score exists, `export_score` gives every other form of it:
 
 | Wanted | format |
 | --- | --- |
-| MIDI for a DAW or practice app | `midi` (needs an unlocked score) |
+| MIDI for a DAW or practice app | `midi` (accounts with Plus or bought credits) |
 | Listening audio | `mp3` or `wav` (General MIDI instruments) |
-| Printable sheet music | `pdf`; `pages` for SVG and PNG images; `parts` for one PDF per part (a free score's carry a small footer line) |
-| Notation software (MuseScore, Sibelius, Finale, Dorico) | `musicxml` or `mxl` (needs an unlocked score) |
+| Printable sheet music | `pdf`; `pages` for SVG and PNG images; `parts` for one PDF per part (on other accounts they carry a small footer line) |
+| Notation software (MuseScore, Sibelius, Finale, Dorico) | `musicxml` or `mxl` (accounts with Plus or bought credits) |
 | Jianpu (简谱) | `jianpu` (every staff) or `jianpu_melody` (top line only; it may not be the melody), in the key; `jianpu_fixed` for 1=C fixed do (固定调) |
-| ABC text | `abc` (needs an unlocked score); the text also comes back in the result, so you can read, explain or rewrite it |
-| MEI for music research and editions | `mei` (needs an unlocked score) |
+| ABC text | `abc` (accounts with Plus or bought credits); the text also comes back in the result, so you can read, explain or rewrite it |
+| MEI for music research and editions | `mei` (accounts with Plus or bought credits) |
 
-**Unlocking.** A score made from notation is a free score unless the account's allowance already
-opens it (the panel and every export result say: `access.open`). A free score's PDFs, page
-images and numbered-notation PDFs carry one small footer line ("Made with ScoreStarling"), and its
-MusicXML, MXL, MIDI, Guitar Pro, ABC and MEI need it unlocked; audio is always free. When `export_score` for
-one of those formats comes back `locked`, do not retry or work around it: ask the user once, in
-one line, whether to unlock this score for exactly the credits it names (`unlock_credits`), used
-once per score, after which every format downloads as often as wanted and edits stay open. It
-uses credits the account already has and is not a purchase. Only after a clear yes call
-`unlock_score` with that exact number and `consent: true`, then call `export_score` again. If they
-decline, offer the PDF or audio instead. If the balance does not cover it, say so and offer the
-free formats; never offer purchases, plans or checkout links, even when asked. Do not unlock
-before an editing round: `format=editing_copy` needs none.
+**Downloads follow the account.** MusicXML, MXL, MIDI, Guitar Pro, ABC and MEI download on
+accounts with Plus or bought credits. Other accounts (`access.open` false in the panel and export
+results) get the PDF, page images and numbered-notation PDFs, with one small footer line ("Made
+with ScoreStarling"; mention it only if asked), and their own imported files in their original
+format. When `export_score` comes back `locked`, do not retry or work around it, and do not call
+`unlock_score` for a download: offer the PDF instead. Never offer purchases, plans or checkout
+links, even when asked. `format=editing_copy` works on every opened score.
+
+**Previews.** The user's own score file or notation text shows whole; a PDF or photo read shows its
+first 30 seconds until paid for. If a score tool
+refuses because only a free 30-second preview shows, its message names the exact credits: ask
+the user in one line whether to open the whole piece for exactly that many, as use of credits the
+account already has, not a purchase. Only after a clear yes call `unlock_score` with that number
+and `consent: true`, then read the score again. A preview can't be exported.
 
 Jianpu's `1=` follows the score's key signature (movable do; a minor key as its relative major).
 `jianpu_fixed` keeps the same pitches in 1=C, each black key marked (b5 for G-flat). Music
@@ -171,8 +175,8 @@ Transpose with `edit_score` `transpose_score` (an interval such as `M2` or `-m3`
 playback and exports stay consistent; change the playback instrument with `set_timbre`. To
 arrange or simplify music, read the score with `get_score` (or its editing copy), write the new
 ABC yourself (or a MusicXML file, passed as `file`) and `create_score` the new version; the
-original score stays as it is. An `abc` export works only on an unlocked score,
-so do not unlock one just to read it. Use
+original score stays as it is. An `abc` export works only on accounts with Plus or bought
+credits; to read the notes yourself, use `get_score` or the editing copy. Use
 the host's attachment if it appears; otherwise point to the prepared panel's Download menu.
 Do not paste or reconstruct signed download URLs in chat. For arrangements read [the arranging reference](../scorestarling-score/references/arranging.md).
 
@@ -209,7 +213,7 @@ Read get_score for current revision/IDs. Change a score in place (create_score/t
 
 Say only what tool results show: an edit is made when its result lists it; an error or "Nothing changed" means not, so say so. Say how bars are written (clefs, key, notes) from get_score or review_score text, not a picture or the opening settings; if the user disputes it, reread those bars.
 
-Structural validation does not prove transcription accuracy; doubtful_notes are leads to listen to, not a verdict. MIDI/audio exports require complete performance bindings; MusicXML/PDF may still export. A free score (access.open false) needs unlock_score, with explicit consent to its exact credits, before MusicXML, MIDI, Guitar Pro, ABC or MEI download; its PDFs carry a small footer line; a band transcription paid with credits is open. Use a host-presented attachment; otherwise the prepared panel Download menu for the requested format. Never paste/reconstruct download_url in chat. A ResourceLink does not prove receipt. A plain PDF request uses format=pdf and follows the saved view, like Download; do not silently substitute Mirelo's original PDF. Use original_pdf only when requested and label it as the original. Audio exports are synthesis, not original stems.
+Structural validation does not prove transcription accuracy; doubtful_notes are leads to listen to, not a verdict. MIDI/audio exports require complete performance bindings; MusicXML/PDF may still export. On an account without Plus or bought credits (access.open false) MusicXML, MIDI, Guitar Pro, ABC and MEI are refused with locked=true and PDFs carry a small footer line; never unlock_score for a download. A preview (30 seconds) needs unlock_score, with explicit consent to its exact credits, before anything else. Use a host-presented attachment; otherwise the prepared panel Download menu for the requested format. Never paste/reconstruct download_url in chat. A ResourceLink does not prove receipt. A plain PDF request uses format=pdf and follows the saved view, like Download; do not silently substitute Mirelo's original PDF. Use original_pdf only when requested and label it as the original. Audio exports are synthesis, not original stems.
 
 Show a score as staff or jianpu (简谱: jianpu 1=key, jianpu_fixed 1=C 固定调, jianpu_melody) with set_notation_view: the score keeps it, the prepared panel and Download PDF follow; without a prepared panel result, open_score once with notation; before it exists, pass view to the tool making it. export_score takes the same names; jianpu_voices only if asked for a hand's voices apart.
 

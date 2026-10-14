@@ -19,20 +19,21 @@ client’s OAuth flow. A free account runs one transcription at a time, and Plus
 
 Ask: "Turn this attached recording into a score, open it, and help me check it." or
 "Make this photo of sheet music playable and give me the MIDI."
-One instrument or voice, and solo piano with both hands and pedal, are free; a band uses credits.
+Every new piece is a free 30-second preview; the whole piece of one instrument or voice, or of solo
+piano with both hands and pedal, uses 10 credits, and a band uses 30 credits a minute.
 Uploads are limited to 95 MiB. Each transcription covers the first six minutes of a recording, the
 same for every account.
 Read `get_account_usage.max_seconds` for its current limit before starting. A band's
-price is shown, and agreed in the chat, before it starts. The skill checks tool results and score structure,
+price is shown, and agreed in the chat, before it starts, and so are the credits for opening a
+whole piece. The skill checks tool results and score structure,
 but listening and human review remain necessary for transcription accuracy.
 Model-proposed musical edits are previews until the user accepts them.
 
-Editing, listening, PDFs, page images and audio are free. A free score's PDFs carry one small footer
-line, and its MusicXML, MIDI, Guitar Pro, ABC and MEI downloads need the score unlocked, which uses a fixed number
-of the account's existing credits once per score (then every format downloads as often as wanted,
-edits included). The assistant asks the user for one clear yes to that exact number first, as for a
-band's price. A band score transcribed with credits is already unlocked, and an assistant's own round
-of edits uses an editing copy that needs no unlock. When the user gives a ScoreStarling invitation
+Editing and listening use no credits. Downloads follow the account: MusicXML, MXL, MIDI, Guitar
+Pro, ABC and MEI download on accounts with Plus or bought credits; other accounts get the PDF and
+page images with one small footer line, and their own imported files in their original format.
+Previews can't be exported. An assistant's own round of edits uses an editing copy, which works on
+every opened score. When the user gives a ScoreStarling invitation
 link or a beta code, the assistant redeems it in the chat (free credits, not a purchase); it offers
 the user's own invitation link only when they ask to invite someone. A new user without a recording
 can start from a public sample recording.
