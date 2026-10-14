@@ -21,7 +21,7 @@ task's limit from the length it may transcribe.
 - Read `get_account_usage`. If the account has prices and no credits available for a band, say
   so before sending and offer the free choices instead.
 - The excerpt is the shorter of the length limit and what the balance covers. The length limit
-  is five minutes, the same for every account and for every choice; `check_recording`,
+  is six minutes, the same for every account and for every choice; `check_recording`,
   `get_account_usage` (`max_seconds`) and the upload result (`max_seconds`, `excerpt`) give it.
   Tell the user before it starts when the recording is longer.
 - If a band is unavailable, read `get_account_usage.engine_status.mirelo.reason` when it is
