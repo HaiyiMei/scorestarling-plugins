@@ -16,17 +16,23 @@ task's limit from the length it may transcribe.
   for the band, the whole song or a full score, that is the choice; when only the recommendation
   suggests it, ask first in one line that it uses credits and that the price comes before
   anything starts.
-- It is the only transcription choice that uses credits: 40 a minute of the account's existing
-  credits. One instrument or voice and solo piano are free.
+- It uses 30 credits a minute of the account's existing credits, priced by its length (10-second
+  steps, 5 credits each: 3:30 is 105). One instrument or voice and solo piano use 10 credits for
+  the whole piece after a free 30-second preview (SKILL.md step 4).
+- A first band run of a recording longer than 30 seconds is a free 30-second preview
+  (`product_quote.phase=preview`, no price): the instruments are still reviewed, but there is no
+  price question. When the user wants the whole piece, `transcribe_again` with that score and
+  `provider: mirelo` quotes it, and step 3's price question applies.
 - Read `get_account_usage`. If the account has prices and no credits available for a band, say
-  so before sending and offer the free choices instead.
+  so before sending and offer the other choices instead.
 - The excerpt is the shorter of the length limit and what the balance covers. The length limit
   is six minutes, the same for every account and for every choice; `check_recording`,
   `get_account_usage` (`max_seconds`) and the upload result (`max_seconds`, `excerpt`) give it.
   Tell the user before it starts when the recording is longer.
 - If a band is unavailable, read `get_account_usage.engine_status.mirelo.reason` when it is
   given. Do not assume the account lacks permission or that the service stops at two minutes.
-- Mention cost only for a band, or when `get_account_usage` shows a limit. Estimates are not
+- Mention cost only for a band, opening a previewed piece, or when `get_account_usage` shows a
+  limit. Estimates are not
   billing receipts.
 
 ## Steps
@@ -59,13 +65,14 @@ task's limit from the length it may transcribe.
      cannot settle.
    - Do not poll or transcribe again while the review is pending. If the user stops,
      `cancel_pro_review` releases its reservation.
-3. **Price.** When `get_upload_status` reports `product_quote.phase=pending`, call
-   `get_transcription_quote` with the `job_id`: it gives the exact credits for the decoded
-   length and the complete choices you confirmed. Ask once, in the user's language: the length
+3. **Price.** A free preview (`product_quote.phase=preview`) has none: follow the job and review
+   the 30 seconds (step 4), then offer the whole piece as above. When `get_upload_status` reports
+   `product_quote.phase=pending`, call `get_transcription_quote` with the `job_id`: it gives the
+   exact credits for the decoded length and the complete choices you confirmed. Ask once, in the user's language: the length
    it covers, the exact credits as use of credits the account already has (not a purchase), and
    the plan (the instruments or automatic parts, and any rhythm choice), then "Powered by
    Mirelo". For example (made up): "A band score of the first 3:00 (piano, bass and drums) uses
-   120 of your credits. Shall I start? Powered by Mirelo."
+   90 of your credits. Shall I start? Powered by Mirelo."
    - Only after the user's explicit yes, call `confirm_transcription_quote` with the unchanged
      `quote_id` and credits and `consent: true`.
    - Until then the user may still change the choices: confirm again and quote again, and ask
@@ -81,14 +88,14 @@ When the balance does not cover the whole excerpt, the quote's `affordable` is t
 excerpt from the start that it does cover. Offer it rather than stopping, as the one price
 question: call `get_transcription_quote` again with `seconds` set to that length (free; nothing
 is reserved), then ask with that quote's exact credits, saying what the whole recording would
-need and what is left out. For example (made up): "The whole 3:30 needs 140 credits and you have
-100. Those cover the first 2:30 (vocals, guitar, bass and drums) for 100 credits; the last
+need and what is left out. For example (made up): "The whole 3:30 needs 105 credits and you have
+75. Those cover the first 2:30 (vocals, guitar, bass and drums) for 75 credits; the last
 minute is left out. Shall I start the first 2:30? Powered by Mirelo." A yes to that exact
 offer is the consent for that quote; another length needs a new quote and a new question.
 
 If no excerpt is covered, explain that a band transcription is not available now; opening
-existing scores, sheet music and score files, editing, PDFs and audio all still are, and so are
-the free choices.
+existing scores, sheet music and score files, editing and PDFs all still are, and so are
+the other choices.
 
 Never offer credit purchases, subscriptions, upgrades, top-ups or checkout links, even when the
 user asks to buy, and never show money prices, plans or packs. In reply to a request to buy, say
@@ -99,7 +106,7 @@ https://scorestarling.com/credits documents them neutrally; it is not a way to g
 
 - While instruments are pending, `cancel_pro_review` releases the reservation; while the price
   is pending, `cancel_transcription_quote` cancels it. Nothing was charged; say so.
-- For a free choice instead (one instrument or voice, solo piano), start it as a new job from
+- For another choice instead (one instrument or voice, solo piano), start it as a new job from
   the same attachment or link, with that `provider`. `transcribe_again` works only from a
   completed score.
 - Transcribing the same recording again as a band is a new task with its own price.
@@ -108,9 +115,8 @@ https://scorestarling.com/credits documents them neutrally; it is not a way to g
 
 - Report the time signature and tempo from `provider_output.rhythm`, with their sources and
   warnings, in plain words.
-- A band score transcribed with credits is already open: its MusicXML, MIDI, Guitar Pro, ABC
-  and MEI download without unlocking, and its PDFs carry no footer line. Its price is the only credits
-  it needs.
+- A band score transcribed with credits shows whole; its price is the only credits it needs.
+  Downloads follow the account, as for any score (SKILL.md step 7).
 - The band's notation, detection and original exports are the starting point: reuse them before
   inventing other processing, keep the original and revisions reversible, and keep what the
   service wrote apart from what you changed. Its provenance alone does not make it accurate:

@@ -24,5 +24,6 @@ ScoreStarling is a hosted remote MCP server. There is nothing to clone, build or
 3. Check the connection: call `get_workflow_guide` with `topic` `recording`, then `list_timbres`.
    Both are read-only and use no credits.
 
-A voice, one instrument or solo piano is free to transcribe; a band uses credits and shows its price first.
+Every new piece starts as a free 30-second preview; the whole piece of a voice, one instrument or solo piano
+uses 10 credits, and a band uses 30 credits a minute and shows its price first.
 The skills in `skills/` describe the complete workflows. Support: https://scorestarling.com/support

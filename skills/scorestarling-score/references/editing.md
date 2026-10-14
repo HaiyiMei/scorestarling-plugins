@@ -29,10 +29,9 @@ spelling, a shifted passage):
    ask to allow it, and that allowing ScoreStarling for the conversation stops further asks.
 2. `export_score` with `format=editing_copy` for the current revision, once for the whole round
    (the changes you are about to save or preview together). It is the score's MusicXML for your
-   own edits: it works on every score without unlocking and is saved back into the same score, so
-   it is not a download for the user. Never present it as one or link it as a file; when the user
-   asks for a MusicXML file, that is a download (SKILL.md step 7), which a free score only gives
-   once it is unlocked.
+   own edits: it works on every opened score and is saved back into the same score, so it is not
+   a download for the user. Never present it as one or link it as a file; when the user asks for
+   a MusicXML file, that is a download (SKILL.md step 7), which follows the account.
 3. Make every change in that copy, keeping each note's `id` attribute.
 4. Save it once with `revise_score` (the file as an attachment, or the text as `musicxml`),
    giving the revision it was exported from. `preview=true` saves it as a suggestion the user
@@ -193,7 +192,8 @@ string can play as written (below the lowest string, above the top fret, or more
 strings), and validation lists those bars: tell the user rather than moving notes on your own. When
 the user wants TAB in the conversation, `export_score` `tab_text` (with `part_id` for one part)
 returns plain-text TAB to paste; for Guitar Pro, TuxGuitar or Songsterr, `guitar_pro` is a .gp5 file
-of every part with the TAB parts on the strings shown, their tuning and capo (it needs an open score).
+of every part with the TAB parts on the strings shown, their tuning and capo (on accounts with Plus
+or bought credits).
 
 Re-engraving operations (`reengrave`, `rebeat`, `scale_note_values`) write the
 notation again from the playing. Printed words, rehearsal and metronome marks, dynamics, hairpins
