@@ -60,6 +60,8 @@ class Note:
         self.tuplet = el.find('time-modification') is not None
         self.grace = el.find('grace') is not None
         self.tied_from = any(t.get('type') == 'stop' for t in el.findall('tie'))
+        # a breath mark or caesura on a note means the player breathes right after it
+        self.breath_after = el.find('notations/articulations/breath-mark') is not None or el.find('notations/articulations/caesura') is not None
 
 
 def read_score(tree, kind, part_number=1):
@@ -225,7 +227,7 @@ def tempo_of(info):
 
 
 def runs_of(notes, gap):
-    """Unbroken stretches of sound: consecutive notes with less than `gap` quarters of rest between."""
+    """Unbroken stretches of sound: consecutive notes with less than `gap` quarters of rest between, and a breath mark or caesura ends a stretch."""
     runs, cur, end = [], [], None
     for n in sorted(notes, key=lambda n: n.time):
         if cur and n.time - end >= gap:
@@ -234,6 +236,9 @@ def runs_of(notes, gap):
         cur.append(n)
         stop = n.time + n.dur
         end = stop if end is None else max(end, stop)
+        if n.breath_after:
+            runs.append(cur)
+            cur, end = [], None
     if cur:
         runs.append(cur)
     return runs

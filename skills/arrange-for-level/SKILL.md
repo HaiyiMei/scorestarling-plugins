@@ -135,7 +135,8 @@ the table: read [other-instruments.md](references/other-instruments.md).
    (shortest note, dotted and syncopated figures, triplets, grace notes, odd meters). Double all values
    if the source moves in sixteenths. Keep the melody's long notes long.
 5. **Write the main line.** The melody, in the instrument's idiom (slurs and bowings for strings, breaths
-   for winds and voice, strings and positions for guitar). Where the tune jumps wider than the level
+   for winds and voice, strings and positions for guitar). For winds and voice, end each phrase with a rest or a
+   breath mark: the checker counts both when it measures the longest phrase. Where the tune jumps wider than the level
    allows or runs fast, keep the landmarks (first beat of each bar, phrase ends) and fill the rest with
    steps. Single-line instruments get the melody alone; offer a simple piano or chord backing as a second
    score if the user wants one.
