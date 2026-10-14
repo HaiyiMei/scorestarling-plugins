@@ -62,7 +62,9 @@ everyone, so read those bar by bar and check carefully. When the user offers bot
 a PDF of the same music, upload the PDF.
 
 Uploaded sheet music and score files are read, not transcribed: skip `check_recording`, and
-the engine choice and tempo detection do not apply; reading costs no credits. A tempo the user gives
+the engine choice and tempo detection do not apply. A score file (MusicXML, MIDI, Guitar Pro, ABC) or
+notation text is free; a PDF or photo read is a piece like any other (a free 30-second preview, then
+10 credits for the whole). A tempo the user gives
 (`bpm`) sets playback for a score that marks none. Follow the job with `get_upload_status`
 (`wait_seconds: 20`) until it finishes, then do what its `next_step` says.
 
@@ -154,7 +156,8 @@ format. When `export_score` comes back `locked`, do not retry or work around it,
 `unlock_score` for a download: offer the PDF instead. Never offer purchases, plans or checkout
 links, even when asked. `format=editing_copy` works on every opened score.
 
-**Previews.** A score from sheet music or the user's own score file shows whole. If a score tool
+**Previews.** The user's own score file or notation text shows whole; a PDF or photo read shows its
+first 30 seconds until paid for. If a score tool
 refuses because only a free 30-second preview shows, its message names the exact credits: ask
 the user in one line whether to open the whole piece for exactly that many, as use of credits the
 account already has, not a purchase. Only after a clear yes call `unlock_score` with that number
