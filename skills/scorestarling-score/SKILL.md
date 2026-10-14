@@ -1,6 +1,6 @@
 ---
 name: scorestarling-score
-description: Turn a recording into an editable, playable score with ScoreStarling, then review it, fix it in place and deliver it. Use whenever someone wants sheet music, a score, jianpu, MIDI or MusicXML from audio or video (an attached file, a voice memo, a song they play or sing, a YouTube, Bilibili or other link), asks how a transcription came out or wants it checked, corrected, simplified or arranged, wants to open, edit, show as jianpu or download an existing ScoreStarling score, gives a ScoreStarling invitation link or code, or asks about a band transcription's price, opening the whole of a previewed piece, downloads, credits or limits. Needs a connected ScoreStarling MCP server. Sheet music, score files and music typed in the chat go to scorestarling-notation.
+description: Turn a recording into an editable, playable score with ScoreStarling, then review it, fix it in place and deliver it. Use whenever someone wants sheet music, a score, jianpu, MIDI or MusicXML from audio or video (an attached file, a voice memo, a song they play or sing, a YouTube, Bilibili or other link), asks how a transcription came out or wants it checked, corrected, simplified or arranged, wants to open, edit, show as jianpu or download an existing ScoreStarling score, gives a ScoreStarling invitation link or code, or asks about a band transcription's price, opening the whole of a previewed piece, downloads, credits or limits. Needs a connected ScoreStarling MCP server. Readable notation in video frames, sheet music, score files and music typed in chat go to scorestarling-notation.
 ---
 
 # From a recording to a reviewed, editable score
@@ -104,13 +104,10 @@ video or song page also its words (title, channel, description, tags, chapters, 
 pictures: the cover and frames across the part that will be transcribed, each labelled with its
 time. Look at them:
 
-- **Choose the source before choosing an engine.** When the video shows readable sheet music, read it and write
-  ABC/MusicXML with `create_score`, then compare the saved score with the source frames. Use `watch_link` without
-  a score ID to inspect actual frames, choose times and crop changing staves; a cover or missing frames cannot
-  prove the video has no score. Inspect more when needed and disclose unreadable or missing bars. When there is
-  no visible notation, follow the audio steps below. An explicit request to transcribe the performance takes
-  precedence. Screenshots or a PDF are optional working material: finish in ScoreStarling in the same turn,
-  without asking the person to request import again. Do not start a transcription just to get a score ID.
+- **Choose the source before choosing an engine.** Inspect actual video frames; use `watch_link` for useful
+  times/crops without creating a score first. Readable notation follows the **Notation visible in a video**
+  section of `scorestarling-notation`; if there is no notation, follow the audio workflow below. Missing
+  or unreadable frames are inconclusive. Honor an explicit request to transcribe the performance.
 - **Decide what is playing from the listen and the pictures together.** When `recommendation.engine`
   is null and the frames plainly show solo piano, one other instrument or voice, or a band with
   drums, choose that and say so in one sentence the user can correct ("It looks and sounds like
@@ -478,7 +475,7 @@ When the user says reuse the existing result or do not start new processing, fir
 
 panel_prepared=true confirms prepared data, not visibility. Reuse the returned panel (an upload or transcription panel becomes the score); call open_score again only for a reported display failure or a request to reopen, or once if this conversation returned no score/upload panel.
 
-For a video link, inspect its actual frames before choosing how to make the score: use watch_link when check_link has only a cover, missing frames or unreadable notation. Choose times and crop to read changing staves. If readable sheet music is present, write what it shows as ABC/MusicXML with create_score and review against the frames; do not audio-transcribe merely to obtain a score_id. If no sheet music is visible, use audio transcription. Missing or blurry frames do not prove there is no score: inspect more or report the gap; never invent unreadable bars. Follow an explicit request to transcribe the performance instead of the written score. Finish in ScoreStarling in this turn; screenshots/PDFs are optional working material, not the default deliverable or a reason to ask the user to request import again.
+Video links: inspect actual frames before choosing a source; watch_link provides times/crops without a score_id. Read visible notation with create_score and review against the source; otherwise transcribe audio when no notation is visible or the performance is explicitly requested. Missing or blurry frames do not prove absence: seek readable evidence or report the limitation, never invent bars. Finish the requested score in ScoreStarling. The notation skill explains the complete video-reading workflow.
 
 Audio attachments: check_recording with the named instrument; use recommendation.engine. If it is null, ask what the instrument is. local is Standard for one instrument or voice; piano is Piano for solo piano with both hands, chords and pedal; mirelo is paid Pro for bands and drums, chosen with the user; its credit quote is the one cost question. Never ask for a credit cap or show supplier credits. Pro uploads need instrument review; follow next_step. To the user, name the choices as the workspace does: one instrument or voice, solo piano, or a band (uses credits); say price, not quote; never say Standard, Piano engine, Pro, model or supplier names unless the user does. When you ask the user to agree to a band's price, add the short credit "Powered by Mirelo" (its API terms ask for it where a generation starts); nowhere else.
 
