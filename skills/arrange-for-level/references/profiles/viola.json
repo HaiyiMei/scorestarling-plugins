@@ -1,0 +1,22 @@
+{
+  "instrument": "viola",
+  "aliases": ["中提琴"],
+  "system": "ABRSM",
+  "kind": "melodic",
+  "confidence": "high",
+  "reliable_up_to": 8,
+  "grade_names": {"0": "Initial"},
+  "note": "Keys, meters, rhythm and notation features follow the ABRSM sight-reading parameters (official, cumulative), ranges follow its sight-reading range table. These describe the unseen sight-reading test, which sits below exam pieces, so treat them as safe-to-read limits. Grade 0 = Initial. Accidental rates, grace-note and 32nd-note rules are our estimates. See references/instruments/viola.md.",
+  "sources": ["ABRSM Practical Grades, Bowed Strings syllabus from 2024, sight-reading parameters and keys and ranges tables (pp. 23-24): https://www.abrsm.org/sites/default/files/2024-12/Bowed%20Strings%202024%20Practical%20syllabus%20(1%20Violin%2020241211).pdf"],
+  "grades": {
+    "0": {"key_sigs": [1, 2], "meters": ["4/4", "2/4"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.05, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [55, 67], "range_slack": 2},
+    "1": {"key_sigs": [1, 2], "meters": ["4/4", "2/4", "3/4"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.05, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [55, 74], "range_slack": 2},
+    "2": {"key_sigs": [0, 1, 2], "meters": ["4/4", "2/4", "3/4", "2/2"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.1, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [48, 74], "range_slack": 2},
+    "3": {"key_sigs": [-3, -2, -1, 0, 1, 2], "meters": ["4/4", "2/4", "3/4", "2/2"], "sixteenth_share_ok": 0.25, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.2, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [48, 76], "range_slack": 2},
+    "4": {"key_sigs": [-3, -2, -1, 0, 1, 2, 3], "meters": ["4/4", "2/4", "3/4", "2/2", "6/8"], "sixteenth_share_ok": 0.4, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [48, 79], "range_slack": 2},
+    "5": {"key_sigs": [-4, -3, -2, -1, 0, 1, 2, 3, 4], "meters": ["4/4", "2/4", "3/4", "2/2", "6/8"], "sixteenth_share_ok": 0.6, "triplets": "warn", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": null, "chord_over_at": 3, "chord_warn_at": 2, "chord_warn_share": 0.05, "range": [48, 81], "range_slack": 2},
+    "6": {"key_sigs": [-4, -3, -2, -1, 0, 1, 2, 3, 4], "meters": ["4/4", "2/4", "3/4", "2/2", "6/8", "9/8", "5/8", "5/4"], "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "warn", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 3, "chord_warn_at": 2, "chord_warn_share": 0.05, "range": [48, 81], "range_slack": 2},
+    "7": {"key_sigs": [-4, -3, -2, -1, 0, 1, 2, 3, 4], "meters": ["4/4", "2/4", "3/4", "2/2", "6/8", "9/8", "5/8", "5/4", "7/8", "7/4"], "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "warn", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 3, "chord_warn_at": 2, "chord_warn_share": 0.1, "range": [48, 83], "range_slack": 2},
+    "8": {"key_sigs": [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5], "meters": ["4/4", "2/4", "3/4", "2/2", "6/8", "9/8", "5/8", "5/4", "7/8", "7/4", "12/8"], "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 4, "chord_warn_at": 2, "chord_warn_share": 0.25, "range": [48, 84], "range_slack": 2}
+  }
+}

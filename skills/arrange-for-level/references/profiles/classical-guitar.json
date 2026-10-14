@@ -1,0 +1,21 @@
+{
+  "instrument": "classical-guitar",
+  "aliases": ["classical guitar", "guitar (classical)", "nylon guitar", "spanish guitar", "古典吉他"],
+  "system": "ABRSM",
+  "kind": "melodic",
+  "confidence": "medium",
+  "reliable_up_to": 8,
+  "written_offset": 12,
+  "note": "Keys, meters, rhythm features and chord limits follow the ABRSM Guitar syllabus from 2019 (sight-reading table and scale lists, official). Written range is computed from the position limits of the sight-reading table (1st position to Grade 2, 2nd position at Grade 3, up to 5th at Grade 5); ABRSM states none for Grades 4 and 6-8, so no range check runs there. Guitar is written an octave above sounding: the script adds 12 semitones to a concert-pitch file. No Initial grade exists (an unmarked Prep Test). See references/instruments/classical-guitar.md.",
+  "sources": ["ABRSM, Guitar Syllabus from 2019 (still current): https://www.abrsm.org/sites/default/files/2025-05/Guitar%20Practical%20Grade%20Syllabus_0.pdf"],
+  "grades": {
+    "1": {"key_sigs": [-1, 0, 1], "meters": ["4/4", "3/4"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.05, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [52, 79], "range_slack": 2},
+    "2": {"key_sigs": [-1, 0, 1], "meters": ["4/4", "3/4", "2/4", "2/2"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.1, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [52, 79], "range_slack": 2},
+    "3": {"key_sigs": [-1, 0, 1, 2], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.2, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [52, 81], "range_slack": 2},
+    "4": {"key_sigs": [-1, 0, 1, 2, 3], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8"], "sixteenth_share_ok": 0.25, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0},
+    "5": {"key_sigs": [-1, 0, 1, 2, 3], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8"], "sixteenth_share_ok": 0.4, "triplets": "warn", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": null, "chord_over_at": 3, "chord_warn_at": 2, "chord_warn_share": 0.1, "range": [52, 84], "range_slack": 2},
+    "6": {"key_sigs": [-2, -1, 0, 1, 2, 3], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8", "9/8", "5/8", "5/4"], "sixteenth_share_ok": 0.6, "triplets": "ok", "grace": "warn", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 4, "chord_warn_at": 2, "chord_warn_share": 0.1},
+    "7": {"key_sigs": [-2, -1, 0, 1, 2, 3, 4], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8", "9/8", "5/8", "5/4", "7/8", "7/4"], "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "warn", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 5, "chord_warn_at": 2, "chord_warn_share": 0.1},
+    "8": {"key_sigs": [-3, -2, -1, 0, 1, 2, 3, 4], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8", "9/8", "5/8", "5/4", "7/8", "7/4", "12/8"], "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": null, "chord_warn_at": 2, "chord_warn_share": 0.1}
+  }
+}

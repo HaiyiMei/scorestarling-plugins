@@ -9,8 +9,9 @@ MIDI, Guitar Pro (.gp5), MP3/WAV audio, ABC, MEI, parts or numbered notation.
 This plugin combines the hosted ScoreStarling MCP tools with two workflow skills:
 `scorestarling-score` for audio/video recordings and `scorestarling-notation` for
 sheet music, score files and music written in the chat.
-Task skills add musical know-how on top: `piano-grade-1` arranges a piano piece down to about
-ABRSM Grade 1 difficulty and checks the result with a bundled script.
+Task skills add musical know-how on top: `arrange-for-level` arranges a piece for a chosen
+instrument and level, from complete beginner to about ABRSM Grade 8, and checks the result with a
+bundled script. It asks for the instrument and the level when the request does not say.
 It is maintained by individual developer HaiyiMei.
 The OpenAI listing uses the verified developer name HAIYI MEI.
 

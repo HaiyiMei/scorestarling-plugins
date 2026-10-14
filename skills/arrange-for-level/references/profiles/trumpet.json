@@ -1,0 +1,21 @@
+{
+  "instrument": "trumpet",
+  "aliases": ["trumpet in Bb", "Bb trumpet", "cornet", "小号"],
+  "system": "ABRSM",
+  "kind": "melodic",
+  "confidence": "high",
+  "reliable_up_to": 8,
+  "written_offset": 2,
+  "note": "Keys, meters, rhythm and notation features follow the ABRSM sight-reading parameters (official, cumulative), written-pitch ranges follow its sight-reading range table. ABRSM has no Initial grade for winds, so the profile starts at Grade 1. Breathing limits are our estimate. The check expects written pitch; if the file has no transposition the script adds written_offset semitones first. See references/instruments/trumpet.md. Brass source: ABRSM Brass syllabus from 2023 (https://www.abrsm.org). Written for trumpet in Bb (sounds a major 2nd lower); offset 2.",
+  "sources": ["ABRSM Practical Grades, Brass syllabus from 2023, sight-reading parameters and keys and ranges tables: https://www.abrsm.org (see references/winds.md for the exact PDF)"],
+  "grades": {
+    "1": {"key_sigs": [0], "meters": ["4/4", "3/4", "2/4"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.05, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [60, 72], "range_slack": 2, "breath_s": [6, 10]},
+    "2": {"key_sigs": [-2, 0, 2], "meters": ["4/4", "3/4", "2/4", "2/2"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.1, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [58, 74], "range_slack": 2, "breath_s": [6, 10]},
+    "3": {"key_sigs": [-2, -1, 0, 2], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8"], "sixteenth_share_ok": 0.25, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.2, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [57, 74], "range_slack": 2, "breath_s": [10, 16]},
+    "4": {"key_sigs": [-2, -1, 0, 1, 2, 3], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8"], "sixteenth_share_ok": 0.4, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [57, 76], "range_slack": 2, "breath_s": [10, 16]},
+    "5": {"key_sigs": [-3, -2, -1, 0, 1, 2, 3, 4], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8"], "sixteenth_share_ok": 0.6, "triplets": "warn", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [56, 78], "range_slack": 2, "breath_s": [14, 24]},
+    "6": {"key_sigs": [-4, -3, -2, -1, 0, 1, 2, 3, 4], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8", "9/8", "5/8", "5/4"], "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "warn", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [55, 79], "range_slack": 2, "breath_s": [14, 24]},
+    "7": {"key_sigs": [-4, -3, -2, -1, 0, 1, 2, 3, 4], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8", "9/8", "5/8", "5/4", "7/8", "7/4"], "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "warn", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [55, 80], "range_slack": 2, "breath_s": [18, 32]},
+    "8": {"key_sigs": [-4, -3, -2, -1, 0, 1, 2, 3, 4, 5], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8", "9/8", "5/8", "5/4", "7/8", "7/4", "12/8"], "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [55, 82], "range_slack": 2, "breath_s": [18, 32]}
+  }
+}
