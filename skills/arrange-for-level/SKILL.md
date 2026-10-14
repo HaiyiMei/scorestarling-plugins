@@ -158,11 +158,14 @@ the table: read [other-instruments.md](references/other-instruments.md).
    ```
 
    It prints ok / warn / over per check with bar numbers, and a verdict (standard library only). Fix
-   every "over"; keep a "warn" only when it is deliberate and say why. `--estimate` reports the lowest
+   every "over" by changing the arrangement (key, octave, rhythm, texture, what the other hand does); keep a
+   "warn" only when it is deliberate and say why. `--estimate` reports the lowest
    level with nothing over and the likely level; read it as a floor, because texture and technique above
    about Grade 5 are only partly measured. `--mark out.musicxml` colours the offending notes red for a
-   before/after picture. The check serves the music: never change a melody note to silence a warning; if
-   the tune itself needs the leap, keep it and name it as the hard spot. When you cannot run code, go
+   before/after picture. The check serves the music: never change a melody note to silence a warning
+   or an "over". If a melody note is the only thing left over the line (a chromatic note, a leap, a note
+   just outside the range), keep it, say in the reply that it is above the level and why you kept it, and
+   offer the simplified version as the next step. When you cannot run code, go
    through the instrument file's table by hand, bar by bar. A clean check does not prove the music
    survived: A/B the result against the master for melody, bass at changes and form.
 10. **Deliver and report.** Write it in the format the base skill uses (ABC with one voice per staff is
