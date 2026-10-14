@@ -1,6 +1,6 @@
 ---
 name: scorestarling-score
-description: Turn a recording into an editable, playable score with ScoreStarling, then review it, fix it in place and deliver it. Use whenever someone wants sheet music, a score, jianpu, MIDI or MusicXML from audio or video (an attached file, a voice memo, a song they play or sing, a YouTube, Bilibili or other link), asks how a transcription came out or wants it checked, corrected, simplified or arranged, wants to open, edit, show as jianpu or download an existing ScoreStarling score, gives a ScoreStarling invitation link or code, or asks about a band transcription's price, opening the whole of a previewed piece, downloads, credits or limits. Needs a connected ScoreStarling MCP server. Sheet music, score files and music typed in the chat go to scorestarling-notation.
+description: Turn a recording into an editable, playable score with ScoreStarling, then review it, fix it in place and deliver it. Use whenever someone wants sheet music, a score, jianpu, MIDI or MusicXML from audio or video (an attached file, a voice memo, a song they play or sing, a YouTube, Bilibili or other link), asks how a transcription came out or wants it checked, corrected, simplified or arranged, wants to open, edit, show as jianpu or download an existing ScoreStarling score, gives a ScoreStarling invitation link or code, or asks about a band transcription's price, opening the whole of a previewed piece, downloads, credits or limits. Needs a connected ScoreStarling MCP server. Readable notation in video frames, sheet music, score files and music typed in chat go to scorestarling-notation.
 ---
 
 # From a recording to a reviewed, editable score
@@ -56,7 +56,8 @@ into more detail, follow the step.
 | Nothing yet | Answer in three short lines with the ways in (below); for a new user, offer the free sample too |
 | A ScoreStarling invitation link or code | `redeem_code` once ("Invitations and codes", below), then what they came to do |
 | A recording attached in ChatGPT | Steps 2 to 5 |
-| A link to a video, a song page or an audio file | Steps 2 to 5: look with `check_link`, send it with `transcribe_link` |
+| A video link | Inspect with `check_link`/`watch_link`: read visible notation with `create_score`; otherwise transcribe audio |
+| A song page or audio file link | Steps 2 to 5: look with `check_link`, send it with `transcribe_link` |
 | A file you can read with code (Claude, Codex) | Steps 2 to 5; send it as [references/uploads.md](references/uploads.md) describes |
 | A score already in ScoreStarling | `list_scores`, then `open_score` once (with `notation=jianpu` if they want numbers) unless its panel is already in the conversation. Opening needs no upload, audio check or new transcription; do not ask for anything the score already records. Then steps 6 and 7 for changes, views and files; review it (step 5) when the user asks how it came out or wants it checked |
 | Sheet music, a score file or music written in the chat | The `scorestarling-notation` skill |
@@ -103,6 +104,10 @@ video or song page also its words (title, channel, description, tags, chapters, 
 pictures: the cover and frames across the part that will be transcribed, each labelled with its
 time. Look at them:
 
+- **Choose the source before choosing an engine.** Inspect actual video frames; use `watch_link` for useful
+  times/crops without creating a score first. Readable notation follows the **Notation visible in a video**
+  section of `scorestarling-notation`; if there is no notation, follow the audio workflow below. Missing
+  or unreadable frames are inconclusive. Honor an explicit request to transcribe the performance.
 - **Decide what is playing from the listen and the pictures together.** When `recommendation.engine`
   is null and the frames plainly show solo piano, one other instrument or voice, or a band with
   drums, choose that and say so in one sentence the user can correct ("It looks and sounds like
@@ -469,6 +474,8 @@ Use existing ScoreStarling entitlements only. Never offer credit purchases, new 
 When the user says reuse the existing result or do not start new processing, first list_scores; open_score once if no panel result was already prepared for this score/request. do not upload, check_recording or transcribe_again merely to reopen a score. Only for an explicitly requested new score from a saved Pro result, use the original upload or transcribe_again with provider=mirelo, review_instruments=true and replay_only=true from creation (enabled replay accounts only). Read get_pro_instrument_review(start=false) first. replay_candidates verify this owner, original bytes and decoded length; compare every historical instrument and flat pro_options with the requested choices. No matching candidate means stop and offer the existing score; never start detection, fresh processing or a replacement. Confirm matching complete choices with replay_only=true, then read back pro_review.replay_only=true. Keep the same excerpt length; a shorter quote needs its own matching saved result, otherwise stop. If a quote is required, ask once for its exact product credits; reuse permission is not payment consent. Follow the same job and verify completed.replayed_from. Explain saved-result reuse in plain words; the user does not need to name internal fields.
 
 panel_prepared=true confirms prepared data, not visibility. Reuse the returned panel (an upload or transcription panel becomes the score); call open_score again only for a reported display failure or a request to reopen, or once if this conversation returned no score/upload panel.
+
+Video links: inspect actual frames before choosing a source; watch_link provides times/crops without a score_id. Read visible notation with create_score and review against the source; otherwise transcribe audio when no notation is visible or the performance is explicitly requested. Missing or blurry frames do not prove absence: seek readable evidence or report the limitation, never invent bars. Finish the requested score in ScoreStarling. The notation skill explains the complete video-reading workflow.
 
 Audio attachments: check_recording with the named instrument; use recommendation.engine. If it is null, ask what the instrument is. local is Standard for one instrument or voice; piano is Piano for solo piano with both hands, chords and pedal; mirelo is paid Pro for bands and drums, chosen with the user; its credit quote is the one cost question. Never ask for a credit cap or show supplier credits. Pro uploads need instrument review; follow next_step. To the user, name the choices as the workspace does: one instrument or voice, solo piano, or a band (uses credits); say price, not quote; never say Standard, Piano engine, Pro, model or supplier names unless the user does. When you ask the user to agree to a band's price, add the short credit "Powered by Mirelo" (its API terms ask for it where a generation starts); nowhere else.
 

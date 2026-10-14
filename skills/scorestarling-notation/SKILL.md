@@ -1,6 +1,6 @@
 ---
 name: scorestarling-notation
-description: Turn sheet music into an editable, playable ScoreStarling score and convert music between forms. Sources include a photo, scan or PDF of printed music, jianpu (numbered notation), a lead sheet or chord chart, a MusicXML, MIDI, ABC or Guitar Pro file, or music typed, described or written in the chat. Outputs include MIDI, audio, PDF, MusicXML, Guitar Pro, ABC, MEI and jianpu. Use with a connected ScoreStarling MCP server whenever music arrives as notation rather than as a recording.
+description: Turn sheet music into an editable, playable ScoreStarling score and convert music between forms. Sources include notation visible in video frames, a photo, scan or PDF of printed music, jianpu (numbered notation), a lead sheet or chord chart, a MusicXML, MIDI, ABC or Guitar Pro file, or music typed, described or written in the chat. Outputs include MIDI, audio, PDF, MusicXML, Guitar Pro, ABC, MEI and jianpu. Use with a connected ScoreStarling MCP server whenever music arrives as notation rather than by listening to a recording.
 ---
 
 # Sheet music and notation to a score
@@ -8,7 +8,28 @@ description: Turn sheet music into an editable, playable ScoreStarling score and
 Use the connected ScoreStarling tools. A score made here is a normal ScoreStarling project: it
 plays back, opens in the score panel, takes the same edits (`edit_score`) and exports to PDF,
 images, audio and, on accounts with Plus or bought credits, the editable formats (MusicXML, MIDI,
-Guitar Pro, ABC, MEI; see Converting). Recordings (audio or video) follow the `scorestarling-score` skill instead.
+Guitar Pro, ABC, MEI; see Converting). Music read from a video's notation follows the section below;
+music transcribed by listening follows the `scorestarling-score` skill.
+
+## Notation visible in a video
+
+The goal is the requested editable score in ScoreStarling from one user request. Decide from accessible
+source evidence whether to read notation or transcribe the performance; the video file type alone does
+not decide. `check_link` provides initial context; `watch_link` can return actual frames without a score ID.
+Choose useful times, crops and any authorized image-processing steps yourself. A cover is not evidence
+of the whole video. Screenshots or a PDF may help you work, but are not required intermediate deliverables.
+
+When notation is readable, follow its changing systems, avoid copying overlapping bars twice, write the
+notes, rhythms and marks with `create_score`, and compare the saved score against the source. If inspected
+frames show no notation, continue with audio transcription. An explicit request to transcribe the actual
+performance takes precedence over reading the printed score.
+
+Distinguish unreadable images from failed access: for blurred, cropped or incomplete notation, inspect
+another useful time or region. If the source cannot be fetched, do not repeat the same failing download
+with different crop settings. Explain what is unavailable and request the video file or clear screenshots;
+offer audio transcription as an alternative if audio is accessible, without silently changing an original-score
+request. Missing frames do not establish that no score exists, and unreadable bars must not be invented.
+Once the source is usable, finish the score in the same turn rather than asking the user to request import again.
 
 ## Reuse an existing score or saved result
 
@@ -198,6 +219,8 @@ Use existing ScoreStarling entitlements only. Never offer credit purchases, new 
 When the user says reuse the existing result or do not start new processing, first list_scores; open_score once if no panel result was already prepared for this score/request. do not upload, check_recording or transcribe_again merely to reopen a score. Only for an explicitly requested new score from a saved Pro result, use the original upload or transcribe_again with provider=mirelo, review_instruments=true and replay_only=true from creation (enabled replay accounts only). Read get_pro_instrument_review(start=false) first. replay_candidates verify this owner, original bytes and decoded length; compare every historical instrument and flat pro_options with the requested choices. No matching candidate means stop and offer the existing score; never start detection, fresh processing or a replacement. Confirm matching complete choices with replay_only=true, then read back pro_review.replay_only=true. Keep the same excerpt length; a shorter quote needs its own matching saved result, otherwise stop. If a quote is required, ask once for its exact product credits; reuse permission is not payment consent. Follow the same job and verify completed.replayed_from. Explain saved-result reuse in plain words; the user does not need to name internal fields.
 
 panel_prepared=true confirms prepared data, not visibility. Reuse the returned panel (an upload or transcription panel becomes the score); call open_score again only for a reported display failure or a request to reopen, or once if this conversation returned no score/upload panel.
+
+Video links: inspect actual frames before choosing a source; watch_link provides times/crops without a score_id. Read visible notation with create_score and review against the source; otherwise transcribe audio when no notation is visible or the performance is explicitly requested. Missing or blurry frames do not prove absence: seek readable evidence or report the limitation, never invent bars. Finish the requested score in ScoreStarling. The notation skill explains the complete video-reading workflow.
 
 Sheet music and score files (PDF/images, MusicXML/MXL, MIDI, ABC, Guitar Pro with its TAB) use the same upload paths but are read, not audio-transcribed: skip check_recording; no engine choice, tempo detection or provider fee applies. Use local for their upload route. Clean PDFs/flat scans suit the reader. For phone photos, handwriting, jianpu or lead sheets, read the source and write ABC with create_score; also use create_score for music typed/described/composed in chat. Prefer a PDF when both are given.
 
