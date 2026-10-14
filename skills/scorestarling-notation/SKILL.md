@@ -5,6 +5,12 @@ description: Turn sheet music into an editable, playable ScoreStarling score and
 
 # Sheet music and notation to a score
 
+Notation visible in a video belongs here too. Use `check_link` and, when necessary, `watch_link` to read
+actual frames at chosen times/crops before creating a score. Write the music you can read with `create_score`
+and compare the saved result against those frames. Do not audio-transcribe just because the source is a video,
+and do not stop at an intermediate PDF. If there is no visible notation, use the recording workflow; missing
+or blurry frames are inconclusive and need another look or an honest explanation of the missing evidence.
+
 Use the connected ScoreStarling tools. A score made here is a normal ScoreStarling project: it
 plays back, opens in the score panel, takes the same edits (`edit_score`) and exports to PDF,
 images, audio and, on accounts with Plus or bought credits, the editable formats (MusicXML, MIDI,
@@ -198,6 +204,8 @@ Use existing ScoreStarling entitlements only. Never offer credit purchases, new 
 When the user says reuse the existing result or do not start new processing, first list_scores; open_score once if no panel result was already prepared for this score/request. do not upload, check_recording or transcribe_again merely to reopen a score. Only for an explicitly requested new score from a saved Pro result, use the original upload or transcribe_again with provider=mirelo, review_instruments=true and replay_only=true from creation (enabled replay accounts only). Read get_pro_instrument_review(start=false) first. replay_candidates verify this owner, original bytes and decoded length; compare every historical instrument and flat pro_options with the requested choices. No matching candidate means stop and offer the existing score; never start detection, fresh processing or a replacement. Confirm matching complete choices with replay_only=true, then read back pro_review.replay_only=true. Keep the same excerpt length; a shorter quote needs its own matching saved result, otherwise stop. If a quote is required, ask once for its exact product credits; reuse permission is not payment consent. Follow the same job and verify completed.replayed_from. Explain saved-result reuse in plain words; the user does not need to name internal fields.
 
 panel_prepared=true confirms prepared data, not visibility. Reuse the returned panel (an upload or transcription panel becomes the score); call open_score again only for a reported display failure or a request to reopen, or once if this conversation returned no score/upload panel.
+
+For a video link, inspect its actual frames before choosing how to make the score: use watch_link when check_link has only a cover, missing frames or unreadable notation. Choose times and crop to read changing staves. If readable sheet music is present, write what it shows as ABC/MusicXML with create_score and review against the frames; do not audio-transcribe merely to obtain a score_id. If no sheet music is visible, use audio transcription. Missing or blurry frames do not prove there is no score: inspect more or report the gap; never invent unreadable bars. Follow an explicit request to transcribe the performance instead of the written score. Finish in ScoreStarling in this turn; screenshots/PDFs are optional working material, not the default deliverable or a reason to ask the user to request import again.
 
 Sheet music and score files (PDF/images, MusicXML/MXL, MIDI, ABC, Guitar Pro with its TAB) use the same upload paths but are read, not audio-transcribed: skip check_recording; no engine choice, tempo detection or provider fee applies. Use local for their upload route. Clean PDFs/flat scans suit the reader. For phone photos, handwriting, jianpu or lead sheets, read the source and write ABC with create_score; also use create_score for music typed/described/composed in chat. Prefer a PDF when both are given.
 
