@@ -1,0 +1,65 @@
+# Singing / voice: difficulty by level (ABRSM Singing grades; Trinity Rock & Pop Vocals; RSL Vocals)
+
+**Read this when** the target instrument is voice, at any level. Numbers come from ABRSM Singing, Trinity and RSL vocals; the checker reads them from [../profiles/voice.json](../profiles/voice.json): `python3 scripts/check_level.py arrangement.musicxml --instrument voice --grade N`. S1, S2 … in the tables point to the Sources section at the end; the master list with a confidence note for each is [../sources.md](../sources.md). Compiled 2026-10-14.
+
+## Contents
+
+- Table by grade
+- What changes between neighbouring grades
+- Arranging implications
+- Confidence and gaps
+- Sources
+
+## Table by grade
+
+"Typical range" combines official ceilings with [D] statistics for ABRSM set songs (span median, P10-P90 in semitones; median lowest-highest note of first-listed edition).
+
+| Level | Keys | Time signatures | Note values and rhythms | Typical range | Technique demands | Other features (language, breath, length, accompaniment) | Sight-singing / playback parameters |
+|---|---|---|---|---|---|---|---|
+| Initial (Trinity only) | simple, normally up to 1-2 sharps/flats, modal allowed [T] | 4/4, 2/4, 3/4 [T] | simple rhythms, swung quavers, occasional simple syncopation; mp-f; 60-130 bpm [T] | no more than an octave, one register [T] | slurs, legato, simple breath control via balanced phrase lengths [T] | 45 s-2 min; supportive backing with clear entries [T] | [T] playback 8 bars, stepwise only, overall range a 4th, C major/A minor, minims/crotchets; improvise 4 bars, any major key, I-IV-V |
+| 1 | [A] C, G, F major (sight-singing); [T] mainly up to 2 sharps/flats, occasionally 4 | [A] 4/4; [T] as Initial | [A] half, quarter, eighth pairs, rests, no repeated notes, f/p, hairpins; [T] triplets may appear, more syncopation; 60-160 bpm | [A] sight-singing about a 6th within c'-d'' (C4-D5; bass c-d'); [D] set songs n=105: span 13 (10-16), D4-D5; [T] still within an octave and one register | [T] mainly legato with some accented phrases, blue notes; leaps up to a 6th sparingly | 3 accompanied songs, max 4 min total, plus unaccompanied folk song 1-2 min [A]; any language or singing translation [A]; 1-2.5 min [T]; piano gives occasional chords doubling the tune [A] | [A] 4 bars, no words, stepwise 2nds only. [T] playback G major/E minor, M/m 3rd, range a 6th. [R] 4 bars, C major, up to M3, q=70, whole/half/quarter notes. [A] aural: sing back 2-bar echoes, tonic-mediant |
+| 2 | [A] adds D major; [T] up to 4 sharps/flats; [R] F major/A minor (F), C major/A minor (M) | [A] 3/4; [T] 2/4 as printed + occasional changes | [A] dotted half, dotted quarter+eighth, mf/mp; [T] syncopation standard in melody, crescendos within phrases | [D] n=90: span 13 (12-17), D4-Eb5; [T] up to a 10th, lower and upper registers but no swift changes; [R] up to M3 | [T] long notes and sustained phrases, chest voice/lower range with projection; occasional leaps to a 7th, intervals to a 4th standard | max 5 min programme [A]; backing relatively supportive, some rhythmic independence [T]; 1.5-3 min [T] | [A] 4 bars, rising 3rds in tonic chord. [T] playback F major/D minor, P4. [R] adds quarter rests. Aural echoes tonic-dominant [A] |
+| 3 | [A] adds B-flat major, A minor; [T] as G2; [R] C major/D minor (F), F major/E minor (M) | [A] none new; [T] 6/8, 12/8 | [A] 8 bars, groups of four eighths, eighth rests; [T] increasing complexity, syncopation throughout; pp, ff | [D] n=78: span 15 (11-17), C4-Eb5; [T] as G2 with occasional faster register changes; [A] about an octave within c'-d''; [R] up to P5 | [T] grace notes, staccato, consonant emphasis in fast rhythms and slow ballads; leaps more frequent | max 6 min programme [A]; tempo changes allowed [T]; accompaniment more independent, less guidance [T]; 1.5-3.5 min | [A] rising/falling 3rds, cadential rising 4ths, repeated notes, slowing at end. [T] playback D major/B minor, P5, range an octave, blues scale, chromatic notes, 8-12 bars. [R] adds eighth notes, 75-85 bpm |
+| 4 | [A] A and E-flat major, E and D minor; [T] any key, key changes | [A] 6/8; [T] all regular | [A] semiquaver patterns, dotted rhythms; [T] all rhythms, syncopation throughout | [D] n=101: span 14 (12-17), D4-E5; [A] sight-singing window b-flat-d'' (B-flat3-D5; bass B-flat-d'); [T] up to an 11th, fast high/low register moves, octave leaps | [T] increasing articulation and agility demands; any interval, occasional chromaticism; improvised solos about 4 bars | 2.5-4 min; moderately supportive backing [T] | [A] rising 4ths, octaves, 8 bars. [T] playback A major/C minor, M/m 6th, range an 11th, cresc/dim, syncopation. [R] range up to an octave, with lyrics, last 2 bars improvised |
+| 5 | [A] E major, B and G minor; [T] any | [A] none new; [T] irregular occasional, more changes | [A] semibreves, ties, phrase marks; [T] more chromatic, pentatonic and blues scales | [D] n=143: span 15 (12-19), D4-F5; [T] up to a 12th | [T] melisma; solos about 8 bars | folk song may run to 3 min (G5-8) [A]; 2.5-4 min [T] | [A] perfect 5ths, falling 4ths. [T] playback E major/G minor, M/m 7th, chord symbols given. [R] octave, 85-95 bpm |
+| 6 | [A] A-flat major, C minor; [T] playback up to 5 sharps/flats | [A] none new; [T] more irregular; playback 2/2, 9/8, 3/8 | [A] pp, slurs, accents, English words optional; [T] playback crotchet triplets, dotted 16ths, 32nds, tenuto, subito | [D] n=239: span 15 (12-17), D4-F5; [A] window b-flat-e-flat'' (B-flat3-E-flat5); [T] up to a 13th, leaps beyond an octave, harder downward leaps | [T] effects (creaks, growls, slides, screams, glottal), theatrics, occasional rap; improv solos ~12 bars | choose 3 songs from any 3 of 5 lists; any voice, any key [A]; 3-4.5 min; backing becoming independent [T]; min song 1:30, max programme 15 min [AP] | [A] 8-10 bars with optional English text; 6ths, occasional chromatic notes. [T] playback octave intervals. [R] Quick Study: 4 bars notated + 8 bars improvised, 70-160 bpm |
+| 7 | [A] F-sharp minor; [T] playback any key | [A] none new; [T] playback 7/4, 7/8, 5/4, 5/8 | [A] triplets, semiquaver rests, staccato, pause; [T] any terms and signs | [D] n=237: span 15 (13-19), D4-F5; [T] up to a 14th, high agility and free register movement | [T] greater use of rap if apt; occasional minor 7ths, chromatic semitones [A]; solos ~16 bars | 3-4.5 min; almost fully independent backing [T]; min song 2:00, max programme 20 min [AP] | [A] 8-10 bars (carried from G6), adds minor 7ths, chromatic semitones. [T] playback M/m 10th. [R] harmonic minor scale, 3-part backing vocals |
+| 8 | [A] C-sharp and F minor | [T] playback time-signature changes | [A] ff; [T] key changes inside song possible in playback | [D] n=292: span 17 (14-20), C#4-F#5; [T] up to two octaves, leaps across the whole range incl. downward | [T] full range of techniques, advanced tonal and melodic control, multiple improvised solos | 3.5-5 min; backing may be fully independent [T]; min song 3:00, max programme 25 min [AP] | [A] 8-12 bars, diminished 7ths. [T] playback M/m 12th, overall range a 12th. [R] chromatic scale, diminished 7 arpeggio, intervals to octave |
+
+## What changes between neighbouring grades
+
+- Initial to 1: range stays about an octave; first leaps to a 6th, 4-bar tests, triplets and blue notes appear.
+- 1 to 2: range widens to a 10th with two registers; 3rds in the tune, longer sustained notes; piano gets more independent.
+- 2 to 3: 6/8 and 12/8, syncopation everywhere, grace notes/staccato, quicker register shifts; test length doubles to 8 bars.
+- 3 to 4: octave leaps, any key, range 11th, fast register changes, 6/8 sight-singing, 4-bar solos.
+- 4 to 5: range 12th, melisma, pentatonic/blues colouring, irregular meters, 8-bar solos.
+- 5 to 6: range 13th, leaps over an octave, vocal effects/rap, independent backing; ABRSM drops two-language rule and adds a fifth list.
+- 6 to 7: range 14th, minor 7ths and chromatic semitones in reading, agility; 7 to 8: two-octave compass, full technique, diminished 7ths, longer tests.
+
+## Arranging implications
+
+- Fix a ceiling span per level. Trinity ceilings: Initial and G1 one octave (one register); G2 and G3 a 10th; G4 an 11th; G5 a 12th; G6 a 13th; G7 a 14th; G8 two octaves. ABRSM set songs [D] have median spans of roughly a 9th-10th at G1-G7 (13-15 semitones) and an 11th at G8, so they exceed Trinity's G1 ceiling; pick one board's ceiling and stay below its P90 (16-20 semitones).
+- Place the tune where the voice is easy: ABRSM sight-singing keeps G1-3 in C4-D5 (bass C3-D4) and G4-5 in B-flat3-D5, G6-8 up to E-flat5; any song may be transposed, and Trinity lets +/-5 semitones, so put the arrangement in the singer's key rather than fixing one.
+- Intervals: G1 steps with an occasional leap to a 6th; G2 thirds and a few 7ths; G3-4 4ths/5ths/octaves; avoid octave leaps below G4, downward leaps over an octave below G6.
+- Rhythm: G1 half/quarter/eighth with light syncopation; dotted rhythms and 3/4 at G2; 6/8 and semiquavers at G3-4; triplets at G1-G2 only when simple; heavy syncopation from G3.
+- Breath: official text gives only "balanced phrase lengths" (Initial) and "long notes and sustained phrases" (G2+); keep rests at phrase ends (ABRSM sight-singing supplies rests at breathing places). Numeric bar counts are my inference, not board text: roughly 2-bar phrases for G1-2 (echo tests are 2 bars), longer for higher grades.
+- Language: all boards allow singing translation or any language; foreign-language art song is common from about G3 and dominant at G6-8 in ABRSM lists [D tag counts], but not required, so write English underlay for G1-G5.
+- Accompaniment: G1-2 piano doubles top of the tune with occasional chords; from G3 independent figures; G6+ independent backing (Trinity). Provide clear entries below G3.
+- Length: one song 1-2.5 min (G1) up to 3.5-5 min (G8) [T]; ABRSM unaccompanied folk song 1-2 min (G1-4), 1-3 min (G5-8).
+
+## Confidence and gaps
+
+- Keys, time signatures, intervals, sight-singing range windows, features, folk-song timings, programme caps, language policy: verbatim from ABRSM [A]/[AP] (table read from page image; note values partly shown as symbols, interpreted).
+- Trinity range, rhythm, intervals, techniques, accompaniment, playback/improvising tables: verbatim official [T]. RSL sight-reading and exercises: verbatim official [R] but 2016 edition (later RSL vocals edition not found).
+- [D] range statistics: derived by me, medium confidence (first-listed edition, parsing losses, n=78-292). Not an official figure; G3 and G4 are least reliable.
+- Gaps: phrase length and breath counts, loudness/chest-belt-head voice limits, text density: unknown (no source). Grade equivalence between boards (Trinity vs ABRSM) is not published; The boards disagree at low grades: ABRSM G1-2 set songs typically span about a 9th (above Trinity's one-octave G1 ceiling) while ABRSM sight-singing is only about a 6th (a reading test, not repertoire). Trinity G2 time signature printed oddly as 2/4 (unknown).
+
+## Sources
+
+- [A] ABRSM, "Singing Syllabus from 2018" (Practical Grades, updated April 2021, 85 pp), https://www.abrsm.org/sites/default/files/2023-09/singing-syllabus-practical-april-2021.pdf. Taken: sight-singing parameter table (length, keys, time, vocal-range window, intervals, features), unaccompanied folk-song timings, any voice/any key and language rules, G1-3 programme-time caps, aural echo tests, and the printed vocal range of every listed song (used for my own statistics, below).
+- [AP] ABRSM, "Music Performance Grades: Singing, Syllabus (Section 3)", https://www.abrsm.org/sites/default/files/2023-10/Singing%20Performance%20Grades%20Syllabus_0.pdf. Taken: minimum song durations and maximum programme times G1-8; same keys/language policy.
+- [T] Trinity College London, "Rock & Pop VOCALS Syllabus, graded exams from 2018" (PDF), https://www.trinitycollege.com/resource/?id=7901 (linked from https://www.trinityrock.com/instruments/vocals). Taken: own-choice song parameter tables Initial-8 (range, keys, intervals, techniques, accompaniment), Playback and Improvising tables, transposition rule (+/-5 semitones), mic and language rules.
+- [R] RSL (Rockschool), "Vocals Syllabus Specification, 2016 Edition" (rev. 5 May 2020; older edition, no Debut), https://www.newschool.ie/wp-content/uploads/2020/11/RSL_Vocals_Syllabus_Guide_05May2020.pdf. Taken: sight-reading key/range/tempo, technical exercises (scales, intervals, arpeggios, backing vocals, melodic studies).
+- Derived [D]: my own statistics from the printed Helmholtz ranges in [A] (octave marks recovered from the PDF's symbol font; only the first-listed edition's range is printed, normally the highest key, so treble-voice biased; entries whose octave marks were lost or that parsed below a 7-semitone span were dropped; n shown per grade).
+- Tried and failed: ABRSM html pages (403). No source gives numeric phrase lengths or breath counts.
+- Pitch names: scientific pitch (C4 = middle C = c' in Helmholtz). Semitone spans: 12 = octave, 14 = 9th, 16 = 10th, 17 = 11th, 19 = 12th, 21 = 13th.

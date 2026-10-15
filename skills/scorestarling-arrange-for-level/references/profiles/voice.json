@@ -1,0 +1,22 @@
+{
+  "instrument": "voice",
+  "aliases": ["singing", "vocal", "vocals", "singer", "sing", "lead vocal", "人声", "歌唱", "唱歌", "声乐"],
+  "system": "ABRSM Singing + Trinity Rock & Pop Vocals",
+  "kind": "melodic",
+  "confidence": "medium",
+  "reliable_up_to": 8,
+  "grade_names": {"0": "Initial"},
+  "note": "Span ceilings follow Trinity Rock & Pop Vocals 2018 (an octave at Initial and 1, a 10th at 2-3, an 11th, 12th, 13th, 14th and two octaves at 4-8) with the upper bound widened toward the 90th percentile of ABRSM set-song ranges (our own statistics from printed ranges). Pitch is left to the singer: the checker measures the span, not where it sits; choose the key for the voice. Leap sizes and phrase length are our reading of the boards' descriptions. Sight-singing windows (ABRSM, treble voices): Grades 1-3 about C4-D5, Grades 4-5 B-flat3-D5, Grades 6-8 up to E-flat5. See references/instruments/voice.md.",
+  "sources": ["ABRSM, Singing Syllabus from 2018 (updated April 2021): https://www.abrsm.org/sites/default/files/2023-09/singing-syllabus-practical-april-2021.pdf", "Trinity College London, Rock & Pop Vocals syllabus from 2018: https://www.trinitycollege.com/resource/?id=7901"],
+  "grades": {
+    "0": {"key_max_acc": 2, "meters": ["4/4", "2/4", "3/4"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": 0.05, "span": [12, 15], "breath_s": [6, 10], "leap": [7, 9]},
+    "1": {"key_max_acc": 2, "meters": ["4/4", "2/4", "3/4"], "sixteenth_share_ok": 0, "triplets": "warn", "grace": "over", "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": 0.05, "span": [12, 16], "breath_s": [8, 12], "leap": [9, 11]},
+    "2": {"key_max_acc": 4, "meters": ["4/4", "2/4", "3/4", "2/2"], "sixteenth_share_ok": 0, "triplets": "warn", "grace": "over", "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": 0.1, "span": [16, 18], "breath_s": [10, 14], "leap": [10, 11]},
+    "3": {"key_max_acc": 4, "meters": ["4/4", "2/4", "3/4", "2/2", "6/8", "12/8"], "sixteenth_share_ok": 0.1, "triplets": "ok", "grace": "ok", "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": 0.2, "span": [16, 18], "breath_s": [12, 18], "leap": [11, 11]},
+    "4": {"key_max_acc": null, "meters": null, "sixteenth_share_ok": 0.3, "triplets": "ok", "grace": "ok", "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": null, "span": [17, 19], "breath_s": [14, 20], "leap": [12, 17]},
+    "5": {"key_max_acc": null, "meters": null, "sixteenth_share_ok": 0.5, "triplets": "ok", "grace": "ok", "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": null, "span": [19, 21], "breath_s": [16, 24], "leap": [12, 19]},
+    "6": {"key_max_acc": null, "meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": null, "span": [21, 23], "breath_s": [18, 28]},
+    "7": {"key_max_acc": null, "meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": null, "span": [23, 24], "breath_s": [18, 28]},
+    "8": {"key_max_acc": null, "meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": null, "span": [24, 26], "breath_s": [18, 28]}
+  }
+}

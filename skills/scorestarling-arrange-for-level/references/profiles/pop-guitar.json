@@ -1,0 +1,23 @@
+{
+  "instrument": "pop-guitar",
+  "aliases": ["guitar", "electric guitar", "acoustic guitar", "rock guitar", "吉他", "电吉他", "民谣吉他"],
+  "system": "Trinity Rock & Pop (RSL cross-check)",
+  "kind": "melodic",
+  "confidence": "medium",
+  "reliable_up_to": 8,
+  "written_offset": 12,
+  "grade_names": {"0": "Initial"},
+  "note": "Meters, rhythm values, tempo ceilings and chord-size ideas follow Trinity College London Rock & Pop Guitar 2018 own-choice parameters (official) with RSL Guitar 2018 as a cross-check. Neither publishes a note range or key list per grade, only a coarse position ladder, so the key limits here are our reading of \"simple keys\" (Initial-2), \"wider keys\" (3-4) and \"any key\" (5+), and there is no range check. Written pitch is an octave above sounding. See references/instruments/pop-guitar.md.",
+  "sources": ["Trinity College London, Rock & Pop Guitar syllabus from 2018: https://www.trinitycollege.com/resource/?id=7899", "RSL (Rockschool), Guitar Syllabus Specification 2018 (rev. 2019)"],
+  "grades": {
+    "0": {"key_max_acc": 2, "meters": ["4/4", "2/4", "3/4"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "ok", "chord_over_at": 5, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": 0.05, "tempo_max": 130},
+    "1": {"key_max_acc": 2, "meters": ["4/4", "2/4", "3/4"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "ok", "chord_over_at": 5, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": 0.05, "tempo_max": 160},
+    "2": {"key_max_acc": 2, "meters": ["4/4", "2/4", "3/4", "2/2"], "sixteenth_share_ok": 0.1, "triplets": "over", "grace": "ok", "chord_over_at": 5, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": 0.1, "tempo_max": 160},
+    "3": {"key_max_acc": 4, "meters": ["4/4", "2/4", "3/4", "2/2", "6/8", "12/8"], "sixteenth_share_ok": 0.3, "triplets": "warn", "grace": "ok", "chord_over_at": null, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": 0.2, "tempo_max": null},
+    "4": {"key_max_acc": 4, "meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "chord_over_at": null, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": null, "tempo_max": null},
+    "5": {"key_max_acc": null, "meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "chord_over_at": null, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": null, "tempo_max": null},
+    "6": {"key_max_acc": null, "meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "chord_over_at": null, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": null, "tempo_max": null},
+    "7": {"key_max_acc": null, "meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "chord_over_at": null, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": null, "tempo_max": null},
+    "8": {"key_max_acc": null, "meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "chord_over_at": null, "chord_warn_at": null, "chord_warn_share": 0, "accidentals_per_bar": null, "tempo_max": null}
+  }
+}

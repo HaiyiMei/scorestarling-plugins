@@ -1,0 +1,20 @@
+{
+  "instrument": "bassoon",
+  "aliases": ["巴松", "大管"],
+  "system": "ABRSM",
+  "kind": "melodic",
+  "confidence": "medium",
+  "reliable_up_to": 8,
+  "note": "Keys, meters, rhythm and notation features follow the ABRSM sight-reading parameters (official, cumulative), written-pitch ranges follow its sight-reading range table. ABRSM has no Initial grade for winds, so the profile starts at Grade 1. Breathing limits are our estimate. The check expects written pitch; if the file has no transposition the script adds written_offset semitones first. See references/instruments/bassoon.md. Bassoon ranges were read from the same official table; the per-grade scale and technique lists were not reviewed.",
+  "sources": ["ABRSM Practical Grades, Woodwind syllabus from 2022 (unchanged in 2026), sight-reading parameters and keys and ranges tables (pp. 23-24): https://www.abrsm.org/sites/default/files/2023-10/Woodwind%202022%20Practical%20syllabus%20(0%20ALL)%2020230911.pdf"],
+  "grades": {
+    "1": {"key_sigs": [-1, 1], "meters": ["4/4", "3/4", "2/4"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.05, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [43, 55], "range_slack": 2, "breath_s": [8, 14]},
+    "2": {"key_sigs": [-1, 0, 1], "meters": ["4/4", "3/4", "2/4", "2/2"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.1, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [40, 59], "range_slack": 2, "breath_s": [8, 14]},
+    "3": {"key_sigs": [-1, 0, 1], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8"], "sixteenth_share_ok": 0.25, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.2, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [40, 60], "range_slack": 2, "breath_s": [12, 20]},
+    "4": {"key_sigs": [-1, 0, 1, 2], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8"], "sixteenth_share_ok": 0.4, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [38, 65], "range_slack": 2, "breath_s": [12, 20]},
+    "5": {"key_sigs": [-3, -2, -1, 0, 1, 2, 3], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8"], "sixteenth_share_ok": 0.6, "triplets": "warn", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [36, 67], "range_slack": 2, "breath_s": [16, 28]},
+    "6": {"key_sigs": [-4, -3, -2, -1, 0, 1, 2, 3, 4], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8", "9/8", "5/8", "5/4"], "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "warn", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [34, 69], "range_slack": 2, "breath_s": [16, 28]},
+    "7": {"key_sigs": [-4, -3, -2, -1, 0, 1, 2, 3, 4], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8", "9/8", "5/8", "5/4", "7/8", "7/4"], "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "warn", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [34, 70], "range_slack": 2, "breath_s": [20, 36]},
+    "8": {"key_sigs": [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8", "9/8", "5/8", "5/4", "7/8", "7/4", "12/8"], "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [34, 72], "range_slack": 2, "breath_s": [20, 36]}
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "instrument": "drums",
+  "aliases": ["drum kit", "drumset", "drum set", "percussion kit", "鼓", "架子鼓", "爵士鼓"],
+  "system": "Trinity Rock & Pop (RSL cross-check)",
+  "kind": "percussion",
+  "confidence": "medium",
+  "reliable_up_to": 8,
+  "grade_names": {"0": "Initial"},
+  "note": "Meters, note values (sixteenths, triplets, 32nds), tempo ceilings and kit size follow Trinity College London Rock & Pop Drums 2018 own-choice parameters (official), with RSL Drums 2018 as a cross-check. The boards publish no note counts per bar, so the script checks note values, meters, tempo and how many different drums are used; limb independence and fill vocabulary are in references/instruments/drums.md for you to judge. The Trinity Grade 2 meter entry (2/4) is probably a misprint, so the same list as Initial is used.",
+  "sources": ["Trinity College London, Rock & Pop Drums syllabus from 2018: https://www.trinitycollege.com/resource/?id=7898", "RSL (Rockschool), Drums Syllabus Specification 2018 (rev. 2019)"],
+  "grades": {
+    "0": {"meters": ["4/4", "2/4", "3/4"], "sixteenth_share_ok": 0.1, "triplets": "over", "grace": "ok", "thirty_seconds": "over", "tempo_max": 130, "instruments_max": 6},
+    "1": {"meters": ["4/4", "2/4", "3/4"], "sixteenth_share_ok": 0.2, "triplets": "over", "grace": "ok", "thirty_seconds": "over", "tempo_max": 160, "instruments_max": 7},
+    "2": {"meters": ["4/4", "2/4", "3/4", "2/2"], "sixteenth_share_ok": 0.3, "triplets": "warn", "grace": "ok", "thirty_seconds": "over", "tempo_max": 160, "instruments_max": 8},
+    "3": {"meters": ["4/4", "2/4", "3/4", "2/2", "6/8", "12/8"], "sixteenth_share_ok": 0.6, "triplets": "ok", "grace": "ok", "thirty_seconds": "over", "tempo_max": null, "instruments_max": null},
+    "4": {"meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "warn", "tempo_max": null, "instruments_max": null},
+    "5": {"meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "ok", "tempo_max": null, "instruments_max": null},
+    "6": {"meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "ok", "tempo_max": null, "instruments_max": null},
+    "7": {"meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "ok", "tempo_max": null, "instruments_max": null},
+    "8": {"meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "ok", "tempo_max": null, "instruments_max": null}
+  }
+}

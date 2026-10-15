@@ -1,0 +1,424 @@
+{
+  "skill_name": "scorestarling-arrange-for-level",
+  "evals": [
+    {
+      "id": 1,
+      "name": "piano-g3-mozart-zh",
+      "prompt": "把莫扎特 C 大调奏鸣曲 K.545 第一乐章呈示部开头这段（mozart-k545-exposition.musicxml）改成约英皇三级的钢琴难度，下周给学生上课用。",
+      "expected_output": "A new two-hand score at about Grade 3: key from the Grade 3 list, left hand may use simple Alberti-style figures in quarters/eighths, simple sixteenths allowed, no more than a few harder spots, plus a short Chinese reply that states the key and what changed.",
+      "files": [
+        "inputs/mozart-k545-exposition.musicxml"
+      ],
+      "grader": {
+        "kind": "arrange",
+        "instrument": "piano",
+        "grade": 3,
+        "lang": "zh"
+      },
+      "expectations": [
+        "Key signature is on the Grade 3 piano list and nothing is over Grade 3 in the checker",
+        "The left hand uses simple figures (quarters/eighths, no more than triads) and keeps the bass at chord changes",
+        "The melody of the opening is recognisably K.545 (judged from renders)",
+        "The reply is in Chinese, says the key and the main changes, and offers one next step"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "piano-g5-ragtime",
+      "prompt": "Make the attached Maple Leaf Rag (maple-leaf-rag.musicxml) playable for my student at about ABRSM Grade 5 piano. Keep it sounding like the rag.",
+      "expected_output": "A new piano score at about Grade 5: a key with at most four accidentals, syncopation kept (allowed from Grade 5), left-hand octave leaps reduced, chords of at most four notes per hand, plus a short English reply.",
+      "files": [
+        "inputs/maple-leaf-rag.musicxml"
+      ],
+      "grader": {
+        "kind": "arrange",
+        "instrument": "piano",
+        "grade": 5,
+        "lang": "en"
+      },
+      "expectations": [
+        "Syncopation of the rag is kept (allowed from Grade 5)",
+        "Nothing over Grade 5 in the checker; left-hand octave leaps reduced",
+        "The melody and the oom-pah feel are recognisable (judged from renders)",
+        "Short English reply that does not call it official"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "flute-g2-melody-zh",
+      "prompt": "《Sand Between Our Fingers》的钢琴谱在 sand-between-our-fingers.musicxml 里。帮我改成长笛的旋律谱，我学长笛一年多，大概英皇二级。",
+      "expected_output": "A single-line flute part inside E4–G5 written range, in a key from the Grade 2 flute list (G, F, C major or E, A... minor as listed), eighths or longer, phrases with room to breathe, plus a short Chinese reply that says the key it moved to.",
+      "files": [
+        "inputs/sand-between-our-fingers.musicxml"
+      ],
+      "grader": {
+        "kind": "arrange",
+        "instrument": "flute",
+        "grade": 2,
+        "lang": "zh"
+      },
+      "expectations": [
+        "Single flute line inside the Grade 2 written range, in a Grade 2 key, no 'over' checks",
+        "Phrases leave room to breathe (breathing check ok)",
+        "The reply is in Chinese and names the key it moved to"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "violin-g1-minuet",
+      "prompt": "My son has played violin for about six months and just started ABRSM Grade 1. Could you make the attached Minuet in G (minuet-in-g.musicxml) for him?",
+      "expected_output": "A single-line violin part in D or A major (the Grade 1 violin keys, so transposed from G), range D4–A5, 3/4, no slurs and no sixteenths, one-line chords absent, plus a short English reply that explains the key change.",
+      "files": [
+        "inputs/minuet-in-g.musicxml"
+      ],
+      "grader": {
+        "kind": "arrange",
+        "instrument": "violin",
+        "grade": 1,
+        "lang": "en"
+      },
+      "expectations": [
+        "Violin part in a Grade 1 key (D or A major from G), range inside the Grade 1 table, 3/4, no sixteenths",
+        "The reply is in English and explains the key change",
+        "Melody recognisable (judged from renders)"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "clarinet-g3-transposing",
+      "prompt": "I play clarinet in B-flat, ABRSM Grade 3. Please turn the attached Minuet in G (minuet-in-g.musicxml) into a clarinet part I can read and play.",
+      "expected_output": "A single-line clarinet part whose written key is on the Grade 3 list (no more than one sharp or flat), written range F3–G5, with the reply saying whether it is written or concert pitch and what the clarinet sounds like.",
+      "files": [
+        "inputs/minuet-in-g.musicxml"
+      ],
+      "grader": {
+        "kind": "arrange",
+        "instrument": "clarinet",
+        "grade": 3,
+        "lang": "en"
+      },
+      "expectations": [
+        "Clarinet part whose written key is on the Grade 3 list and range inside the Grade 3 table",
+        "The reply says whether the file is written or concert pitch and what the clarinet sounds like"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "ask-level-only",
+      "prompt": "帮我把这首钢琴谱（sand-between-our-fingers.musicxml）改简单一点，给孩子练琴用。",
+      "expected_output": "No arrangement yet: one short Chinese message that treats piano as settled by the source and asks the one thing missing, the child's level, with three or four options and a default; no more than two questions.",
+      "files": [
+        "inputs/sand-between-our-fingers.musicxml"
+      ],
+      "grader": {
+        "kind": "ask",
+        "lang": "zh",
+        "ask_about": [
+          {
+            "name": "level",
+            "pattern": "(level|grade|级|多久|学了|几年|水平|学琴)"
+          }
+        ]
+      },
+      "expectations": [
+        "No arrangement yet",
+        "One short Chinese message treats piano as settled by the source and asks only the level, with 3 or 4 options and a default"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "beginner-no-instrument",
+      "prompt": "I'm a complete beginner. Can you make the attached Minuet in G (minuet-in-g.musicxml) simple enough for me to play?",
+      "expected_output": "Takes piano from the source and Initial or Grade 1 from 'complete beginner', says both assumptions in one line, and delivers a new very easy piano score (one accidental at most, hands mostly one at a time, quarters and halves) with a short English reply.",
+      "files": [
+        "inputs/minuet-in-g.musicxml"
+      ],
+      "grader": {
+        "kind": "assume",
+        "instrument": "piano",
+        "grade": 1,
+        "lang": "en",
+        "assume_instrument": "piano",
+        "assume_level": "(complete beginner|beginner|initial|grade\\s*[01]|first)"
+      },
+      "expectations": [
+        "Assumes piano from the source and Initial or Grade 1 from 'complete beginner' and says both in one line",
+        "Delivers a very easy piano score (one accidental at most, mostly one hand at a time)"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "rcm-level-mapping",
+      "prompt": "My student is in RCM Level 4 piano. Please make the first page of Mozart's K.545 (mozart-k545-exposition.musicxml) match that level.",
+      "expected_output": "States how RCM Level 4 was mapped (about ABRSM Grade 3-4, approximate) in one line, then delivers a piano score at about that level with no checks over Grade 4, and a short English reply that does not present it as official RCM material.",
+      "files": [
+        "inputs/mozart-k545-exposition.musicxml"
+      ],
+      "grader": {
+        "kind": "arrange",
+        "instrument": "piano",
+        "grade": 3,
+        "lang": "en",
+        "mapping_text": "The reply states how RCM Level 4 was mapped (about ABRSM Grade 3)",
+        "mapping_pattern": "ABRSM[^\\n]{0,24}(grade\\s*3|3)|grade\\s*3[^\\n]{0,40}ABRSM"
+      },
+      "expectations": [
+        "States the mapping RCM Level 4 to about ABRSM Grade 3 in one line, as approximate",
+        "Delivers a piano score with nothing over Grade 3 or 4",
+        "Does not present it as official RCM material"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "voice-g2-melody-zh",
+      "prompt": "把《Sand Between Our Fingers》（sand-between-our-fingers.musicxml）改成人声旋律谱，新手唱，大概英皇声乐二级的水平。",
+      "expected_output": "A single-line vocal melody with a span of at most about a tenth to an eleventh, small leaps, eighths or longer, phrases short enough to breathe, a key chosen for a comfortable voice (and said), plus a short Chinese reply.",
+      "files": [
+        "inputs/sand-between-our-fingers.musicxml"
+      ],
+      "grader": {
+        "kind": "arrange",
+        "instrument": "voice",
+        "grade": 2,
+        "lang": "zh"
+      },
+      "expectations": [
+        "Single vocal line with a comfortable span (at most about a tenth), small leaps, phrases that fit a breath",
+        "Key chosen for a comfortable voice and said in the Chinese reply"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "drums-g1-pattern",
+      "prompt": "My beginner drummer is working at Trinity Rock & Pop Drums Grade 1. Write a drum-kit part for the attached Minuet in G (minuet-in-g.musicxml) played as a gentle pop waltz, about 8 bars, that fits that level.",
+      "expected_output": "A percussion-clef MusicXML drum part in 3/4 using a small kit (hi-hat, snare, bass drum, perhaps a tom or crash), eighths or longer with at most a few sixteenths, no triplets, plus a short English reply.",
+      "files": [
+        "inputs/minuet-in-g.musicxml"
+      ],
+      "grader": {
+        "kind": "arrange",
+        "instrument": "drums",
+        "grade": 1,
+        "lang": "en",
+        "say_key_if_moved": false
+      },
+      "expectations": [
+        "Percussion-clef drum part in 3/4 with a small kit, eighths or longer, no triplets",
+        "Nothing over Trinity Grade 1 in the checker"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "unsupported-instrument",
+      "prompt": "Can you make the attached Minuet in G (minuet-in-g.musicxml) for a beginner on harmonica? I have a C harmonica.",
+      "expected_output": "Says plainly there is no graded profile for harmonica, uses the general fallback (a key and range that suit a C diatonic harmonica, simple rhythm), marks confidence low, and offers a supported instrument; delivers a simple single-line score.",
+      "files": [
+        "inputs/minuet-in-g.musicxml"
+      ],
+      "grader": {
+        "kind": "borrowed",
+        "instrument": "flute",
+        "grade": 1,
+        "lang": "en",
+        "ignore": [
+          "range",
+          "key",
+          "breathing"
+        ],
+        "allowed_midi": [
+          60,
+          62,
+          64,
+          67,
+          71,
+          72,
+          74,
+          76,
+          77,
+          79,
+          81,
+          83,
+          84,
+          86,
+          88,
+          89,
+          91,
+          93,
+          96
+        ],
+        "plain_pattern": "(no|not|isn't|there is no)[^\\n.]{0,50}(published|official|graded|level (table|profile)|syllabus)",
+        "offer_pattern": "(flute|recorder|piano|guitar|ukulele)",
+        "borrow_pattern": "(borrow|based on|using|used|taken from|modelled on)[^\\n]{0,80}(flute|recorder)|(flute|recorder)[^\\n]{0,80}(borrow|limits|profile|rhythm)",
+        "say_level": false
+      },
+      "expectations": [
+        "Says plainly there is no published graded table for harmonica and which profile it borrowed",
+        "Every note is playable on a C diatonic harmonica without bends",
+        "Offers a supported instrument; confidence low"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "cn-board-piano-zh",
+      "prompt": "我学生在考中央音乐学院海内外考级的钢琴三级，帮我把莫扎特 K.545 呈示部开头（mozart-k545-exposition.musicxml）改成他能弹的版本。",
+      "expected_output": "States in one line how the 央音 level was mapped (央音三级 treated as about 英皇二级), then delivers a piano score with nothing over Grade 2 and a Chinese reply that does not claim to be official 央音 material.",
+      "files": [
+        "inputs/mozart-k545-exposition.musicxml"
+      ],
+      "grader": {
+        "kind": "arrange",
+        "instrument": "piano",
+        "grade": 2,
+        "lang": "zh",
+        "mapping_text": "The reply states how 央音三级 was mapped (about 英皇二级) in one line",
+        "mapping_pattern": "(英皇|ABRSM)[^\\n]{0,12}(二级|2级|2 级|grade\\s*2)|(二级|grade\\s*2)[^\\n]{0,30}(英皇|ABRSM)"
+      },
+      "expectations": [
+        "Says in one line that 央音三级 was treated as about 英皇二级 (an approximate mapping)",
+        "Nothing over Grade 2 piano in the checker; the melody is recognisable",
+        "Chinese reply without any official claim"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "recorder-assume-descant",
+      "prompt": "My daughter is 8 and has learned recorder at school for about six months. Could you make the attached Minuet in G (minuet-in-g.musicxml) for her?",
+      "expected_output": "Takes the school (descant) recorder and Grade 1 from the description and says both at the top, then delivers a single-line descant recorder part written an octave below sounding, in C or F major, inside D4-D5 (written), no sixteenths, with a short English reply.",
+      "files": [
+        "inputs/minuet-in-g.musicxml"
+      ],
+      "grader": {
+        "kind": "assume",
+        "instrument": "descant-recorder",
+        "grade": 1,
+        "lang": "en",
+        "assume_instrument": "(descant|soprano|school recorder|recorder)",
+        "assume_level": "(beginner|first|grade\\s*1|six months|initial)"
+      },
+      "expectations": [
+        "Assumes the descant recorder and Grade 1 and says both in the first lines",
+        "Descant part inside the Grade 1 written range and keys (C or F major)",
+        "Says the part is written an octave below sounding"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "ukulele-g2-zh",
+      "prompt": "我学尤克里里一年多了，大概二级水平。想弹《Minuet in G》（minuet-in-g.musicxml）的旋律，帮我改成尤克里里谱。",
+      "expected_output": "A single-line ukulele melody (with chord symbols if offered) in a key from the Grade 2 list (C, G, F, D or B-flat), inside about C4-C#5 plus slack, eighths or longer, plus a Chinese reply that names the new key and the hard spots.",
+      "files": [
+        "inputs/minuet-in-g.musicxml"
+      ],
+      "grader": {
+        "kind": "arrange",
+        "instrument": "ukulele",
+        "grade": 2,
+        "lang": "zh"
+      },
+      "expectations": [
+        "Ukulele melody in a Grade 2 key and inside the compass",
+        "No notes below the lowest string (C4)",
+        "The reply is in Chinese and names the key it moved to"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "erhu-g3-zh",
+      "prompt": "我拉二胡，国内考级三级的水平。帮我把《Sand Between Our Fingers》（sand-between-our-fingers.musicxml）改成二胡谱。",
+      "expected_output": "A single-line erhu melody, in a key an erhu plays easily (D or G family), inside the grade-3 range, with short Chinese reply that names the key, says the confidence is low and which board ladder was assumed.",
+      "files": [
+        "inputs/sand-between-our-fingers.musicxml"
+      ],
+      "grader": {
+        "kind": "arrange",
+        "instrument": "erhu",
+        "grade": 3,
+        "lang": "zh"
+      },
+      "expectations": [
+        "Erhu part inside the grade-3 range and key list",
+        "The reply names the key and says the level is an approximate reading of a Chinese board ladder",
+        "No notes below the lowest erhu note (D4)"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "dizi-g2-zh",
+      "prompt": "我有一支D调的笛子，学了一年多，国内考级二级左右。想吹《Minuet in G》（minuet-in-g.musicxml），帮我改成笛子谱。",
+      "expected_output": "A single-line dizi part in the key the D flute plays with all holes closed as 5 (D major, 筒音作5), inside the grade-2 range, with a Chinese reply that says it moved to D, offers jianpu, and gives a low-confidence note.",
+      "files": [
+        "inputs/minuet-in-g.musicxml"
+      ],
+      "grader": {
+        "kind": "arrange",
+        "instrument": "dizi",
+        "grade": 2,
+        "lang": "zh"
+      },
+      "expectations": [
+        "Dizi part in D major (the flute key)",
+        "Range inside the grade-2 dizi range",
+        "The reply says the key and offers jianpu"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "guzheng-g2-zh",
+      "prompt": "我学古筝一年多，国内考级二级的水平。帮我把《Minuet in G》（minuet-in-g.musicxml）改成古筝谱。",
+      "expected_output": "A guzheng part in the D tuning (D major pentatonic: D E F# A B), with the 4th and 7th degrees (G and C#) either avoided or marked as left-hand pressed notes, a simple texture for grade 2, plus a Chinese reply that says the key is D and flags the pressed notes.",
+      "files": [
+        "inputs/minuet-in-g.musicxml"
+      ],
+      "grader": {
+        "kind": "arrange",
+        "instrument": "guzheng",
+        "grade": 2,
+        "lang": "zh"
+      },
+      "expectations": [
+        "Guzheng part in D",
+        "Notes outside D E F# A B are few and named as pressed notes",
+        "The reply is in Chinese and names the key"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "trombone-g2-minuet",
+      "prompt": "My student plays trombone and is about ABRSM Grade 2. Please make the attached Minuet in G (minuet-in-g.musicxml) for him. Bass clef is fine.",
+      "expected_output": "A single-line tenor trombone part in bass clef in a Grade 2 key (B-flat, C, A-flat, F or G minor), range inside A-flat2 to C4, 3/4, with a short English reply that says the key it moved to.",
+      "files": [
+        "inputs/minuet-in-g.musicxml"
+      ],
+      "grader": {
+        "kind": "arrange",
+        "instrument": "trombone",
+        "grade": 2,
+        "lang": "en"
+      },
+      "expectations": [
+        "Trombone part in bass clef in a Grade 2 key",
+        "Range inside the Grade 2 table",
+        "The reply names the key it moved to"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "horn-g3-transposing",
+      "prompt": "I play horn in F, around ABRSM Grade 3. Could you turn the attached Minuet in G (minuet-in-g.musicxml) into a horn part I can read directly?",
+      "expected_output": "A single-line horn in F part written for the player (a fifth above concert pitch, with the transposition in the file), key and range from the Grade 3 horn list, with an English reply that says the part is written pitch and what it sounds like.",
+      "files": [
+        "inputs/minuet-in-g.musicxml"
+      ],
+      "grader": {
+        "kind": "arrange",
+        "instrument": "horn",
+        "grade": 3,
+        "lang": "en"
+      },
+      "expectations": [
+        "Horn part whose written key is on the Grade 3 list and range inside the table",
+        "The reply says the file is written for horn in F and what it sounds like"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "instrument": "dizi",
+  "aliases": ["bamboo flute", "chinese flute", "竹笛", "笛子", "梆笛", "曲笛"],
+  "system": "Chinese amateur grades (央音 / 国院 / 音协)",
+  "kind": "melodic",
+  "confidence": "low",
+  "reliable_up_to": 5,
+  "grade_names": {"1": "国内 1 级", "2": "国内 2 级", "3": "国内 3 级", "4": "国内 4 级", "5": "国内 5 级", "6": "国内 6 级", "7": "国内 7 级", "8": "国内 8 级", "9": "国内 9 级", "10": "国内 10 级"},
+  "note": "Grade numbers are the mainland 1-10 ladder (央音 1-9 plus 演奏级, 国院 1-10, 音协 1-10; they differ by up to about two grades between bodies). ABRSM and Trinity do not examine this instrument. No board publishes ranges, meters or tempi per grade, so every number here is our inference from technique lists in exam books and teacher articles and from the Hong Kong LCSD syllabus; treat the whole profile as low confidence and a guide, not a limit. The dizi is chosen by key: a flute named for the pitch of its third hole from the bottom, and with all holes closed it plays the 5th degree of that key (筒音作5). Because the player picks the flute that matches the tune, the checker has no key or absolute-range check; it measures the span of the part in semitones from the lowest note, which stays the same on any flute. The span ceilings (an octave and a step at Grade 1, about two octaves at 3-4) are inferred from the fingering ladder (筒音作5, then 2, 1, 6, 3, 4) in the LCSD syllabus and teacher texts; the file says which flute to choose. Staff scores may be written an octave low; write at sounding pitch and say so. See references/instruments/dizi.md.",
+  "sources": ["Hong Kong LCSD Music Office, 笛子必修教材 (rev. 2025): https://www.lcsd.gov.hk/en/mo/common/doc/faq/faq_01_syb_0301.pdf", "中央音乐学院海外音乐水平考级 2026 简章 (CCOM rules): https://www.nafa.edu.sg/docs/default-source/corp-docs/ccom/nafa-ccom-rules-regulations-chinese.pdf"],
+  "grades": {
+    "1": {"meters": ["4/4", "2/4", "3/4"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.0, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "span": [14, 16], "breath_s": [6, 10]},
+    "2": {"meters": ["4/4", "2/4", "3/4"], "sixteenth_share_ok": 0.1, "triplets": "over", "grace": "warn", "thirty_seconds": "over", "accidentals_per_bar": 0.05, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "span": [21, 23], "breath_s": [6, 10]},
+    "3": {"meters": ["4/4", "2/4", "3/4", "2/2", "6/8"], "sixteenth_share_ok": 0.25, "triplets": "over", "grace": "ok", "thirty_seconds": "over", "accidentals_per_bar": 0.1, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "span": [24, 26], "breath_s": [8, 14]},
+    "4": {"meters": ["4/4", "2/4", "3/4", "2/2", "6/8"], "sixteenth_share_ok": 0.4, "triplets": "over", "grace": "ok", "thirty_seconds": "over", "accidentals_per_bar": 0.15, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "span": [24, 26], "breath_s": [8, 14]},
+    "5": {"meters": ["4/4", "2/4", "3/4", "2/2", "6/8"], "sixteenth_share_ok": 0.6, "triplets": "warn", "grace": "ok", "thirty_seconds": "over", "accidentals_per_bar": 0.2, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "span": [26, 28], "breath_s": [12, 20]},
+    "6": {"meters": ["4/4", "2/4", "3/4", "2/2", "6/8"], "sixteenth_share_ok": 0.8, "triplets": "warn", "grace": "ok", "thirty_seconds": "over", "accidentals_per_bar": 0.3, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "span": [28, 30], "breath_s": [12, 20]},
+    "7": {"meters": ["4/4", "2/4", "3/4", "2/2", "6/8", "3/8", "9/8", "12/8"], "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0},
+    "8": {"meters": ["4/4", "2/4", "3/4", "2/2", "6/8", "3/8", "9/8", "12/8"], "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0},
+    "9": {"meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0},
+    "10": {"meters": null, "sixteenth_share_ok": 1.0, "triplets": "ok", "grace": "ok", "thirty_seconds": "warn", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0}
+  }
+}

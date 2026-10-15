@@ -1,0 +1,18 @@
+{
+  "instrument": "descant-recorder",
+  "aliases": ["descant recorder", "soprano recorder", "recorder", "school recorder", "竖笛", "高音竖笛", "牧童笛"],
+  "system": "ABRSM",
+  "kind": "melodic",
+  "confidence": "medium",
+  "reliable_up_to": 5,
+  "written_offset": -12,
+  "note": "Keys, meters, rhythm and notation features follow the ABRSM sight-reading parameters (official, cumulative), written-pitch ranges follow its sight-reading range table. ABRSM has no Initial grade for winds, so the profile starts at Grade 1. Breathing limits are our estimate. The check expects written pitch; if the file has no transposition the script adds written_offset semitones first. See references/instruments/recorder.md. ABRSM runs separate Descant (soprano, Grades 1-5 only) and Treble (alto, Grades 1-8) syllabuses with the same sight-reading parameters; the keys and written ranges differ. Ranges are the printed ABRSM ones (Helmholtz converted to scientific pitch). Dynamics, articulation and ornament limits are not measured by the script (see the instrument doc). The recorder has no Initial at ABRSM (Trinity does). Breathing limits are our estimate. Descant is written an octave BELOW sounding pitch: the script moves a concert-pitch file down 12 semitones (written_offset -12). The octave convention is inferred (Wikipedia and ABRSM consistency); ABRSM does not state whether its descant ranges are written or sounding. ABRSM has no descant grades above 5.",
+  "sources": ["ABRSM Practical Grades, Woodwind syllabus from 2022 (unchanged in 2026), sight-reading parameters and keys and ranges tables (pp. 23-24): https://www.abrsm.org/sites/default/files/2023-10/Woodwind%202022%20Practical%20syllabus%20(0%20ALL)%2020230911.pdf"],
+  "grades": {
+    "1": {"key_sigs": [-1, 0], "meters": ["4/4", "3/4", "2/4"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.0, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [62, 74], "range_slack": 2, "breath_s": [8, 14]},
+    "2": {"key_sigs": [-1, 0, 2], "meters": ["4/4", "3/4", "2/4", "2/2"], "sixteenth_share_ok": 0, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.0, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [60, 77], "range_slack": 2, "breath_s": [8, 14]},
+    "3": {"key_sigs": [-1, 0, 2], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8"], "sixteenth_share_ok": 0.25, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.1, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [60, 81], "range_slack": 2, "breath_s": [12, 20]},
+    "4": {"key_sigs": [-1, 0, 1, 2], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8"], "sixteenth_share_ok": 0.4, "triplets": "over", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": 0.2, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [60, 83], "range_slack": 2, "breath_s": [12, 20]},
+    "5": {"key_sigs": [-2, -1, 0, 1, 2, 3], "meters": ["4/4", "3/4", "2/4", "2/2", "3/8", "6/8"], "sixteenth_share_ok": 0.6, "triplets": "warn", "grace": "over", "thirty_seconds": "over", "accidentals_per_bar": null, "chord_over_at": 2, "chord_warn_at": null, "chord_warn_share": 0, "range": [60, 83], "range_slack": 2, "breath_s": [16, 28]}
+  }
+}
