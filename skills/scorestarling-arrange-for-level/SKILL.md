@@ -1,5 +1,5 @@
 ---
-name: arrange-for-level
+name: scorestarling-arrange-for-level
 description: Arrange or simplify a piece for a chosen instrument at a chosen level, then check it lands there. Routes across piano, violin, viola, cello, double bass, flute, oboe, clarinet, bassoon, saxophone, recorder, trumpet, trombone, horn, classical and pop guitar, ukulele, voice, drums and the Chinese erhu, guzheng and dizi, from beginner to Grade 8 (Chinese instruments to 10), with the level as an ABRSM, Trinity, RCM, AMEB or Chinese 考级 number or in plain words (beginner, easy, 初学, 入门). Use whenever someone wants an easier, graded or "playable for my student or child" version of a piece for a particular instrument ("Grade 3 piano", "英皇五级小提琴", "尤克里里弹唱简单版", "古筝三级", "flute version for a year-two player"), wants a part fitted to a learner's level, or asks whether a score is really at some grade, even if they never say "arrange". If the instrument or the level is missing, ask one short question with options instead of guessing. Not for faithful transcriptions or for tidying a score without making it easier.
 ---
 
