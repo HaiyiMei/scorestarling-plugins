@@ -86,8 +86,10 @@ stacked, never one text "A6 · a tempo":
 `{"action":"add_mark","kind":"words","note_id":"n…","text":"a tempo"}`. An ABC `"^A6"` arrives
 as words; `update_mark` with `kind: "rehearsal"` makes it the boxed section label.
 
-Only dynamics change playback (as `set_dynamic` does). A metronome mark is printed only: say
-that playback keeps the recording's tempo. Jianpu exports carry the same marks.
+For score-based documents (`document_model.playback_basis: score`), metronome marks, dynamics,
+hairpins and fermatas affect current-score playback and exports. Words and rehearsal marks are silent.
+For legacy documents, only dynamics change playback; a metronome mark is printed only and playback
+keeps the historical performance's tempo. Jianpu exports carry the same marks.
 
 ## One note at a time
 
