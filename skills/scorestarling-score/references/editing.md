@@ -54,10 +54,10 @@ and say plainly what is left undone and why.
 
 ## Requests and proposals
 
-- What the user asked for, broad or exact (including a broad correction or arrangement goal), is
-  applied directly within that goal, without asking again for each ordinary edit. That includes
-  removing notes the request covers (tidying the hands drops doubled and stray notes): save it as
-  a new version and say what you removed; undo restores the previous one.
+- Requested corrections within the stated goal save undoable versions, including removals the
+  request covers (tidying the hands can drop doubled and stray notes). Results identify the
+  changes, including removed notes; undo restores the previous version. Host tool, file and
+  network approvals still apply. Requested arrangements are separate scores beside the original.
 - A panel message can list several numbered requests, each with its own note IDs: apply them in
   order, each on the current revision.
 - What you propose on your own goes into a preview: `preview_score_edit` (one operation; every

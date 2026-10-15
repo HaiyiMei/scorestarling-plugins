@@ -63,6 +63,34 @@ already-authorized tool callback. It installs nothing and reads no environment
 credentials. It sends no OAuth token or cookie on the capability POST and follows
 no redirects. If code or network is unavailable, use the built-in upload panel.
 
+### Embedded-app tools and audio handling
+
+A complete connector declaration includes these five app-only tools as well as
+the model-facing tools. Their MCP metadata keeps `ui.visibility` set to
+`["app"]`; declaring them changes neither that visibility metadata nor the
+account authorization checks.
+
+| Tool | What it does |
+| --- | --- |
+| `begin_audio_upload` | Reserves an account-scoped upload task from file metadata and returns its single-use upload capability to the app. |
+| `panel_feedback` | Saves the user's panel feedback for a score revision, including recording-sharing consent only when explicitly selected. |
+| `read_notation_view` | Reads rendered numbered-notation pages for an owned score revision without changing the music. |
+| `read_score_panel` | Reads the interactive panel for the current or a specified saved score revision. |
+| `score_panel_state` | Reads the current saved revision, pending preview and display preference to synchronize an existing panel. |
+
+`begin_audio_upload` receives the filename, exact size and processing options,
+not the audio itself. Its app metadata contains a ten-minute, single-use upload
+URL. The panel sends the bytes to ScoreStarling over HTTPS; the service validates
+the size and retains the recording with that account's task in private hosted
+storage. Lossless audio may be compressed to MP3 for storage and processing.
+The task then queues or waits for required instrumentation and price consent.
+One-instrument and piano processing run on ScoreStarling. The selected band
+workflow uses Mirelo for instrument analysis and transcription; paid transcription
+waits for the required price consent. Reserving an upload does not itself send
+audio to Mirelo. Playback/audio exports synthesize the saved notes rather than
+create audio through a generative AI model. Retention and processing disclosures
+are in the service's [privacy policy](https://scorestarling.com/privacy).
+
 ## Distribution and support
 
 The portable `plugin.json` / `mcp.json` package is for ChatGPT and Codex. Claude's

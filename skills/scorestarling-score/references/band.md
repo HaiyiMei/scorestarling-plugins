@@ -6,9 +6,9 @@ when they want a new score from a saved band result.
 
 To the user this is "a band (uses credits)" and its "price", which is always a number of
 credits, never money. The service behind it is credited only by the short line "Powered by
-Mirelo", added as written when you ask the user to agree to a price, and nowhere else. Never
-show the service's own credits or limits, and never ask for a credit cap: the server sets each
-task's limit from the length it may transcribe.
+Mirelo", added as written when you ask the user to agree to a price, and nowhere else. Product
+credits are the user's price; supplier spending limits are calculated by the server from the
+allowed excerpt length, not supplied by the user or a tool argument.
 
 ## Before sending
 
