@@ -65,13 +65,14 @@ no redirects. If code or network is unavailable, use the built-in upload panel.
 
 ### Embedded-app tools and audio handling
 
-A complete connector declaration includes these five app-only tools as well as
+A complete connector declaration includes these app-only tools as well as
 the model-facing tools. Their MCP metadata keeps `ui.visibility` set to
 `["app"]`; declaring them changes neither that visibility metadata nor the
 account authorization checks.
 
 | Tool | What it does |
 | --- | --- |
+| `account_preferences` | Reads or saves interface preferences for the signed-in account after verifying access to the panel’s score. It never changes notes or sends queued chat requests. |
 | `begin_audio_upload` | Reserves an account-scoped upload task from file metadata and returns its single-use upload capability to the app. |
 | `panel_feedback` | Saves the user's panel feedback for a score revision, including recording-sharing consent only when explicitly selected. |
 | `read_notation_view` | Reads rendered numbered-notation pages for an owned score revision without changing the music. |
