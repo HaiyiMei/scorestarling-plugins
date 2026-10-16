@@ -19,11 +19,15 @@ limited to 95 MiB.
 ## Send the bytes yourself
 
 1. Get the real filename and the exact byte count of the file.
-2. Call `prepare_audio_upload` with `filename`, `size` and the chosen `provider`. It returns a
-   `job_id` and a one-use upload link that works for ten minutes.
+2. Call `prepare_audio_upload` with `filename`, `size`, the chosen `provider` and, when the user
+   said what is playing, `instrument`. It returns a `job_id` and a one-use upload link that works
+   for ten minutes.
 3. POST the actual raw bytes once to that link, with `Content-Type: application/octet-stream`.
    Never put audio into tool arguments, and never show the upload link in the conversation.
-4. Follow the `job_id` with `get_upload_status` and `wait_seconds: 20`.
+4. Follow the `job_id` with `get_upload_status` and `wait_seconds: 20`. Without `instrument`, the
+   server listens to the recording when it arrives; if the listen hears a band, or chords it
+   cannot place, the task waits (`engine_review.phase=pending`) until you ask the user what is
+   playing and answer with `choose_engine`.
 
 HTTP 202 means the upload was accepted. After a timeout, a refusal or an unclear answer, inspect
 the existing job; never POST again or prepare another upload for the same request.
