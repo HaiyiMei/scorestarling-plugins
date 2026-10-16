@@ -76,6 +76,7 @@ account authorization checks.
 | `panel_feedback` | Saves the user's panel feedback for a score revision, including recording-sharing consent only when explicitly selected. |
 | `read_notation_view` | Reads rendered numbered-notation pages for an owned score revision without changing the music. |
 | `read_score_panel` | Reads the interactive panel for the current or a specified saved score revision. |
+| `save_score_edits` | Saves edits the interactive panel already drew itself, in order, on the exact saved revision. |
 | `score_panel_state` | Reads the current saved revision, pending preview and display preference to synchronize an existing panel. |
 
 `begin_audio_upload` receives the filename, exact size and processing options,
