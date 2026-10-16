@@ -402,6 +402,12 @@ that shows the score's hands are wrong at the end) is fixed, or offered as that 
   `notation=jianpu` instead. The score keeps the choice, in the workspace too, until it is
   switched back: tell the user. The view is drawn read-only from the last saved revision; your
   edits work as usual and the numbered view follows them.
+- **Pages** (bars per line, where lines and pages break, fitting fewer pages, a staff too big or
+  small): `edit_score` with `layout`. Notes and playback stay; the pages, PDF and panel follow.
+  Read the `get_score` overview's `layout` first (each page's lines as bar ranges), then look at
+  the pages with `review_score` after. Never edit `<print>`, `<scaling>` or `<system-layout>` in
+  the MusicXML for this, and never send the user to MuseScore to lay out pages:
+  [references/editing.md](references/editing.md#page-layout).
 - **Files:** apply the requested changes first, then re-read the current revision (after a
   preview, the one the user accepted), validate it and call `export_score` for it.
 

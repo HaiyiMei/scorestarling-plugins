@@ -106,6 +106,32 @@ A part still named after the piano becomes Melody. It suits a single-part record
   two piano staves and the shortest note. Other simplifications are arrangements
   ([arranging.md](arranging.md)).
 
+## Page layout
+
+`edit_score` with `{"action":"layout", ...}` lays out the pages as notation programs do. Only the
+pages, the PDF and the panel change: notes, note IDs and playback stay, and undo restores the
+previous layout. Fields left out keep their values; `null` puts one back to its default, and
+`reset: true` puts all back.
+
+| Field | Does |
+| --- | --- |
+| `bars_per_system` | Bars on every line, 1–32. A line or page break restarts the count |
+| `system_breaks` | Bars (as printed, e.g. `["9"]`) that start a new line |
+| `page_breaks` | Bars that start a new page; pages between them still fill by themselves |
+| `staff_size` | Staff size in percent of the default, 50–150. 85–90 often saves a page; below 70 gets hard to read |
+| `staff_spacing`, `system_spacing` | Room between the staves of a line, and between lines (0–48, default 8) |
+
+- Read first: the `get_score` overview's `layout` lists each page's lines (`[{"page":1,"systems":["1-3","4-6"]}]`)
+  and `settings.page_layout` the choices in force.
+- Two pages that look even: equal bars per line and a page break where the second page should start
+  (18 bars: `bars_per_system: 3`, `page_breaks: ["10"]`).
+- Fewer pages: lower `staff_size` a little, or the spacing, before squeezing more bars on a line.
+- Then look at the pages (`review_score` with a page): dense bars, 8va lines and text marks need room.
+- The renderer reads no `<print>`, `<scaling>` or `<system-layout>` from the MusicXML; line and page
+  breaks written into an edited copy are taken over, nothing else. `reengrave` writes the notes again
+  from the recording (rhythm spelling and IDs can change): it is not a layout tool. No export to
+  MuseScore is needed for layout.
+
 ## Specific fixes
 
 **Pitch and octave.** Use real selected note IDs with `transpose` or `set_pitch`. Distinguish
