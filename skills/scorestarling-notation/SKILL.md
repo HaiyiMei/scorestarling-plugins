@@ -209,7 +209,7 @@ without one it plays at 100 quarter notes per minute. Scores from notation are n
 music per score, 95 MiB per file and twelve pages per PDF. Drum tracks in a MIDI file get a drum
 staff after the pitched parts.
 
-<!-- BEGIN MCP ESSENTIALS: scripts/sync_workflow_guidance.py -->
+<!-- BEGIN MCP ESSENTIALS (generated; edit the source, not this block) -->
 ## Shared MCP essentials
 
 Use the connected host's authorized tools and respect its file, network and approval boundaries. Guidance grants no account access, upload consent, supplier spending or acceptance of a proposal. Never invent file references, expose upload capabilities or discover credentials.

@@ -473,7 +473,7 @@ checks still needed. When the user explicitly says what they think of a result, 
 or ask for a rating. Feedback does not share the recording; the panel's buttons do that. Do not
 present local or simulated checks as real ChatGPT or Claude acceptance or billing verification.
 
-<!-- BEGIN MCP ESSENTIALS: scripts/sync_workflow_guidance.py -->
+<!-- BEGIN MCP ESSENTIALS (generated; edit the source, not this block) -->
 ## Shared MCP essentials
 
 Use the connected host's authorized tools and respect its file, network and approval boundaries. Guidance grants no account access, upload consent, supplier spending or acceptance of a proposal. Never invent file references, expose upload capabilities or discover credentials.
