@@ -107,9 +107,9 @@ and a separate submission of our remote MCP connector.
 A direct MCP connection receives concise initialization instructions, tool metadata and
 state-dependent next steps, plus `get_workflow_guide` for recording, notation, editing, each
 edit action's limits (operations) or feedback. It does not install native skills. The complete workflows remain in these two
-skills; their marked MCP essentials share `apps/server/workflow_guidance.py` and are checked
-by `scripts/sync_workflow_guidance.py`. After editing those shared rules, run the script with
-`--write` and run `tests/mcp/check_workflow_guidance.py`.
+skills. The section between their `MCP ESSENTIALS` markers is generated from the same rules the
+server's instructions use and is refreshed from the product repository; edit the rules there rather
+than the marked section.
 
 OpenAI documents server instructions as guidance used alongside tool metadata. Its MCP
 skills extension imports a static snapshot during submission through Scan Tools; it does
