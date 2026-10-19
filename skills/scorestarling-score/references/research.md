@@ -47,10 +47,14 @@ are leads to check against the recording, not facts.
 ## 2. Search the way anyone would
 
 Use the host's general web search, as a person would type into Google, not one narrow query.
-Run several short searches and open the promising results, not just the first shop pages:
+Run several short searches and open the promising results, not just the first shop pages.
+Don't limit the search to the instrument you are writing for: a well-known tune has scores for
+every instrument (flute, violin, recorder, guitar, choir, band, orchestra), lead sheets, chord
+charts, tab, jianpu and MIDI, and any of them gives its melody, harmony, form and key.
 
-- `<title> sheet music`, `<title> piano sheet`, `<title> piano tutorial`, `<title> chords`,
-  `<title> lead sheet`, `<title> midi`, and the same with the performer's or arranger's name.
+- `<title> sheet music`, `<title> notes`, `<title> melody`, `<title> chords`, `<title> lead sheet`,
+  `<title> tab`, `<title> midi`, `<title> piano tutorial`, and the same with the performer's or
+  arranger's name. Add an instrument only to look for a closer arrangement, not to exclude others.
 - The same in the languages the page and the user use: `<title> 钢琴谱`, `<title> 简谱`,
   `<title> 和弦`, `<title> 楽譜`.
 - The original's facts: its key, tempo, meter and chord progression (`<title> key bpm`,
@@ -70,8 +74,11 @@ Results worth opening, roughly in this order of use:
 
 Stop when two sources agree on what you need, or when further searches bring nothing new.
 Settle the identity first: the original title and composer or artist, and which arrangement this
-is (an original song, a well-known pianist's arrangement, the performer's own). A score of a
-different arrangement still gives the melody and the harmony, not this performer's voicing.
+is (an original song, a well-known pianist's arrangement, the performer's own). A score for
+another instrument or arrangement still gives the melody, the harmony and the form, not this
+performer's voicing. Read a transposing instrument's part at concert pitch (a B flat clarinet or
+trumpet sounds a tone lower than written, an E flat alto saxophone a major sixth lower, a horn in
+F a fifth lower), and bring every key to the recording's.
 
 **What is fair to use.** Anything any visitor can see without paying or signing in, wherever it
 is: preview pages, chord and jianpu pages, sheet images in posts, frames of tutorial videos, image
@@ -110,9 +117,16 @@ be wrong. So check them against each other, bar by bar:
    sheet is too small or blurred to read a note, the piece's known melody and chords help you
    choose between the readings you can see (a D or a D flat); they never fill in a note you
    cannot see at all.
-4. Changes to notes still follow step 5's rules: a preview unless the user asked you to fix the
+4. **The written rhythm follows a readable score; the playing keeps its own timing.** When the
+   recording lands a little off where a sheet in the video or a found score writes a note (a
+   chord a sixteenth late, a bass note pushed), write the score's rhythm and keep the
+   difference in playback: that is how the player felt it, not a different rhythm. Writing the
+   played offset gives ties, extra rests and split voices nobody would read. Keep the recording's
+   rhythm only when it differs by more than that, consistently, in a way the score does not
+   show.
+5. Changes to notes still follow step 5's rules: a preview unless the user asked you to fix the
    notes, and the frames, the recording and the user's word win over any reference.
-5. **Say what agreed and what did not.** Tell the user which bars the sources settled and where
+6. **Say what agreed and what did not.** Tell the user which bars the sources settled and where
    they came from ("bars 9-16 follow the original melody; the left hand is as played"), where
    the sheet in the video and the playing differ, and which bars still need an ear.
 
