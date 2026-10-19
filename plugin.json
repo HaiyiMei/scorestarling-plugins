@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "scorestarling",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Transcribe, read, convert and edit sheet music",
   "author": {
     "name": "HaiyiMei"
@@ -90,7 +90,7 @@
         "commerce_description": "Opening the whole of a new piece after its free 30-second preview, or transcribing a whole band recording, uses the connected ScoreStarling account’s existing credits, only after the user agrees to the exact number of credits shown in the chat. Downloads follow the account and are never bought in the chat. A friend’s invitation link or a beta code that the user gives the assistant can be redeemed in the chat; it adds free credits and is not a purchase. The plugin has no purchasing or checkout tools. Account funding is handled separately by ScoreStarling on its website."
       },
       "publication": {
-        "release_notes": "Clarify reversible edits, accepted previews and existing-account options. Document the app-only upload and score-panel helpers and their audio-handling boundaries. Workflow guides are optional reference documentation; host approval and account permissions remain in effect."
+        "release_notes": "Update score-editing guidance for voices, ties, slurs, tuplets, beams, stems and timing. Preserve source media for requested arrangements and clarify repricing of pending excerpts."
       }
     }
   }
