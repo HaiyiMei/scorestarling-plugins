@@ -12,18 +12,24 @@ comparison, open panel, comments and undo history. Never make a new score to cha
 scores without that history. Make a new score only when the user asks for one, such as an
 arrangement ([arranging.md](arranging.md)) or another transcription.
 
-## One operation: edit_score
+## Operations: edit_score
 
 `edit_score(score_id, revision, operation)` applies one operation at the exact current revision;
 stale revisions and unknown note or mark IDs are refused. It takes effect at once and `undo`
 reverts it. Read note IDs, staves, voices and marks with `get_score` (filter by `measure`,
-`part_id` or `note_ids`), and re-read after each change: re-engraving, moving staves, scaling
-note values, rewriting the rhythm and re-beating replace note IDs.
+`part_id` or `note_ids`), and re-read after each change: re-engraving, a new meter or bar lines,
+scaling note values, rewriting the rhythm and re-beating replace note IDs.
+
+Note, rhythm, voice and bar edits that belong together go in one batch,
+`{"action": "batch", "operations": [...]}` with up to 30 of them (no undo, redo, marks or layout):
+one version that one `undo` reverts, each operation made on what the one before left. A refusal
+names the operation (`Operation N`) and saves none of them. A version for every step of a round
+fills the history the user undoes through.
 
 ## An edited copy: revise_score
 
-For anything else, or many changes at once (moving notes between voices, deleting a misheard voice, correcting many pitches, adding missed notes, ties, beams, rhythm
-spelling, a shifted passage):
+For what no operation writes, or a round too large for a batch (deleting a misheard voice,
+correcting many pitches, adding missed notes, rhythm spelling, grace notes, swing, pedal):
 
 1. Before the first file fetch in the conversation, tell the user in one line that the chat may
    ask to allow it, and that allowing ScoreStarling for the conversation stops further asks.
@@ -48,9 +54,9 @@ accepted.
 One export serves one save. When notation-only fixes and proposed note changes both need the
 copy, save the notation-only fixes first, then export the new revision for the preview.
 
-If you cannot fetch or edit the file, use single operations for what they can express (a
-`preview_score_edit` with `fill_rest` for a missed note in a rest, `delete_notes`, `set_pitch`)
-and say plainly what is left undone and why.
+If you cannot fetch or edit the file, use operations for what they can express (a
+`preview_score_edit` with `fill_rest` for a missed note in a rest, `delete_notes`, `set_pitch`,
+several of them as one batch) and say plainly what is left undone and why.
 
 ## Requests and proposals
 
@@ -60,8 +66,9 @@ and say plainly what is left undone and why.
   network approvals still apply. Requested arrangements are separate scores beside the original.
 - A panel message can list several numbered requests, each with its own note IDs: apply them in
   order, each on the current revision.
-- What you propose on your own goes into a preview: `preview_score_edit` (one operation; every
-  action except undo and redo) or `revise_score` with `preview=true`. Explain its scope,
+- What you propose on your own goes into a preview: `preview_score_edit` (one operation, or a
+  batch of them as one suggestion; every action except undo and redo) or `revise_score` with
+  `preview=true`. Explain its scope,
   `review_score` the preview, and say what improves and what gets worse. A preview changes
   nothing until the user accepts it; then call `apply_score_preview` with its ID and base
   revision. `discard_score_preview` drops one. The panel's Apply and Discard ask the user; in chat,
@@ -179,10 +186,16 @@ a supported note length but changes playback note-offs, so it is not notation-on
 a coarser grid. When a timing repair is unsupported, explain it rather than inventing an
 operation or starting another transcription without the user's authorization.
 
-**A shifted passage.** When one passage sits a beat or two off while the rest is right, write it
-at its proper place in the edited MusicXML copy and save it with `revise_score` (a preview,
-since it changes how the music reads), checking the bar lengths around it. `rebar_pickup` would
-move every bar line.
+**A shifted passage.** When a passage came in a beat or two late or early while what comes before
+is right, `shift_time {measure, onset?, quarters, part_id?, staff?}` (or `note_id` in place of
+`measure` and `onset`) moves everything struck from that point on later (`quarters` +) or earlier
+(−), with its ties, slurs, grace notes and marks: one call, never note by note. `onset` counts
+quarter-note beats from the bar's start. Later opens rests at the point (a note held over it holds
+on) and adds bars at the end; earlier removes the beats just before the point, cutting a note held
+into them, and drops end bars it leaves empty. Leave out `part_id` for every part; `staff` moves
+one hand. A point inside a tuplet is refused: start from its first note. Preview it when you
+propose it yourself, since it changes how the music reads. `rebar_pickup` would move every bar
+line instead.
 
 **Hands and staves.** `set_staff {note_ids, staff, clef?}` moves played notes of a part on two
 staves to the other hand's staff (1 upper, right hand; 2 lower, left hand), as one notation edit:
@@ -229,11 +242,22 @@ and fermatas go with the played notes they stand on and keep their IDs (one betw
 the nearest played note); chord symbols and tuplets still block them. `rewrite_rhythm` refuses
 printed marks.
 
-**Voices.** Move notes between voices in the edited MusicXML copy; `edit_score` has no operation
-for it.
+**Voices, beams, stems and rests.** `set_voice {note_ids, voice}` moves notes to voice 1–4 of
+their staff, keeping their place, length and pitch (with two voices, 1 stems up and 2 down):
+chord tones leave their chord, tie chains go whole, a grace note goes with the note it leads
+into, rests make room, and an equal-length note already there takes them into its chord. Beams
+join notes of one voice, so `set_voice` first. `set_tie` also ties notes in different voices of a
+staff into one held sound. `set_beam {note_ids, beam: join|break|none|auto}` (a join takes in the
+beams the notes are already in), `set_stem {note_ids, stem: up|down|flip|auto}`, and
+`set_visibility {note_ids | measures, staff?, visible}` hides or shows rests: a hidden rest is
+not listed, so show hidden rests by bar. On a score that still plays its recording's
+performance, `set_voice`, `set_beam`, `set_stem`, `set_visibility`, `shift_time` and a batch make
+it play from its notation from that version on; the recording stays for comparison.
 
-**Tuplets, swing, grace notes, arpeggios, ties, slurs and pedal.** Write them in the edited
-MusicXML copy. Never flatten genuine tuplets.
+**Ties, slurs and tuplets** are operations (`set_tie`, `set_slur`, `create_tuplet`,
+`remove_tuplet`). Never flatten genuine tuplets.
+
+**Swing, grace notes, arpeggios and pedal.** Write them in the edited MusicXML copy.
 
 **Notes not bound to the playing.** Inspect validation and the note mapping before editing
 playback. `repair_bindings` repairs only unambiguous links. Do not guess MIDI bindings or align

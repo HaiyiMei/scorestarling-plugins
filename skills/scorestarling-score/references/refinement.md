@@ -47,14 +47,16 @@ local code only for gaps such as editing a MusicXML copy or comparing returned a
 | Needed change | Choose and verify |
 | --- | --- |
 | One supported operation, or a supported passage selector | Use `edit_score`; pass the current revision and inspect the returned changes. |
-| Many source-supported pitch, hand/voice, tie, beam or notation changes | Edit one current `editing_copy`, preserve retained IDs, and save a coherent round with `revise_score`. |
+| A passage that came in late or early | One `shift_time` from its first struck note; never note by note. |
+| Up to 30 supported note, rhythm, hand/voice, tie, beam or stem edits that belong together | One `edit_score` `batch`: one version, all or none; inspect the returned changes. |
+| More than a batch holds, or notation no operation writes | Edit one current `editing_copy`, preserve retained IDs, and save a coherent round with `revise_score`. |
 | Only written duration changes | Change MusicXML; retained notes keep their performed timing. Do not promise changed MIDI releases. |
 | Played releases | Check `set_duration` limits. A note ID array can represent a contiguous tied note or complete chord, not arbitrary distinct onsets. |
 | Unsupported played onset/local tempo changes | Report the gap. Do not invent an action, delete/recreate retained events, or modify storage to imitate support. |
 
-Do not generalize “no batch API” to all changes: a file revision batches notation changes;
-some selectors already handle a passage. Conversely, an array parameter does not prove
-independent events can be edited in one call. Estimate the required serial saves before a long
+`edit_score`'s `batch` saves several operations as one version, a file revision batches
+notation changes no operation writes, and some selectors already handle a passage. Conversely,
+an array parameter does not prove independent events can be edited in one call. Estimate the required serial saves before a long
 duration loop, explain the expected wait, and reconsider whether notation-only changes suffice
 for the user's goal. If releases really must change, preserve starts/pedal and use the supported
 operation; do not shorten every note merely to clear validation.
