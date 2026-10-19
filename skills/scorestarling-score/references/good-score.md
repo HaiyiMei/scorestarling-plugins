@@ -24,9 +24,10 @@ judging any passage:
 - **An original piano piece, or a pianist's own performance:** the score is what the pianist
   played.
 - **Someone's piano cover of a song** (common on Bilibili and YouTube): the cover's notes, not
-  the original song's. Many covers of one song are equally valid, so never correct a cover
-  toward the record or toward another cover ([Pop2Piano](https://arxiv.org/abs/2211.00895)
-  models many arranger styles for one song).
+  the original song's. Many covers of one song are equally valid, so never correct what a cover
+  plays clearly toward the record or toward another cover ([Pop2Piano](https://arxiv.org/abs/2211.00895)
+  models many arranger styles for one song). Where the recording leaves a passage unclear, the
+  original's melody and chords are a lead ([research.md](research.md)).
 - **A band or produced track:** no single piano part exists. The band choice writes each
   instrument's part; any piano version is an arrangement.
 - **A voice or one melodic instrument:** the melody. Chords or an accompaniment are additions.
