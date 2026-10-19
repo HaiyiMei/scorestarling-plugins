@@ -20,7 +20,10 @@ Choose useful times, crops and any authorized image-processing steps yourself. A
 of the whole video. Screenshots or a PDF may help you work, but are not required intermediate deliverables.
 
 When notation is readable, follow its changing systems, avoid copying overlapping bars twice, write the
-notes, rhythms and marks with `create_score`, and compare the saved score against the source. If inspected
+notes, rhythms and marks with `create_score`, and compare the saved score against the source. A sheet in a
+video is a strong lead, not proof: it may be simplified, from another arrangement or out of step with the
+playing. Look the piece up and check the sheet against the recording and what you find, as "Putting it
+together" in the `scorestarling-score` skill's `references/research.md` describes. If inspected
 frames show no notation, continue with audio transcription. An explicit request to transcribe the actual
 performance takes precedence over reading the printed score.
 

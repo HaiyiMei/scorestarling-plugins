@@ -56,7 +56,7 @@ into more detail, follow the step.
 | Nothing yet | Answer in three short lines with the ways in (below); for a new user, offer the free sample too |
 | A ScoreStarling invitation link or code | `redeem_code` once ("Invitations and codes", below), then what they came to do |
 | A recording attached in ChatGPT | Steps 2 to 5 |
-| A video link | Inspect with `check_link`/`watch_link`: read visible notation with `create_score`; otherwise transcribe audio |
+| A video link | Inspect with `check_link`/`watch_link`: read visible notation with `create_score`; otherwise transcribe audio, keeping what the frames show (falling notes, chords, a partial sheet) as a reference ([references/research.md](references/research.md)) |
 | A song page or audio file link | Steps 2 to 5: look with `check_link`, send it with `transcribe_link` |
 | A file you can read with code (Claude, Codex) | Steps 2 to 5; send it as [references/uploads.md](references/uploads.md) describes |
 | A score already in ScoreStarling | `list_scores`, then `open_score` once (with `notation=jianpu` if they want numbers) unless its panel is already in the conversation. Opening needs no upload, audio check or new transcription; do not ask for anything the score already records. Then steps 6 and 7 for changes, views and files; review it (step 5) when the user asks how it came out or wants it checked |
@@ -122,7 +122,8 @@ time. Look at them:
   Use it for the score's title and composer and as leads for step 5: swing or shuffle, a capo, a
   stated tempo to compare with the recording (still pass `bpm` only when the user gave it),
   comments about wrong notes or octaves in the performance. Never pass on links to sellers of
-  scores or MIDI.
+  scores or MIDI. When the page names the piece, look it up before the review, as
+  [references/research.md](references/research.md) describes.
 - **Seeing a band is not agreement to its price**: a band is still chosen with the user, as below.
 - **When the site refuses the audio**, `recording_error` says so in words for the user, and the page
   may still be described: say what the video is and ask for the file or another link.
@@ -216,7 +217,10 @@ to the transcription as it came. Review and edits use no credits.
 
 The review has four passes, each with its own evidence: **read** the whole score as text,
 **listen** again to the most suspicious passages (and, for a video, **watch** the player there),
-**look** at every page, and **proof** the result after your changes. Then report.
+**look** at every page, and **proof** the result after your changes. Then report. When the
+piece can be identified (a cover, a known song or work), first look up what a person would:
+the source's frames and words, the piece, an existing score, as
+[references/research.md](references/research.md) describes.
 
 **The panel.** Reuse the panel this job returned: the upload panel turns into the score. Never
 claim the user sees it from `panel_prepared` alone. Call `open_score` once only if no score or
@@ -304,8 +308,11 @@ pass are applied directly.
   changes to notes stay previews. When the user asked you to change the notes ("fix the wrong
   notes", "tidy the hands", "make it playable"), apply the changes within that request directly as
   a new version, removals included, and say what you removed; undo restores the previous one.
-- Evidence is the recording, the score's own returning phrases and figures, and the user's word;
-  a pattern from outside the recording is not. Propose removing a note only when it fits no line
+- Evidence is the recording, the video's frames, the score's own returning phrases and figures,
+  and the user's word. A reference you found (an existing score of the piece, the original
+  song's chords) settles what the recording leaves unclear, never what it plays clearly
+  ([references/research.md](references/research.md)); a pattern merely assumed from the style or
+  remembered is not evidence. Propose removing a note only when it fits no line
   and was not heard; low confidence alone is never enough. Keep plausible voices and uncertain
   notes.
 - Whole-score changes (layout, key, rhythm grid) come before single notes; re-read note IDs
