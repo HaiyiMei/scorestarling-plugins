@@ -358,8 +358,12 @@ that shows the score's hands are wrong at the end) is fixed, or offered as that 
   `edit_score`. It takes effect at once, and `undo` reverts it. The tool's description lists
   every action and its fields; a single operation needs no reference file. Afterwards, re-read
   the changed notes and look at the bars you touched (`review_score` with `measures`).
-- Anything else, or many changes at once (moving notes between hands, staves or voices, deleting
-  a misheard voice, many pitches, missed notes, ties, beams, rhythm spelling): export the
+- Several note, rhythm, voice and bar edits that belong together (hands with `set_staff`, voices
+  with `set_voice`, ties, beams, stems, a passage that came in late or early with `shift_time`):
+  one `edit_score` `batch` of up to 30, saved as one version that one `undo` reverts
+  ([references/editing.md](references/editing.md)). Never move a passage note by note.
+- What no operation writes, or a round too large for a batch (deleting a misheard voice, many
+  pitches, missed notes, rhythm spelling, grace notes, swing, pedal): export the
   current revision with `export_score` `format=editing_copy`, edit that file keeping every note's
   `id`, and save it once with `revise_score`. The editing copy is the score's MusicXML for your
   own round of edits: it works on every opened score and is saved back into the same
