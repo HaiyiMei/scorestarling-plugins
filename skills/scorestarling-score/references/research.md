@@ -30,7 +30,7 @@ exists; for a score made from a video, `watch_score` returns frames at given bar
 
 | What the frames show | What it is worth |
 | --- | --- |
-| Sheet music or jianpu, still or scrolling with the playing | The strongest single lead. When the user wants a score of the piece, read it (the `scorestarling-notation` skill, "Notation visible in a video") rather than transcribing by ear, then check it as "Putting it together" says. When the user asked for the performance, or the sheet covers only part of it, keep it as the reference for the bars it shows |
+| Sheet music or jianpu, still or scrolling with the playing | The strongest single lead. When the user wants a score of the piece, read it (the `scorestarling-notation` skill, "Notation visible in a video") rather than transcribing by ear, then check it as "Putting it together" says. When the user asked for the performance, or the sheet covers only part of it, keep it as the reference for the bars it shows. Its bar count, meter and marks also check a transcription's tempo and bar lines: ten bars on screen over a draft of six means the draft heard half the tempo, and staccato dots mean short notes are real, not noise |
 | Falling notes or a piano roll above a keyboard, lit keys | Which keys are struck and when, but not the written rhythm, key or bar lines. Use it to settle pitches, chords and hands bar by bar against the transcription; it is not something `create_score` reads |
 | Chord names, guitar tab or a fretboard on screen | The chords, a capo and the fingering, for those bars |
 | Hands on the keys or the strings | Which hand plays what, octaves, a capo, an open tuning (`watch_score` with `measures` for doubtful bars) |
