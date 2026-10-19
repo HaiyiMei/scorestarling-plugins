@@ -24,8 +24,17 @@ notes, rhythms and marks with `create_score`, and compare the saved score agains
 video is a strong lead, not proof: it may be simplified, from another arrangement or out of step with the
 playing. Look the piece up and check the sheet against the recording and what you find, as "Putting it
 together" in the `scorestarling-score` skill's `references/research.md` describes. If inspected
-frames show no notation, continue with audio transcription. An explicit request to transcribe the actual
-performance takes precedence over reading the printed score.
+frames show no notation, continue with audio transcription.
+
+A sheet that scrolls or turns with the playing is the performer's own score. Read it whether the user asks
+for the piece or for "this version": it already holds the rhythm, voices, spelling and bar lines that a
+transcription would have to rebuild, and correcting an audio draft toward it bar by bar costs many edits
+and leaves split voices and ties. Then check it against the recording: a transcription of the same link,
+started when the request covers it and it fits the free preview (otherwise offered in one line), shows
+where the playing differs, and only those bars change. Make the audio the base only when the user
+explicitly asks to transcribe the performance by ear, when the sheet covers little of what is played, or
+when it clearly does not match the playing; keep the sheet as the reference for the bars it shows. An
+explicit request to transcribe the actual performance takes precedence over reading the printed score.
 
 Distinguish unreadable images from failed access: for blurred, cropped or incomplete notation, inspect
 another useful time or region. If the source cannot be fetched, do not repeat the same failing download

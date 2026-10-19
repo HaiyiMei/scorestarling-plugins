@@ -110,7 +110,9 @@ time. Look at them:
 - **Choose the source before choosing an engine.** Inspect actual video frames; use `watch_link` for useful
   times/crops without creating a score first. Readable notation follows the **Notation visible in a video**
   section of `scorestarling-notation`; if there is no notation, follow the audio workflow below. Missing
-  or unreadable frames are inconclusive. Honor an explicit request to transcribe the performance.
+  or unreadable frames are inconclusive. A sheet that moves with the playing is the performer's own
+  score: read it for "this version" too, then check it against the recording. Honor an explicit
+  request to transcribe the performance by ear.
 - **Decide what is playing from the listen and the pictures together.** When `recommendation.engine`
   is null and the frames plainly show solo piano, one other instrument or voice, or a band with
   drums, choose that and say so in one sentence the user can correct ("It looks and sounds like
