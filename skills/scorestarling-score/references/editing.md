@@ -233,8 +233,8 @@ string can play as written (below the lowest string, above the top fret, or more
 strings), and validation lists those bars: tell the user rather than moving notes on your own. When
 the user wants TAB in the conversation, `export_score` `tab_text` (with `part_id` for one part)
 returns plain-text TAB to paste; for Guitar Pro, TuxGuitar or Songsterr, `guitar_pro` is a .gp5 file
-of every part with the TAB parts on the strings shown, their tuning and capo (on accounts with Plus
-or bought credits).
+of every part with the TAB parts on the strings shown, their tuning and capo (on accounts with existing
+download access).
 
 Re-engraving operations (`reengrave`, `rebeat`, `scale_note_values`) write the
 notation again from the playing. Printed words, rehearsal and metronome marks, dynamics, hairpins
