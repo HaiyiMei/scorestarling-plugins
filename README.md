@@ -39,7 +39,7 @@ Model-proposed musical edits are previews until the user accepts them.
 
 Editing and listening use no credits. Downloads follow the account: MusicXML, MXL, MIDI, Guitar
 Pro, ABC and MEI download on accounts with existing download access; other accounts get the PDF and
-page images with one small footer line, and their own imported files in their original format.
+page images with a small watermark, and their own imported files in their original format.
 Download access comes from active Plus or preserved historical rights; buying credits alone does not open it.
 Previews can't be exported. An assistant saves its own round of edits as one version, a batch of
 operations or an editing copy, which works on every opened score. When the user gives a ScoreStarling invitation
