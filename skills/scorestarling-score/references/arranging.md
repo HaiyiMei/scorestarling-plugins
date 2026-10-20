@@ -64,8 +64,8 @@ with notation tools, not by making the playing regular; offer a tidier arrangeme
    (below) and pick a card and a level for it. Note where the texture changes.
 4. Ask the open questions (Questions), a few at a time.
 5. Write the arrangement: read the master with `get_score` (or its editing copy, `export_score`
-   `format=editing_copy`, to rewrite the whole piece; `abc` exports only on accounts with Plus
-   or bought credits), write the new ABC (or a MusicXML file, passed as `file`)
+   `format=editing_copy`, to rewrite the whole piece; `abc` exports only on accounts with existing
+   download access), write the new ABC (or a MusicXML file, passed as `file`)
    and `create_score` a new score titled in plain words with song, version and key (e.g.
    "… — Easy piano, 1=C"). Never save an arrangement over the master with `revise_score`; the
    new score's panel is what the user plays and downloads, and the master stays as it was.

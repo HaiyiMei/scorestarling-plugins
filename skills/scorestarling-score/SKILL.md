@@ -428,12 +428,12 @@ that shows the score's hands are wrong at the end) is fixed, or offered as that 
 | --- | --- |
 | Printable sheet music | `pdf`, which follows the saved view (staff or numbered) like the panel's PDF button; `layout_pdf` for staff notation whatever the view; add `part_id` for one part, or use `format=parts` for a ZIP of every part |
 | Page images | `pages` (SVG and PNG) |
-| Notation software (MuseScore, Sibelius, Finale, Dorico) | `musicxml` or `mxl` (accounts with Plus or bought credits) |
-| MIDI | `midi` (accounts with Plus or bought credits) |
+| Notation software (MuseScore, Sibelius, Finale, Dorico) | `musicxml` or `mxl` (accounts with existing download access) |
+| MIDI | `midi` (accounts with existing download access) |
 | Listening audio | `mp3` or `wav`: the score's playback, synthesized, not the original recording |
 | Numbered notation (PDF) | `jianpu` (every staff), `jianpu_melody` (the top line, usually but not always the tune) or `jianpu_fixed` (fixed do); or set the view and use `pdf` |
-| ABC text to read or rewrite | `abc` (accounts with Plus or bought credits; the text also comes back in the result). To read the notes yourself, `get_score` or an editing copy |
-| Music research | `mei` (accounts with Plus or bought credits) |
+| ABC text to read or rewrite | `abc` (accounts with existing download access; the text also comes back in the result). To read the notes yourself, `get_score` or an editing copy |
+| Music research | `mei` (accounts with existing download access) |
 
 - Jianpu is movable do in the score's key (`1=` the key; a minor key reads from its relative
   major's do). `jianpu_fixed` writes the same pitches with 1 always C and every black key marked
@@ -442,7 +442,7 @@ that shows the score's hands are wrong at the end) is fixed, or offered as that 
 - MIDI and audio need every note bound to the playing; MusicXML and PDF still export when some
   are not. Say so when it happens.
 - **Downloads follow the account.** MusicXML, MXL, MIDI, Guitar Pro, ABC and MEI download on
-  accounts with Plus or bought credits. Other accounts (`access.open` false in the panel and
+  accounts with existing download access. Other accounts (`access.open` false in the panel and
   export results) get the PDF and page images, with one small footer line ("Made with
   ScoreStarling"; mention it only if asked), and their own imported files in their original
   format. When `export_score` comes back `locked`, do not retry or work around it, and do not
@@ -523,7 +523,7 @@ When document_model.playback_basis=score, notation defines the notes, rhythm and
 
 Say only what tool results show: an edit is made when its result lists it; an error or "Nothing changed" means not, so say so. Say how bars are written (clefs, key, notes) from get_score or review_score text, not a picture or the opening settings; if the user disputes it, reread those bars.
 
-Structural validation does not prove transcription accuracy; doubtful_notes are leads to listen to, not a verdict. Score-based MIDI/audio exports compile the selected notation; legacy MIDI/audio exports require complete performance bindings. On an account without Plus or bought credits (access.open false) MusicXML, MIDI, Guitar Pro, ABC and MEI are refused with locked=true and PDFs carry a small footer line; never unlock_score for a download. A preview (30 seconds) needs unlock_score, with explicit consent to its exact credits, before anything else. Use a host-presented attachment; otherwise the prepared panel Download menu for the requested format. Never paste/reconstruct download_url in chat. A ResourceLink does not prove receipt. A plain PDF request uses format=pdf and follows the saved view, like Download; do not silently substitute Mirelo's original PDF. Use original_pdf only when requested and label it as the original. Audio exports are synthesis, not original stems. reference_midi downloads preserved initial/historical performance evidence, not the current score or a supplier original; it covers the whole score and obeys the MIDI download entitlement.
+Structural validation does not prove transcription accuracy; doubtful_notes are leads to listen to, not a verdict. Score-based MIDI/audio exports compile the selected notation; legacy MIDI/audio exports require complete performance bindings. On an account without existing download access (access.open false) MusicXML, MIDI, Guitar Pro, ABC and MEI are refused with locked=true and PDFs carry a small footer line; never unlock_score for a download. A preview (30 seconds) needs unlock_score, with explicit consent to its exact credits, before anything else. Use a host-presented attachment; otherwise the prepared panel Download menu for the requested format. Never paste/reconstruct download_url in chat. A ResourceLink does not prove receipt. A plain PDF request uses format=pdf and follows the saved view, like Download; do not silently substitute Mirelo's original PDF. Use original_pdf only when requested and label it as the original. Audio exports are synthesis, not original stems. reference_midi downloads preserved initial/historical performance evidence, not the current score or a supplier original; it covers the whole score and obeys the MIDI download entitlement.
 
 Show a score as staff or jianpu (简谱: jianpu 1=key, jianpu_fixed 1=C 固定调, jianpu_melody) with set_notation_view: the score keeps it, the prepared panel and Download PDF follow; without a prepared panel result, open_score once with notation; before it exists, pass view to the tool making it. export_score takes the same names; jianpu_voices only if asked for a hand's voices apart.
 
