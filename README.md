@@ -20,6 +20,15 @@ level when the request does not say.
 It is maintained by individual developer HaiyiMei.
 The OpenAI listing uses the verified developer name HAIYI MEI.
 
+## Install
+
+- **ChatGPT:** install [ScoreStarling](https://chatgpt.com/plugins/plugin_asdk_app_6ac3484e9e408191bcd88bf7ea90a67e)
+  from ChatGPT's plugin directory (Plugins, search ScoreStarling, select Install plugin), then sign in and
+  allow access. Steps with pictures: https://scorestarling.com/mcp#chatgpt
+- **Claude:** add the marketplace `HaiyiMei/scorestarling-plugins`, or add the server address
+  `https://mcp.scorestarling.com/mcp` as a custom connector.
+- **Other clients:** see https://scorestarling.com/mcp.
+
 ## Access and use
 
 Sign in with a ScoreStarling account and approve the MCP connection through the
