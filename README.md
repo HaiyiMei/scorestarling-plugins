@@ -2,6 +2,7 @@
 
 [![ScoreStarling MCP connector](https://glama.ai/mcp/connectors/com.scorestarling/scorestarling/badges/score.svg)](https://glama.ai/mcp/connectors/com.scorestarling/scorestarling)
 [![Mentioned in Awesome](https://awesome.re/mentioned-badge.svg)](https://github.com/hashgraph-online/awesome-ai-plugins)
+[![Mentioned in Awesome](https://awesome.re/mentioned-badge.svg)](https://github.com/punkpeye/awesome-remote-mcp-servers)
 
 Transcribe, read, convert and edit sheet music. Move music between
 sound, pictures, documents and score files. Start from an audio or video recording, a sheet-music image or PDF, MIDI, MusicXML, ABC, Guitar Pro,
