@@ -51,7 +51,7 @@ prepared panel. Opening a finished score needs no upload, audio check
 or new transcription. Do not ask for information already recorded in that score.
 
 Only if the user explicitly wants a **new score from a saved Pro result**, use the original
-recording or `transcribe_again`, with `provider: mirelo`, instrument review enabled and
+recording or `transcribe_music` with its `score_id`, with `provider: mirelo`, instrument review enabled and
 `replay_only: true` **at creation**, before the first review. This is available only to enabled
 replay accounts. Never require the user to say internal parameter names.
 
@@ -80,7 +80,7 @@ Until those changes have been checked, report the remaining uncertainty rather t
 
 | What the user has | Do this |
 | --- | --- |
-| A clean PDF or flat scan of printed music, especially piano or several pages | Upload it like a recording (`transcribe_attachment`, `prepare_audio_upload`, `transcribe_link` for a link to the file, or the panel). The server's sheet-music reader takes about 30–50 seconds a page |
+| A clean PDF or flat scan of printed music, especially piano or several pages | Upload it like a recording (`transcribe_music` with the attachment or a link to the file, `prepare_audio_upload`, or the panel). The server's sheet-music reader takes about 30–50 seconds a page |
 | A phone photo, a lead sheet with chord symbols, jianpu, handwriting or a single short page | Read it yourself, write ABC ([references/abc.md](references/abc.md)) and call `create_score` |
 | A MusicXML, MXL, MIDI, ABC or Guitar Pro (.gp, .gpx, .gp3–.gp5) file | Upload it as it is (Guitar Pro keeps its TAB); a short ABC text can also go straight to `create_score` |
 | Music typed or described in the chat, or music you compose or arrange on request | Write ABC and call `create_score` |
@@ -230,7 +230,7 @@ Use the connected host's authorized tools and respect its file, network and appr
 
 Use existing ScoreStarling entitlements only. Never offer credit purchases, new subscriptions, upgrades or checkout links in chat, even if asked. Explain limits and covered excerpts. With a zero or insufficient band balance, already-open scores remain viewable and editable; account-permitted PDF and audio exports remain available.
 
-When the user says reuse the existing result or do not start new processing, first list_scores; open_score once if no panel result was already prepared for this score/request. do not upload, check_recording or transcribe_again merely to reopen a score. Only for an explicitly requested new score from a saved Pro result, use the original upload or transcribe_again with provider=mirelo, review_instruments=true and replay_only=true from creation (enabled replay accounts only). Read get_pro_instrument_review(start=false) first. replay_candidates verify this owner, original bytes and decoded length; compare every historical instrument and flat pro_options with the requested choices. No matching candidate means stop and offer the existing score; never start detection, fresh processing or a replacement. Confirm matching complete choices with replay_only=true, then read back pro_review.replay_only=true. Keep the same excerpt length; a shorter quote needs its own matching saved result, otherwise stop. If a quote is required, ask once for its exact product credits; reuse permission is not payment consent. Follow the same job and verify completed.replayed_from. Explain saved-result reuse in plain words; the user does not need to name internal fields.
+When the user says reuse the existing result or do not start new processing, first list_scores; open_score once if no panel result was already prepared for this score/request. do not upload, check_recording or transcribe_music merely to reopen a score. Only for an explicitly requested new score from a saved Pro result, use the original upload or transcribe_music with its score_id, provider=mirelo, review_instruments=true and replay_only=true from creation (enabled replay accounts only). Read get_pro_instrument_review(start=false) first. replay_candidates verify this owner, original bytes and decoded length; compare every historical instrument and flat pro_options with the requested choices. No matching candidate means stop and offer the existing score; never start detection, fresh processing or a replacement. Confirm matching complete choices with replay_only=true, then read back pro_review.replay_only=true. Keep the same excerpt length; a shorter quote needs its own matching saved result, otherwise stop. If a quote is required, ask once for its exact product credits; reuse permission is not payment consent. Follow the same job and verify completed.replayed_from. Explain saved-result reuse in plain words; the user does not need to name internal fields.
 
 panel_prepared=true confirms prepared data, not visibility. Reuse the returned panel (an upload or transcription panel becomes the score); call open_score again only for a reported display failure or a request to reopen, or once if this conversation returned no score/upload panel.
 

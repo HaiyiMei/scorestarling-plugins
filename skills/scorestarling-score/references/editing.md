@@ -8,8 +8,7 @@ and `get_workflow_guide(topic="operations")` list every operation's fields and l
 
 Every change to an existing score stays in that score as its next revision, with its recording
 comparison, open panel, comments and undo history. Never make a new score to change one:
-`create_score`, `transcribe_attachment`, `transcribe_link` and `transcribe_again` make separate
-scores without that history. Make a new score only when the user asks for one, such as an
+`create_score` and `transcribe_music` make separate scores without that history. Make a new score only when the user asks for one, such as an
 arrangement ([arranging.md](arranging.md)) or another transcription.
 
 ## Operations: edit_score
@@ -275,7 +274,7 @@ workarounds.
 ## Another transcription of the same recording
 
 When a recording was transcribed as the wrong instrument ("it's a piano"), and the user agrees,
-call `transcribe_again` with the score ID and the right `provider`: it makes a new score from
+call `transcribe_music` with the score's `score_id` and the right `provider`: it makes a new score from
 the same recording, the first score stays, and nothing is uploaded again. Follow its job like an
 upload; a band still needs its price question. Never use it merely to fix notation. Sheet music
 and notation imports have no recording to transcribe again.
