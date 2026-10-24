@@ -1,16 +1,19 @@
 # Review tools: what they show and how to act on it
 
-Read this with step 5 of SKILL.md: how to read each tool's evidence, how to weigh what
-`listen_score` reports and what `watch_score` shows, how to use the ready suggestions, and how to
-check tempo, meter and the first downbeat. What a good score of this piece looks like is in [good-score.md](good-score.md).
+Read this with step 5 of SKILL.md: how to read each check's evidence, how to weigh what
+`review_score` hears (`check=listen`) and shows of a video (`check=watch`), how to use the ready
+suggestions, and how to check tempo, meter and the first downbeat. What a good score of this piece looks like is in [good-score.md](good-score.md).
 
 None of these tools checks the notes against the recording for you. Everything they report is a
 lead to check, and an empty or unavailable result proves nothing about accuracy.
 
 ## review_score
 
-`review_score(score_id, revision?, measures?, image=true, text=false)` reads one saved revision
-(or a preview's revision) and changes nothing.
+`review_score(score_id, check?, revision?, measures?, image=true, text=false)` reads one saved
+revision (or a preview's revision) and changes nothing. `check` picks what it checks: `acceptance`
+(the default, below), `structure`, `listen` or `watch` (their own sections follow). Where
+`review_score` takes no `check`, the host lists `validate_score`, `listen_score` and `watch_score`
+for these, with the same arguments.
 
 - `measures` selects up to 16 bars in the score's own bar numbers ("5-8", "17-32"). Without it
   the picture is the first page and the text covers the whole score up to a size limit.
@@ -32,8 +35,9 @@ It returns:
 - `suggestions`: ready operations for key, clef, ledger lines, voices, staff layout and
   register, and rhythm advice (codes `rhythm` and, for a band score, `pro_rhythm`). A suggestion
   is a lead; see "Suggestions" below.
-- `structure`: the same findings as `validate_score` (bar lengths, voices and chords, notes not
-  bound to the playing). A clean structure does not mean the notes are right.
+- `structure`: the findings that `check=structure` lists a page at a time with their note IDs
+  (bar lengths, voices and chords, notes not bound to the playing). A clean structure does not
+  mean the notes are right.
 - `doubtful_notes`: confidence leads from the one-instrument transcription only. They are
   unavailable for solo piano, band scores and sheet-music imports, and an empty list does not
   mean the score is accurate.
@@ -50,9 +54,9 @@ It returns:
 - The picture, when `image` is on: the first page, or the bars in `measures`. Judge it as an
   engraver would.
 
-## listen_score
+## Listening: check=listen
 
-`listen_score(score_id, measures, part?, revision?)` only reads: at most 16 bars or 45 seconds, about a
+`review_score(score_id, check=listen, measures, part?, revision?)` only reads: at most 16 bars or 45 seconds, about a
 second of server work, and no credits. A second transcription engine hears that stretch of the
 score's own recording again. Per bar and beat it returns:
 
@@ -95,10 +99,10 @@ How to use it:
 - Leads are never verdicts: quiet, short or ornamental real notes can go unheard. A change to
   notes still goes through a preview unless the user asked for corrections.
 
-## watch_score
+## Watching: check=watch
 
-`watch_score(score_id, measures?, seconds?, frames?, columns?, crop?, revision?)` only reads and uses
-no credits. For a score made from a video (an uploaded video, or a YouTube, Bilibili or other video
+`review_score(score_id, check=watch, measures?, seconds?, frames?, columns?, crop?, revision?)`
+only reads and uses no credits. For a score made from a video (an uploaded video, or a YouTube, Bilibili or other video
 page) it returns one picture of frames from that video, left to right then down, and per frame its
 bar, beat, time and the written notes struck just before it (`struck`: staff, name, ID).
 
@@ -186,8 +190,8 @@ or taste.
 ## When you finish a round of corrections the user asked for
 
 - Look at every page the user will read or receive, not only the first picture ("The page" in
-  good-score.md), and check the changed passages against the recording: `listen_score` on those
-  bars where it is available, and the user's ear.
+  good-score.md), and check the changed passages against the recording: `review_score` with
+  `check=listen` on those bars where it is available, and the user's ear.
 - Report accuracy, readability, playability and, for a learner, suitability separately. Never
   invent a quality score.
 - Say which revision you checked, what you actually compared, and what is still uncertain.
