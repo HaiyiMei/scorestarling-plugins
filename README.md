@@ -88,8 +88,8 @@ account authorization checks.
 | --- | --- |
 | `account_preferences` | Reads or saves interface preferences for the signed-in account after verifying access to the panel’s score. It never changes notes or sends queued chat requests. |
 | `begin_audio_upload` | Reserves an account-scoped upload task from file metadata and returns its single-use upload capability to the app. |
-| `cancel_pro_review` | Cancels a held band instrument review for a panel opened before `cancel_transcription` took this over; kept for one release. |
-| `cancel_transcription_quote` | Cancels a held band price for a panel opened before `cancel_transcription` took this over; kept for one release. |
+| `cancel_pro_review` | Cancels a held band instrument review for a panel opened before `cancel_transcription` took this over. |
+| `cancel_transcription_quote` | Cancels a held band price for a panel opened before `cancel_transcription` took this over. |
 | `panel_feedback` | Saves the user's panel feedback for a score revision, including recording-sharing consent only when explicitly selected. |
 | `read_notation_view` | Reads rendered numbered-notation pages for an owned score revision without changing the music. |
 | `read_score_panel` | Reads the interactive panel for the current or a specified saved score revision. |
