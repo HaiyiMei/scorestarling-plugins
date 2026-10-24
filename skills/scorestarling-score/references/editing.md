@@ -214,7 +214,7 @@ after them. An accompaniment from middle C up, such as K. 545's, reads in the tr
 Mozart wrote it; a low one keeps the bass clef. `keep` leaves clefs alone, `treble` or `bass` sets
 one. It is refused for a part on one staff and for a slur or tuplet it would split (select the whole
 phrase). Preview it when the user asked to look first. Never repitch or delete notes to imitate a
-staff move. For a video, `watch_score` the bars first: each frame lists the notes struck there with
+staff move. For a video, watch the bars first (`review_score` with `check=watch`): each frame lists the notes struck there with
 their ID and staff, so a note in the other hand can be moved by its ID.
 
 **Guitar TAB.** TAB is a setting of the score, not a second score: `set_tablature {part_id?, view,
