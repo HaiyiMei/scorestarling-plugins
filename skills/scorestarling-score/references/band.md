@@ -64,7 +64,7 @@ allowed excerpt length, not supplied by the user or a tool argument.
      feel is used only if they say so. Ask only about a consequential ambiguity the source
      cannot settle.
    - Do not poll or transcribe again while the review is pending. If the user stops,
-     `cancel_pro_review` releases its reservation.
+     `cancel_transcription` releases its reservation.
 3. **Price.** A free preview (`product_quote.phase=preview`) has none: follow the job and review
    the 30 seconds (step 4), then offer the whole piece as above. When `get_upload_status` reports
    `product_quote.phase=pending`, call `get_transcription_quote` with the `job_id`: it gives the
@@ -107,8 +107,8 @@ https://scorestarling.com/credits documents them neutrally; it is not a way to g
 
 ## If the user declines
 
-- While instruments are pending, `cancel_pro_review` releases the reservation; while the price
-  is pending, `cancel_transcription_quote` cancels it. Nothing was charged; say so.
+- While the instruments or the price are pending, `cancel_transcription` cancels the task and
+  releases its reservation. Nothing was charged; say so.
 - For another choice instead (one instrument or voice, solo piano), start it as a new job from
   the same attachment or link, with that `provider`. `transcribe_again` works only from a
   completed score.
