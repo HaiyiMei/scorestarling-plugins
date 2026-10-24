@@ -95,6 +95,9 @@ account authorization checks.
 | `read_score_panel` | Reads the interactive panel for the current or a specified saved score revision. |
 | `save_score_edits` | Saves edits the interactive panel already drew itself, in order, on the exact saved revision. |
 | `score_panel_state` | Reads the current saved revision, pending preview and display preference to synchronize an existing panel. |
+| `transcribe_again` | Transcribes a score's recording again as a new score, for the panel's Transcribe again and panels opened before `transcribe_music` took this over. |
+| `transcribe_attachment` | Makes a new score from an attached file, for panels opened before `transcribe_music` took this over. |
+| `transcribe_link` | Makes a new score from a public link, for panels opened before `transcribe_music` took this over. |
 
 `begin_audio_upload` receives the filename, exact size and processing options,
 not the audio itself. Its app metadata contains a ten-minute, single-use upload

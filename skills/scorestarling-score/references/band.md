@@ -21,7 +21,7 @@ allowed excerpt length, not supplied by the user or a tool argument.
   the whole piece after a free 30-second preview (SKILL.md step 4).
 - A first band run of a recording longer than 30 seconds is a free 30-second preview
   (`product_quote.phase=preview`, no price): the instruments are still reviewed, but there is no
-  price question. When the user wants the whole piece, `transcribe_again` with that score and
+  price question. When the user wants the whole piece, `transcribe_music` with that `score_id` and
   `provider: mirelo` quotes it, and step 3's price question applies.
 - Read `get_account_usage`. If the account has prices and no credits available for a band, say
   so before sending and offer the other choices instead.
@@ -110,8 +110,8 @@ https://scorestarling.com/credits documents them neutrally; it is not a way to g
 - While the instruments or the price are pending, `cancel_transcription` cancels the task and
   releases its reservation. Nothing was charged; say so.
 - For another choice instead (one instrument or voice, solo piano), start it as a new job from
-  the same attachment or link, with that `provider`. `transcribe_again` works only from a
-  completed score.
+  the same attachment or link, with that `provider`. `transcribe_music` with a `score_id` needs a
+  finished or stopped score.
 - Transcribing the same recording again as a band is a new task with its own price.
 
 ## After it completes
@@ -154,7 +154,7 @@ https://scorestarling.com/credits documents them neutrally; it is not a way to g
 Only when the user explicitly wants a new score from a saved band result. The user never needs
 to name internal options; explain it in ordinary words as reusing a saved result.
 
-1. Use the original recording or `transcribe_again`, with `provider: mirelo`, instrument review
+1. Use the original recording or `transcribe_music` with its `score_id`, with `provider: mirelo`, instrument review
    on and `replay_only: true` set when the job is created, before the first review.
 2. Read `get_pro_instrument_review(start=false)` first. Its `replay_candidates` already verify
    this account, the original bytes and the decoded length. Compare every saved instrument and
