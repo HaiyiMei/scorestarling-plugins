@@ -1,13 +1,14 @@
 # Changing a score: edited copies, previews, marks and specific fixes
 
-Read this with step 6 of SKILL.md when a change needs more than one `edit_score` operation, when
+Read this when a change needs more than one `edit_score` operation, when
 you add printed marks or reduce a part to one line, and for specific fixes. The live tool schema
-and `get_workflow_guide(topic="operations")` list every operation's fields and limits.
+lists every operation's fields and limits (in a chat app, so does
+`get_workflow_guide(topic="operations")`).
 
 ## In place, always
 
 Every change to an existing score stays in that score as its next revision, with its recording
-comparison, open panel, comments and undo history. Never make a new score to change one:
+comparison, open view, comments and undo history. Never make a new score to change one:
 `create_score` and `transcribe_music` make separate scores without that history. Make a new score only when the user asks for one, such as an
 arrangement ([arranging.md](arranging.md)) or another transcription.
 
@@ -30,18 +31,18 @@ fills the history the user undoes through.
 For what no operation writes, or a round too large for a batch (deleting a misheard voice,
 correcting many pitches, adding missed notes, rhythm spelling, grace notes, swing, pedal):
 
-1. Before the first file fetch in the conversation, tell the user in one line that the chat may
-   ask to allow it, and that allowing ScoreStarling for the conversation stops further asks.
-2. `export_score` with `format=editing_copy` for the current revision, once for the whole round
+1. `export_score` with `format=editing_copy` for the current revision, once for the whole round
    (the changes you are about to save or preview together). It is the score's MusicXML for your
    own edits: it works on every opened score and is saved back into the same score, so it is not
    a download for the user. Never present it as one or link it as a file; when the user asks for
-   a MusicXML file, that is a download (SKILL.md step 7), which follows the account.
-3. Make every change in that copy, keeping each note's `id` attribute.
-4. Save it once with `revise_score` (the file as an attachment, or the text as `musicxml`),
+   a MusicXML file, that is a download ([delivery.md](delivery.md)), which follows the account.
+   In a chat app, fetching it can make the chat ask the user first ([chat-hosts.md](chat-hosts.md)
+   step 6).
+2. Make every change in that copy, keeping each note's `id` attribute.
+3. Save it once with `revise_score` (the file as an attachment, or the text as `musicxml`),
    giving the revision it was exported from. `preview=true` saves it as a suggestion the user
-   applies or discards in the panel instead.
-5. Re-read IDs with `get_score`, `review_score` the result, and say in plain words what changed.
+   applies or discards instead.
+4. Re-read IDs with `get_score`, `review_score` the result, and say in plain words what changed.
    If `revise_score` refuses, it says what differs: fix the file and save again.
 
 How the copy plays back: a kept note keeps its played timing whatever its written rhythm, staff
@@ -53,9 +54,9 @@ accepted.
 One export serves one save. When notation-only fixes and proposed note changes both need the
 copy, save the notation-only fixes first, then export the new revision for the preview.
 
-If you cannot fetch or edit the file, use operations for what they can express (a
-`preview_score_edit` with `fill_rest` for a missed note in a rest, `delete_notes`, `set_pitch`,
-several of them as one batch) and say plainly what is left undone and why.
+If you cannot fetch or edit the file, use operations for what they can express (`fill_rest` for a
+missed note in a rest, `delete_notes`, `set_pitch`, several of them as one batch) and say plainly
+what is left undone and why.
 
 ## Requests and proposals
 
@@ -63,15 +64,14 @@ several of them as one batch) and say plainly what is left undone and why.
   request covers (tidying the hands can drop doubled and stray notes). Results identify the
   changes, including removed notes; undo restores the previous version. Host tool, file and
   network approvals still apply. Requested arrangements are separate scores beside the original.
-- A panel message can list several numbered requests, each with its own note IDs: apply them in
-  order, each on the current revision.
-- What you propose on your own goes into a preview: `preview_score_edit` (one operation, or a
-  batch of them as one suggestion; every action except undo and redo) or `revise_score` with
-  `preview=true`. Explain its scope,
-  `review_score` the preview, and say what improves and what gets worse. A preview changes
-  nothing until the user accepts it; then call `apply_score_preview` with its ID and base
-  revision. `discard_score_preview` drops one. The panel's Apply and Discard ask the user; in chat,
-  say that the score shown is the suggestion, without citing tool rules.
+- Which changes you propose rather than make, and how a proposal reaches the user, is the
+  host's call ("What a change needs" in [SKILL.md](../SKILL.md)). A preview holds one as a
+  suggestion: `revise_score` with `preview=true`, or, where the host has it, `preview_score_edit`
+  (one operation, or a batch of them as one suggestion; every action except undo and redo).
+  Explain its scope, `review_score` the preview, and say what improves and what gets worse. A
+  preview changes nothing until the user accepts it; the user applies or discards it where the
+  score is shown. In a chat app, the panel's requests and applying a preview are in
+  [chat-hosts.md](chat-hosts.md) step 6.
 - Up to five previews can wait on one revision, but applying one makes the others stale: put
   related changes into one preview.
 - On a stale revision, re-read `get_score` and reconsider the proposal against the new score
@@ -106,8 +106,8 @@ A part still named after the piano becomes Melody. It suits a single-part record
 
 - Merely naming a voice, a violin or a flute does not authorize removing real simultaneous
   notes, and a `single_line` suggestion is `voices: 1`, not this.
-- Apply an already requested reduction with `edit_score`; preview one you propose with
-  `preview_score_edit`.
+- Apply an already requested reduction with `edit_score`; one the user did not ask for is a
+  proposal ("Requests and proposals").
 - The user can do the same in Score settings › Layout, which also offers one staff with chords,
   two piano staves and the shortest note. Other simplifications are arrangements
   ([arranging.md](arranging.md)).
@@ -115,7 +115,7 @@ A part still named after the piano becomes Melody. It suits a single-part record
 ## Page layout
 
 `edit_score` with `{"action":"layout", ...}` lays out the pages as notation programs do. Only the
-pages, the PDF and the panel change: notes, note IDs and playback stay, and undo restores the
+pages, the PDF and the score view change: notes, note IDs and playback stay, and undo restores the
 previous layout. Fields left out keep their values; `null` puts one back to its default, and
 `reset: true` puts all back.
 
@@ -219,7 +219,7 @@ their ID and staff, so a note in the other hand can be moved by its ID.
 
 **Guitar TAB.** TAB is a setting of the score, not a second score: `set_tablature {part_id?, view,
 tuning?, capo?, strings?}` shows a guitar, bass or ukulele part with TAB under the staff (`both`),
-as TAB alone (`tab`) or not (`off`), and the panel, PDF, parts and MusicXML follow; the notes and
+as TAB alone (`tab`) or not (`off`), and the score view, PDF, parts and MusicXML follow; the notes and
 playback never change. Pass the tuning the user names (a preset such as `drop_d` or `dadgad`, or
 the open strings from the lowest, `["D2","A2","D3","G3","B3","E4"]`) and the capo fret; a Pro part
 already starts from the tuning its supplier's TAB named. `strings: "lowest"` (the default) writes

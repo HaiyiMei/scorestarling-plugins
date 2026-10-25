@@ -1,45 +1,22 @@
-# A band transcription: instruments, price, recovery and saved results
+# A band transcription: instruments, rhythm, results and recovery
 
-Read this before sending a band recording (`provider: mirelo`), when a band job waits for
-instruments or a price, when it fails, when the user asks about credits or a short balance, or
-when they want a new score from a saved band result.
-
-To the user this is "a band (uses credits)" and its "price", which is always a number of
-credits, never money. The service behind it is credited only by the short line "Powered by
-Mirelo", added as written when you ask the user to agree to a price, and nowhere else. Product
-credits are the user's price; supplier spending limits are calculated by the server from the
-allowed excerpt length, not supplied by the user or a tool argument.
+Read this before sending a band recording (`provider: mirelo`), when a band job waits for its
+instruments, when it fails, or when the user wants a new score from a saved band result. Its
+price, and the one question that goes with it, are the host's: in a chat app, "A band's price" in
+step 4 of [chat-hosts.md](chat-hosts.md); for Starling, inside ScoreStarling, its own instructions.
 
 ## Before sending
 
-- A band is for several instruments or drums, and it is chosen with the user. When they asked
-  for the band, the whole song or a full score, that is the choice; when only the recommendation
-  suggests it, ask first in one line that it uses credits and that the price comes before
-  anything starts.
-- It uses 30 credits a minute of the account's existing credits, priced by its length (10-second
-  steps, 5 credits each: 3:30 is 105). One instrument or voice and solo piano use 10 credits for
-  the whole piece after a free 30-second preview (SKILL.md step 4).
-- A first band run of a recording longer than 30 seconds is a free 30-second preview
-  (`product_quote.phase=preview`, no price): the instruments are still reviewed, but there is no
-  price question. When the user wants the whole piece, `transcribe_music` with that `score_id` and
-  `provider: mirelo` quotes it, and step 3's price question applies.
-- Read `get_account_usage`. If the account has prices and no credits available for a band, say
-  so before sending and offer the other choices instead.
-- The excerpt is the shorter of the length limit and what the balance covers. The length limit
-  is six minutes, the same for every account and for every choice; `check_recording`,
-  `get_account_usage` (`max_seconds`) and the upload result (`max_seconds`, `excerpt`) give it.
-  Tell the user before it starts when the recording is longer.
+- A band is for several instruments or drums, and it is chosen with the user.
 - If a band is unavailable, read `get_account_usage.engine_status.mirelo.reason` when it is
   given. Do not assume the account lacks permission or that the service stops at two minutes.
-- Mention cost only for a band, opening a previewed piece, or when `get_account_usage` shows a
-  limit. Estimates are not
-  billing receipts.
 
 ## Steps
 
-1. **Send** the recording as in steps 2 and 3 of SKILL.md with `provider: mirelo`, leaving
-   `review_instruments` on (its default), and follow the job. It then reports `needs_review`
-   while its instrument review is pending: stop polling the status and follow its `next_step`.
+1. **Send** the recording with `provider: mirelo`, leaving `review_instruments` on (its default),
+   and follow the job (in a chat app, steps 2 to 4 of [chat-hosts.md](chat-hosts.md)). It then
+   reports `needs_review` while its instrument review is pending: stop polling the status and
+   follow its `next_step`.
 2. **Instruments.** Read `get_pro_instrument_review(start=false)` first. For a new upload, call
    it with `start=true` to request free instrument suggestions; this never starts the paid
    transcription. If the suggestions are not ready, the review says when to read it again.
@@ -65,45 +42,9 @@ allowed excerpt length, not supplied by the user or a tool argument.
      cannot settle.
    - Do not poll or transcribe again while the review is pending. If the user stops,
      `cancel_transcription` releases its reservation.
-3. **Price.** A free preview (`product_quote.phase=preview`) has none: follow the job and review
-   the 30 seconds (step 4), then offer the whole piece as above. When `get_upload_status` reports
-   `product_quote.phase=pending`, call `get_transcription_quote` with the `job_id`: it gives the
-   exact credits for the decoded length and the complete choices you confirmed. Ask once, in the user's language: the length
-   it covers, the exact credits as use of credits the account already has (not a purchase), and
-   the plan (the instruments or automatic parts, and any rhythm choice), then "Powered by
-   Mirelo". For example (made up): "A band score of the first 3:00 (piano, bass and drums) uses
-   90 of your credits. Shall I start? Powered by Mirelo."
-   - Only after the user's explicit yes, call `confirm_transcription_quote` with the unchanged
-     `quote_id` and credits and `consent: true`.
-   - A reply with new wishes instead of a yes (more tracks, other instruments, notes on the gear)
-     is not consent, and it needs an answer, not the same question again: say what the result
-     can and cannot hold, then ask once with the final plan and price.
-   - Until then the user may still change the choices: confirm again and quote again, and ask
-     again for the new price. An expired price or changed input needs a fresh quote. An upload's
-     estimate is not consent.
-   - Nothing is transcribed or reserved before the yes.
-   - An account without prices gets one question about starting instead of the price.
-4. **Follow** the same job (SKILL.md step 4), then review the completed score (step 5).
-
-## A short or empty balance
-
-When the balance does not cover the whole excerpt, the quote's `affordable` is the longest
-excerpt from the start that it does cover. Offer it rather than stopping, as the one price
-question: call `get_transcription_quote` again with `seconds` set to that length (free; nothing
-is reserved), then ask with that quote's exact credits, saying what the whole recording would
-need and what is left out. For example (made up): "The whole 3:30 needs 105 credits and you have
-75. Those cover the first 2:30 (vocals, guitar, bass and drums) for 75 credits; the last
-minute is left out. Shall I start the first 2:30? Powered by Mirelo." A yes to that exact
-offer is the consent for that quote; another length needs a new quote and a new question.
-
-If no excerpt is covered, explain that a band transcription is not available now; opening
-existing scores, sheet music and score files, editing and PDFs all still are, and so are
-the other choices.
-
-Never offer credit purchases, subscriptions, upgrades, top-ups or checkout links, even when the
-user asks to buy, and never show money prices, plans or packs. In reply to a request to buy, say
-that purchases are not available here, with no link. If asked how credits work,
-https://scorestarling.com/credits documents them neutrally; it is not a way to get more credits.
+3. **The price** comes next, with the plan you confirmed: in a chat app, "A band's price" in step 4
+   of [chat-hosts.md](chat-hosts.md); for Starling, its own instructions.
+4. **Follow** the same job, then review the completed score ([review.md](review.md)).
 
 ## If the user declines
 
@@ -119,11 +60,11 @@ https://scorestarling.com/credits documents them neutrally; it is not a way to g
 - Report the time signature and tempo from `provider_output.rhythm`, with their sources and
   warnings, in plain words.
 - A band score transcribed with credits shows whole; its price is the only credits it needs.
-  Downloads follow the account, as for any score (SKILL.md step 7).
+  Downloads follow the account, as for any score ([delivery.md](delivery.md)).
 - The band's notation, detection and original exports are the starting point: reuse them before
   inventing other processing, keep the original and revisions reversible, and keep what the
   service wrote apart from what you changed. Its provenance alone does not make it accurate:
-  review it like any transcription (SKILL.md step 5). Listening (`review_score` with
+  review it like any transcription ([review.md](review.md)). Listening (`review_score` with
   `check=listen`) hears the band's mix: pass `part` to check one part, such as the bass against the piano's left hand (see
   [review-tools.md](review-tools.md)).
 - `provider_output.musicxml_optimized` is true only when the service reports an optimized file;

@@ -1,6 +1,6 @@
 # What this piece is, and what a good score of it looks like
 
-Read this once in a conversation before judging a transcription (step 5 of SKILL.md), and come
+Read this once in a conversation before judging a transcription ([review.md](review.md)), and come
 back to an entry when a passage raises its question. It is musical judgment, not a list of tool
 calls: [review-tools.md](review-tools.md) explains the tools' evidence, and
 [editing.md](editing.md) the operations.
@@ -95,8 +95,8 @@ Each entry gives the evidence that supports it, what contradicts it, the support
 how to verify. None is a default for every piece: a pop ballad, a chorale, a fugue and a stride
 left hand are written differently. Most pieces need at least "Returning phrases", "Beat level,
 meter and pickup", "Broken chords and repeated patterns", "Hands, voices and staves" and "The
-page". Notation-only fixes are made directly; note changes are applied when the user asked for
-corrections and otherwise proposed as a preview (SKILL.md step 5).
+page". What each change needs is in "What a change needs" in [SKILL.md](../SKILL.md); which ones to
+make without being asked is the host's call (in a chat app, [chat-hosts.md](chat-hosts.md) step 5).
 
 1. **Melody and accompaniment.** Look for a recurring melody and harmony pattern heard across a
    phrase. An eighth-note left-hand accompaniment under a right-hand melody is one example, not

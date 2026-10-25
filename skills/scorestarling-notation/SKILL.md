@@ -1,15 +1,22 @@
 ---
 name: scorestarling-notation
-description: Turn sheet music into an editable, playable ScoreStarling score and convert music between forms. Sources include notation visible in video frames, a photo, scan or PDF of printed music, jianpu (numbered notation), a lead sheet or chord chart, a MusicXML, MIDI, ABC or Guitar Pro file, or music typed, described or written in the chat. Outputs include MIDI, audio, PDF, MusicXML, Guitar Pro, ABC, MEI and jianpu. Use with a connected ScoreStarling MCP server whenever music arrives as notation rather than by listening to a recording.
+description: Turns written music into an editable, playable ScoreStarling score and converts music between forms. Sources include notation visible in video frames, a photo, scan or PDF of printed music, jianpu (numbered notation), a lead sheet or chord chart, a MusicXML, MIDI, ABC or Guitar Pro file, or music typed, described or written in the chat. Outputs include MIDI, audio, PDF, MusicXML, Guitar Pro, ABC, MEI and jianpu. Use it whenever someone has music as notation or a score file (rather than a recording to listen to) and wants it playable, edited, converted or exported, and whenever they ask for music to be written.
 ---
 
 # Sheet music and notation to a score
 
-Use the connected ScoreStarling tools. A score made here is a normal ScoreStarling project: it
-plays back, opens in the score panel, takes the same edits (`edit_score`) and exports to PDF,
-images, audio and, on accounts with existing download access, the editable formats (MusicXML, MIDI,
-Guitar Pro, ABC, MEI; see Converting). Music read from a video's notation follows the section below;
-music transcribed by listening follows the `scorestarling-score` skill.
+A score made here is a normal ScoreStarling project: it plays back, takes the same edits
+(`edit_score`) and exports to PDF, images, audio and, on accounts with existing download access,
+the editable formats (MusicXML, MIDI, Guitar Pro, ABC, MEI; see Converting). Music read from a
+video's notation follows the section below; music transcribed by listening follows the
+`scorestarling-score` skill.
+
+**Where you work decides the conversation.** In a chat app with the ScoreStarling MCP connection
+(ChatGPT, Claude, Codex, Gemini), read [references/chat-hosts.md](references/chat-hosts.md) before
+the first tool call: how a file reaches the server, what the score panel shows, a preview's
+price, saved results and how files reach the user. Starling, the assistant inside ScoreStarling,
+is not such a chat app: its own instructions say those things and win where they differ from this
+skill, so it skips chat-hosts.md wherever a reference points there.
 
 ## Notation visible in a video
 
@@ -43,46 +50,13 @@ offer audio transcription as an alternative if audio is accessible, without sile
 request. Missing frames do not establish that no score exists, and unreadable bars must not be invented.
 Once the source is usable, finish the score in the same turn rather than asking the user to request import again.
 
-## Reuse an existing score or saved result
-
-When the user says “reuse the existing result” or “do not start new processing”, first
-use `list_scores` and open it once with `open_score` unless this request already returned its
-prepared panel. Opening a finished score needs no upload, audio check
-or new transcription. Do not ask for information already recorded in that score.
-
-Only if the user explicitly wants a **new score from a saved Pro result**, use the original
-recording or `transcribe_music` with its `score_id`, with `provider: mirelo`, instrument review enabled and
-`replay_only: true` **at creation**, before the first review. This is available only to enabled
-replay accounts. Never require the user to say internal parameter names.
-
-Read `get_pro_instrument_review(start=false)` first. Match the complete historical
-`instruments` and flat `pro_options`, including tempo, meter, subdivision, timing and paper;
-the candidates already verify this account, original bytes and decoded duration. Different
-choices need a different saved result. If no candidate matches, stop and offer to open the
-existing score. Do not start fresh detection, processing or another upload.
-
-Confirm matching choices with `confirm_pro_instruments(replay_only=true)`, then read back
-the saved guard. If a quote is required, ask once for consent to its exact product credits;
-permission to reuse is not payment consent. Keep the same excerpt length; a shorter quote needs its
-own matching saved result. Follow the same job and verify the completed
-result includes `replayed_from`. Explain this as reusing a saved result, in ordinary language.
-
-## Preserve and audit source corrections
-
-For PDF/OCR drafts, prefer source-supported local edits over replacing correctly read music.
-Keep the original draft. If missing notes or ties require a `create_score` replacement, compare
-**all** pitch and rhythm changes between the new and old scores against enlarged original pages.
-Check clef, key, staff position, accidentals, grace notes and ties, with the preceding and following
-bars. A structurally valid score or a model calling it “corrected” is not proof of source fidelity.
-Until those changes have been checked, report the remaining uncertainty rather than complete accuracy.
-
 ## Choose the way in
 
 | What the user has | Do this |
 | --- | --- |
-| A clean PDF or flat scan of printed music, especially piano or several pages | Upload it like a recording (`transcribe_music` with the attachment or a link to the file, `prepare_audio_upload`, or the panel). The server's sheet-music reader takes about 30–50 seconds a page |
+| A clean PDF or flat scan of printed music, especially piano or several pages | Send it to the server's sheet-music reader as you would a recording; it takes about 30–50 seconds a page |
 | A phone photo, a lead sheet with chord symbols, jianpu, handwriting or a single short page | Read it yourself, write ABC ([references/abc.md](references/abc.md)) and call `create_score` |
-| A MusicXML, MXL, MIDI, ABC or Guitar Pro (.gp, .gpx, .gp3–.gp5) file | Upload it as it is (Guitar Pro keeps its TAB); a short ABC text can also go straight to `create_score` |
+| A MusicXML, MXL, MIDI, ABC or Guitar Pro (.gp, .gpx, .gp3–.gp5) file | Send it as it is (Guitar Pro keeps its TAB); a short ABC text can also go straight to `create_score` |
 | Music typed or described in the chat, or music you compose or arrange on request | Write ABC and call `create_score` |
 
 These defaults come from measured readings (docs/sheet-music.md in the ScoreStarling
@@ -94,12 +68,12 @@ melodies, lead sheets, jianpu and chorales almost perfectly. Dense piano photos 
 everyone, so read those bar by bar and check carefully. When the user offers both a photo and
 a PDF of the same music, upload the PDF.
 
-Uploaded sheet music and score files are read, not transcribed: skip `check_recording`, and
-the engine choice and tempo detection do not apply. A score file (MusicXML, MIDI, Guitar Pro, ABC) or
+Uploaded sheet music and score files are read, not transcribed: the recording check, the engine
+choice and tempo detection do not apply. A score file (MusicXML, MIDI, Guitar Pro, ABC) or
 notation text is free; a PDF or photo read is a piece like any other (a free 30-second preview, then
 10 credits for the whole). A tempo the user gives
-(`bpm`) sets playback for a score that marks none. Follow the job with `get_upload_status`
-(`wait_seconds: 20`) until it finishes, then do what its `next_step` says.
+(`bpm`) sets playback for a score that marks none. Follow the job until it finishes,
+then do what its `next_step` says.
 
 ## Reading the music yourself
 
@@ -114,9 +88,6 @@ notation text is free; a PDF or photo read is a piece like any other (a free 30-
    completes it.
 4. Call `create_score` with the ABC and the title. Its `warnings` list notation it could not
    read and bars whose lengths do not match the time signature.
-   Its `panel_prepared: true` means the result includes prepared panel data. Reuse it; do not
-   call `open_score` again in the same request unless the user/host reports a display failure
-   or a new user request explicitly asks to reopen it. Preparation does not prove visibility.
 5. Call `review_score` and compare its picture with the source bar by bar: pitches,
    accidentals, octaves (bass notes especially), rhythms, ties, tuplets, chord symbols, key
    and time signatures. The picture lays bars out differently from the page, so compare by
@@ -152,68 +123,43 @@ checks, not rules that override written opening rests, syncopation, inner voices
 Apply clear source corrections and reversible edits within the user's stated goal directly.
 When the user asks for faithful or playable music, finish clear source-supported fixes before
 ending the turn; listing known missed notes or ties and waiting for another prompt leaves
-that request unfinished. Keep corrections in the same score: `edit_score` for single operations,
-or a `batch` of up to 30 note, rhythm, voice and bar edits saved as one version;
-otherwise edit the current revision's editing copy (`export_score` `format=editing_copy`, the
-MusicXML for your own edits; it works on every opened score and is not a download for the user), keeping note
-ids, and save it with `revise_score`, which also adds missed notes and removes misread ones. Reconstruct ABC as a new score only when the
+that request unfinished. Keep corrections in the same score, as "Change the score in place" in the
+`scorestarling-score` skill describes: `edit_score` for single operations, or a `batch` of up to 30
+note, rhythm, voice and bar edits saved as one version; otherwise an edited copy of the current
+revision, keeping note ids, saved with `revise_score`, which also adds missed notes and removes
+misread ones. Reconstruct ABC as a new score only when the
 first reading is unusable; preserve the draft, check the replacement and say it is a new score.
 Ask one specific question only when the source leaves a consequential musical choice unclear.
-Preview a new arrangement or interpretation outside that goal and apply only after its
-acceptance. Keep a faithful master when making a learner version. Read the current
-operations guide: `edit_score` has no grace-note, arpeggio, swing or pedal entry (voices,
+A new arrangement or interpretation outside that goal needs the user's acceptance before it
+is applied. Keep a faithful master when making a learner version. `edit_score` has no grace-note, arpeggio, swing or pedal entry (voices,
 staves, tuplets, ties, slurs, beams, stems and a shifted passage are operations); write those in
-the MusicXML and save it with `revise_score`. Do not invent
+an edited copy and save it with `revise_score`. Do not invent
 actions or reengrave an import to bypass that limit. If rewriting ABC, verify coverage and supported markings
 before replacing a version; do not discard the first attempt until the replacement is checked.
 Inspect all exported pages, compare changed bars with the written source and audition
 playback when available; report uncertainty and unverified exports explicitly.
 
+## Preserve and audit source corrections
+
+For PDF/OCR drafts, prefer source-supported local edits over replacing correctly read music.
+Keep the original draft. If missing notes or ties require a `create_score` replacement, compare
+**all** pitch and rhythm changes between the new and old scores against enlarged original pages.
+Check clef, key, staff position, accidentals, grace notes and ties, with the preceding and following
+bars. A structurally valid score or a model calling it “corrected” is not proof of source fidelity.
+Until those changes have been checked, report the remaining uncertainty rather than complete accuracy.
+
 ## Converting
 
-Once a score exists, `export_score` gives every other form of it:
-
-| Wanted | format |
-| --- | --- |
-| MIDI for a DAW or practice app | `midi` (accounts with existing download access) |
-| Listening audio | `mp3` or `wav` (General MIDI instruments) |
-| Printable sheet music | `pdf`; `pages` for SVG and PNG images; `parts` for one PDF per part (on other accounts they carry a small footer line) |
-| Notation software (MuseScore, Sibelius, Finale, Dorico) | `musicxml` or `mxl` (accounts with existing download access) |
-| Jianpu (简谱) | `jianpu` (every staff) or `jianpu_melody` (top line only; it may not be the melody), in the key; `jianpu_fixed` for 1=C fixed do (固定调) |
-| ABC text | `abc` (accounts with existing download access); the text also comes back in the result, so you can read, explain or rewrite it |
-| MEI for music research and editions | `mei` (accounts with existing download access) |
-
-**Downloads follow the account.** MusicXML, MXL, MIDI, Guitar Pro, ABC and MEI download on
-accounts with existing download access. Other accounts (`access.open` false in the panel and export
-results) get the PDF, page images and numbered-notation PDFs, with one small footer line ("Made
-with ScoreStarling"; mention it only if asked), and their own imported files in their original
-format. When `export_score` comes back `locked`, do not retry or work around it, and do not call
-`unlock_score` for a download: offer the PDF instead. Never offer purchases, plans or checkout
-links, even when asked. `format=editing_copy` works on every opened score.
-
-**Previews.** The user's own score file or notation text shows whole; a PDF or photo read shows its
-first 30 seconds until paid for. If a score tool
-refuses because only a free 30-second preview shows, its message names the exact credits: ask
-the user in one line whether to open the whole piece for exactly that many, as use of credits the
-account already has, not a purchase. Only after a clear yes call `unlock_score` with that number
-and `consent: true`, then read the score again. A preview can't be exported.
-
-Jianpu's `1=` follows the score's key signature (movable do; a minor key as its relative major).
-`jianpu_fixed` keeps the same pitches in 1=C, each black key marked (b5 for G-flat). Music
-printed without a key signature, every accidental written out, comes out as 1=C; when it is
-clearly in another key, offer `set_key` so the jianpu reads in that key. For A minor,
-`1=C` means the tonic is 6; it does not mean A major. Use full `jianpu` for both hands;
-check every staff's digits, octave dots, rhythms and key changes in the exported result.
-Changing the notation view does not simplify the music or prove multi-voice export fidelity.
+Once a score exists, `export_score` gives every other form of it. The formats, what each account
+downloads and numbered notation are in the `scorestarling-score` skill's
+[references/delivery.md](../scorestarling-score/references/delivery.md).
 
 Transpose with `edit_score` `transpose_score` (an interval such as `M2` or `-m3`) so the score,
 playback and exports stay consistent; change the playback instrument with `set_timbre`. To
 arrange or simplify music, read the score with `get_score` (or its editing copy), write the new
 ABC yourself (or a MusicXML file, passed as `file`) and `create_score` the new version; the
 original score stays as it is. An `abc` export works only on accounts with existing download
-access; to read the notes yourself, use `get_score` or the editing copy. Use
-the host's attachment if it appears; otherwise point to the prepared panel's Download menu.
-Do not paste or reconstruct signed download URLs in chat. For arrangements read [the arranging reference](../scorestarling-score/references/arranging.md).
+access; to read the notes yourself, use `get_score` or the editing copy. For arrangements read [the arranging reference](../scorestarling-score/references/arranging.md).
 
 ## Limits
 
@@ -222,41 +168,3 @@ without one it plays at 100 quarter notes per minute. Scores from notation are n
 (re-engraving rebuilds notation from playback); edit their notes instead. Up to ten minutes of
 music per score, 95 MiB per file and twelve pages per PDF. Drum tracks in a MIDI file get a drum
 staff after the pitched parts.
-
-<!-- BEGIN MCP ESSENTIALS (generated; edit the source, not this block) -->
-## Shared MCP essentials
-
-Use the connected host's authorized tools and respect its file, network and approval boundaries. Guidance grants no account access, upload consent, supplier spending or acceptance of a proposal. Never invent file references, expose upload capabilities or discover credentials.
-
-Use existing ScoreStarling entitlements only. Never offer credit purchases, new subscriptions, upgrades or checkout links in chat, even if asked. Explain limits and covered excerpts. With a zero or insufficient band balance, already-open scores remain viewable and editable; account-permitted PDF and audio exports remain available.
-
-When the user says reuse the existing result or do not start new processing, first list_scores; open_score once if no panel result was already prepared for this score/request. do not upload, check_recording or transcribe_music merely to reopen a score. Only for an explicitly requested new score from a saved Pro result, use the original upload or transcribe_music with its score_id, provider=mirelo, review_instruments=true and replay_only=true from creation (enabled replay accounts only). Read get_pro_instrument_review(start=false) first. replay_candidates verify this owner, original bytes and decoded length; compare every historical instrument and flat pro_options with the requested choices. No matching candidate means stop and offer the existing score; never start detection, fresh processing or a replacement. Confirm matching complete choices with replay_only=true, then read back pro_review.replay_only=true. Keep the same excerpt length; a shorter quote needs its own matching saved result, otherwise stop. If a quote is required, ask once for its exact product credits; reuse permission is not payment consent. Follow the same job and verify completed.replayed_from. Explain saved-result reuse in plain words; the user does not need to name internal fields.
-
-panel_prepared=true confirms prepared data, not visibility. Reuse the returned panel (an upload or transcription panel becomes the score); call open_score again only for a reported display failure or a request to reopen, or once if this conversation returned no score/upload panel.
-
-Video links: inspect actual frames before choosing a source; watch_link provides times/crops without a score_id. Read visible notation with create_score and review against the source; otherwise transcribe audio when no notation is visible or the performance is explicitly requested. Missing or blurry frames do not prove absence: seek readable evidence or report the limitation, never invent bars. Finish the requested score in ScoreStarling. The notation skill explains the complete video-reading workflow.
-
-Sheet music and score files (PDF/images, MusicXML/MXL, MIDI, ABC, Guitar Pro with its TAB) use the same upload paths but are read, not audio-transcribed: skip check_recording; no engine choice, tempo detection or provider fee applies. Use local for their upload route. Clean PDFs/flat scans suit the reader. For phone photos, handwriting, jianpu or lead sheets, read the source and write ABC with create_score; also use create_score for music typed/described/composed in chat. Prefer a PDF when both are given.
-
-Poll get_upload_status(job_id, wait_seconds=20) in this turn until terminal; never reupload or finish with an ID or request to keep waiting. Give brief plain progress. HTTP 202 is acceptance, not completion. Inspect the original job after ambiguous responses; never blindly retry a mutation or paid job. On failed/needs_review follow can_recover/next_step: pending instruments and quotes need explicit approvals; recover_pro_result resumes the same accepted Pro task; otherwise stop for review. Quota estimates are not billing receipts.
-
-After reading or create_score, call review_score and compare its page picture with the source bar by bar: pitches, accidentals, octaves, rhythms, ties, key/meter and chord symbols (measures="9-12" zooms in). For a playable/faithful score, correct clear misreadings before finishing; do not merely list errors and wait for another user prompt. Keep corrections in this score: edit_score for supported changes, otherwise a MusicXML copy (note ids kept) saved with revise_score, which also adds missed notes. If only an ABC reconstruction can repair the reading, preserve the draft and compare the replacement with the source and playback. Prefer source-supported local edits to preserve correctly read music. If create_score replaces a draft, compare every new-versus-old pitch/rhythm change against enlarged original pages: clef, key, staff position, accidentals, grace notes, ties and neighbouring bars. Preserve the draft. Validation and a model calling it corrected do not prove fidelity; unverified changes remain uncertain, so do not declare complete accuracy. Change notes only where the source supports them, never by comparing shapes alone; report uncertain bars and ask for a clearer source when needed. Do not reengrave notation imports from playback. bpm supplies playback tempo when needed; report the score/file tempo or the 100 BPM fallback, never a detected audio tempo.
-
-A provider result is an editable starting score, not a publication-ready verdict. Reuse the provider's available detection, notation and original exports before inventing replacement processing. Keep the original and reversible revisions. Work toward accurate, clear, playable notation: check coverage, instrument assignment, pitches, rhythm, meter, voices, clefs, ties and spacing against the recording or written source. Inspect every exported page, including page turns and dense passages. Use get_score, review_score (with its checks), previews and edit_score for evidence-based corrections within the user's request; no guessed deletions or merges. Structural checks and MIDI hashes do not prove musical accuracy. Choose style/texture hypotheses from full phrases and source evidence: opening rests, offbeat harmony, three voices, crossing hands, ornaments, swing and rubato can be genuine; no fixed rhythm ratios or left-hand eighth-note template. Separate performance, structure, notation and authorized arrangements. Keep a faithful master for learner reductions. Say what was actually listened to and what remains uncertain; report accuracy, readability and playability separately. Pro is powered by Mirelo: its original PDFs (original_pdf is the full score unless one part or tab is selected, with tuning source; original_scores the ZIP) engrave the unedited result only, exclude later edits (then call them the original) and are not a claim of final quality.
-
-set_staff moves played notes of a two-staff part to the other hand's staff as a notation edit: ids, pitches, timing, ties and playback stay, the receiving hand's clef follows its notes (leave clef out unless the user names one), and it refuses a part on one staff or part of a tuplet or slur. For a passage over many bars give select {measures "1-28", voice?, below?/above? MIDI} instead of note_ids: it takes the other staff's notes there (read one bar with get_score first to see which voice the accompaniment is). Re-engraving operations (reengrave, rebeat, scale_note_values) keep printed marks on the notes they stand on, with their IDs; chord symbols and tuplets still block them. edit_score has no swing/grace/arpeggio/pedal entry (voice, tie, slur, tuplet, beam, stem and shift_time are operations): write those in a MusicXML copy and save it with revise_score (kept notes keep their played timing; new pitches, removed and added notes reach playback). Score-based revisions follow the new notation; original performances remain evidence. Legacy operations do not edit performance onsets/offsets freely or one passage's tempo map (rebeat replaces a solo-piano score's whole beat, swing included). set_duration changes playback note-offs; rebeam only changes grouping; global voice/grid options cannot replace local editing. Read live schemas and operation restrictions. Report unsupported corrections without inventing actions or destructive workarounds. ABC reconstruction needs source comparison and representation checks. Inspect all exported pages and audition changed passages when possible; structural validation, MIDI preservation and cleaner pages do not prove musical accuracy.
-
-get_score provides current revision and IDs. edit_score applies one operation to an existing score; revise_score saves its edited copy with note IDs, recording comparison, panel and undo history retained. create_score: arrangement; source_score_id inherits media by default; original stays. Requested corrections, removals included, save undoable versions whose results identify changes. Panel numbered requests are ordered edits. preview_score_edit or revise_score(preview=true) leaves proposed changes pending; the panel offers Apply/Discard. apply_score_preview commits the specific preview accepted by the user. Stale revisions are rejected.
-
-When document_model.playback_basis=score, notation defines the notes, rhythm and sound; original MIDI is historical evidence, never a write constraint. include_source=true reads its original pitches/events separately. Preserve user_modified_fields during automatic refinement; an explicit user request may replace those decisions. Score seconds do not locate the recording: listen/watch by bars uses recording alignment and reports gaps. set_recording_alignment repairs one measure/visit with user-confirmed recording-second anchors. adopt_score creates an owner-requested score-playback migration as a new revision, preserving legacy history and its hashed MIDI reference.
-
-Say only what tool results show: an edit is made when its result lists it; an error or "Nothing changed" means not, so say so. Say how bars are written (clefs, key, notes) from get_score or review_score text, not a picture or the opening settings; if the user disputes it, reread those bars.
-
-Structural validation does not prove transcription accuracy; doubtful_notes are leads to listen to, not a verdict. Score-based MIDI/audio exports compile the selected notation; legacy MIDI/audio exports require complete performance bindings. On an account without existing download access (access.open false) MusicXML, MIDI, Guitar Pro, ABC and MEI are refused with locked=true and PDFs carry a small footer line; never unlock_score for a download. A preview (30 seconds) needs unlock_score, with explicit consent to its exact credits, before anything else. Use a host-presented attachment; otherwise the prepared panel Download menu for the requested format. Never paste/reconstruct download_url in chat. A ResourceLink does not prove receipt. A plain PDF request uses format=pdf and follows the saved view, like Download; do not silently substitute Mirelo's original PDF. Use original_pdf only when requested and label it as the original. Audio exports are synthesis, not original stems. reference_midi downloads preserved initial/historical performance evidence, not the current score or a supplier original; it covers the whole score and obeys the MIDI download entitlement.
-
-Show a score as staff or jianpu (简谱: jianpu 1=key, jianpu_fixed 1=C 固定调, jianpu_melody) with set_notation_view: the score keeps it, the prepared panel and Download PDF follow; without a prepared panel result, open_score once with notation; before it exists, pass view to the tool making it. export_score takes the same names; jianpu_voices only if asked for a hand's voices apart.
-
-Guitar TAB (六线谱, also bass and ukulele) is a score setting, not a view: edit_score set_tablature (view both puts TAB under the staff, tab shows TAB only; tuning and capo as the user says; strings hand when they want fewer hand shifts), then the panel, PDF and MusicXML show it. set_string moves a note to another string at the same pitch; set_fret writes a fret on a string. export_score tab_text returns text TAB to paste in your answer; guitar_pro is a Guitar Pro file (.gp5) with the TAB, tuning and capo, for Guitar Pro, TuxGuitar or Songsterr. TAB adds no credits.
-
-Call send_feedback once only after the user explicitly expresses an opinion of a result, with their own words as a non-empty comment and the revision they judged. Never supply your own rating or solicit one. Feedback grants no consent to share the recording.
-<!-- END MCP ESSENTIALS -->
