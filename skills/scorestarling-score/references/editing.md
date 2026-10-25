@@ -1,6 +1,6 @@
 # Changing a score: edited copies, previews, marks and specific fixes
 
-Read this with step 6 of SKILL.md when a change needs more than one `edit_score` operation, when
+Read this when a change needs more than one `edit_score` operation, when
 you add printed marks or reduce a part to one line, and for specific fixes. The live tool schema
 and `get_workflow_guide(topic="operations")` list every operation's fields and limits.
 
@@ -36,7 +36,7 @@ correcting many pitches, adding missed notes, rhythm spelling, grace notes, swin
    (the changes you are about to save or preview together). It is the score's MusicXML for your
    own edits: it works on every opened score and is saved back into the same score, so it is not
    a download for the user. Never present it as one or link it as a file; when the user asks for
-   a MusicXML file, that is a download (SKILL.md step 7), which follows the account.
+   a MusicXML file, that is a download ([delivery.md](delivery.md)), which follows the account.
 3. Make every change in that copy, keeping each note's `id` attribute.
 4. Save it once with `revise_score` (the file as an attachment, or the text as `musicxml`),
    giving the revision it was exported from. `preview=true` saves it as a suggestion the user

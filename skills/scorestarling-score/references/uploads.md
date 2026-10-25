@@ -3,7 +3,7 @@
 Read this when the recording is neither a ChatGPT attachment nor a link: a file you can read
 with code, a user who wants an upload link to send the file themselves, no access to the file at
 all, or a local server. Choosing the transcription and following the job are steps 2 and 4 of
-SKILL.md; everything here ends with following the returned `job_id` there.
+[chat-hosts.md](chat-hosts.md); everything here ends with following the returned `job_id` there.
 
 | Situation | Route |
 | --- | --- |

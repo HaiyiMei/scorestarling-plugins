@@ -124,8 +124,8 @@ be wrong. So check them against each other, bar by bar:
    played offset gives ties, extra rests and split voices nobody would read. Keep the recording's
    rhythm only when it differs by more than that, consistently, in a way the score does not
    show.
-5. Changes to notes still follow step 5's rules: a preview unless the user asked you to fix the
-   notes, and the frames, the recording and the user's word win over any reference.
+5. Changes to notes still need the user's acceptance unless they asked you to fix the notes
+   ("What a change needs" in [SKILL.md](../SKILL.md)), and the frames, the recording and the user's word win over any reference.
 6. **Say what agreed and what did not.** Tell the user which bars the sources settled and where
    they came from ("bars 9-16 follow the original melody; the left hand is as played"), where
    the sheet in the video and the playing differ, and which bars still need an ear.

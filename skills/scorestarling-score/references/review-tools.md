@@ -1,6 +1,6 @@
 # Review tools: what they show and how to act on it
 
-Read this with step 5 of SKILL.md: how to read each check's evidence, how to weigh what
+Read this with [review.md](review.md): how to read each check's evidence, how to weigh what
 `review_score` hears (`check=listen`) and shows of a video (`check=watch`), how to use the ready
 suggestions, and how to check tempo, meter and the first downbeat. What a good score of this piece looks like is in [good-score.md](good-score.md).
 
