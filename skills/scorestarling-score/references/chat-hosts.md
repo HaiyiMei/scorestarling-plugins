@@ -132,8 +132,8 @@ chat, also:
   `provider`. Never invent a file reference or ask for a second upload when that object is
   available.
 - **A link:** `transcribe_music` with the same link as `url` and the `provider` (after `check_link`). Video and song pages (YouTube,
-  Bilibili, TikTok, SoundCloud, Instagram, X and similar; short share links work) give the audio
-  of their first 6.5 minutes. A link to the file itself (an MP3 or a video; Dropbox and Google
+  Bilibili, TikTok, SoundCloud, Instagram, X and similar; short share links work) give only their
+  audio. A link to the file itself (an MP3 or a video; Dropbox and Google
   Drive share links work) must be a public https address, up to 95 MiB. Spotify and Apple Music
   encrypt their music and are refused, as are playlists and live streams; some sites (Douyin,
   Xiaohongshu) may refuse the server. Then ask for another link or the file.
