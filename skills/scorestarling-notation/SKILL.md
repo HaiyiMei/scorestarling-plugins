@@ -1,6 +1,6 @@
 ---
 name: scorestarling-notation
-description: Turns written music into an editable, playable ScoreStarling score and converts music between forms. Sources include notation visible in video frames, a photo, scan or PDF of printed music, jianpu (numbered notation), a lead sheet or chord chart, a MusicXML, MIDI, ABC or Guitar Pro file, or music typed, described or written in the chat. Outputs include MIDI, audio, PDF, MusicXML, Guitar Pro, ABC, MEI and jianpu. Use it whenever music arrives as notation rather than by listening to a recording, and when writing music on request.
+description: Turns written music into an editable, playable ScoreStarling score and converts music between forms. Sources include notation visible in video frames, a photo, scan or PDF of printed music, jianpu (numbered notation), a lead sheet or chord chart, a MusicXML, MIDI, ABC or Guitar Pro file, or music typed, described or written in the chat. Outputs include MIDI, audio, PDF, MusicXML, Guitar Pro, ABC, MEI and jianpu. Use it whenever someone has music as notation or a score file (rather than a recording to listen to) and wants it playable, edited, converted or exported, and whenever they ask for music to be written.
 ---
 
 # Sheet music and notation to a score
