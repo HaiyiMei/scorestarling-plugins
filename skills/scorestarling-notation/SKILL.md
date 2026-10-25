@@ -165,6 +165,6 @@ access; to read the notes yourself, use `get_score` or the editing copy. For arr
 
 Playback follows repeat signs and uses the score's first tempo and any later tempo marks;
 without one it plays at 100 quarter notes per minute. Scores from notation are not re-engraved
-(re-engraving rebuilds notation from playback); edit their notes instead. Up to ten minutes of
+(re-engraving rebuilds notation from playback); edit their notes instead. Up to 30 minutes of
 music per score, 95 MiB per file and twelve pages per PDF. Drum tracks in a MIDI file get a drum
 staff after the pitched parts.

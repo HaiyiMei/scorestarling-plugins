@@ -2,7 +2,7 @@
   "name": "scorestarling",
   "displayName": "ScoreStarling",
   "version": "1.3.0",
-  "description": "Transcribe, read, convert and edit sheet music",
+  "description": "All-in-one AI sheet music assistant: transcribe a song, read a PDF or photo, add chords, transpose, simplify or arrange it",
   "author": {
     "name": "HaiyiMei"
   },

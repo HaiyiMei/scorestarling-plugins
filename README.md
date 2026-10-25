@@ -4,11 +4,13 @@
 [![Mentioned in Awesome](https://awesome.re/mentioned-badge.svg)](https://github.com/hashgraph-online/awesome-ai-plugins)
 [![Mentioned in Awesome](https://awesome.re/mentioned-badge.svg)](https://github.com/punkpeye/awesome-remote-mcp-servers)
 
-Transcribe, read, convert and edit sheet music. Move music between
-sound, pictures, documents and score files. Start from an audio or video recording, a sheet-music image or PDF, MIDI, MusicXML, ABC, Guitar Pro,
-numbered notation, a lead sheet or music written in chat. Create an editable,
-playable score, review or preview changes, and export PDF, SVG/PNG images, MusicXML,
-MIDI, Guitar Pro (.gp5), MP3/WAV audio, ABC, MEI, parts or numbered notation.
+ScoreStarling is an all-in-one AI sheet music assistant. Ask for anything to do with sheet music:
+transcribe a song, read a PDF or photo, add chords, change the key, make it easier, turn it into guitar
+TAB or numbered notation (jianpu) or arrange it for your instrument. Every change lands on a real score
+you can hear, fix and download. It starts from an audio or video recording, a sheet-music image or PDF,
+MIDI, MusicXML, ABC, Guitar Pro, numbered notation, a lead sheet or music written in chat, and exports
+PDF, SVG/PNG images, MusicXML, MIDI, Guitar Pro (.gp5), MP3/WAV audio, ABC, MEI, parts or numbered
+notation.
 
 This plugin combines the hosted ScoreStarling MCP tools with two workflow skills:
 `scorestarling-score` for audio/video recordings and `scorestarling-notation` for
@@ -33,17 +35,15 @@ The OpenAI listing uses the verified developer name HAIYI MEI.
 ## Access and use
 
 Sign in with a ScoreStarling account and approve the MCP connection through the
-client’s OAuth flow. A free account runs one transcription at a time, and Plus up to five.
+client’s OAuth flow.
 
 Ask: "Turn this attached recording into a score, open it, and help me check it." or
 "Make this photo of sheet music playable and give me the MIDI."
-Every new piece is a free 30-second preview; the whole piece of one instrument or voice, or of solo
-piano with both hands and pedal, uses 10 credits, and a band uses 30 credits a minute.
-Uploads are limited to 95 MiB. Each transcription covers the first six minutes of a recording, the
-same for every account.
-Read `get_account_usage.max_seconds` for its current limit before starting. A band's
-price is shown, and agreed in the chat, before it starts, and so are the credits for opening a
-whole piece. The skill checks tool results and score structure,
+Every new piece starts with a free preview. Opening the whole piece, or transcribing a band, uses
+credits the account already holds; the exact number is shown, and agreed in the chat, before it starts.
+Prices, plans and limits are at https://scorestarling.com/pricing; in the chat, `get_account_usage`
+gives the account's own: the upload size, how long a recording each choice covers (`max_seconds`) and
+how many transcriptions may run at once (`active_limit`). The skill checks tool results and score structure,
 but listening and human review remain necessary for transcription accuracy.
 Model-proposed musical edits are previews until the user accepts them.
 
