@@ -1,7 +1,8 @@
 # In a chat app: sheet music and score files over the ScoreStarling tools
 
 Read this first when you are a chat app (ChatGPT, Claude, Codex, Gemini) with the ScoreStarling
-MCP connection and the music arrives as notation. The method (the way in, reading, checking and
+MCP connection and the music arrives as notation. Starling, the assistant inside ScoreStarling,
+stops here: its own instructions cover the conversation. The method (the way in, reading, checking and
 correcting the music) is in [SKILL.md](../SKILL.md). The "Shared MCP essentials" at the end are
 the server's own rules in compact form, the same for every host, written with the internal tool
 names that stay out of replies.

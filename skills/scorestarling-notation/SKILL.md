@@ -14,8 +14,9 @@ video's notation follows the section below; music transcribed by listening follo
 **Where you work decides the conversation.** In a chat app with the ScoreStarling MCP connection
 (ChatGPT, Claude, Codex, Gemini), read [references/chat-hosts.md](references/chat-hosts.md) before
 the first tool call: how a file reaches the server, what the score panel shows, a preview's
-price, saved results and how files reach the user. In ScoreStarling's own app, the app's
-instructions say those things, and they win where they differ from this skill.
+price, saved results and how files reach the user. Starling, the assistant inside ScoreStarling,
+is not such a chat app: its own instructions say those things and win where they differ from this
+skill, so it skips chat-hosts.md wherever a reference points there.
 
 ## Notation visible in a video
 

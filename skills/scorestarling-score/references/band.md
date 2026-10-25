@@ -3,7 +3,7 @@
 Read this before sending a band recording (`provider: mirelo`), when a band job waits for its
 instruments, when it fails, or when the user wants a new score from a saved band result. Its
 price, and the one question that goes with it, are the host's: in a chat app, "A band's price" in
-step 4 of [chat-hosts.md](chat-hosts.md); in ScoreStarling's own app, the app's instructions.
+step 4 of [chat-hosts.md](chat-hosts.md); for Starling, inside ScoreStarling, its own instructions.
 
 ## Before sending
 
@@ -43,7 +43,7 @@ step 4 of [chat-hosts.md](chat-hosts.md); in ScoreStarling's own app, the app's 
    - Do not poll or transcribe again while the review is pending. If the user stops,
      `cancel_transcription` releases its reservation.
 3. **The price** comes next, with the plan you confirmed: in a chat app, "A band's price" in step 4
-   of [chat-hosts.md](chat-hosts.md); in ScoreStarling's own app, the app's instructions.
+   of [chat-hosts.md](chat-hosts.md); for Starling, its own instructions.
 4. **Follow** the same job, then review the completed score ([review.md](review.md)).
 
 ## If the user declines

@@ -14,9 +14,10 @@ jianpu), score files (MusicXML, MIDI, ABC, Guitar Pro) and music written in the 
 **Where you work decides the conversation.** In a chat app with the ScoreStarling MCP connection
 (ChatGPT, Claude, Codex, Gemini), read [references/chat-hosts.md](references/chat-hosts.md) before
 the first tool call: what to call when, what the score panel shows, what needs the user's yes and
-how files reach them. In ScoreStarling's own app, the app's instructions say those things, and
-they win where they differ from this skill. Open the other references when a section below sends
-you there.
+how files reach them. Starling, the assistant inside ScoreStarling, is not such a chat app: its
+own instructions say those things and win where they differ from this skill, so it skips
+chat-hosts.md wherever a reference points there. Open the other references when a section below
+sends you there.
 
 ## Choose how to transcribe
 
@@ -98,8 +99,8 @@ through every change to the transcription as it came.
 - A consequential choice the evidence cannot settle, such as where the first downbeat falls, is
   one question for the user.
 - Which of these to make without being asked, and how a proposal reaches the user, is the host's
-  call: in a chat app, [references/chat-hosts.md](references/chat-hosts.md) step 5; in
-  ScoreStarling's own app, the app's instructions.
+  call: in a chat app, [references/chat-hosts.md](references/chat-hosts.md) step 5; for Starling,
+  its own instructions.
 
 ## Change the score in place
 

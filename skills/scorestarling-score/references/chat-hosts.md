@@ -1,7 +1,8 @@
 # In a chat app: the conversation around the ScoreStarling tools
 
 Read this first when you are a chat app (ChatGPT, Claude, Codex, Gemini) with the ScoreStarling
-MCP connection. It is the conversation: what to call when, what the user sees in the score panel,
+MCP connection. Starling, the assistant inside ScoreStarling, stops here: its own instructions
+cover the conversation. For a chat app, this is the conversation: what to call when, what the user sees in the score panel,
 what needs their yes, and how files reach them. The musical method (choosing a transcription,
 judging and changing a score) is in [SKILL.md](../SKILL.md) and the other references; open them
 where a step sends you. This guidance grants no account access and no consent to upload, spend
