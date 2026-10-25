@@ -35,17 +35,15 @@ The OpenAI listing uses the verified developer name HAIYI MEI.
 ## Access and use
 
 Sign in with a ScoreStarling account and approve the MCP connection through the
-client’s OAuth flow. A free account runs one transcription at a time, and Plus up to five.
+client’s OAuth flow.
 
 Ask: "Turn this attached recording into a score, open it, and help me check it." or
 "Make this photo of sheet music playable and give me the MIDI."
-Every new piece is a free 30-second preview; the whole piece of one instrument or voice, or of solo
-piano with both hands and pedal, uses 10 credits, and a band uses 30 credits a minute.
-Uploads are limited to 95 MiB. Each transcription covers the first six minutes of a recording, the
-same for every account.
-Read `get_account_usage.max_seconds` for its current limit before starting. A band's
-price is shown, and agreed in the chat, before it starts, and so are the credits for opening a
-whole piece. The skill checks tool results and score structure,
+Every new piece starts with a free preview. Opening the whole piece, or transcribing a band, uses
+credits the account already holds; the exact number is shown, and agreed in the chat, before it starts.
+Prices, plans and limits are at https://scorestarling.com/pricing; in the chat, `get_account_usage`
+gives the account's own: the upload size, how long a recording each choice covers (`max_seconds`) and
+how many transcriptions may run at once (`active_limit`). The skill checks tool results and score structure,
 but listening and human review remain necessary for transcription accuracy.
 Model-proposed musical edits are previews until the user accepts them.
 

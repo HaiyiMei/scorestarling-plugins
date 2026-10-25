@@ -105,12 +105,12 @@ pictures: the cover and frames across the part that will be transcribed, each la
 time. Look at them and choose as "Choose how to transcribe" in [SKILL.md](../SKILL.md) says. In a
 chat, also:
 
-- **Length and size.** Files up to 95 MiB (`get_account_usage.upload_limits`). A transcription
-  covers the first six minutes of a recording, one instrument or voice, solo piano or a band
-  alike, the same for every account; what a band covers can be shorter when the balance does not
-  reach it (below). `check_recording`, `get_account_usage` (`max_seconds`) and upload results
-  (`max_seconds`, `excerpt`) give the current limit: tell the user about the excerpt of a longer
-  recording before it starts. An account runs two transcriptions at a time.
+- **Length and size.** Files up to 95 MiB (`get_account_usage.upload_limits`). How long a
+  recording one transcription covers depends on the account and the choice, and what a band covers
+  can be shorter when the balance does not reach it (below). `check_recording`, `get_account_usage`
+  (`max_seconds`) and upload results (`max_seconds`, `excerpt`) give the current limit: tell the
+  user about the excerpt of a longer recording before it starts. `get_account_usage.active_limit`
+  says how many transcriptions the account may run at once.
 - **Numbered notation from the start.** Pass `view=jianpu` to the tool that makes the score.
 - **Tuning.** A recording steadily off concert pitch is retuned to A440 automatically.
 - **A band** is chosen with the user: when they asked for the band or a full score, that is the
@@ -197,8 +197,8 @@ allowed excerpt length, not supplied by the user or a tool argument.
 - Read `get_account_usage`. If the account has prices and no credits available for a band, say
   so before sending and offer the other choices instead.
 - The excerpt is the shorter of the length limit and what the balance covers. The length limit
-  is six minutes, the same for every account and for every choice; `check_recording`,
-  `get_account_usage` (`max_seconds`) and the upload result (`max_seconds`, `excerpt`) give it.
+  depends on the account and the choice; `check_recording`, `get_account_usage` (`max_seconds`)
+  and the upload result (`max_seconds`, `excerpt`) give it.
   Tell the user before it starts when the recording is longer.
 - Mention cost only for a band, opening a previewed piece, or when `get_account_usage` shows a
   limit. Estimates are not
