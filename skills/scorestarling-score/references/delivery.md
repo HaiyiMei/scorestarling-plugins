@@ -5,11 +5,11 @@ account downloads. In a chat app, how a file reaches the user is step 7 of
 [chat-hosts.md](chat-hosts.md).
 
 - **Numbered notation** (jianpu, 简谱, "show it as numbers"): `set_notation_view` with
-  `view=jianpu`; the open panel switches within a few seconds, and `view=staff` switches back. The score keeps the choice, in the workspace too, until it is
+  `view=jianpu`; the open score's view switches within a few seconds, and `view=staff` switches back. The score keeps the choice, in the workspace too, until it is
   switched back: tell the user. The view is drawn read-only from the last saved revision; your
   edits work as usual and the numbered view follows them.
 - **Pages** (bars per line, where lines and pages break, fitting fewer pages, a staff too big or
-  small): `edit_score` with `layout`. Notes and playback stay; the pages, PDF and panel follow.
+  small): `edit_score` with `layout`. Notes and playback stay; the pages, PDF and score view follow.
   Read the `get_score` overview's `layout` first (each page's lines as bar ranges), then look at
   the pages with `review_score` after. Never edit `<print>`, `<scaling>` or `<system-layout>` in
   the MusicXML for this, and never send the user to MuseScore to lay out pages:
@@ -19,7 +19,7 @@ account downloads. In a chat app, how a file reaches the user is step 7 of
 
 | Wanted | `format` |
 | --- | --- |
-| Printable sheet music | `pdf`, which follows the saved view (staff or numbered) like the panel's PDF button; `layout_pdf` for staff notation whatever the view; add `part_id` for one part, or use `format=parts` for a ZIP of every part |
+| Printable sheet music | `pdf`, which follows the saved view (staff or numbered) like the PDF button beside the score; `layout_pdf` for staff notation whatever the view; add `part_id` for one part, or use `format=parts` for a ZIP of every part |
 | Page images | `pages` (SVG and PNG) |
 | Notation software (MuseScore, Sibelius, Finale, Dorico) | `musicxml` or `mxl` (accounts with existing download access) |
 | MIDI | `midi` (accounts with existing download access) |
@@ -41,8 +41,8 @@ account downloads. In a chat app, how a file reaches the user is step 7 of
 - MIDI and audio need every note bound to the playing; MusicXML and PDF still export when some
   are not. Say so when it happens.
 - **Downloads follow the account.** MusicXML, MXL, MIDI, Guitar Pro, ABC and MEI download on
-  accounts with existing download access. Other accounts (`access.open` false in the panel and
-  export results) get the PDF, page images and numbered-notation PDFs, with one small footer line ("Made with
+  accounts with existing download access. Other accounts (`access.open` false) get
+  the PDF, page images and numbered-notation PDFs, with one small footer line ("Made with
   ScoreStarling"; mention it only if asked), and their own imported files in their original
   format. When `export_score` comes back `locked`, do not retry or work around it, and do not
   call `unlock_score` for a download: offer the PDF instead. An editing copy works on every opened score.

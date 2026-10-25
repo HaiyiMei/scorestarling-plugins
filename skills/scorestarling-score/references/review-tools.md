@@ -182,9 +182,9 @@ How to use it:
 
 ## Listening with the user
 
-You cannot hear the panel's playback. When a decision needs an ear, name the bars and what to
-listen for, and ask the user to compare the recording with the score's playback in the panel; if
-the host cannot play audio at all, say so. Stop when the remaining questions need the user's ear
+You cannot hear the score's playback. When a decision needs an ear, name the bars and what to
+listen for, and ask the user to compare the recording with the score's playback where the score
+is shown; if the host cannot play audio at all, say so. Stop when the remaining questions need the user's ear
 or taste.
 
 ## When you finish a round of corrections the user asked for

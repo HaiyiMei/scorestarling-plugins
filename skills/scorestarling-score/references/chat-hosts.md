@@ -325,7 +325,7 @@ How to change a score is in [SKILL.md](../SKILL.md) ("Change the score in place"
   saved score: say so in one line ("press Apply in the panel, or tell me to") without citing tool
   rules. Keep one suggestion waiting at a time (`get_score` shows it): discard it before making
   another. Call `apply_score_preview` with its ID and base revision only after the user accepts
-  that preview.
+  that preview; `discard_score_preview` drops one.
 
 ## 7. Show and deliver
 

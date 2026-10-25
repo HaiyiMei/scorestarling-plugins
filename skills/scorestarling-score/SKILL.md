@@ -103,7 +103,7 @@ through every change to the transcription as it came.
 
 ## Change the score in place
 
-- Every change is the next revision of the same score: its recording comparison, open panel,
+- Every change is the next revision of the same score: its recording comparison, open view,
   comments and undo history stay. `create_score` and `transcribe_music` make separate scores
   without that history: use them only when the user asks
   for a new score.
