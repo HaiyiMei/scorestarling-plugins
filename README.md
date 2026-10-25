@@ -4,11 +4,13 @@
 [![Mentioned in Awesome](https://awesome.re/mentioned-badge.svg)](https://github.com/hashgraph-online/awesome-ai-plugins)
 [![Mentioned in Awesome](https://awesome.re/mentioned-badge.svg)](https://github.com/punkpeye/awesome-remote-mcp-servers)
 
-Transcribe, read, convert and edit sheet music. Move music between
-sound, pictures, documents and score files. Start from an audio or video recording, a sheet-music image or PDF, MIDI, MusicXML, ABC, Guitar Pro,
-numbered notation, a lead sheet or music written in chat. Create an editable,
-playable score, review or preview changes, and export PDF, SVG/PNG images, MusicXML,
-MIDI, Guitar Pro (.gp5), MP3/WAV audio, ABC, MEI, parts or numbered notation.
+ScoreStarling is an all-in-one AI sheet music assistant. Ask for anything to do with sheet music:
+transcribe a song, read a PDF or photo, add chords, change the key, make it easier, turn it into guitar
+TAB or numbered notation (jianpu) or arrange it for your instrument. Every change lands on a real score
+you can hear, fix and download. It starts from an audio or video recording, a sheet-music image or PDF,
+MIDI, MusicXML, ABC, Guitar Pro, numbered notation, a lead sheet or music written in chat, and exports
+PDF, SVG/PNG images, MusicXML, MIDI, Guitar Pro (.gp5), MP3/WAV audio, ABC, MEI, parts or numbered
+notation.
 
 This plugin combines the hosted ScoreStarling MCP tools with two workflow skills:
 `scorestarling-score` for audio/video recordings and `scorestarling-notation` for
