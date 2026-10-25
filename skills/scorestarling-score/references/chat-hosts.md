@@ -251,8 +251,7 @@ to the transcription as it came. Review and edits use no credits.
 Review it in the passes of [review.md](review.md): **read** the whole score as text,
 **listen** again to the most suspicious passages (and, for a video, **watch** the player there),
 **look** at every page, and **proof** the result after your changes. `review_score`'s `check`
-picks the evidence (`listen`, `watch`, `structure`); where `review_score` takes no `check`, the
-host lists `listen_score`, `watch_score` and `validate_score` for them. Then report.
+picks the evidence (`listen`, `watch`, `structure`). Then report.
 
 **The panel.** Reuse the panel this job returned: the upload panel turns into the score. Never
 claim the user sees it from `panel_prepared` alone. Call `open_score` once only if no score or
