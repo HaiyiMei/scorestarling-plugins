@@ -132,10 +132,10 @@ corrections and otherwise proposed as a preview (SKILL.md step 5).
    confirms a single-note broken-chord texture (one note per hand per eighth, no dyads), a note
    only one transcription hears beside the figure is usually an echo or an octave or harmonic
    ghost, however clear its attack looks. When deciding which notes to keep or add, prefer notes
-   both transcriptions agree on (the score and `listen_score`'s second engine), then the bar's
+   both transcriptions agree on (the score and the second engine that `review_score` listens with, `check=listen`), then the bar's
    own pattern. A gap in a steady eighth figure is usually a missed attack, not a rest: propose
    filling it from the bar's own pattern (preferring the same half bar, since the harmony often
-   changes mid-bar), first where `listen_score` heard a note, and mark positions where nothing
+   changes mid-bar), first where listening (`check=listen`) heard a note, and mark positions where nothing
    was heard as less certain. A bar holding only its bass is one held note, not a bass plus
    stray eighths ([arpeggiated
    accompaniments](https://musictheory.pugetsound.edu/mt21c/ArpeggiatedAccompaniments.html)).

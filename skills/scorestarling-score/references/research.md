@@ -26,14 +26,14 @@ Start with what came with the recording. It costs nothing and it is about this e
 
 **The video's pictures.** `check_link` returns frames across the part to be transcribed; for a
 video page, `watch_link` returns frames at the times and crops you choose, before any score
-exists; for a score made from a video, `watch_score` returns frames at given bars. Look for:
+exists; for a score made from a video, `review_score` with `check=watch` returns frames at given bars. Look for:
 
 | What the frames show | What it is worth |
 | --- | --- |
 | Sheet music or jianpu, still or scrolling with the playing | The strongest single lead. A sheet that moves with the playing is the performer's own score: read it (the `scorestarling-notation` skill, "Notation visible in a video") for the piece and for "this version" alike, rather than transcribing by ear and correcting toward it, then check it against the recording as "Putting it together" says. When the user explicitly asked for the performance by ear, or the sheet covers only part of it, keep it as the reference for the bars it shows. Its bar count, meter and marks also check a transcription's tempo and bar lines: ten bars on screen over a draft of six means the draft heard half the tempo, and staccato dots mean short notes are real, not noise |
 | Falling notes or a piano roll above a keyboard, lit keys | Which keys are struck and when, but not the written rhythm, key or bar lines. Use it to settle pitches, chords and hands bar by bar against the transcription; it is not something `create_score` reads |
 | Chord names, guitar tab or a fretboard on screen | The chords, a capo and the fingering, for those bars |
-| Hands on the keys or the strings | Which hand plays what, octaves, a capo, an open tuning (`watch_score` with `measures` for doubtful bars) |
+| Hands on the keys or the strings | Which hand plays what, octaves, a capo, an open tuning (`review_score` with `check=watch` and `measures` for doubtful bars) |
 
 Sheet music shown only in passing, a corner of the screen or a blurred page is still worth a crop
 at another time before you give up on it. A cover picture is not evidence of the whole video.
@@ -108,8 +108,8 @@ be wrong. So check them against each other, bar by bar:
    was played: a clear note in the recording that differs from a reference is the performer's
    arrangement, not a mistake to correct. Where the recording is unclear (fast runs, pedal blur,
    a muddy accompaniment, notes the engine merged or missed), follow the reference the other
-   sources support. Listen (`listen_score`) or watch (`watch_score`) the bars where you are not
-   sure which case you are in.
+   sources support. Listen to or watch the bars where you are not sure which case you
+   are in (`review_score` with `check=listen` or `check=watch`).
 3. **Notation read from a video is checked too.** Compare it with the recording: its tempo,
    key and bar count, and bar by bar where the playing can be heard. When the audio is
    available, a transcription of the same link is how you hear it: start it when the user asked

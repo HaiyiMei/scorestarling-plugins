@@ -90,6 +90,7 @@ account authorization checks.
 | `begin_audio_upload` | Reserves an account-scoped upload task from file metadata and returns its single-use upload capability to the app. |
 | `cancel_pro_review` | Cancels a held band instrument review for a panel opened before `cancel_transcription` took this over. |
 | `cancel_transcription_quote` | Cancels a held band price for a panel opened before `cancel_transcription` took this over. |
+| `listen_score` | Hears up to 16 bars of a score's own recording again, for hosts that listed it before `review_score` took this over (`check=listen`). |
 | `panel_feedback` | Saves the user's panel feedback for a score revision, including recording-sharing consent only when explicitly selected. |
 | `read_notation_view` | Reads rendered numbered-notation pages for an owned score revision without changing the music. |
 | `read_score_panel` | Reads the interactive panel for the current or a specified saved score revision. |
@@ -98,6 +99,8 @@ account authorization checks.
 | `transcribe_again` | Transcribes a score's recording again as a new score, for the panel's Transcribe again and panels opened before `transcribe_music` took this over. |
 | `transcribe_attachment` | Makes a new score from an attached file, for panels opened before `transcribe_music` took this over. |
 | `transcribe_link` | Makes a new score from a public link, for panels opened before `transcribe_music` took this over. |
+| `validate_score` | Lists a saved revision's structural issues, for hosts that listed it before `review_score` took this over (`check=structure`). |
+| `watch_score` | Shows frames of a video-based score's own video, for hosts that listed it before `review_score` took this over (`check=watch`). |
 
 `begin_audio_upload` receives the filename, exact size and processing options,
 not the audio itself. Its app metadata contains a ten-minute, single-use upload
