@@ -70,8 +70,9 @@ a PDF of the same music, upload the PDF.
 
 Uploaded sheet music and score files are read, not transcribed: the recording check, the engine
 choice and tempo detection do not apply. A score file (MusicXML, MIDI, Guitar Pro, ABC) or
-notation text is free; a PDF or photo read is a piece like any other (a free 30-second preview, then
-10 credits for the whole). A tempo the user gives
+notation text is free. For a signed-in user's PDF or photo, process the whole piece by default;
+a free 30-second preview is an explicit choice (`preview=true`). Follow the returned existing-credit
+price and consent steps. A tempo the user gives
 (`bpm`) sets playback for a score that marks none. Follow the job until it finishes,
 then do what its `next_step` says.
 

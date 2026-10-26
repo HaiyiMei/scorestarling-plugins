@@ -39,8 +39,9 @@ client’s OAuth flow.
 
 Ask: "Turn this attached recording into a score, open it, and help me check it." or
 "Make this photo of sheet music playable and give me the MIDI."
-Every new piece starts with a free preview. Opening the whole piece, or transcribing a band, uses
-credits the account already holds; the exact number is shown, and agreed in the chat, before it starts.
+Signed-in users request the whole piece by default and can explicitly choose a free 30-second preview
+first. Whole-piece processing uses credits the account already holds; follow the returned price and
+confirmation steps before using them. A band needs agreement to its exact price before processing.
 Prices, plans and limits are at https://scorestarling.com/pricing; in the chat, `get_account_usage`
 gives the account's own: the upload size, how long a recording each choice covers (`max_seconds`) and
 how many transcriptions may run at once (`active_limit`). The skill checks tool results and score structure,
