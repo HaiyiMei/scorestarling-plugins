@@ -16,9 +16,9 @@ names that stay out of replies.
   a display failure or a new user request explicitly asks to reopen it. Preparation does not
   prove visibility.
 - **Whole piece or preview.** The user's own score file or notation text shows whole and uses no
-  credits. For a signed-in user's PDF or photo, the whole piece is the default; pass
-  `preview=true` only when they ask for a free 30-second preview first. Follow the returned
-  price and consent steps. If a score tool
+  credits. A PDF or photo is read whole and uses 10 credits when its score first opens, unless
+  it plays 30 seconds or less: say so as you start it, with no separate question. Pass
+  `preview=true` only when the user asks to try a free 30-second preview first. If a score tool
   refuses because only a free 30-second preview shows, its message names the exact credits: ask
   the user in one line whether to open the whole piece for exactly that many, as use of credits the
   account already has, not a purchase. Only after a clear yes call `unlock_score` with that number

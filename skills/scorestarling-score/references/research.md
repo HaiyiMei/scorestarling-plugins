@@ -113,8 +113,9 @@ be wrong. So check them against each other, bar by bar:
 3. **Notation read from a video is checked too.** Compare it with the recording: its tempo,
    key and bar count, and bar by bar where the playing can be heard. When the audio is
    available, a transcription of the same link is how you hear it: start it when the user asked
-   for what was played and it fits the free preview, otherwise offer it in one line. Where the
-   sheet is too small or blurred to read a note, the piece's known melody and chords help you
+   for what was played and it is 30 seconds or less (free), otherwise offer it in one line with
+   its cost. Where the sheet is too small or blurred to read a note, the piece's known melody
+   and chords help you
    choose between the readings you can see (a D or a D flat); they never fill in a note you
    cannot see at all.
 4. **The written rhythm follows a readable score; the playing keeps its own timing.** When the

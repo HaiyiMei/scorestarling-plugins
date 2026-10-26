@@ -52,8 +52,8 @@ time). Look at them:
 
 | Say to the user | `provider` | For |
 | --- | --- | --- |
-| one instrument or voice (30 seconds free, then 10 credits) | `local` | one line: a voice, a violin, a flute, a guitar melody |
-| solo piano (30 seconds free, then 10 credits) | `piano` | piano with both hands, chords and the sustain pedal; it also places the time signature, a pickup and the bar lines from the playing; about a minute |
+| one instrument or voice (10 credits a piece; 30 seconds or less free) | `local` | one line: a voice, a violin, a flute, a guitar melody |
+| solo piano (10 credits a piece; 30 seconds or less free) | `piano` | piano with both hands, chords and the sustain pedal; it also places the time signature, a pickup and the bar lines from the playing; about a minute |
 | a band (uses credits, price shown first) | `mirelo` | several instruments or drums; an external service, chosen with the user |
 
 - **Tempo and meter.** Pass `bpm` only when the user gave the tempo; otherwise it is estimated,
