@@ -37,7 +37,8 @@ A sheet that scrolls or turns with the playing is the performer's own score. Rea
 for the piece or for "this version": it already holds the rhythm, voices, spelling and bar lines that a
 transcription would have to rebuild, and correcting an audio draft toward it bar by bar costs many edits
 and leaves split voices and ties. Then check it against the recording: a transcription of the same link,
-started when the request covers it and it fits the free preview (otherwise offered in one line), shows
+started when the request covers it and it is 30 seconds or less, so free (otherwise offered in one
+line with its cost), shows
 where the playing differs, and only those bars change. Make the audio the base only when the user
 explicitly asks to transcribe the performance by ear, when the sheet covers little of what is played, or
 when it clearly does not match the playing; keep the sheet as the reference for the bars it shows. An
@@ -70,8 +71,9 @@ a PDF of the same music, upload the PDF.
 
 Uploaded sheet music and score files are read, not transcribed: the recording check, the engine
 choice and tempo detection do not apply. A score file (MusicXML, MIDI, Guitar Pro, ABC) or
-notation text is free; a PDF or photo read is a piece like any other (a free 30-second preview, then
-10 credits for the whole). A tempo the user gives
+notation text is free. A PDF or photo is read whole and uses 10 credits when its score first
+opens, unless it plays 30 seconds or less; say so as you start it, with no separate question.
+Pass `preview=true` only when the user asks to try a free 30-second preview first. A tempo the user gives
 (`bpm`) sets playback for a score that marks none. Follow the job until it finishes,
 then do what its `next_step` says.
 

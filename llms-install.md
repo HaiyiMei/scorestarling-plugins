@@ -24,6 +24,8 @@ ScoreStarling is a hosted remote MCP server. There is nothing to clone, build or
 3. Check the connection: call `get_workflow_guide` with `topic` `recording`, then `list_timbres`.
    Both are read-only and use no credits.
 
-Every new piece starts as a free preview; the whole piece, and a band transcription, use the account's credits,
-with the exact number shown first (prices and limits: https://scorestarling.com/pricing).
+A transcription or sheet-music reading covers the whole piece and uses the account's existing credits
+when it first opens (30 seconds or less is free); make a free 30-second preview (`preview=true`) only
+when the user asks for one. A band's exact price, and opening the rest of a preview, need the user's
+agreement first. Read the account's current limits from `get_account_usage`.
 The skills in `skills/` describe the complete workflows. Support: https://scorestarling.com/support
