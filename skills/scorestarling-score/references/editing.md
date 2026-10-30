@@ -108,8 +108,8 @@ A part still named after the piano becomes Melody. It suits a single-part record
   notes, and a `single_line` suggestion is `voices: 1`, not this.
 - Apply an already requested reduction with `edit_score`; one the user did not ask for is a
   proposal ("Requests and proposals").
-- The user can do the same in Score settings › Layout, which also offers one staff with chords,
-  two piano staves and the shortest note. Other simplifications are arrangements
+- The user can do the same in Score settings › Rewrite from the recording, which also offers one
+  staff with chords, two piano staves and the shortest note. Other simplifications are arrangements
   ([arranging.md](arranging.md)).
 
 ## Page layout
