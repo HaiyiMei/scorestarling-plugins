@@ -1,12 +1,12 @@
 """Read-only notation audit and attack-ID comparison for uncompressed MusicXML; no musical verdict."""
 
 import argparse
-from collections import Counter, defaultdict
-from fractions import Fraction
 import json
-from pathlib import Path
 import sys
 import xml.etree.ElementTree as ET
+from collections import Counter, defaultdict
+from fractions import Fraction
+from pathlib import Path
 
 MAX_BYTES = 16 * 1024 * 1024
 
@@ -153,7 +153,7 @@ def main():
             baseline, before = inspect(args.before)
             result.update(before=baseline, changes=compare(before, after))
         print(json.dumps(result, ensure_ascii=False))
-        return 1 if report['unsafe']['count'] or args.before and baseline['unsafe']['count'] else 0
+        return 1 if report['unsafe']['count'] or (args.before and baseline['unsafe']['count']) else 0
     except (OSError, ET.ParseError, ValueError, KeyError, TypeError, ZeroDivisionError) as error:
         print(json.dumps({'audit_completed': False, 'error': str(error)}), file=sys.stderr)
         return 2

@@ -3,12 +3,12 @@
 
 import importlib.util
 import json
-from pathlib import Path
 import subprocess
 import sys
 import tempfile
 import unittest
 import xml.etree.ElementTree as ET
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / 'skills/scorestarling-score/scripts/audit_musicxml.py'
@@ -47,7 +47,7 @@ class Audit(unittest.TestCase):
             ET.SubElement(n, 'beam', {'number': '1'}).text = 'begin' if i == 0 else 'end' if i == 3 else 'continue'
         beamed = self.write('beamed.musicxml', ET.tostring(tree, encoding='unicode'))
         self.assertEqual(helper.inspect(beamed)[0]['unbeamed_short_runs']['count'], 0)
-        result = subprocess.run([sys.executable, str(SCRIPT), str(path)], capture_output=True, text=True)
+        result = subprocess.run([sys.executable, str(SCRIPT), str(path)], check=False, capture_output=True, text=True)
         self.assertEqual(result.returncode, 0)
         self.assertFalse(json.loads(result.stdout)['performance_verified'])
         self.assertEqual(path.read_text(), body)
@@ -70,7 +70,7 @@ class Audit(unittest.TestCase):
         before = self.write('before.musicxml', body)
         after = self.write('after.musicxml', score(note('held', duration=4) + note('next', 'D')))
         a, old = helper.inspect(before)
-        b, new = helper.inspect(after)
+        _, new = helper.inspect(after)
         self.assertEqual(a['summary']['pitched_attacks'], 2)
         changes = helper.compare(old, new)
         self.assertEqual(changes['removed_attack_ids']['count'], 0)
@@ -93,12 +93,16 @@ class Audit(unittest.TestCase):
 
     def test_duplicate_ids_and_unsupported_input_fail_without_writes(self):
         duplicate = self.write('duplicate.musicxml', score(note('n') + note('n')))
-        result = subprocess.run([sys.executable, str(SCRIPT), str(duplicate)], capture_output=True, text=True)
+        result = subprocess.run(
+            [sys.executable, str(SCRIPT), str(duplicate)], check=False, capture_output=True, text=True
+        )
         self.assertEqual(result.returncode, 1)
         self.assertEqual(json.loads(result.stdout)['after']['unsafe']['count'], 1)
         for body in ('<!DOCTYPE score-partwise [<!ENTITY n "expanded">]>' + score(''), '<score-timewise/>'):
             path = self.write('refused.musicxml', body)
-            result = subprocess.run([sys.executable, str(SCRIPT), str(path)], capture_output=True, text=True)
+            result = subprocess.run(
+                [sys.executable, str(SCRIPT), str(path)], check=False, capture_output=True, text=True
+            )
             self.assertEqual(result.returncode, 2)
             self.assertFalse(json.loads(result.stderr)['audit_completed'])
             self.assertEqual(path.read_text(), body)
