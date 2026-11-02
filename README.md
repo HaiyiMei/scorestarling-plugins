@@ -8,168 +8,88 @@
 ScoreStarling is an all-in-one AI sheet music assistant. Ask for anything to do with sheet music:
 transcribe a song, read a PDF or photo, add chords, change the key, make it easier, turn it into guitar
 TAB or numbered notation (jianpu) or arrange it for your instrument. Every change lands on a real score
-you can hear, fix and download. It starts from an audio or video recording, a sheet-music image or PDF,
-MIDI, MusicXML, ABC, Guitar Pro, numbered notation, a lead sheet or music written in chat, and exports
-PDF, SVG/PNG images, MusicXML, MIDI, Guitar Pro (.gp5), MP3/WAV audio, ABC, MEI, parts or numbered
-notation.
-
-This plugin combines the hosted ScoreStarling MCP tools with two workflow skills:
-`scorestarling-score` for audio/video recordings and `scorestarling-notation` for
-sheet music, score files and music written in the chat.
-Task skills add musical know-how on top: `scorestarling-arrange-for-level` arranges a piece for a chosen
-instrument and level (piano, strings, winds, brass, recorder, guitar, ukulele, voice, drums and the Chinese
-erhu, guzheng and dizi; from complete beginner to about ABRSM Grade 8), and checks the result with a
-bundled script. It loads only the reference for the chosen instrument, and asks for the instrument and the
-level when the request does not say.
-It is maintained by individual developer HaiyiMei.
-The OpenAI listing uses the verified developer name HAIYI MEI.
+you can hear, fix and download.
 
 ## Install
 
-- **ChatGPT:** install [ScoreStarling](https://chatgpt.com/plugins/plugin_asdk_app_6ac3484e9e408191bcd88bf7ea90a67e)
-  from ChatGPT's plugin directory (Plugins, search ScoreStarling, select Install plugin), then sign in and
-  allow access. Steps with pictures: https://scorestarling.com/mcp#chatgpt
-- **Claude:** add the marketplace `HaiyiMei/scorestarling-plugins`, or add the server address
-  `https://mcp.scorestarling.com/mcp` as a custom connector.
-- **Other clients:** see https://scorestarling.com/mcp.
+Choose your client below, then sign in with a ScoreStarling account and allow access when prompted.
+ScoreStarling runs on a hosted service; you do not need a local server or a ScoreStarling API key.
 
-## Access and use
-
-Sign in with a ScoreStarling account and approve the MCP connection through the
-client’s OAuth flow.
-
-Ask: "Turn this attached recording into a score, open it, and help me check it." or
-"Make this photo of sheet music playable and give me the MIDI."
-A transcription or sheet-music reading covers the whole piece and uses credits the account already
-holds when it first opens (30 seconds or less is free); the assistant says so as it starts, and the
-user can ask to try a free 30-second preview first. A band's exact price, and opening the rest of a
-preview, are agreed in the chat before any credits are used.
-Prices, plans and limits are at https://scorestarling.com/pricing; in the chat, `get_account_usage`
-gives the account's own: the upload size, how long a recording each choice covers (`max_seconds`) and
-how many transcriptions may run at once (`active_limit`). The skill checks tool results and score structure,
-but listening and human review remain necessary for transcription accuracy.
-Model-proposed musical edits are previews until the user accepts them.
-
-Editing and listening use no credits. Downloads follow the account: MusicXML, MXL, MIDI, Guitar
-Pro, ABC and MEI download on accounts with existing download access; other accounts get the PDF and
-page images with a small watermark, and their own imported files in their original format.
-Download access comes from active Plus or preserved historical rights; buying credits alone does not open it.
-Previews can't be exported. An assistant saves its own round of edits as one version, a batch of
-operations or an editing copy, which works on every opened score. When the user gives a ScoreStarling invitation
-link or a beta code, the assistant redeems it in the chat (free credits, not a purchase); it offers
-the user's own invitation link only when they ask to invite someone. A new user without a recording
-can start from a public sample recording.
-
-## What connects and runs
-
-The plugin connects only to `https://mcp.scorestarling.com/mcp`; audio uploads go to
-`https://scorestarling.com`. The client's authorized MCP connection reads or changes
-the signed-in user's scores and starts requested transcriptions. When the user
-chooses a band transcription and agrees to its price, the service sends the recording to
-Mirelo, the band transcription provider, within a limit the server sets from the recording's
-length; the user sees only the price in credits.
-The service's privacy policy covers Supabase/Railway storage and Sentry/PostHog
-diagnostics.
-
-ChatGPT uses its native attachment tool. For a readable local attachment, the
-optional Python 3.11 upload helper requires HTTPX and network access. It receives
-an explicitly prepared, one-use upload ticket on stdin, posts raw audio once to
-the matching ScoreStarling origin, and reports acceptance. Status checks use the
-connected host's tools. Its programmatic entry can prepare and poll through an
-already-authorized tool callback. It installs nothing and reads no environment
-credentials. It sends no OAuth token or cookie on the capability POST and follows
-no redirects. If code or network is unavailable, use the built-in upload panel.
-
-### Embedded-app tools and audio handling
-
-A complete connector declaration includes these app-only tools as well as
-the model-facing tools. Their MCP metadata keeps `ui.visibility` set to
-`["app"]`; declaring them changes neither that visibility metadata nor the
-account authorization checks.
-
-| Tool | What it does |
+| Client | Install |
 | --- | --- |
-| `account_preferences` | Reads or saves interface preferences for the signed-in account after verifying access to the panel’s score. It never changes notes or sends queued chat requests. |
-| `begin_audio_upload` | Reserves an account-scoped upload task from file metadata and returns its single-use upload capability to the app. |
-| `cancel_pro_review` | Cancels a held band instrument review for a panel opened before `cancel_transcription` took this over. |
-| `cancel_transcription_quote` | Cancels a held band price for a panel opened before `cancel_transcription` took this over. |
-| `listen_score` | Hears up to 16 bars of a score's own recording again, for hosts that listed it before `review_score` took this over (`check=listen`). |
-| `panel_feedback` | Saves the user's panel feedback for a score revision, including recording-sharing consent only when explicitly selected. |
-| `read_notation_view` | Reads rendered numbered-notation pages for an owned score revision without changing the music. |
-| `read_score_panel` | Reads the interactive panel for the current or a specified saved score revision. |
-| `save_score_edits` | Saves edits the interactive panel already drew itself, in order, on the exact saved revision. |
-| `score_panel_state` | Reads the current saved revision, pending preview and display preference to synchronize an existing panel. |
-| `transcribe_again` | Transcribes a score's recording again as a new score, for the panel's Transcribe again and panels opened before `transcribe_music` took this over. |
-| `transcribe_attachment` | Makes a new score from an attached file, for panels opened before `transcribe_music` took this over. |
-| `transcribe_link` | Makes a new score from a public link, for panels opened before `transcribe_music` took this over. |
-| `validate_score` | Lists a saved revision's structural issues, for hosts that listed it before `review_score` took this over (`check=structure`). |
-| `watch_score` | Shows frames of a video-based score's own video, for hosts that listed it before `review_score` took this over (`check=watch`). |
+| ChatGPT | Open [ScoreStarling in the plugin directory](https://chatgpt.com/plugins/plugin_asdk_app_6ac3484e9e408191bcd88bf7ea90a67e), select **Install plugin**, then connect your account. [Steps with pictures](https://scorestarling.com/mcp#chatgpt). |
+| Codex | Open the plugin directory (`/plugins` in the CLI) and search for **ScoreStarling**. If it is not listed for your account, use the [direct MCP connection](llms-install.md#codex). |
+| Claude | Add a [custom connector](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities) with the server URL `https://mcp.scorestarling.com/mcp`, then connect your account. |
+| Claude Code | Install from this repository's marketplace with the [commands below](#claude-code). |
+| Gemini CLI | Install this repository as an extension with the [command below](#gemini-cli). |
+| Cline and other MCP clients | Follow the [direct MCP connection guide](llms-install.md#direct-mcp-connection). |
 
-`begin_audio_upload` receives the filename, exact size and processing options,
-not the audio itself. Its app metadata contains a ten-minute, single-use upload
-URL. The panel sends the bytes to ScoreStarling over HTTPS; the service validates
-the size and retains the recording with that account's task in private hosted
-storage. Lossless audio may be compressed to MP3 for storage and processing.
-The task then queues or waits for required instrumentation and price consent.
-One-instrument and piano processing run on ScoreStarling. The selected band
-workflow uses Mirelo for instrument analysis and transcription; paid transcription
-waits for the required price consent. Reserving an upload does not itself send
-audio to Mirelo. Playback/audio exports synthesize the saved notes rather than
-create audio through a generative AI model. Retention and processing disclosures
-are in the service's [privacy policy](https://scorestarling.com/privacy).
+### Claude Code
 
-## Distribution and support
+Run these commands in a Claude Code session:
 
-The portable `plugin.json` / `mcp.json` package is for ChatGPT and Codex. Claude's
-`.claude-plugin/plugin.json` and `.mcp.json` reference the same skill and service.
-This package does not include the backend, a local MCP server, hooks or subagents.
-Gemini CLI reads `gemini-extension.json` at the repository root (the same remote server with OAuth,
-plus the skills): `gemini extensions install https://github.com/HaiyiMei/scorestarling-plugins`.
-Actual installation and automatic skill selection must be checked in each client
-before publishing. Public publication on Claude requires a public GitHub source
-and a separate submission of our remote MCP connector.
+```text
+/plugin marketplace add HaiyiMei/scorestarling-plugins#release
+/plugin install scorestarling@scorestarling
+```
 
-A direct MCP connection receives concise initialization instructions, tool metadata and
-state-dependent next steps, plus `get_workflow_guide` for recording, notation, editing, each
-edit action's limits (operations) or feedback. It does not install native skills. The complete workflows remain in these two
-skills. The section between their `MCP ESSENTIALS` markers is generated from the same rules the
-server's instructions use and is refreshed from the product repository; edit the rules there rather
-than the marked section.
+### Gemini CLI
 
-OpenAI documents server instructions as guidance used alongside tool metadata. Its MCP
-skills extension imports a static snapshot during submission through Scan Tools; it does
-not fetch skills at runtime. This package does not implement that extension. See
-[server instructions](https://developers.openai.com/plugins/build/mcp-server#create-the-server)
-and [skill imports](https://developers.openai.com/plugins/build/skills#import-a-skill-from-mcp).
+Run this command in your terminal, then restart the Gemini CLI session:
 
-Use the hosted MCP tools for account-scoped actions and the skill for the
-transcribe, review, preview, accept and export workflow. Start with an actual
-chat attachment; the code upload helper and built-in upload panel are fallbacks.
+```sh
+gemini extensions install https://github.com/HaiyiMei/scorestarling-plugins --ref release
+```
+
+The commands above use the stable `release` branch. Installing this package includes its bundled
+skills; a direct MCP connection provides the hosted tools and workflow guidance without installing
+native skills. See [files, skills and integration details](docs/integration.md).
+
+## Try it
+
+- "Turn this attached recording into a score, open it, and help me check it."
+- "Make this photo of sheet music playable and give me the MIDI."
+
+A transcription can contain pitch, rhythm or notation errors. Listen and review the result;
+the skill's checks do not establish transcription accuracy. Proposed musical edits stay in preview
+until you accept them.
+
+## Credits and downloads
+
+A transcription or sheet-music reading covers the whole piece and uses credits the account already
+holds when it first opens (30 seconds or less is free); the assistant says so as it starts. You can
+ask to try a free 30-second preview first. A band's exact price, and opening the rest of a preview,
+are agreed in the chat before any credits are used. Nothing is sold in ChatGPT or Claude.
+
+Editing and listening use no credits. Downloads follow the account: MusicXML, MXL, MIDI, Guitar Pro,
+ABC and MEI download on accounts with existing download access; other accounts get the PDF and page
+images with a small watermark, and their own imported files in their original format. Download access
+comes from active Plus or preserved historical rights; buying credits alone does not open it.
+Previews cannot be exported. [Plans, credits and limits](https://scorestarling.com/pricing).
+
+## Privacy and access
+
+The connection can read or change the signed-in user's scores and start requested transcriptions.
+Recordings and scores are processed and stored by the hosted ScoreStarling service. A band
+transcription sends the recording to Mirelo after the required agreement to its price.
+See the [privacy policy](https://scorestarling.com/privacy) and
+[connection and audio-handling details](docs/integration.md#what-connects-and-runs).
+
+## Versions and development
+
+`main` contains development source. The `release` branch and
+[GitHub Releases](https://github.com/HaiyiMei/scorestarling-plugins/releases) contain tagged packages.
+Directory installations use the version offered by that directory. Each directory has its own
+publication and update process; check its available version separately from GitHub Releases.
+See [development and releases](docs/development.md) for checks and publication steps.
+
+## Support
 
 - [Connection guide](https://scorestarling.com/mcp)
+- [AI installation guide](llms-install.md)
 - [Support](https://scorestarling.com/support)
-- [Privacy](https://scorestarling.com/privacy)
 - [Service terms](https://scorestarling.com/terms)
 
-The plugin files are licensed under MIT; see [LICENSE](LICENSE). This package's
-license does not cover customer audio, customer scores or the hosted backend.
-Support, terms and privacy pages are hosted by the website; changing this
-package does not deploy them.
-
-## Development and releases
-
-This public repository is the canonical source of the plugin. The private product
-repository pins it as a Git submodule; backend changes do not release this package.
-
-Run `python3 tests/check_plugin_build.py` and validate both Claude manifests before
-release. `python3 scripts/build_plugin.py` builds a deterministic ZIP from the Git
-index; `--source working-tree` builds tracked local changes. CI files, tests and
-top-level developer scripts are excluded from the ZIP.
-
-Update the three manifest versions (`plugin.json`, `.claude-plugin/plugin.json`,
-`gemini-extension.json`), commit, and push a matching `v<version>` tag to
-release. CI checks the tag and manifests, creates the GitHub ZIP release, and
-advances the `release` branch only after checks pass. Claude directory submissions
-track that branch, so ordinary commits to `main` do not publish a plugin update.
-OpenAI directory uploads and review remain separate steps. Review videos and
-reviewer credentials are supplied privately rather than included here.
+Maintained by individual developer HaiyiMei; the OpenAI listing uses the developer name HAIYI MEI.
+The plugin files are licensed under [MIT](LICENSE). That license does not cover customer audio,
+customer scores or the hosted backend.
