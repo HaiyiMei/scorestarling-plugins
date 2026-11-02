@@ -26,10 +26,20 @@ one version that one `undo` reverts, each operation made on what the one before 
 names the operation (`Operation N`) and saves none of them. A version for every step of a round
 fills the history the user undoes through.
 
+## A few bars: read_bars and write_bars
+
+When exposed, these tools read and save up to 16 bars of one part directly, without downloading a
+file. Read a coherent phrase and its context; request fewer bars if the result is too large.
+Use compact ABC when it represents the edit, or `format=musicxml` for measure elements with
+their IDs and the divisions, key, meter and clefs in force. Save the same selected bars, part
+and revision with `write_bars`, giving either `abc` or `musicxml`. Keep the ABC header and voices,
+or the existing MusicXML note IDs. Other bars stay in place; undo restores the change.
+Inspect reported repitches and boundary ties, re-read the saved bars, and proof their pages.
+The playback-basis and source-evidence checks below still apply to a compact bar edit.
+
 ## An edited copy: revise_score
 
-For what no operation writes, or a round too large for a batch (deleting a misheard voice,
-correcting many pitches, adding missed notes, rhythm spelling, grace notes, swing, pedal):
+For a whole-file round, or notation the exposed bar tools cannot represent:
 
 1. `export_score` with `format=editing_copy` for the current revision, once for the whole round
    (the changes you are about to save or preview together). It is the score's MusicXML for your
@@ -56,9 +66,9 @@ accepted.
 One export serves one save. When notation-only fixes and proposed note changes both need the
 copy, save the notation-only fixes first, then export the new revision for the preview.
 
-If you cannot fetch or edit the file, use operations for what they can express (`fill_rest` for a
-missed note in a rest, `delete_notes`, `set_pitch`, several of them as one batch) and say plainly
-what is left undone and why.
+If you cannot fetch or edit the file, check the bounded bar tools before declaring a gap. Use
+operations for what they express (`fill_rest`, `delete_notes`, `set_pitch`, or a batch), and
+report only the corrections no available editing route can complete as unsupported.
 
 ## Requests and proposals
 

@@ -132,8 +132,9 @@ through every change to the transcription as it came.
   one `edit_score` `batch` of up to 30, saved as one version that one `undo` reverts
   ([references/editing.md](references/editing.md)). Never move a passage note by note.
 - What no operation writes, or a round too large for a batch (deleting a misheard voice, many
-  pitches, missed notes, rhythm spelling, grace notes, swing, pedal): edit a copy of the score and
-  save it once, as [references/editing.md](references/editing.md) describes.
+  pitches, missed notes, rhythm spelling, grace notes, swing, pedal): prefer `read_bars` and
+  `write_bars` when available, using ABC or MusicXML for a bounded round. A whole-file round uses
+  an edited copy, as [references/editing.md](references/editing.md) describes.
 - Changes the user asks for, broad or exact, within their stated goal: apply them without asking
   again for each one. A change the user names exactly (this note should be an E) is its own
   evidence: apply it, name the exact pitch you wrote, and if you know the recording disagrees,

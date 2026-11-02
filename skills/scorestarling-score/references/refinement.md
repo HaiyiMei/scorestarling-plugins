@@ -95,8 +95,10 @@ local code only for gaps such as editing a MusicXML copy or comparing returned a
 Choose the smallest notation representation that the host can safely save. ABC is compact and
 handles piano staves, voices, ties, grace notes and beams; use it for a new score or arrangement
 when it expresses the requested music ([ABC reference](../../scorestarling-notation/references/abc.md)).
-For an existing project, prefer compact bar read/write tools when the host exposes them with a
-revision and preserved identity. Otherwise the remote `revise_score` contract requires MusicXML;
+For an existing project, prefer `read_bars` and `write_bars` when exposed: compact ABC by default,
+or exact MusicXML measure elements when the edit needs them, with the same project and revision.
+They reuse the score's existing bar editor; keep boundary ties and inspect the saved result.
+Otherwise the remote `revise_score` contract requires MusicXML;
 keep that XML in a file and inspect scoped summaries. Do not call `create_score` with ABC merely
 to shorten a repair: it creates a separate project. Full XML is not needed just to read the notes,
 and neither ABC nor MusicXML is proof of a lossless round trip or unchanged playback.
@@ -106,7 +108,7 @@ and neither ABC nor MusicXML is proof of a lossless round trip or unchanged play
 | One supported operation, or a supported passage selector | Use `edit_score`; pass the current revision and inspect the returned changes. |
 | A passage that came in late or early | One `shift_time` from its first struck note; never note by note. |
 | Up to 30 supported note, rhythm, hand/voice, tie, beam or stem edits that belong together | One `edit_score` `batch`: one version, all or none; inspect the returned changes. Marks and layout may be excluded: read the live limits before composing the batch. |
-| More than a batch holds, or notation no operation writes | Edit one current `editing_copy`, preserve retained IDs, and save a coherent round with `revise_score`. |
+| More than a batch holds, or notation no operation writes | Prefer the exposed bounded bar editor; otherwise edit one current `editing_copy` and save a coherent round with `revise_score`, preserving retained IDs. |
 | Written duration, grace or voice changes | Use the chosen host-supported bar or file representation for the round. Inspect `document_model.playback_basis` and verify the actual exported timing; retained IDs alone do not prove unchanged onsets or releases. |
 | Played releases | Check `set_duration` limits. A note ID array can represent a contiguous tied note or complete chord, not arbitrary distinct onsets. |
 | Unsupported played onset/local tempo changes | Report the gap. Do not invent an action, delete/recreate retained events, or modify storage to imitate support. |
