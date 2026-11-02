@@ -26,10 +26,20 @@ one version that one `undo` reverts, each operation made on what the one before 
 names the operation (`Operation N`) and saves none of them. A version for every step of a round
 fills the history the user undoes through.
 
+## A few bars: read_bars and write_bars
+
+When exposed, these tools read and save up to 16 bars of one part directly, without downloading a
+file. Read a coherent phrase and its context; request fewer bars if the result is too large.
+Use compact ABC when it represents the edit, or `format=musicxml` for measure elements with
+their IDs and the divisions, key, meter and clefs in force. Save the same selected bars, part
+and revision with `write_bars`, giving either `abc` or `musicxml`. Keep the ABC header and voices,
+or the existing MusicXML note IDs. Other bars stay in place; undo restores the change.
+Inspect reported repitches and boundary ties, re-read the saved bars, and proof their pages.
+The playback-basis and source-evidence checks below still apply to a compact bar edit.
+
 ## An edited copy: revise_score
 
-For what no operation writes, or a round too large for a batch (deleting a misheard voice,
-correcting many pitches, adding missed notes, rhythm spelling, grace notes, swing, pedal):
+For a whole-file round, or notation the exposed bar tools cannot represent:
 
 1. `export_score` with `format=editing_copy` for the current revision, once for the whole round
    (the changes you are about to save or preview together). It is the score's MusicXML for your
@@ -45,18 +55,20 @@ correcting many pitches, adding missed notes, rhythm spelling, grace notes, swin
 4. Re-read IDs with `get_score`, `review_score` the result, and say in plain words what changed.
    If `revise_score` refuses, it says what differs: fix the file and save again.
 
-How the copy plays back: a kept note keeps its played timing whatever its written rhythm, staff
-or voice; a changed pitch plays at the new pitch; a removed note stops sounding; a note without
-an existing `id` is added to the playing where it is written, inside the recording's length.
+How the copy plays back depends on `document_model.playback_basis`: legacy performance-backed
+notes retain their bound timing; score-based playback follows the edited notation. A changed
+pitch plays at the new pitch; a removed note stops sounding; a note without an existing `id`
+is added where it is written. Verify exported onsets/releases after rhythm or grace changes
+before promising preservation; keeping an ID is not that verification.
 Parts stay the same. Without the exported IDs, only notation changes that keep every pitch are
 accepted.
 
 One export serves one save. When notation-only fixes and proposed note changes both need the
 copy, save the notation-only fixes first, then export the new revision for the preview.
 
-If you cannot fetch or edit the file, use operations for what they can express (`fill_rest` for a
-missed note in a rest, `delete_notes`, `set_pitch`, several of them as one batch) and say plainly
-what is left undone and why.
+If you cannot fetch or edit the file, check the bounded bar tools before declaring a gap. Use
+operations for what they express (`fill_rest`, `delete_notes`, `set_pitch`, or a batch), and
+report only the corrections no available editing route can complete as unsupported.
 
 ## Requests and proposals
 
@@ -155,9 +167,10 @@ E♭5) so they can correct it; ask only when the key leaves it truly unclear.
 - Notes that look halved or doubled may mean the beat level is off. A slow ballad whose
   sixteenths came out as eighths under a doubled tempo mark needs `scale_note_values` with
   `factor` 0.5 (halve every value); a quick waltz written in sixteenths at half its tempo needs
-  2 (double). Preview it. The tempo mark changes with the values and the playing stays; a
-  solo-piano score finds its time signature and bar lines again. Then check the meter and the
-  first downbeat against the source.
+  2 (double). Establish the beat level from complete phrases and their returns first, then
+  preview it. The tempo mark changes with the values; a solo-piano score finds its time signature
+  and bar lines again. Check the meter and first downbeat against the source, and verify exported
+  playback for the current playback basis rather than assuming the playing stayed unchanged.
 - A 6/8 song written as 3/4 (the same bar length) only needs `set_meter`.
 
 **A different pulse.** `rewrite_rhythm` changes a steady recording's note values and bar lines

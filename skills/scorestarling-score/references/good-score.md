@@ -172,8 +172,9 @@ make without being asked is the host's call (in a chat app, [chat-hosts.md](chat
 8. **Pedal, key release and decay.** Check pedal events, repeated attacks and harmony changes.
    Acoustic decay, key release and notated duration are different quantities; an overlap alone
    proves neither a held voice nor an unwanted note. `set_duration` changes the played note-off
-   too, so never present it as notation-only cleanup; a written length changed in the edited
-   MusicXML copy keeps the played timing, and pedal marks are written there as well. Verify
+   too, so never present it as notation-only cleanup. An edited copy can write pedal marks;
+   whether written lengths keep played timing depends on the playback basis, so verify it rather
+   than inferring preservation from note IDs ([refinement](refinement.md)). Verify
    repeated attacks and held voices both in playback and on the page ([piano transcription
    model](https://arxiv.org/abs/2010.01815)).
 

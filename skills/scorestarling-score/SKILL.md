@@ -17,7 +17,7 @@ the first tool call: what to call when, what the score panel shows, what needs t
 how files reach them. Starling, the assistant inside ScoreStarling, is not such a chat app: its
 own instructions say those things and win where they differ from this skill, so it skips
 chat-hosts.md wherever a reference points there. Open the other references when a section below
-sends you there.
+sends you there; read them once and retain the relevant decisions instead of loading the whole library.
 
 ## Choose how to transcribe
 
@@ -67,9 +67,19 @@ service's output, including a band's original notation, is the starting point; t
 faithful, clear, playable score of what this recording's player played, and undo steps back
 through every change to the transcription as it came.
 
+- For piano with fragmented rhythms, overlapping voices or a staff layout to change, read
+  [refinement.md](references/refinement.md) **before the first rewrite**. Settle the source version,
+  pulse and notation layout together, then make one coherent round; cleanup is part of the score,
+  not a task left for the user to request after receiving the draft.
 - **Evidence, not verdicts.** Tool findings are leads to check. A clean validation, preserved
   MIDI, fewer notes or a tidier page do not prove the notes are right. Say what you checked and
   what still needs an ear.
+- **Make musical comparisons.** In the compact ledger, record a returning phrase's first attack
+  and its return as `(printed bar, onset in quarter-note beats)` from the note rows. For a steady
+  accompaniment, compare its own cycle's attack positions with the suspected gaps; follow suspect
+  notes into the line they could belong to. Report real differences with locations and certainty,
+  rather than a list of checks or warnings. An unresolved pickup question does not replace these
+  comparisons.
 - **Review in passes**, each with its own evidence: **read** the whole score as text, **listen**
   again to the most suspicious passages (and, for a video, **watch** the player there), **look** at
   every page, and **proof** the result after your changes, as
@@ -122,8 +132,9 @@ through every change to the transcription as it came.
   one `edit_score` `batch` of up to 30, saved as one version that one `undo` reverts
   ([references/editing.md](references/editing.md)). Never move a passage note by note.
 - What no operation writes, or a round too large for a batch (deleting a misheard voice, many
-  pitches, missed notes, rhythm spelling, grace notes, swing, pedal): edit a copy of the score and
-  save it once, as [references/editing.md](references/editing.md) describes.
+  pitches, missed notes, rhythm spelling, grace notes, swing, pedal): prefer `read_bars` and
+  `write_bars` when available, using ABC or MusicXML for a bounded round. A whole-file round uses
+  an edited copy, as [references/editing.md](references/editing.md) describes.
 - Changes the user asks for, broad or exact, within their stated goal: apply them without asking
   again for each one. A change the user names exactly (this note should be an E) is its own
   evidence: apply it, name the exact pitch you wrote, and if you know the recording disagrees,
