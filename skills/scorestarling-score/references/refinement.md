@@ -58,12 +58,13 @@ the choices that would invalidate later engraving:
   from detection artifacts. Shortness alone does not justify deletion, grace-note conversion or
   shortening every sustain. Include voices, rests, ties and beams in the same correction round.
 
-Confirm the host can finish the chosen round before changing the score. An editing-copy download
-is not useful by itself: a file round needs an authorized way to read, edit and save that file.
-If the host lacks it, identify the exact unsupported correction and the capability needed; do
-not substitute uniform `set_duration` calls, a coarser grid or repeated trial reengraving for a
-notation rewrite. Those operations can change played releases or musical structure. Complete
-the supported corrections and report the remaining gap without calling the result finished.
+Confirm the host can finish the chosen round before changing the score. A file round needs an
+authorized way to read, edit and save the editing copy. The remote tool also accepts inline
+`revise_score.musicxml`: use it when the complete current notation and retained IDs are available
+and the round fits, rather than assuming no local files means no notation editing. If the needed
+state or save route is unavailable, name that exact gap. Do not substitute uniform `set_duration`
+calls, a coarser grid or repeated trial reengraving for a notation rewrite; they can change played
+releases or musical structure. Report any remaining work without calling it finished.
 
 A broad rhythm operation may regenerate IDs, voices, clefs or staves. Inspect the changed phrase and
 its return immediately; undo a regression instead of stacking cosmetic repairs on it. When a file

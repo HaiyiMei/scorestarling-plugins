@@ -74,11 +74,12 @@ through every change to the transcription as it came.
 - **Evidence, not verdicts.** Tool findings are leads to check. A clean validation, preserved
   MIDI, fewer notes or a tidier page do not prove the notes are right. Say what you checked and
   what still needs an ear.
-- **Make musical comparisons.** For the textures present, compare returning phrase entries by
-  bar and beat, accompaniment attacks across its own cycles, and suspect notes against the line
-  they could belong to. A finding names the location, the observed difference and its certainty;
-  "rhythm needs checking" or a list of tool warnings is not that comparison. An unresolved pickup
-  question does not replace checking the accompaniment and voices.
+- **Make musical comparisons.** In the compact ledger, record a returning phrase's first attack
+  and its return as `(printed bar, onset in quarter-note beats)` from the note rows. For a steady
+  accompaniment, compare its own cycle's attack positions with the suspected gaps; follow suspect
+  notes into the line they could belong to. Report real differences with locations and certainty,
+  rather than a list of checks or warnings. An unresolved pickup question does not replace these
+  comparisons.
 - **Review in passes**, each with its own evidence: **read** the whole score as text, **listen**
   again to the most suspicious passages (and, for a video, **watch** the player there), **look** at
   every page, and **proof** the result after your changes, as
