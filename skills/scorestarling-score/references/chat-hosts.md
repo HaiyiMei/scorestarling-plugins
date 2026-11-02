@@ -56,7 +56,7 @@ into more detail, follow the step.
 | A recording attached in ChatGPT | Steps 2 to 5 |
 | A video link | Inspect with `check_link`/`watch_link`: read visible notation with `create_score`; otherwise transcribe audio, keeping what the frames show (falling notes, chords, a partial sheet) as a reference ([research.md](research.md)) |
 | A song page or audio file link | Steps 2 to 5: look with `check_link`, send it with `transcribe_music` (`url`) |
-| A file you can read with code (Claude, Codex) | Steps 2 to 5; send it as [uploads.md](uploads.md) describes |
+| A file you can read with code (Claude, Codex) | Use the host's attachment tool when its live schema accepts the local path; otherwise follow [uploads.md](uploads.md) |
 | A score already in ScoreStarling | `list_scores`, then `open_score` once (with `notation=jianpu` if they want numbers) unless its panel is already in the conversation. Opening needs no upload, audio check or new transcription; do not ask for anything the score already records. Then steps 6 and 7 for changes, views and files; review it (step 5) when the user asks how it came out or wants it checked |
 | Sheet music, a score file or music written in the chat | The `scorestarling-notation` skill |
 

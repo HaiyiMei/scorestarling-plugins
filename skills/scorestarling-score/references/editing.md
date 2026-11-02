@@ -45,9 +45,11 @@ correcting many pitches, adding missed notes, rhythm spelling, grace notes, swin
 4. Re-read IDs with `get_score`, `review_score` the result, and say in plain words what changed.
    If `revise_score` refuses, it says what differs: fix the file and save again.
 
-How the copy plays back: a kept note keeps its played timing whatever its written rhythm, staff
-or voice; a changed pitch plays at the new pitch; a removed note stops sounding; a note without
-an existing `id` is added to the playing where it is written, inside the recording's length.
+How the copy plays back depends on `document_model.playback_basis`: legacy performance-backed
+notes retain their bound timing; score-based playback follows the edited notation. A changed
+pitch plays at the new pitch; a removed note stops sounding; a note without an existing `id`
+is added where it is written. Verify exported onsets/releases after rhythm or grace changes
+before promising preservation; keeping an ID is not that verification.
 Parts stay the same. Without the exported IDs, only notation changes that keep every pitch are
 accepted.
 

@@ -7,7 +7,8 @@ all, or a local server. Choosing the transcription and following the job are ste
 
 | Situation | Route |
 | --- | --- |
-| A readable file, with code and network access (Claude, Codex) | Send the bytes yourself |
+| A readable file accepted by the host's attachment tool | Pass its absolute path as that tool's live schema specifies |
+| A readable file without a supported host attachment route, with code and network access | Send the bytes yourself |
 | The user wants a link to send the file themselves | An upload link for the user |
 | No readable file, no code or no network | The panel |
 | A local ScoreStarling server (stdio) | Its own input folder |
@@ -15,6 +16,10 @@ all, or a local server. Choosing the transcription and following the job are ste
 Every route takes the same choices as the other tools: `provider`, `bpm` only when the user gave
 the tempo, and `view=jianpu` when the user wants numbered notation from the start. Files are
 limited to 95 MiB.
+
+The host can adapt a local path into its file object even when a tool's prose describes file IDs
+and download URLs. Inspect its live schema first; never fabricate those fields from a path.
+Before reserving a raw-upload ticket, check that the host permits the required network access.
 
 ## Send the bytes yourself
 
@@ -30,7 +35,10 @@ limited to 95 MiB.
    playing and answer with `choose_engine`.
 
 HTTP 202 means the upload was accepted. After a timeout, a refusal or an unclear answer, inspect
-the existing job; never POST again or prepare another upload for the same request.
+the existing job; do not automatically POST again or switch to another tool that creates a second task.
+Resuming the same ticket is appropriate only when the server still explicitly awaits the file,
+the transport proves no bytes were sent (such as failure before connecting), and the host permits
+the upload. Otherwise keep the task's identity and report the unresolved upload.
 
 ### The upload helper script
 

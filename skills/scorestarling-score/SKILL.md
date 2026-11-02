@@ -17,7 +17,7 @@ the first tool call: what to call when, what the score panel shows, what needs t
 how files reach them. Starling, the assistant inside ScoreStarling, is not such a chat app: its
 own instructions say those things and win where they differ from this skill, so it skips
 chat-hosts.md wherever a reference points there. Open the other references when a section below
-sends you there.
+sends you there; read them once and retain the relevant decisions instead of loading the whole library.
 
 ## Choose how to transcribe
 
@@ -67,6 +67,10 @@ service's output, including a band's original notation, is the starting point; t
 faithful, clear, playable score of what this recording's player played, and undo steps back
 through every change to the transcription as it came.
 
+- For piano with fragmented rhythms, overlapping voices or a staff layout to change, read
+  [refinement.md](references/refinement.md) **before the first rewrite**. Settle the source version,
+  pulse and notation layout together, then make one coherent round; cleanup is part of the score,
+  not a task left for the user to request after receiving the draft.
 - **Evidence, not verdicts.** Tool findings are leads to check. A clean validation, preserved
   MIDI, fewer notes or a tidier page do not prove the notes are right. Say what you checked and
   what still needs an ear.

@@ -7,6 +7,8 @@ Keep the musical judgment in [good-score.md](good-score.md) and operation contra
 ## Contents
 
 - [Choose a round](#choose-a-round)
+- [Settle piano notation before rewriting](#settle-piano-notation-before-rewriting)
+- [Keep the working set small](#keep-the-working-set-small)
 - [Use the right editing surface](#use-the-right-editing-surface)
 - [Handle added notes and timing](#handle-added-notes-and-timing)
 - [Prepare only needed dependencies](#prepare-only-needed-dependencies)
@@ -38,19 +40,66 @@ optional source of independent evidence only when needed and authorized, not a p
 a response to a slow editing API. Record its original job ID, parameters and result; after an
 uncertain paid response, read that job before any retry. Do not equate model agreement with truth.
 
+## Settle piano notation before rewriting
+
+Use this when a piano draft needs more than a local correction. Before committing a rewrite, resolve
+the choices that would invalidate later engraving:
+
+- **Version:** the supplied recording remains the source. A matching title, performer or watermark
+  does not establish the same take or arrangement. Align a reference excerpt by its notes and rhythm;
+  transpose it for comparison when needed, rather than changing the recording's key to match it.
+- **Pulse:** check complete phrases and their returns for meter, beat level and pickup. A fragment
+  can settle written subdivisions without settling the whole arrangement. A high tie/rest count is
+  a lead, not a reason to halve the tempo or force a coarser grid.
+- **Layout:** physical hands and printed staves are different choices. Follow an explicitly requested
+  reference layout, including an interleaved figure on one staff. Otherwise keep musical roles and
+  playable hand allocation; do not impose a middle-C split or move every high accompaniment note.
+- **Reading:** distinguish independent voices from pedal overlap, and real ornaments or rolled chords
+  from detection artifacts. Shortness alone does not justify deletion, grace-note conversion or
+  shortening every sustain. Include voices, rests, ties and beams in the same correction round.
+
+A broad rhythm operation may regenerate IDs, voices, clefs or staves. Inspect the changed phrase and
+its return immediately; undo a regression instead of stacking cosmetic repairs on it. When a file
+rewrite is needed, inspect a representative phrase, its return and the ending locally before saving
+the coherent round. Still read the complete score and proof every final page; these early checks
+prevent rework, not replace full coverage. Keep unresolved source notes explicit.
+
+## Keep the working set small
+
+Discover tools by service namespace/name before reading their full schemas; descriptions may mention
+unrelated connected accounts. Load only the capabilities and reference sections the next decision
+needs. Do not print an entire tool catalog or repeatedly read the same references.
+
+Read the complete score once per relevant revision, then request changed or unresolved scopes with
+stable IDs and pagination. Keep a compact ledger of decisions and unresolved bars. In a runtime with
+code orchestration, retain raw results outside the model context and report the needed fields,
+errors, consent state and continuation pointers; forward the images/resources being inspected.
+Do not dump encoded media or repeat large unchanged summaries, and never silently omit evidence
+needed to judge an edit. Export final delivery formats after the musical round is settled; a baseline
+editing copy or MIDI comparison is a separate, justified read.
+
 ## Use the right editing surface
 
 Prefer the connected MCP for reads, supported edits, revision ownership and exports. Read the
 live operation limits once per relevant capability; cached prose is not a new endpoint. Use
 local code only for gaps such as editing a MusicXML copy or comparing returned artifacts.
 
+Choose the smallest notation representation that the host can safely save. ABC is compact and
+handles piano staves, voices, ties, grace notes and beams; use it for a new score or arrangement
+when it expresses the requested music ([ABC reference](../../scorestarling-notation/references/abc.md)).
+For an existing project, prefer compact bar read/write tools when the host exposes them with a
+revision and preserved identity. Otherwise the remote `revise_score` contract requires MusicXML;
+keep that XML in a file and inspect scoped summaries. Do not call `create_score` with ABC merely
+to shorten a repair: it creates a separate project. Full XML is not needed just to read the notes,
+and neither ABC nor MusicXML is proof of a lossless round trip or unchanged playback.
+
 | Needed change | Choose and verify |
 | --- | --- |
 | One supported operation, or a supported passage selector | Use `edit_score`; pass the current revision and inspect the returned changes. |
 | A passage that came in late or early | One `shift_time` from its first struck note; never note by note. |
-| Up to 30 supported note, rhythm, hand/voice, tie, beam or stem edits that belong together | One `edit_score` `batch`: one version, all or none; inspect the returned changes. |
+| Up to 30 supported note, rhythm, hand/voice, tie, beam or stem edits that belong together | One `edit_score` `batch`: one version, all or none; inspect the returned changes. Marks and layout may be excluded: read the live limits before composing the batch. |
 | More than a batch holds, or notation no operation writes | Edit one current `editing_copy`, preserve retained IDs, and save a coherent round with `revise_score`. |
-| Only written duration changes | Change MusicXML; retained notes keep their performed timing. Do not promise changed MIDI releases. |
+| Written duration, grace or voice changes | Use the chosen host-supported bar or file representation for the round. Inspect `document_model.playback_basis` and verify the actual exported timing; retained IDs alone do not prove unchanged onsets or releases. |
 | Played releases | Check `set_duration` limits. A note ID array can represent a contiguous tied note or complete chord, not arbitrary distinct onsets. |
 | Unsupported played onset/local tempo changes | Report the gap. Do not invent an action, delete/recreate retained events, or modify storage to imitate support. |
 
@@ -60,6 +109,9 @@ an array parameter does not prove independent events can be edited in one call. 
 duration loop, explain the expected wait, and reconsider whether notation-only changes suffice
 for the user's goal. If releases really must change, preserve starts/pedal and use the supported
 operation; do not shorten every note merely to clear validation.
+
+When an editing-copy round already covers the passage, include related marks and beaming there
+instead of following a refused batch with a long series of individual cosmetic saves.
 
 Serialize dependent writes. Use each successful returned revision for the next write, and
 re-read IDs/settings when an operation regenerates them or the result is uncertain. Batch
@@ -75,8 +127,10 @@ file without checking the authoritative current IDs. Count sounding attacks sepa
 MusicXML note heads and tie continuations.
 
 Check the current binding/timing behavior before inserting many notes into rewritten bars.
-Retained IDs preserve played times, while additions are located from written positions and
-retained performance anchors. Changing the printed meter or phrase grid does not necessarily
+IDs associate retained notes across revisions; timing guarantees depend on the playback model and
+current edit contract. In a score-based revision, changed durations, grace notes and rhythmic positions
+can change exported playback. Additions are located from written positions and available anchors.
+Changing the printed meter or phrase grid does not necessarily
 replace the MIDI tempo map. Nearby retained tie continuations can also refer to an earlier
 attack. A same-pitch overlap error may therefore be a placement error, not an extra source note.
 
@@ -126,6 +180,24 @@ cancellation unless the current staff/bar state already supplies it. Follow that
 voices, octaves, key changes and ties; verify the rendered glyph against XML and playback. Do not
 patch one visible symbol without checking its musical scope. Check clefs, stems, beams, ties,
 expression, clipping and ledger lines. Structural validity does not establish PDF/XML agreement.
+
+For programmatically edited MusicXML, check IDs/attacks, explicit beams and chord boundaries before
+uploading. An octave or clef direction belongs before or after a complete chord, never between its
+base note and following `<chord/>` members. End octave lines after the last covered tie segment and
+put a final fermata on the sounding ending, not on every tied head. Verify actual rendered positions;
+cursor/offset handling and notation checks alone do not prove an octave line prints correctly.
+
+The read-only helper gives compact notation findings and optional before/after attack-ID differences:
+
+```sh
+python3 scripts/audit_musicxml.py AFTER.musicxml --before BEFORE.musicxml
+```
+
+It uses only Python's standard library and accepts uncompressed MusicXML when that is the chosen
+editing format; do not convert a sufficient ABC workflow just to run it. It does not rewrite music,
+judge source accuracy, validate all MusicXML, or compare performance MIDI. Missing beams are review
+leads, not a universal requirement to group every four notes. Read only its reported scopes back into
+the model; inspect the printed page and exported MIDI for claims it cannot establish.
 
 Prefer notation layout controls to manual PDF rearrangement. If a delivery-only PDF layout is
 necessary, preserve whole vector systems, label its derivation from the saved revision, and check
