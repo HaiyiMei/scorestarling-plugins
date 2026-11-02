@@ -1,14 +1,15 @@
 # ScoreStarling
 
-[![Install in ChatGPT](https://img.shields.io/badge/ChatGPT-Install%20plugin-000000)](https://chatgpt.com/plugins/plugin_asdk_app_6ac3484e9e408191bcd88bf7ea90a67e)
-[![ScoreStarling MCP connector](https://glama.ai/mcp/connectors/com.scorestarling/scorestarling/badges/score.svg)](https://glama.ai/mcp/connectors/com.scorestarling/scorestarling)
-[![Mentioned in Awesome](https://awesome.re/mentioned-badge.svg)](https://github.com/hashgraph-online/awesome-ai-plugins)
-[![Mentioned in Awesome](https://awesome.re/mentioned-badge.svg)](https://github.com/punkpeye/awesome-remote-mcp-servers)
-
 ScoreStarling is an all-in-one AI sheet music assistant. Ask for anything to do with sheet music:
 transcribe a song, read a PDF or photo, add chords, change the key, make it easier, turn it into guitar
 TAB or numbered notation (jianpu) or arrange it for your instrument. Every change lands on a real score
 you can hear, fix and download.
+
+<a href="https://chatgpt.com/plugins/plugin_asdk_app_6ac3484e9e408191bcd88bf7ea90a67e"><img src="assets/chatgpt-install.webp" alt="Install ScoreStarling in ChatGPT" width="360" /></a>
+
+[![ScoreStarling MCP connector](https://glama.ai/mcp/connectors/com.scorestarling/scorestarling/badges/score.svg)](https://glama.ai/mcp/connectors/com.scorestarling/scorestarling)
+[![Mentioned in Awesome](https://awesome.re/mentioned-badge.svg)](https://github.com/hashgraph-online/awesome-ai-plugins)
+[![Mentioned in Awesome](https://awesome.re/mentioned-badge.svg)](https://github.com/punkpeye/awesome-remote-mcp-servers)
 
 ## Install
 
