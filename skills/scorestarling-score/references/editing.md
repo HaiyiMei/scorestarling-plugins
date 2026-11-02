@@ -157,9 +157,10 @@ E♭5) so they can correct it; ask only when the key leaves it truly unclear.
 - Notes that look halved or doubled may mean the beat level is off. A slow ballad whose
   sixteenths came out as eighths under a doubled tempo mark needs `scale_note_values` with
   `factor` 0.5 (halve every value); a quick waltz written in sixteenths at half its tempo needs
-  2 (double). Preview it. The tempo mark changes with the values and the playing stays; a
-  solo-piano score finds its time signature and bar lines again. Then check the meter and the
-  first downbeat against the source.
+  2 (double). Establish the beat level from complete phrases and their returns first, then
+  preview it. The tempo mark changes with the values; a solo-piano score finds its time signature
+  and bar lines again. Check the meter and first downbeat against the source, and verify exported
+  playback for the current playback basis rather than assuming the playing stayed unchanged.
 - A 6/8 song written as 3/4 (the same bar length) only needs `set_meter`.
 
 **A different pulse.** `rewrite_rhythm` changes a steady recording's note values and bar lines
