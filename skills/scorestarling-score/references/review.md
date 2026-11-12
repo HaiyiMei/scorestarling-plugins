@@ -55,6 +55,9 @@ changes still need the user's acceptance; [review-tools.md](review-tools.md)
 says how to weigh them. For written music (sheet music, MusicXML or MIDI imports) it returns
 `available: false` with a reason: then rely on reading and looking, and name the bars for the
 user's ear. With several parts it hears their mix; pass `part` to check one part.
+When one note or onset is still in doubt and you have the recording as a file, check that stretch with
+your own code as "Checking the recording with your own code" in [review-tools.md](review-tools.md) says:
+results to files, a short summary on screen, a picture to look at.
 
 ## 3. Watch (a video)
 

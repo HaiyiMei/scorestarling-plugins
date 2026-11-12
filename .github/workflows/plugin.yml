@@ -22,6 +22,7 @@ jobs:
         run: |
           python3 tests/check_plugin_build.py
           python3 tests/check_musicxml_audit.py
+          python3 tests/check_probe_passage.py
           python3 -m pip install PyMuPDF==1.26.6
           python3 tests/check_artifact_comparison.py
           for manifest in plugin marketplace; do

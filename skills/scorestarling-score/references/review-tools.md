@@ -180,6 +180,31 @@ How to use it:
   [editing.md](editing.md)), then review the result.
 - A 6/8 or 12/8 score marks and reports its tempo in dotted quarters.
 
+## Checking the recording with your own code
+
+When you have the recording as a file and can run Python, your own analysis checks a few bars, one
+pitch or one onset that the tools above left in doubt. It never transcribes the whole recording:
+the whole piece comes from the transcription engine's draft, `find_suspects` and
+`review_score` with `check=listen` (`listen_score`), which already hear all of it.
+
+- Keep the analysis out of your context. Write arrays and tables to files and print a summary of
+  a few dozen lines at most; never print a whole array, a frame-by-frame table or a full note list.
+- Look rather than read: save a spectrogram or chroma plot of the stretch as a PNG and open the
+  picture.
+- `scripts/probe_passage.py` does both for a window of up to 15 seconds (it needs numpy and
+  librosa, and matplotlib for the pictures):
+
+  ```sh
+  python3 scripts/probe_passage.py RECORDING --start 12 --end 18.5 --out probe-12s [--melody]
+  ```
+
+  It prints at most 40 lines (the onsets, the notes that rise at each, the strongest pitch
+  classes) and writes everything else to `probe-12s/probe.json`, with `cqt.png` and `chroma.png`
+  to look at. Its notes are leads like any other, never verdicts: a ringing chord, an overtone or
+  a soft note can each fool it.
+- Probe only what one question needs, and stop once it answers it. Several long analyses in a row
+  cost more time than they settle.
+
 ## Listening with the user
 
 You cannot hear the score's playback. When a decision needs an ear, name the bars and what to
