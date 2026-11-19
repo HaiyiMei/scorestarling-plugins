@@ -55,6 +55,8 @@ the choices that would invalidate later engraving:
   12, 16 and 20 attacks over successive four-pulse phrases suggest three, four and five per pulse.
   Check the pattern on its return and against the other hand. If a different written beat makes the fast
   passage easier to read, verify that its tempo mark and note values preserve the attack times.
+  If only the opening is settled, save the supported local correction. Extending it to the whole
+  score needs timing evidence at a return and a contrasting section. Preserve uncertain held voices.
 - **Layout:** physical hands and printed staves are different choices. Follow an explicitly requested
   reference layout, including an interleaved figure on one staff. Otherwise keep musical roles and
   playable hand allocation; do not impose a middle-C split or move every high accompaniment note.
