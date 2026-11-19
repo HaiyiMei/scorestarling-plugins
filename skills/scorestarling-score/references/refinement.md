@@ -185,6 +185,9 @@ model just to verify a script or claim the workflow is faster.
 notes and neighboring phrases. Compare retained MIDI pitch, onset, release, velocity and controls
 as appropriate to the requested changes. Where offered, `review_score(compare_revision=…)` compares
 the two saved MIDI performances; inspect the onset, release and velocity changes before accepting a rewrite.
+A bar save also lists shortened written holds by pitch and bar. Even when MIDI stays identical, check
+those overlaps against the player's releases. Keep a supported long tone in its own voice with a single
+attack; where pedal and finger sustain are indistinguishable, flag that specific pitch and bar.
 For additions, measure actual exported MIDI onset
 error against the chosen source target; this checks the write, not whether the target was right.
 Document uncertain source notes and any pedal/articulation approximation.
