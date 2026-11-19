@@ -183,7 +183,9 @@ model just to verify a script or claim the workflow is faster.
 
 **Source and performance.** Check changed attacks against the recording, including soft/repeated
 notes and neighboring phrases. Compare retained MIDI pitch, onset, release, velocity and controls
-as appropriate to the requested changes. For additions, measure actual exported MIDI onset
+as appropriate to the requested changes. Where offered, `review_score(compare_revision=…)` compares
+the two saved MIDI performances; inspect the onset, release and velocity changes before accepting a rewrite.
+For additions, measure actual exported MIDI onset
 error against the chosen source target; this checks the write, not whether the target was right.
 Document uncertain source notes and any pedal/articulation approximation.
 
