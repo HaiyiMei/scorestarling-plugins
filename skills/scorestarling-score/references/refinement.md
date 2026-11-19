@@ -195,7 +195,8 @@ variants, coverage and binding completeness. Explain event-count deltas from ret
 added events; do not use a smaller note count or clean validation as an accuracy score.
 
 **Printed output.** After the last edit, read the current revision and page count. Inspect its printed pages
-with `review_score(page=…)` where offered, or the exported PDF. A measure excerpt reflows the passage and
+with `review_score(check=proof)` where offered, continuing at `next_page` until finished. Otherwise use
+individual printed pages or the exported PDF. A measure excerpt reflows the passage and
 cannot establish the saved page breaks. Check dense passages and page turns. Check accidentals,
 not only pitch numbers: MusicXML `pitch/alter` controls pitch, while a renderer may need an explicit
 `accidental` to print the sign. A natural pitch against a sharp/flat key signature needs a visible
