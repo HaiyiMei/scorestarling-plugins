@@ -51,6 +51,10 @@ the choices that would invalidate later engraving:
 - **Pulse:** check complete phrases and their returns for meter, beat level and pickup. A fragment
   can settle written subdivisions without settling the whole arrangement. A high tie/rest count is
   a lead, not a reason to halve the tempo or force a coarser grid.
+  When a repeated figure gets denser, compare attacks over equal spans in recording seconds. For example,
+  12, 16 and 20 attacks over successive four-pulse phrases suggest three, four and five per pulse.
+  Check the pattern on its return and against the other hand. If a different written beat makes the fast
+  passage easier to read, verify that its tempo mark and note values preserve the attack times.
 - **Layout:** physical hands and printed staves are different choices. Follow an explicitly requested
   reference layout, including an interleaved figure on one staff. Otherwise keep musical roles and
   playable hand allocation; do not impose a middle-C split or move every high accompaniment note.
