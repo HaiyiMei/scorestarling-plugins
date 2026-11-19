@@ -164,6 +164,13 @@ E♭5) so they can correct it; ask only when the key leaves it truly unclear.
 - Never infer a pickup length from an underfull bar alone. A solo-piano score's pickup was
   estimated from the playing: change it with clear source evidence, and ask only when the
   downbeat stays unclear.
+- For a passage-only change of beat unit, `write_bars` can keep the existing measure IDs and count:
+  for example, a 4/4 bar of eight eighths at quarter = 150 can be written as 2/4 with eight
+  sixteenths at quarter = 75 (two beamed groups of four). Both bars last 1.6 seconds. Include
+  the following boundary measure to restore the original meter, divisions and tempo there.
+  Scale the other voices, rests and tied durations proportionally, retaining their IDs. Check
+  actual seconds before and after. This is an editorial choice where the source and the user's
+  requested grouping already settle the pulse; asking whether to merge bars is unnecessary.
 - Notes that look halved or doubled may mean the beat level is off. A slow ballad whose
   sixteenths came out as eighths under a doubled tempo mark needs `scale_note_values` with
   `factor` 0.5 (halve every value); a quick waltz written in sixteenths at half its tempo needs

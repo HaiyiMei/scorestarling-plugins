@@ -51,6 +51,15 @@ the choices that would invalidate later engraving:
 - **Pulse:** check complete phrases and their returns for meter, beat level and pickup. A fragment
   can settle written subdivisions without settling the whole arrangement. A high tie/rest count is
   a lead, not a reason to halve the tempo or force a coarser grid.
+  When a repeated figure gets denser, compare attacks over equal spans in recording seconds. For example,
+  12, 16 and 20 attacks over successive four-pulse phrases suggest three, four and five per pulse.
+  Check the pattern on its return and against the other hand. If a different written beat makes the fast
+  passage easier to read, verify that its tempo mark and note values preserve the attack times.
+  If only the opening is settled, save the supported local correction. Extending it to the whole
+  score needs timing evidence at a return and a contrasting section: read original attack times there,
+  count attacks between recurring bass entries, and compare seconds per beat with the proposed pulse.
+  Hearing the same pitches at the return alone does not settle beat level. When regularizing a figure,
+  keep a sustained pitch in a separate voice if the available evidence supports only its attack.
 - **Layout:** physical hands and printed staves are different choices. Follow an explicitly requested
   reference layout, including an interleaved figure on one staff. Otherwise keep musical roles and
   playable hand allocation; do not impose a middle-C split or move every high accompaniment note.
@@ -174,7 +183,12 @@ model just to verify a script or claim the workflow is faster.
 
 **Source and performance.** Check changed attacks against the recording, including soft/repeated
 notes and neighboring phrases. Compare retained MIDI pitch, onset, release, velocity and controls
-as appropriate to the requested changes. For additions, measure actual exported MIDI onset
+as appropriate to the requested changes. Where offered, `review_score(compare_revision=…)` compares
+the two saved MIDI performances; inspect the onset, release and velocity changes before accepting a rewrite.
+A bar save also lists shortened written holds by pitch and bar. Even when MIDI stays identical, check
+those overlaps against the player's releases. Keep a supported long tone in its own voice with a single
+attack; where pedal and finger sustain are indistinguishable, flag that specific pitch and bar.
+For additions, measure actual exported MIDI onset
 error against the chosen source target; this checks the write, not whether the target was right.
 Document uncertain source notes and any pedal/articulation approximation.
 
@@ -183,7 +197,10 @@ sample. Check pickup, bar sums, cross-bar ties, voice continuity, hand allocatio
 variants, coverage and binding completeness. Explain event-count deltas from retained/deleted/
 added events; do not use a smaller note count or clean validation as an accuracy score.
 
-**Printed output.** Inspect every exported page, dense passages and page turns. Check accidentals,
+**Printed output.** After the last edit, read the current revision and page count. Inspect its printed pages
+with `review_score(check=proof)` where offered, continuing at `next_page` until finished. Otherwise use
+individual printed pages or the exported PDF. A measure excerpt reflows the passage and
+cannot establish the saved page breaks. Check dense passages and page turns. Check accidentals,
 not only pitch numbers: MusicXML `pitch/alter` controls pitch, while a renderer may need an explicit
 `accidental` to print the sign. A natural pitch against a sharp/flat key signature needs a visible
 cancellation unless the current staff/bar state already supplies it. Follow that state through

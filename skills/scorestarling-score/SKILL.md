@@ -21,6 +21,12 @@ sends you there; read them once and retain the relevant decisions instead of loa
 
 ## Choose how to transcribe
 
+When the title, filename or link identifies a piece, start [looking for the source](references/research.md)
+as soon as the recording arrives. Once the source and instrument are clear, pitch detection can proceed
+while you look. Before choosing pulse, bar lines or hand distribution for the first playable draft,
+match any reference to this take and check the opening, a return and a contrasting passage where available.
+For an unidentified recording or an unmatched reference, use the supplied performance.
+
 A quick listen recommends a choice in `recommendation.engine`. For a link, `check_link` also gives
 a video or song page's words (title, channel, description, tags, chapters, top comments) and
 pictures (the cover and frames across the part that will be transcribed, each labelled with its
@@ -43,8 +49,7 @@ time). Look at them:
   Use it for the score's title and composer and as leads for the review: swing or shuffle, a capo, a
   stated tempo to compare with the recording (still pass `bpm` only when the user gave it),
   comments about wrong notes or octaves in the performance. Never pass on links to sellers of
-  scores or MIDI. When the page names the piece, look it up before the review, as
-  [references/research.md](references/research.md) describes.
+  scores or MIDI.
 - **Seeing a band is not agreement to its price**: a band is still chosen with the user
   ([references/band.md](references/band.md)).
 - **When the site refuses the audio**, `recording_error` says so in words for the user, and the page
@@ -85,9 +90,7 @@ through every change to the transcription as it came.
   every page, and **proof** the result after your changes, as
   [references/review.md](references/review.md) describes. What a good score of the piece looks
   like is in [references/good-score.md](references/good-score.md); how to weigh each check, in
-  [references/review-tools.md](references/review-tools.md). When the piece can be identified (a
-  cover, a known song or work), first look up what a person would: the source's frames and words,
-  the piece, an existing score, as [references/research.md](references/research.md) describes.
+  [references/review-tools.md](references/review-tools.md). Revisit unresolved passages with the references matched at intake.
 
 ### What a change needs
 
