@@ -78,9 +78,9 @@ that change.
 
 ## 4. Look
 
-Call `review_score` with its page picture: the first page (no `measures`), then
-every further 16 bars from the first bar that page does not show (`measures`, in the score's bar
-numbers, such as "17-32"). Judge each page as an engraver would: clefs and ledger lines,
+Read the saved revision and page count with `get_score`. When the host offers `page`, use
+`review_score` with that revision and each printed page number. Otherwise inspect the exported PDF.
+Use `measures` for a close look at an excerpt; its line breaks can differ from the printed page. Judge each page as an engraver would: clefs and ledger lines,
 spelling, beams, voices and stems, rests, ties, collisions, spacing and labels. Inspect each
 suggested operation before using it, as "Suggestions" in
 [review-tools.md](review-tools.md) says.

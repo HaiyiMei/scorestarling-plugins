@@ -16,7 +16,7 @@ revision (or a preview's revision) and changes nothing. `check` picks what it ch
 for these, with the same arguments.
 
 - `measures` selects up to 16 bars in the score's own bar numbers ("5-8", "17-32"). Without it
-  the picture is the first page and the text covers the whole score up to a size limit.
+  the picture defaults to the first page (select another printed page with `page` when offered) and the text covers the whole score up to a size limit.
 - `image=true` (the default) adds the page picture; the read pass turns it off with
   `image=false`.
 - `text=true` adds a second block, the score as text: "Score as text, bars A-B.", then a line
@@ -51,7 +51,7 @@ It returns:
   available exactly where a tracked piano beat turns `rewrite_rhythm` away).
 - `expression`: each bar's timing and loudness, for tempo and dynamics marks ("Expression marks
   from the recording" in good-score.md). It measures timing and level, not notes.
-- The picture, when `image` is on: the first page, or the bars in `measures`. Judge it as an
+- The picture, when `image` is on: the requested printed page (default 1), or a reflowed excerpt in `measures`. Judge it as an
   engraver would.
 
 ## Listening: check=listen
